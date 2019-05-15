@@ -1,0 +1,23 @@
+.tabGeneral
+{
+  width: 100%;
+  height: 100%;
+  background: darkgrey;
+}
+.tabInput {
+  width: 100%;
+  height: 100%;
+  background: darkgrey;
+}
+
+#textData {
+
+}
+
+#supGraph {
+  width: 100%;
+  height: 100%;
+  background: grey;
+  display: block;
+  border: 2px solid blue;
+}
