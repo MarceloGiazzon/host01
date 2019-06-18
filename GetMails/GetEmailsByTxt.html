@@ -3,7 +3,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <!--<link href="PXToolsGridPaging.css" rel="stylesheet" />
     <script src="PXToolsGridPagingRender.js"></script>
-    <script src="../jquery-3.4.1.min.js"></script>
+    <script src="jquery-3.4.1.min.js"></script>
   -->
     <title>Get Emails</title>
   </head>
@@ -30,16 +30,40 @@
         return text.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi);
     }
 
+    function copyStringToClipboard(str)
+    {
+     // Create new element
+     var el = document.createElement('textarea');
+     // Set value (string to be copied)
+     el.value = str;
+     // Set non-editable to avoid focus and move outside of view
+     el.setAttribute('readonly', '');
+     el.style = {position: 'absolute', left: '-9999px'};
+     document.body.appendChild(el);
+     // Select text inside element
+     el.select();
+     // Copy text to clipboard
+     document.execCommand('copy');
+     // Remove temporary element
+     document.body.removeChild(el);
+    }
+
     function doFunction() {
       var text = document.getElementById("dataAsText").value;
-      var emails = extractEmails(text).join(',\n');
+      var emails = extractEmails(text).join('\n<br>');
+      var emailsToCopy = extractEmails(text).join('\n');
 
       var result = document.getElementById("result");
       result.innerHTML = emails;
 
+      copyStringToClipboard(emailsToCopy);
+
       var count = emails.replace(/[^@]/g, "").length;
       var total = document.getElementById("total");
-      total.innerHTML = "Total " + count;
+
+      //jQuery('body').prepend(jQuery('<a/>').attr('href','data:text/octet-stream;base64,SGVsbG8gV29ybGQh').text('Click to download'))
+      total.innerHTML = "Total " + count + " - copied to clipboard...";
+
     }
   </script>
 </body>
