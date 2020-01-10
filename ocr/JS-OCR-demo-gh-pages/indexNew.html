@@ -35,16 +35,19 @@
 	function load_file ()
 	{
 		var reader = new FileReader();
-		reader.onload = function()
-		{
+
+
+
+		//reader.onload = function()
+		//{
 			var img = new Image();
-			img.src = reader.result;
-			img.onload = function()
-			{
+			img.src = "https://marcelogiazzon.github.io/host01/ocr/ocr_test_05.jpg"; //reader.result;
+			//img.onload = function()
+			//{
 				//document.getElementById('nose').innerHTML = ''
 				//document.getElementById('nose').appendChild(img)
 
-				Tesseract.workerOptions.langPath = "https://marcelogiazzon.github.io/host01/ocr/JS-OCR-demo-gh-pages/por/"
+				Tesseract.workerOptions.langPath = "https://marcelogiazzon.github.io/host01/ocr/JS-OCR-demo-gh-pages/por/";
 
 		        // do the OCR!
 		        Tesseract.recognize(img).then(function (result) {
@@ -54,8 +57,8 @@
 		            console.log('POR: ' + resultText);
 
 		        });
-			}
-		}
+			//}
+		//}
 		//reader.readAsDataURL(document.getElementById('picker').files[0])
 	}
 </script>
