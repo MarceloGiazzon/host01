@@ -3,7 +3,7 @@
     <script src="https://unpkg.com/tesseract.js@2.0.0-beta.1/dist/tesseract.min.js"></script>
   </head>
   <body>
-    <img src="ocr_test_1.png" />
+    <img src="ocr_test_01.jpg" />
     <div id="message">Recognizing...</div>
     <script>
       const { createWorker } = Tesseract;
@@ -18,7 +18,7 @@
         await worker.load();
         await worker.loadLanguage('LCDDot_FT_500');
         await worker.initialize('LCDDot_FT_500');
-        const { data: { text } } = await worker.recognize('../lcddot.png');
+        const { data: { text } } = await worker.recognize('ocr_test_01.jpg');
         document.getElementById('message').innerHTML = text;
         await worker.terminate();
       })();
