@@ -1,5 +1,17 @@
-<script src="/dist/tesseract.dev.js"></script>
+
+
+<script src='https://cdn.jsdelivr.net/gh/naptha/tesseract.js@v1.0.14/dist/tesseract.min.js'></script>
 <script>
+/*
+
+
+
+
+//<script src="/dist/tesseract.dev.js">
+
+*/
+
+
 
 function progressUpdate(packet){
 	var log = document.getElementById('log');
@@ -36,12 +48,12 @@ function progressUpdate(packet){
 		log.insertBefore(line, log.firstChild)
 	}
 }
-
+//https://unpkg.com/tesseract.js-core@v2.0.0/tesseract-core.wasm.js
 async function recognizeFile(file) {
 	document.querySelector("#log").innerHTML = ''
   const corePath = window.navigator.userAgent.indexOf("Edge") > -1
-    ? '../../node_modules/tesseract.js-core/tesseract-core.asm.js'
-    : '../../node_modules/tesseract.js-core/tesseract-core.wasm.js';
+    ? 'https://unpkg.com/tesseract.js-core@v2.0.0/tesseract-core.asm.js'
+    : 'https://unpkg.com/tesseract.js-core@v2.0.0/tesseract-core.wasm.js';
 
   const lang = document.querySelector('#langsel').value
   const data = await Tesseract.recognize(file, lang, {
@@ -66,9 +78,9 @@ async function recognizeFile(file) {
 <option value='dan'     > Danish                </option>
 <option value='deu'     > German                </option>
 <option value='ell'     > Greek                 </option>
-<option value='eng'     selected> English                </option>
+<option value='eng'     selected> English       </option>
 <option value='enm'     > English (Old)         </option>
-<option value='meme'     > Internet Meme                </option>
+<option value='meme'     > Internet Meme        </option>
 <option value='epo'     > Esperanto             </option>
 <option value='epo_alt' > Esperanto alternative </option>
 <option value='equ'     > Math                  </option>
@@ -120,7 +132,7 @@ async function recognizeFile(file) {
 <option value='vie'     > Vietnamese            </option>
 </select>
 
-<button onclick="recognizeFile('../../tests/assets/images/simple.png')">Sample Image</button>
+<button onclick="recognizeFile('https://marcelogiazzon.github.io/host01/ocr/ocr_test_05.jpg')">Sample Image</button>
 <input type="file" onchange="recognizeFile(window.lastFile=this.files[0])">
 
 <div id="log"></div>
