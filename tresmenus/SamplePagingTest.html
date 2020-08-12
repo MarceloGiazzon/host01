@@ -413,6 +413,7 @@
 			      </li>
 			   </ul>
 			</div>
+			<!--<hr id="box_opt3_separador" class="separadorOnlyMobile" style="visibility: hidden;">-->
 		   <div class="extraSectionRight">
 
 		   		<ul id="opt3_sublvl_1">
@@ -1161,6 +1162,11 @@
 			{
 				var elems = document.getElementsByClassName('separatorHorizontal');
 				elems[0].style.display = 'block';
+			}
+
+			if (id.startsWith('opt3_'))
+			{
+				//document.getElementById('box_opt3_separador').style.visibility = "visible";
 			}
 
 			
