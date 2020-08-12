@@ -1,0 +1,270 @@
+#pxtCBoxRetBoxSampleTwoSectionHorizontal {
+	overflow: hidden;
+}
+
+.SectionUserBoxHorizontal {
+	float: left;
+	margin: 0px;
+	padding: 0px;
+}
+
+div#pxtCBoxRetBoxSampleTwoSection ul.suportBox {
+	padding: 0px;
+	margin: 0px;
+	margin-top: -2px;
+}
+
+.SectionUser.pxtCBoxIconOnTop img {
+    width: auto;
+}
+
+.SectionUser {
+	display: block;
+	overflow: auto;
+}
+
+.SectionUser span {
+	width: 100%;
+	display: inline-block
+}
+
+.SectionUser img {
+	border: #7bd8cb solid;
+	border-radius: 50%;
+	width: auto ;
+	height: auto;
+	max-width: -webkit-fill-available;
+	max-height: -webkit-fill-available;
+	border-width: 9px;
+}
+
+.SectionUser div.suportBoxItem {
+	align-content: center;
+	text-align: center;
+	/*background-color: purple;*/
+	color: whitesmoke;
+	display: inline-block;
+	width: 100%;
+}
+
+.ContextualBox {
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.pxtCBoxIconOnTop img {
+	width: 100%;
+	display: inline-block;
+}
+
+.pxtCBoxIconOnLeft img {
+	width: 20%;
+}
+
+.pxtCBoxHorizontal .pxtCBoxListItem {
+	float: left;
+}
+
+.ContextualBox {
+	border-color: #999;
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 6px;
+	position: absolute;
+	z-index: 99999;
+	background-color: #f3f3f3;
+}
+
+
+.ContextualBox hr {
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+.ContextualBox button {
+	width: 100%;
+}
+
+.ContextualBox .btn-darkblue {
+	background-color: #21314D;
+}
+
+.ContextualBox .btn-darkblue:hover {
+	background-color: #294e8e;
+	color: white;
+}
+
+.boxItemSelected {
+		border-radius: 2px !important;
+		border: 2px solid green !important;
+}
+
+.ContextualBox .btn {
+	padding: 3px 12px;
+}
+
+.ContextualBox li {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	width: 100%;
+	float: left;
+}
+
+.ContextualBox ul {
+  	list-style-type: none;
+  	padding-left: 3px;
+  	margin-top: 5px;
+  	margin-bottom: 5px;
+  	margin-right: 3px;
+}
+
+
+.gsmInnerBox,
+.boxItemTypeIconButton {
+  display: grid;
+  width: 68px;
+  height: 88px;
+  border-radius: 6px;
+}
+
+.gsmInnerBox:hover,
+.boxItemTypeIconButton:hover {
+  background-color: aliceblue;
+  overflow: visible;
+  z-index: 9;
+}
+
+.gsmInnerBox:hover span,
+.boxItemTypeIconButton:hover span {
+  overflow: visible;
+  white-space: break-spaces;
+  border-bottom-left-radius: 6px;
+  background-color: rgba(240, 248, 255, 0.80);;
+  border-bottom-right-radius: 6px;
+  z-index: 9;
+}
+
+.gsmInnerBox span,
+.boxItemTypeIconButton span {
+  color: #202124;
+  display: inline-block;
+  font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+  font-size: 15px;
+  letter-spacing: .09px;
+  line-height: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  /*width: 68px;*/
+  text-align: center;
+}
+
+ul.gsmIcons{
+   list-style:none;
+   margin:0;
+   padding:0;
+}
+
+ul.gsmIcons li{
+ float:left;
+ padding:5px;
+ border:solid #666 0;
+ cursor: pointer;
+ height: 88px;
+ width: auto;
+ padding: 10px;
+}
+
+.gsmGridBox{
+  width:265px;
+   height:355px;
+   background-color:#FFF;
+   box-shadow:0 0 10px #CCC;
+   border:solid #CCC 1px;
+   font-size:18px;
+   color:#666;
+   overflow:hidden;
+   display:none;
+   overflow-y: auto;
+ }
+
+.SectionGSuite{
+   width:300px;
+   /*height:290px;*/
+   overflow-x:hidden;
+	 /*margin: 12px;*/
+	 height: auto;
+	 margin-top: 0;
+	 margin-bottom: 0;
+	 padding-bottom: 10px;
+ }
+
+.SectionGSuiteBoxHorizontal {
+	/*width: 445px;*/
+	height: -webkit-fill-available;
+	float: left;
+	width: auto;
+	padding-bottom: 5px;
+	overflow-y: hidden;
+}
+
+#pxtCBoxSectionGSuiteBoxHorizontal {
+	width: 445px;
+}
+
+.SectionGSuite li.pxtCBoxListItem {
+	padding-left: 12px;
+	margin-left: 3px;
+}
+
+.arrow{
+  margin-left: 118px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 15px 20px 15px;
+  border-color: transparent transparent #efefef transparent;
+  display: none;
+}
+
+.SectionGSuiteBoxHorizontal ul.suportSection {
+	display: flex;
+	flex-flow: column wrap;
+	overflow-x: auto;
+	overflow-y: hidden;
+	width: 100%;
+	height: 100%;
+}
+
+.GsmContextualBoxHorizontal ul.suportBox {
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+.SectionGSuite img {
+ width: 68px;
+ height: 68px;
+ }
+
+ .SectionGSuite::-webkit-scrollbar-track
+ {
+ 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+ 	background-color: #F5F5F5;
+ }
+
+ .SectionGSuite::-webkit-scrollbar
+ {
+ 	width: 12px;
+ 	background-color: transparent;
+ }
+
+ .SectionGSuite::-webkit-scrollbar-thumb
+ {
+ 		-webkit-box-shadow: inset 0 0 6px rgba(90,90,90,.3);
+ 		background-color: #9e9498;
+    background-clip: padding-box;
+    border: 2.8px solid transparent;
+		border-radius: 8px;
+ }
