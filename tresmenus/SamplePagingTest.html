@@ -384,7 +384,7 @@
 		</div>
 
 
-		<div id="box_opt3" style="display: none;  top: 18px; left: 15px;" class="ContextualBox">
+		<div id="box_opt3" style="visibility: hidden;  top: 18px; left: 15px;" class="ContextualBox">
 			<div class="parentExtarSections">
 			   <ul class="suportBox" style="width: 300px;">
 			      <li id="ContextualBoxSectionGSuite" style="height: fit-content;" class="ContextualBoxSection SectionGSuite contextualBoxOnTop contextualBoxHorizontal">
@@ -1065,7 +1065,9 @@
 			}
 
 			if (id == 'opt3')
-				document.getElementById(domBoxId).style.display = "inline-flex";
+			{
+				document.getElementById(domBoxId).style.visibility = "visible";
+			}
 			else
 				document.getElementById(domBoxId).style.display = "block";
 
@@ -1106,7 +1108,13 @@
 			    if (!containerElem.is(e.target) && containerElem.has(e.target).length === 0
 					&&  !controlElem.is(e.target) && controlElem.has(e.target).length === 0)
 			    {
-			        document.getElementById(domBoxId).style.display = "none";
+			        if (domBoxId == 'box_opt3')
+					{
+						document.getElementById(domBoxId).style.visibility = "hidden";
+					}
+					else
+						document.getElementById(domBoxId).style.display = "block";
+
 			        window.flagHasActive = false;
 			    }
 			});
