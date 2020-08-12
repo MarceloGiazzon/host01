@@ -337,6 +337,18 @@ li.ContextualBoxSubLvl li {
 	padding-left: 5px;
 }
 
+
+#box_opt3 {
+	display: inline-flex;
+}
+
+
+@media screen and (max-width: 650px) {
+  #box_opt3 {
+	display: block;
+  }
+}
+
 #box_opt3 .fa {
 	display: none;
 }
@@ -388,19 +400,9 @@ li.ContextualBoxSubLvl li {
 	background: unset;
 }
 
-/*.ContextualBox > ul > li > ul > li:hover {
-	background: gray;
-	border: dashed gold 1px;
-}*/
-
-
 .extraSectionRight li:hover {
 	background: #9cd3dc;
 }
-/*
-.extraSectionRight li  {
-	border: dashed red 1px;	
-}*/
 
 #box_opt2 li.ContextualBoxSubLvl > div {
 	background: #e4d8bc;
