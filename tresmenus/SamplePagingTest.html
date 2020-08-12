@@ -17,7 +17,7 @@
 	</head>
 	<body>
 		<div class="contentarea">
-			<h2>
+			<h2 style="color: #21314d;">
 				PXTools Contextual Box Prototypes
 			</h2>
 			<p>
@@ -26,13 +26,13 @@
 		  <div class="suport_tab">
 		  	<table>
 		  		<tr>
-		  			<td><span id="opt2" onclick='activateBox("opt2");'>Sub Lvl on Middle, Icon on left - No Description</span></td>
-		  			<td><span id="opt3" onclick='activateBox("opt3");'>Sub Lvl on Right, No Icon </span></td>
-		  			<td><span id="opt4" onclick='activateBox("opt4");'>Sub Lvl on Middle, Icon on left - With Description</span></td>
+		  			<td class="opt2_Disp" onclick='activateBox("opt2");'><span id="opt2" onclick='activateBox("opt2");'>Sub Lvl on Middle, Icon on left - No Description</span></td>
+		  			<td class="opt3_Disp" onclick='activateBox("opt3");'><span id="opt3" onclick='activateBox("opt3");'>Sub Lvl on Right, No Icon </span></td>
+		  			<td class="opt4_Disp" onclick='activateBox("opt4");'><span id="opt4" onclick='activateBox("opt4");'>Sub Lvl on Middle, Icon on left - With Description</span></td>
 		  		</tr>
 
 		  		<tr>
-		  			<td><span style="display: none;" id="opt1" onclick='activateBox("opt1");'>Option 1</span></td>
+		  			<td ><span style="display: none;" id="opt1" onclick='activateBox("opt1");'>Option 1</span></td>
 		  			<td><span style="display: none;" id="promo2" onclick='activateBox("promo2");'>Promo 2</span></td>
 		  			<td><span style="display: none;" id="promo3" onclick='activateBox("promo3");'>Promo 3</span></td>
 		  		</tr>
@@ -1114,7 +1114,10 @@
 						document.getElementById(domBoxId).style.visibility = "hidden";
 					}
 					else
+					{
 						document.getElementById(domBoxId).style.display = "none";
+						$()
+					}
 
 			        window.flagHasActive = false;
 			    }
@@ -1175,268 +1178,268 @@
 			if (id.endsWith('opt2_sub1'))
 			{
 				var elem = document.getElementById("opt2_sublvl_1");
-				elem.style.display = 'block';
+				$(elem).slideDown("fast");
 
 				elem = document.getElementById("opt2_sublvl_2");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt2_sublvl_3");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt2_sublvl_4");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt2_sublvl_5");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 			}
 
 			if (id.endsWith('opt2_sub2'))
 			{
 				var elem = document.getElementById("opt2_sublvl_1");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt2_sublvl_2");
-				elem.style.display = 'block';
+				$(elem).slideDown("fast");
 
 				elem = document.getElementById("opt2_sublvl_3");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt2_sublvl_4");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt2_sublvl_5");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 			}
 
 			if (id.endsWith('opt2_sub3'))
 			{
 				var elem = document.getElementById("opt2_sublvl_1");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt2_sublvl_2");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt2_sublvl_3");
-				elem.style.display = 'block';
+				$(elem).slideDown("fast");
 
 				elem = document.getElementById("opt2_sublvl_4");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt2_sublvl_5");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 			}
 
 			if (id.endsWith('opt2_sub4'))
 			{
 				var elem = document.getElementById("opt2_sublvl_1");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt2_sublvl_2");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt2_sublvl_3");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt2_sublvl_4");
-				elem.style.display = 'block';
+				$(elem).slideDown("fast");
 
 				elem = document.getElementById("opt2_sublvl_5");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 			}
 
 			if (id.endsWith('opt2_sub5'))
 			{
 				var elem = document.getElementById("opt2_sublvl_1");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt2_sublvl_2");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt2_sublvl_3");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt2_sublvl_4");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt2_sublvl_5");
-				elem.style.display = 'block';
+				$(elem).slideDown("fast");
 			}
 
 			if (id.endsWith('opt3_sub1'))
 			{
 				var elem = document.getElementById("opt3_sublvl_1");
-				elem.style.display = 'block';
+				$(elem).slideDown("fast");
 
 				elem = document.getElementById("opt3_sublvl_2");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt3_sublvl_3");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt3_sublvl_4");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt3_sublvl_5");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 			}
 
 			if (id.endsWith('opt3_sub2'))
 			{
 				var elem = document.getElementById("opt3_sublvl_1");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt3_sublvl_2");
-				elem.style.display = 'block';
+				$(elem).slideDown("fast");
 
 				elem = document.getElementById("opt3_sublvl_3");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt3_sublvl_4");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt3_sublvl_5");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 			}
 
 			if (id.endsWith('opt3_sub3'))
 			{
 				var elem = document.getElementById("opt3_sublvl_1");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt3_sublvl_2");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt3_sublvl_3");
-				elem.style.display = 'block';
+				$(elem).slideDown("fast");
 
 				elem = document.getElementById("opt3_sublvl_4");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt3_sublvl_5");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 			}
 
 			if (id.endsWith('opt3_sub4'))
 			{
 				var elem = document.getElementById("opt3_sublvl_1");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt3_sublvl_2");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt3_sublvl_3");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt3_sublvl_4");
-				elem.style.display = 'block';
+				$(elem).slideDown("fast");
 
 				elem = document.getElementById("opt3_sublvl_5");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 			}
 
 			if (id.endsWith('opt3_sub5'))
 			{
 				var elem = document.getElementById("opt3_sublvl_1");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt3_sublvl_2");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt3_sublvl_3");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt3_sublvl_4");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt3_sublvl_5");
-				elem.style.display = 'block';
+				$(elem).slideDown("fast");
 			}
 
 			if (id.endsWith('opt4_sub1'))
 			{
 				var elem = document.getElementById("opt4_sublvl_1");
-				elem.style.display = 'block';
+				$(elem).slideDown("fast");
 
 				elem = document.getElementById("opt4_sublvl_2");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt4_sublvl_3");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt4_sublvl_4");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt4_sublvl_5");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 			}
 
 			if (id.endsWith('opt4_sub2'))
 			{
 				var elem = document.getElementById("opt4_sublvl_1");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt4_sublvl_2");
-				elem.style.display = 'block';
+				$(elem).slideDown("fast");
 
 				elem = document.getElementById("opt4_sublvl_3");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt4_sublvl_4");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt4_sublvl_5");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 			}
 
 			if (id.endsWith('opt4_sub3'))
 			{
 				var elem = document.getElementById("opt4_sublvl_1");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt4_sublvl_2");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt4_sublvl_3");
-				elem.style.display = 'block';
+				$(elem).slideDown("fast");
 
 				elem = document.getElementById("opt4_sublvl_4");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt4_sublvl_5");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 			}
 
 			if (id.endsWith('opt4_sub4'))
 			{
 				var elem = document.getElementById("opt4_sublvl_1");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt4_sublvl_2");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt4_sublvl_3");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt4_sublvl_4");
-				elem.style.display = 'block';
+				$(elem).slideDown("fast");
 
 				elem = document.getElementById("opt4_sublvl_5");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 			}
 
 			if (id.endsWith('opt4_sub5'))
 			{
 				var elem = document.getElementById("opt4_sublvl_1");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt4_sublvl_2");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt4_sublvl_3");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt4_sublvl_4");
-				elem.style.display = 'none';
+				$(elem).slideUp("fast");
 
 				elem = document.getElementById("opt4_sublvl_5");
 				elem.style.display = 'block';
