@@ -556,3 +556,34 @@ hr.separadorOnlyMobile {
 #box_opt4 .extraSectionBottom li:last-of-type {
 	border-bottom-width: 0px;
 }
+
+.middleSubLvlHidden {
+
+}
+
+.middleSubLvlVisible {
+	
+}
+
+.subLvlAnimatedHidden {
+	height: 0px;
+	visibility: hidden;
+}
+
+.subLvlAnimatedHidden {
+	height: auto;
+	visibility: hidden;
+}
+
+.opt2_Disp {
+	background: #61d0d0;
+}
+
+.opt3_Disp {
+	background: #79baf1;
+}
+
+.opt4_Disp {
+	background: burlywood;
+}
+
