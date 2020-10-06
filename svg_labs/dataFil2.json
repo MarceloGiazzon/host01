@@ -1,0 +1,262 @@
+dadosFil2 = [
+  {
+    "RegraSeq": 1,
+    "Filtro": [
+      {
+        "FiltroSeq": 0,
+        "FiltroId": 4,
+        "FiltroOperador": 1,
+        "FiltroVal1Char": "102014",
+        "FiltroVal2Char": "",
+        "FiltroVal1Int": 0,
+        "FiltroVal2Int": 0,
+        "FiltroValVarChar": "",
+        "FiltroVal1Dta": "0000-00-00",
+        "FiltroVal2Dta": "0000-00-00",
+        "FiltroCondOpe": 0
+      }
+    ],
+    "Efeito": [
+      {
+        "EfeitoSeq": 0,
+        "EfeitoId": 190,
+        "EfeitoAuxChar": "",
+        "EfeitoAuxVarChar": "{border-style: dashed; border-color: Aqua;}"
+      }
+    ]
+  },
+  {
+    "RegraSeq": 2,
+    "Filtro": [
+      {
+        "FiltroSeq": 0,
+        "FiltroId": 4,
+        "FiltroOperador": 1,
+        "FiltroVal1Char": "112014",
+        "FiltroVal2Char": "",
+        "FiltroVal1Int": 0,
+        "FiltroVal2Int": 0,
+        "FiltroValVarChar": "",
+        "FiltroVal1Dta": "0000-00-00",
+        "FiltroVal2Dta": "0000-00-00",
+        "FiltroCondOpe": 0
+      }
+    ],
+    "Efeito": [
+      {
+        "EfeitoSeq": 0,
+        "EfeitoId": 190,
+        "EfeitoAuxChar": "",
+        "EfeitoAuxVarChar": "{border-style: dashed; border-color: yellow;}"
+      }
+    ]
+  },
+  {
+    "RegraSeq": 3,
+    "Filtro": [
+      {
+        "FiltroSeq": 0,
+        "FiltroId": 4,
+        "FiltroOperador": 1,
+        "FiltroVal1Char": "122014",
+        "FiltroVal2Char": "",
+        "FiltroVal1Int": 0,
+        "FiltroVal2Int": 0,
+        "FiltroValVarChar": "",
+        "FiltroVal1Dta": "0000-00-00",
+        "FiltroVal2Dta": "0000-00-00",
+        "FiltroCondOpe": 0
+      }
+    ],
+    "Efeito": [
+      {
+        "EfeitoSeq": 0,
+        "EfeitoId": 190,
+        "EfeitoAuxChar": "",
+        "EfeitoAuxVarChar": "{border-style: dashed; border-color: green;}"
+      }
+    ]
+  },
+  {
+    "RegraSeq": 4,
+    "Filtro": [
+      {
+        "FiltroSeq": 0,
+        "FiltroId": 4,
+        "FiltroOperador": 1,
+        "FiltroVal1Char": "012015",
+        "FiltroVal2Char": "",
+        "FiltroVal1Int": 0,
+        "FiltroVal2Int": 0,
+        "FiltroValVarChar": "",
+        "FiltroVal1Dta": "0000-00-00",
+        "FiltroVal2Dta": "0000-00-00",
+        "FiltroCondOpe": 0
+      }
+    ],
+    "Efeito": [
+      {
+        "EfeitoSeq": 0,
+        "EfeitoId": 190,
+        "EfeitoAuxChar": "",
+        "EfeitoAuxVarChar": "{border-style: dashed; border-color: grey;}"
+      }
+    ]
+  },
+  {
+    "RegraSeq": 5,
+    "Filtro": [
+      {
+        "FiltroSeq": 0,
+        "FiltroId": 4,
+        "FiltroOperador": 1,
+        "FiltroVal1Char": "022015",
+        "FiltroVal2Char": "",
+        "FiltroVal1Int": 0,
+        "FiltroVal2Int": 0,
+        "FiltroValVarChar": "",
+        "FiltroVal1Dta": "0000-00-00",
+        "FiltroVal2Dta": "0000-00-00",
+        "FiltroCondOpe": 0
+      }
+    ],
+    "Efeito": [
+      {
+        "EfeitoSeq": 0,
+        "EfeitoId": 190,
+        "EfeitoAuxChar": "",
+        "EfeitoAuxVarChar": "{border-style: dashed; border-color: blue;}"
+      }
+    ]
+  },
+  {
+    "RegraSeq": 6,
+    "Filtro": [
+      {
+        "FiltroSeq": 0,
+        "FiltroId": 4,
+        "FiltroOperador": 1,
+        "FiltroVal1Char": "032015",
+        "FiltroVal2Char": "",
+        "FiltroVal1Int": 0,
+        "FiltroVal2Int": 0,
+        "FiltroValVarChar": "",
+        "FiltroVal1Dta": "0000-00-00",
+        "FiltroVal2Dta": "0000-00-00",
+        "FiltroCondOpe": 0
+      }
+    ],
+    "Efeito": [
+      {
+        "EfeitoSeq": 0,
+        "EfeitoId": 190,
+        "EfeitoAuxChar": "",
+        "EfeitoAuxVarChar": "{border-style: dashed; border-color: red;}"
+      }
+    ]
+  },
+  {
+    "RegraSeq": 7,
+    "Filtro": [
+      {
+        "FiltroSeq": 0,
+        "FiltroId": 4,
+        "FiltroOperador": 1,
+        "FiltroVal1Char": "042015",
+        "FiltroVal2Char": "",
+        "FiltroVal1Int": 0,
+        "FiltroVal2Int": 0,
+        "FiltroValVarChar": "",
+        "FiltroVal1Dta": "0000-00-00",
+        "FiltroVal2Dta": "0000-00-00",
+        "FiltroCondOpe": 0
+      }
+    ],
+    "Efeito": [
+      {
+        "EfeitoSeq": 0,
+        "EfeitoId": 190,
+        "EfeitoAuxChar": "",
+        "EfeitoAuxVarChar": "{border-style: dashed; border-color: purple;}"
+      }
+    ]
+  },
+  {
+    "RegraSeq": 8,
+    "Filtro": [
+      {
+        "FiltroSeq": 0,
+        "FiltroId": 4,
+        "FiltroOperador": 1,
+        "FiltroVal1Char": "052015",
+        "FiltroVal2Char": "",
+        "FiltroVal1Int": 0,
+        "FiltroVal2Int": 0,
+        "FiltroValVarChar": "",
+        "FiltroVal1Dta": "0000-00-00",
+        "FiltroVal2Dta": "0000-00-00",
+        "FiltroCondOpe": 0
+      }
+    ],
+    "Efeito": [
+      {
+        "EfeitoSeq": 0,
+        "EfeitoId": 190,
+        "EfeitoAuxChar": "",
+        "EfeitoAuxVarChar": "{border-style: dashed; border-color: Brown;}"
+      }
+    ]
+  },
+  {
+    "RegraSeq": 9,
+    "Filtro": [
+      {
+        "FiltroSeq": 0,
+        "FiltroId": 4,
+        "FiltroOperador": 1,
+        "FiltroVal1Char": "062015",
+        "FiltroVal2Char": "",
+        "FiltroVal1Int": 0,
+        "FiltroVal2Int": 0,
+        "FiltroValVarChar": "",
+        "FiltroVal1Dta": "0000-00-00",
+        "FiltroVal2Dta": "0000-00-00",
+        "FiltroCondOpe": 0
+      }
+    ],
+    "Efeito": [
+      {
+        "EfeitoSeq": 0,
+        "EfeitoId": 190,
+        "EfeitoAuxChar": "",
+        "EfeitoAuxVarChar": "{border-style: dashed; border-color: BlueViolet;}"
+      }
+    ]
+  },
+  {
+    "RegraSeq": 10,
+    "Filtro": [
+      {
+        "FiltroSeq": 0,
+        "FiltroId": 4,
+        "FiltroOperador": 1,
+        "FiltroVal1Char": "072015",
+        "FiltroVal2Char": "",
+        "FiltroVal1Int": 0,
+        "FiltroVal2Int": 0,
+        "FiltroValVarChar": "",
+        "FiltroVal1Dta": "0000-00-00",
+        "FiltroVal2Dta": "0000-00-00",
+        "FiltroCondOpe": 0
+      }
+    ],
+    "Efeito": [
+      {
+        "EfeitoSeq": 0,
+        "EfeitoId": 190,
+        "EfeitoAuxChar": "",
+        "EfeitoAuxVarChar": "{border-style: dashed; border-color: CadetBlue;}"
+      }
+    ]
+  }
+];

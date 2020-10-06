@@ -1,0 +1,210 @@
+var dadosFil1 = [
+  {
+    "RegraSeq": 1,
+    "Filtro": [
+      {
+        "FiltroSeq": 0,
+        "FiltroId": 25,
+        "FiltroOperador": 1,
+        "FiltroVal1Char": "",
+        "FiltroVal2Char": "",
+        "FiltroVal1Int": 1,
+        "FiltroVal2Int": 0,
+        "FiltroValVarChar": "",
+        "FiltroVal1Dta": "0000-00-00",
+        "FiltroVal2Dta": "0000-00-00",
+        "FiltroCondOpe": 0
+      }
+    ],
+    "Efeito": [
+      {
+        "EfeitoSeq": 0,
+        "EfeitoId": 90,
+        "EfeitoAuxChar": "",
+        "EfeitoAuxVarChar": "{line-height: 50%; position: absolute; width: 64px; height: 40px; background-color: #9AFF9A;}"
+      }
+    ]
+  },
+  {
+    "RegraSeq": 2,
+    "Filtro": [
+      {
+        "FiltroSeq": 0,
+        "FiltroId": 25,
+        "FiltroOperador": 1,
+        "FiltroVal1Char": "",
+        "FiltroVal2Char": "",
+        "FiltroVal1Int": 2,
+        "FiltroVal2Int": 0,
+        "FiltroValVarChar": "",
+        "FiltroVal1Dta": "0000-00-00",
+        "FiltroVal2Dta": "0000-00-00",
+        "FiltroCondOpe": 0
+      }
+    ],
+    "Efeito": [
+      {
+        "EfeitoSeq": 0,
+        "EfeitoId": 90,
+        "EfeitoAuxChar": "",
+        "EfeitoAuxVarChar": "{line-height: 50%; position: absolute; width: 64px; height: 40px; background-color: #696969;}"
+      }
+    ]
+  },
+  {
+    "RegraSeq": 3,
+    "Filtro": [
+      {
+        "FiltroSeq": 0,
+        "FiltroId": 25,
+        "FiltroOperador": 1,
+        "FiltroVal1Char": "",
+        "FiltroVal2Char": "",
+        "FiltroVal1Int": 6,
+        "FiltroVal2Int": 0,
+        "FiltroValVarChar": "",
+        "FiltroVal1Dta": "0000-00-00",
+        "FiltroVal2Dta": "0000-00-00",
+        "FiltroCondOpe": 0
+      }
+    ],
+    "Efeito": [
+      {
+        "EfeitoSeq": 0,
+        "EfeitoId": 90,
+        "EfeitoAuxChar": "",
+        "EfeitoAuxVarChar": "{line-height: 50%; position: absolute; width: 64px;height: 40px; background-color: #7FFF00;}"
+      }
+    ]
+  },
+  {
+    "RegraSeq": 4,
+    "Filtro": [
+      {
+        "FiltroSeq": 0,
+        "FiltroId": 25,
+        "FiltroOperador": 1,
+        "FiltroVal1Char": "",
+        "FiltroVal2Char": "",
+        "FiltroVal1Int": 4,
+        "FiltroVal2Int": 0,
+        "FiltroValVarChar": "",
+        "FiltroVal1Dta": "0000-00-00",
+        "FiltroVal2Dta": "0000-00-00",
+        "FiltroCondOpe": 0
+      }
+    ],
+    "Efeito": [
+      {
+        "EfeitoSeq": 0,
+        "EfeitoId": 90,
+        "EfeitoAuxChar": "",
+        "EfeitoAuxVarChar": "{line-height: 50%; position: absolute; width: 64px; height: 40px; background-color: #6A5ACD;}"
+      }
+    ]
+  },
+  {
+    "RegraSeq": 5,
+    "Filtro": [
+      {
+        "FiltroSeq": 0,
+        "FiltroId": 25,
+        "FiltroOperador": 1,
+        "FiltroVal1Char": "",
+        "FiltroVal2Char": "",
+        "FiltroVal1Int": 9,
+        "FiltroVal2Int": 0,
+        "FiltroValVarChar": "",
+        "FiltroVal1Dta": "0000-00-00",
+        "FiltroVal2Dta": "0000-00-00",
+        "FiltroCondOpe": 0
+      }
+    ],
+    "Efeito": [
+      {
+        "EfeitoSeq": 0,
+        "EfeitoId": 90,
+        "EfeitoAuxChar": "",
+        "EfeitoAuxVarChar": "{line-height: 50%; position: absolute; width: 64px; height: 40px; background-color: #9C9C9C;}"
+      }
+    ]
+  },
+  { 
+    "RegraSeq": 6,
+    "Filtro": [
+      {
+        "FiltroSeq": 0,
+        "FiltroId": 25,
+        "FiltroOperador": 1,
+        "FiltroVal1Char": "",
+        "FiltroVal2Char": "",
+        "FiltroVal1Int": 3,
+        "FiltroVal2Int": 0,
+        "FiltroValVarChar": "",
+        "FiltroVal1Dta": "0000-00-00",
+        "FiltroVal2Dta": "0000-00-00",
+        "FiltroCondOpe": 0
+      }
+    ],
+    "Efeito": [
+      {
+        "EfeitoSeq": 0,
+        "EfeitoId": 90,
+        "EfeitoAuxChar": "",
+        "EfeitoAuxVarChar": "{line-height: 50%; position: absolute; width: 64px; height: 40px; background-color: #556B2F;}"
+      }
+    ]
+  },
+  {
+    "RegraSeq": 7,
+    "Filtro": [
+      {
+        "FiltroSeq": 0,
+        "FiltroId": 25,
+        "FiltroOperador": 1,
+        "FiltroVal1Char": "",
+        "FiltroVal2Char": "",
+        "FiltroVal1Int": 7,
+        "FiltroVal2Int": 0,
+        "FiltroValVarChar": "",
+        "FiltroVal1Dta": "0000-00-00",
+        "FiltroVal2Dta": "0000-00-00",
+        "FiltroCondOpe": 0
+      }
+    ],
+    "Efeito": [
+      {
+        "EfeitoSeq": 0,
+        "EfeitoId": 90,
+        "EfeitoAuxChar": "",
+        "EfeitoAuxVarChar": "{line-height: 50%; position: absolute; width: 64px; height: 40px; background-color: DeepPink;}"
+      }
+    ]
+  },
+  {
+    "RegraSeq": 8,
+    "Filtro": [
+      {
+        "FiltroSeq": 0,
+        "FiltroId": 25,
+        "FiltroOperador": 1,
+        "FiltroVal1Char": "",
+        "FiltroVal2Char": "",
+        "FiltroVal1Int": 5,
+        "FiltroVal2Int": 0,
+        "FiltroValVarChar": "",
+        "FiltroVal1Dta": "0000-00-00",
+        "FiltroVal2Dta": "0000-00-00",
+        "FiltroCondOpe": 0
+      }
+    ],
+    "Efeito": [
+      {
+        "EfeitoSeq": 0,
+        "EfeitoId": 90,
+        "EfeitoAuxChar": "",
+        "EfeitoAuxVarChar": "{line-height: 50%; position: absolute; width: 64px; height: 40px; background-color: purple;}"
+      }
+    ]
+  }
+];

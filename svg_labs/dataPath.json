@@ -1,0 +1,66 @@
+var dataPath = [
+		{"id":"H1","x1":46,"x2":1206,"y1":54,"y2":54,
+			"cross": [
+			{"crossId":"V0","crossX":311,"crossY":55}
+		]},
+
+		{"id":"H2","x1":26,"x2":1201,"y1":129,"y2":129,
+			"cross": [
+			{"crossId":"V0","crossX":311,"crossY":129}
+		]},
+
+		{"id":"H3","x1":26,"x2":800,"y1":178,"y2":178,
+			"cross": [
+			{"crossId":"V0","crossX":311,"crossY":178},
+			{"crossId":"V1","crossX":52,"crossY":178},
+			{"crossId":"V2","crossX":128,"crossY":178},
+			{"crossId":"V3","crossX":282,"crossY":178},
+			{"crossId":"V4","crossX":432,"crossY":178},
+			{"crossId":"V5","crossX":559,"crossY":178},
+			{"crossId":"V6","crossX":644,"crossY":178},
+			{"crossId":"V7","crossX":799,"crossY":178}
+		]},
+
+		{"id":"V0","x1":311,"x2":311,"y1":55,"y2":178,
+			"cross": [
+			{"crossId":"H1","crossX":311,"crossY":54},
+			{"crossId":"H2","crossX":311,"crossY":129},
+			{"crossId":"H3","crossX":311,"crossY":178}
+		]},
+
+		{"id":"V1","x1":52,"x2":52,"y1":178,"y2":518,
+			"cross": [
+			{"crossId":"H3","crossX":52,"crossY":178}
+		]},
+
+		{"id":"V2","x1":128,"x2":128,"y1":178,"y2":1287,
+			"cross": [
+			{"crossId":"H3","crossX":128,"crossY":178}
+		]},
+
+		{"id":"V3","x1":282,"x2":282,"y1":178,"y2":1287,
+			"cross": [
+			{"crossId":"H3","crossX":282,"crossY":178}
+		]},
+
+		{"id":"V4","x1":432,"x2":432,"y1":178,"y2":1287,
+			"cross": [
+			{"crossId":"H3","crossX":432,"crossY":178}
+		]},
+
+		{"id":"V5","x1":559,"x2":559,"y1":178,"y2":392,
+			"cross": [
+			{"crossId":"H3","crossX":559,"crossY":178}
+		]},
+
+		{"id":"V6","x1":644,"x2":644,"y1":178,"y2":481,
+			"cross": [
+			{"crossId":"H3","crossX":644,"crossY":178}
+		]},
+
+		{"id":"V7","x1":799,"x2":799,"y1":178,"y2":699,
+			"cross": [
+			{"crossId":"H3","crossX":799,"crossY":178}
+		]},
+
+	];
