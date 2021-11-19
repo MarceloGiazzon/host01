@@ -13,9 +13,10 @@
         }
     </style>
 <body>
-    <div id="myresults"><span id="txtResult">(v0.1) results:<br></span></div>
+    <div id="myresults"><span id="txtResult">(v0.2) results:<br></span></div>
     <div id="qr-reader" style="width:600px"></div>
     <div id="qr-reader-results"></div>
+
 </body>
 
 <script src="https://unpkg.com/html5-qrcode" type="text/javascript"> </script>
@@ -34,6 +35,8 @@
         }
     }
 
+    var lastBeep = 0;
+
     docReady(function () {
         var resultContainer = document.getElementById('qr-reader-results');
         var lastResult, countResults = 0;
@@ -51,20 +54,17 @@
                 elem.parentElement.scrollTop = 10000;
             }
 
-            minInterval = 1000;
-
-            if (Date.now() > lastBeep + minInterval)
-            {
+            var minInterval = 1000;
+            if (Date.now() > lastBeep + minInterval) {
                 beep();
                 lastBeep = Date.now();
-            } 
+            }
         }
 
         var html5QrcodeScanner = new Html5QrcodeScanner(
             "qr-reader", { fps: 10, qrbox: 250 });
         html5QrcodeScanner.render(onScanSuccess);
     });
-
 
     /*for (var i = 0; i < 10; i++) {
         var elem = document.getElementById('txtResult');
