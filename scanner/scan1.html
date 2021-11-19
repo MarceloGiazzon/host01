@@ -13,7 +13,7 @@
         }
     </style>
 <body>
-    <div id="myresults"><span id="txtResult">results:<br></span></div>
+    <div id="myresults"><span id="txtResult">(v0.1) results:<br></span></div>
     <div id="qr-reader" style="width:600px"></div>
     <div id="qr-reader-results"></div>
 </body>
@@ -50,7 +50,14 @@
                 elem.innerHTML += `Scan result ${decodedText}`, decodedResult + "<br>";
                 elem.parentElement.scrollTop = 10000;
             }
-            beep();
+
+            minInterval = 1000;
+
+            if (Date.now() > lastBeep + minInterval)
+            {
+                beep();
+                lastBeep = Date.now();
+            } 
         }
 
         var html5QrcodeScanner = new Html5QrcodeScanner(
