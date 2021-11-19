@@ -13,7 +13,7 @@
         }
     </style>
 <body>
-    <div id="myresults"><span id="txtResult">(v0.2) results:<br></span></div>
+    <div id="myresults"><span id="txtResult">(v0.3) results:<br></span></div>
     <div id="qr-reader" style="width:600px"></div>
     <div id="qr-reader-results"></div>
 
@@ -50,7 +50,7 @@
 
                 var elem = document.getElementById('txtResult');
                 //elem.innerHTML += decodedResult + "<br>";
-                elem.innerHTML += `Scan result ${decodedText}`, decodedResult + "<br>";
+                elem.innerHTML += `Scan result ${decodedText}`, decodedResult + "<br><br>";
                 elem.parentElement.scrollTop = 10000;
             }
 
