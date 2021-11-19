@@ -1,12 +1,26 @@
 <html>
 <head>
     <title>Html-Qrcode Demo</title>
+
+    <style>
+        body {background-color: #eee;}
+        #myresults {
+            max-height: 80px;
+            background: navy;
+            color: #efefef;
+            overflow-y: auto;
+            min-width: 500px;
+        }
+    </style>
 <body>
-    <div id="qr-reader" style="width:500px"></div>
+    <div id="myresults"><span id="txtResult">results:<br></span></div>
+    <div id="qr-reader" style="width:600px;height:350px"></div>
     <div id="qr-reader-results"></div>
 </body>
 
 <script src="https://unpkg.com/html5-qrcode" type="text/javascript"> </script>
+
+
 
 <script>
     function docReady(fn) {
@@ -29,6 +43,12 @@
                 lastResult = decodedText;
                 // Handle on success condition with the decoded message.
                 console.log(`Scan result ${decodedText}`, decodedResult);
+                //alert(`Scan result ${decodedText}`, decodedResult);
+
+                var elem = document.getElementById('txtResult');
+                elem.innerHTML += decodedResult + "<br>";
+                elem.innerHTML += `Scan result ${decodedText}`, decodedResult + "<br>";
+                elem.parentElement.scrollTop = 10000;
             }
         }
 
@@ -36,6 +56,14 @@
             "qr-reader", { fps: 10, qrbox: 250 });
         html5QrcodeScanner.render(onScanSuccess);
     });
+
+
+    /*for (var i = 0; i < 10; i++) {
+        var elem = document.getElementById('txtResult');
+        elem.innerHTML += "test log <br>";
+        elem.parentElement.scrollTop = 10000;
+    }*/
+
 </script>
 </head>
 </html>
