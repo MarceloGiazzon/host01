@@ -13,7 +13,7 @@
         }
     </style>
 <body>
-    <span>V.1</span>
+    <span>V.2</span>
     <button onclick="myFunction_Init()">Init</button>
     <button onclick="myFunction_Start()">Start</button>
     <button onclick="myFunction_Stop()">Stop</button>
@@ -67,15 +67,7 @@
         //html5QrcodeScanner.render(onScanSuccess);
     });
 
-    function myFunction_Stop() {
-        console.log('myFunction_Stop');
 
-        html5QrCode.stop().then((ignore) => {
-         // QR Code scanning is stopped.
-        }).catch((err) => {
-        // Stop failed, handle it.
-        });
-    }
     
     var cameraId;
     var cameraName;
@@ -122,6 +114,16 @@
             // Start failed, handle it.
             console.log('Error');
         });
+
+        function myFunction_Stop() {
+        console.log('myFunction_Stop');
+
+        html5QrCode.stop().then((ignore) => {
+            // QR Code scanning is stopped.
+        }).catch((err) => {
+            // Stop failed, handle it.
+        });
+    }
     }
 
     function beep() {
