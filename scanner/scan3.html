@@ -13,7 +13,9 @@
         }
     </style>
 <body>
-    <button onclick="myFunction_Init()">Start</button>
+    <span>V.1</span>
+    <button onclick="myFunction_Init()">Init</button>
+    <button onclick="myFunction_Start()">Start</button>
     <button onclick="myFunction_Stop()">Stop</button>
     <div id="myresults"><span id="txtResult">(v0.5) results:</span></div>
     <div id="qr-reader" style="width:600px"></div>
@@ -69,10 +71,11 @@
         console.log('myFunction_Stop');
     }
     
+    var cameraId;
+    var cameraName;
+
     function myFunction_Init() {
         console.log('myFunction_Init');
-        var cameraId;
-        var cameraName;
 
         // This method will trigger user permissions
         Html5Qrcode.getCameras().then(devices => {
@@ -89,22 +92,29 @@
             // handle err
             console.log('Error');
         });
+    }
+
+    function myFunction_Start() {
+        console.log('myFunction_Start');
 
         const html5QrCode = new Html5Qrcode(/* element id */ "qr-reader");
         html5QrCode.start(
         cameraId, 
         {
             fps: 10,    // Optional, frame per seconds for qr code scanning
-            qrbox: { width: 250, height: 250 }  // Optional, if you want bounded box UI
+            qrbox: { width: 350, height: 250 }  // Optional, if you want bounded box UI
         },
         (decodedText, decodedResult) => {
             // do something when code is read
+            console.log('Result. decodedText = ' + decodedText + ' decodedResult = ' + decodedResult);
         },
         (errorMessage) => {
             // parse error, ignore it.
+            console.log('Error');
         })
         .catch((err) => {
-        // Start failed, handle it.
+            // Start failed, handle it.
+            console.log('Error');
         });
     }
 
