@@ -16,7 +16,7 @@
     <span>V.2</span>
     <button onclick="myFunction_Init()">Init</button>
     <button onclick="myFunction_Start()">Start</button>
-    <button onclick="myFunction_Stop()">Stop</button>
+    <button id="myStop">Stop</button>
     <div id="myresults"><span id="txtResult">(v0.5) results:</span></div>
     <div id="qr-reader" style="width:600px"></div>
     <div id="qr-reader-results"></div>
@@ -95,7 +95,7 @@
     function myFunction_Start() {
         console.log('myFunction_Start');
 
-        const html5QrCode = new Html5Qrcode(/* element id */ "qr-reader");
+        const html5QrCode = new Html5Qrcode("qr-reader");
         html5QrCode.start(
         cameraId, 
         {
@@ -116,14 +116,19 @@
         });
 
         function myFunction_Stop() {
-        console.log('myFunction_Stop');
+            console.log('myFunction_Stop');
 
-        html5QrCode.stop().then((ignore) => {
-            // QR Code scanning is stopped.
-        }).catch((err) => {
-            // Stop failed, handle it.
+            html5QrCode.stop().then((ignore) => {
+                // QR Code scanning is stopped.
+            }).catch((err) => {
+                // Stop failed, handle it.
+            });
+        }
+        var elemStop = document.getElementById('myStop');
+        elemStop.addEventListener("click", function() {
+            console.log("addEventListener - Stop");
+            myFunction_Stop();
         });
-    }
     }
 
     function beep() {
