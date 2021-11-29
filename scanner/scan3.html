@@ -69,6 +69,12 @@
 
     function myFunction_Stop() {
         console.log('myFunction_Stop');
+
+        html5QrCode.stop().then((ignore) => {
+         // QR Code scanning is stopped.
+        }).catch((err) => {
+        // Stop failed, handle it.
+        });
     }
     
     var cameraId;
