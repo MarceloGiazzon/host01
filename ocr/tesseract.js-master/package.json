@@ -51,9 +51,9 @@
     "nyc": "^13.3.0",
     "rimraf": "^2.7.1",
     "wait-on": "^3.3.0",
-    "webpack": "^4.41.4",
+    "webpack": "^5.75.0",
     "webpack-bundle-analyzer": "^3.6.0",
-    "webpack-cli": "^3.3.10",
+    "webpack-cli": "^5.0.1",
     "webpack-dev-middleware": "^3.7.2"
   },
   "dependencies": {
