@@ -3,6 +3,10 @@
     border: red solid 1px;
 }
 
+.gx-warning-message::after {
+  content: "Vcss1.2";
+}
+
 @media only screen and (max-height: 600px) {
     .AttributeLabel {
         background: blueviolet;
