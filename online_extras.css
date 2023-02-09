@@ -26,9 +26,8 @@
 }
 
 
-#qr-reader1 {
-  width: 600px;
-  position: relative;
+#qr-reader {
+  max-height: 510px;
 }
 
 .supportUCNotActive {
