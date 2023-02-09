@@ -4,7 +4,7 @@
 }
 
 .gx-warning-message::after {
-  content: "Vcss1.2";
+  content: "Vcss1.3";
 }
 
 @media only screen and (max-height: 600px) {
@@ -14,6 +14,7 @@
 
     .ucFloatScannerFrame {
       margin-top: 0px !important;
+      height: 95%;
     }
 }
 
@@ -60,6 +61,7 @@
 #supportUC {
     background: #222;
     color: whitesmoke;
+    max-height: 550px;
 }
 
 #supportAction {
