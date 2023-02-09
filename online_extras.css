@@ -16,6 +16,10 @@
       margin-top: 0px !important;
       height: 95%;
     }
+
+    #qr-reader, video {
+      max-height: 360px;
+    }
 }
 
 #PXTOOLSCAMSCANNER1Container_dummy
