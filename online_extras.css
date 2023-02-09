@@ -11,6 +11,10 @@
     .AttributeLabel {
         background: blueviolet;
     }
+
+    .ucFloatScannerFrame {
+      margin-top: 0px !important;
+    }
 }
 
 #PXTOOLSCAMSCANNER1Container_dummy
