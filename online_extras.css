@@ -4,7 +4,7 @@
 }
 
 .gx-warning-message::after {
-  content: "Vcss1.3";
+  content: "Vcss1.4";
 }
 
 @media only screen and (max-height: 600px) {
@@ -17,8 +17,12 @@
       height: 95%;
     }
 
-    #qr-reader, video {
+    .ucFloatScannerFrame #qr-reader {
       max-height: 360px;
+    }
+
+    .ucFloatScannerFrame  video {
+      max-height: 389px;
     }
 }
 
