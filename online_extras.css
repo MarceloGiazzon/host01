@@ -4,7 +4,7 @@
 }
 
 .gx-warning-message::after {
-  content: "Vcss1.6";
+  content: "Vcss1.7";
 }
 
 @media only screen and (max-height: 600px) {
@@ -15,10 +15,12 @@
     .ucFloatScannerFrame {
       margin-top: 0px !important;
       height: 95%;
+      top: 0px !important;
+      transform: translate(-50%, 0%) !important;
     }
 
     .ucFloatScannerFrame #qr-reader {
-      max-height: 360px;
+      max-height: calc(100% - 40px); /*360px*/
     }
 
     .ucFloatScannerFrame  video {
