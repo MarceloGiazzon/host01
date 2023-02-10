@@ -24,7 +24,8 @@
     }
 
     .ucFloatScannerFrame  video {
-      max-height: calc(100% - 75px);
+      max-height: 285px;
+      margin-top: 0px;
     }
 }
 
