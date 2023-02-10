@@ -4,7 +4,7 @@
 }
 
 .gx-warning-message::after {
-  content: "Vcss1.8";
+  content: "Vcss1.9";
 }
 
 @media only screen and (max-height: 600px) {
