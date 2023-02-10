@@ -4,7 +4,7 @@
 }
 
 .gx-warning-message::after {
-  content: "Vcss1.9";
+  content: "Vcss1.91";
 }
 
 @media only screen and (max-height: 600px) {
@@ -23,7 +23,7 @@
       max-height: calc(100% - 75px); /*360px*/
     }
 
-    .ucFloatScannerFrame  video {
+    .ucFloatScannerFrame video {
       max-height: 285px;
       margin-top: 0px;
     }
