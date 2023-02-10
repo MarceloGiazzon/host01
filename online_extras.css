@@ -4,7 +4,7 @@
 }
 
 .gx-warning-message::after {
-  content: "VCss_0.002";
+  content: "VCss_0.003";
 }
 
 @media only screen and (max-height: 600px) {
@@ -23,7 +23,7 @@
       max-height: calc(100% - 75px); /*360px*/
     }
 
-    .ucFloatScannerFrame .qr-shaded-region {
+    .ucFloatScannerFrame #qr-shaded-region {
       height: 285px;
     }
 
