@@ -4,7 +4,7 @@
 }
 
 .gx-warning-message::after {
-  content: "Vcss1.5";
+  content: "Vcss1.6";
 }
 
 @media only screen and (max-height: 600px) {
@@ -57,7 +57,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80%;
+  width: 94%;
   max-width: 600px;
   height: 80%;
   max-height: 550px;
