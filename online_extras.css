@@ -4,7 +4,7 @@
 }
 
 .gx-warning-message::after {
-  content: "VCss_0.001";
+  content: "VCss_0.002";
 }
 
 @media only screen and (max-height: 600px) {
