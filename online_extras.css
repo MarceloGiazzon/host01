@@ -4,7 +4,7 @@
 }
 
 .gx-warning-message::after {
-  content: "VCss_0.004";
+  content: "VCss_0.005";
 }
 
 @media only screen and (max-height: 600px) {
@@ -66,7 +66,7 @@
   transform: translate(-50%, -50%);
   width: 94%;
   max-width: 600px;
-  height: 80%;
+  /*height: 80%;*/
   max-height: 450px;
 }
 
