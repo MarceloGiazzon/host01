@@ -4,7 +4,7 @@
 }
 
 .gx-warning-message::after {
-  content: "VCss_0.005";
+  content: "VCss_0.006";
 }
 
 @media only screen and (max-height: 600px) {
@@ -14,7 +14,7 @@
 
     .ucFloatScannerFrame {
       margin-top: 0px !important;
-      height: 95%;
+      height: 100%;
       top: 0px !important;
       transform: translate(-50%, 0%) !important;
     }
