@@ -3,8 +3,8 @@
     border: red solid 1px;
 }
 
-.gx-warning-message::after {
-  content: "VCss_0.010";
+#TB_VERSION::after {
+  content: "VCss_0.011";
 }
 
 @media only screen and (max-height: 600px) {
