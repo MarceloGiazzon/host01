@@ -4,7 +4,7 @@
 }
 
 .gx-warning-message::after {
-  content: "VCss_0.008";
+  content: "VCss_0.009";
 }
 
 @media only screen and (max-height: 600px) {
@@ -116,7 +116,7 @@
 	border-radius: 3px;
     padding: 7px;
     /*margin-left: 15px;*/
-    width: 70px;
+    width: 65px;
     display: inline-block;
 }
 
@@ -179,8 +179,14 @@
 	}
 	
 	#supportAction span, #labelResult {
-		padding: 3px;
+		padding: 1px;
 	}
+}
+
+@media (max-width: 400px) {
+  #selectCamNode {
+    max-width: 128px;
+  }
 }
 
 @media (min-width: 601px) {
