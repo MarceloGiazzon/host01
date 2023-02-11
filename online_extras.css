@@ -4,7 +4,7 @@
 }
 
 .gx-warning-message::after {
-  content: "VCss_0.006";
+  content: "VCss_0.007";
 }
 
 @media only screen and (max-height: 600px) {
@@ -31,6 +31,32 @@
       max-height: 285px;
       margin-top: 0px;
     }
+}
+
+@media only screen and (max-height: 400px) {
+  .AttributeLabel {
+      background: rgb(146, 122, 12);
+  }
+
+  .ucFloatScannerFrame {
+    margin-top: 0px !important;
+    height: 100%;
+    top: 0px !important;
+    transform: translate(-50%, 0%) !important;
+  }
+
+  .ucFloatScannerFrame #qr-reader {
+    height: 245px;
+  }
+
+  .ucFloatScannerFrame #qr-shaded-region {
+    height: 245px;
+  }
+
+  .ucFloatScannerFrame video {
+    max-height: 245px;
+    margin-top: 0px;
+  }
 }
 
 #PXTOOLSCAMSCANNER1Container_dummy
