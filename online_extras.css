@@ -4,7 +4,7 @@
 }
 
 #TB_VERSION::after {
-  content: "VCss_0.011";
+  content: "VCss_0.012";
 }
 
 @media only screen and (max-height: 600px) {
@@ -57,6 +57,11 @@
     max-height: 275px;
     margin-top: 0px;
   }
+}
+
+@media only screen and (max-height: 300px) {
+.ucFloatScannerFrame #qr-shaded-region {
+    height: 225px;
 }
 
 #PXTOOLSCAMSCANNER1Container_dummy
