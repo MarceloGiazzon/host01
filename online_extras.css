@@ -4,7 +4,7 @@
 }
 
 #TB_VERSION::after {
-  content: "VCss_0.020";
+  content: "VCss_0.021";
 }
 
 @media only screen and (max-height: 600px) {
@@ -113,10 +113,14 @@
   /*max-height: 450px;*/
 }
 
+#qr-reader-results, #supportAction {
+background: #767676;
+}
+
 #selectCamNode {
-	color: #111;
-    background: #767676;
-    margin-left: 5px;
+	/*color: #111;
+  background: #767676;*/
+  margin-left: 5px;
 }
 
 #supportUC {
