@@ -4,7 +4,7 @@
 }
 
 #TB_VERSION::after {
-  content: "VCss_0.023";
+  content: "VCss_0.024";
 }
 
 @media only screen and (max-height: 600px) {
@@ -13,7 +13,7 @@
     }
 
     .ucFloatScannerFrame {
-      margin-top: 0px !important;
+      margin-top: 30px !important;
       height: 100%;
       top: 0px !important;
       transform: translate(-50%, 0%) !important;
