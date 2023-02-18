@@ -4,7 +4,7 @@
 }
 
 #TB_VERSION::after {
-  content: "VCss_0.014";
+  content: "VCss_0.015";
 }
 
 @media only screen and (max-height: 600px) {
@@ -61,15 +61,16 @@
 
 @media only screen and (max-height: 300px) {
   .ucFloatScannerFrame #qr-reader {
-    height: 215px;
+    height: 205px;
+    margin-top: -5px;
   }
 
   .ucFloatScannerFrame #qr-shaded-region {
-    height: 215px;
+    height: 205px;
   }
 
   .ucFloatScannerFrame video {
-    max-height: 215px;
+    max-height: 205px;
   }
 }
 
