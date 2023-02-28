@@ -1,3 +1,11 @@
+.gx-checkbox-wrapper {
+  border: 0px;
+}
+
+#TablePropCheck, #TABLEPROPCHECK {
+  border: 1px solid black;
+}
+
 .AttributeLabel {
     /*background: green;
     border: red solid 1px;*/
