@@ -1,6 +1,6 @@
 .AttributeLabel {
-    background: green;
-    border: red solid 1px;
+    /*background: green;
+    border: red solid 1px;*/
 }
 
 #TB_VERSION::after {
@@ -9,7 +9,7 @@
 
 @media only screen and (max-height: 600px) {
     .AttributeLabel {
-        background: blueviolet;
+        /*background: blueviolet;*/
     }
 
     .ucFloatScannerFrame {
@@ -35,7 +35,7 @@
 
 @media only screen and (max-height: 400px) {
   .AttributeLabel {
-      background: rgb(146, 122, 12);
+      /*background: rgb(146, 122, 12);*/
   }
 
   .ucFloatScannerFrame {
