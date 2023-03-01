@@ -13,7 +13,7 @@
         }
     </style>
 <body>
-    <span>01-03-2023_V0.4</span>
+    <span>01-03-2023_V0.5</span>
     <button onclick="myFunction_Init()">Init</button>
     <button onclick="myFunction_Start()">Start</button>
     <button id="myStop">Stop</button>
@@ -48,6 +48,10 @@
             elem.innerHTML = "Scan result " + "decodedText";
 
         function onScanSuccess(decodedText, decodedResult) {
+
+            elem.innerText = "**** Scan result " + decodedText;
+            alert("result = " + decodedText);
+
             if (decodedText !== lastResult) {
                 ++countResults;
                 lastResult = decodedText;
