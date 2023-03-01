@@ -13,7 +13,7 @@
         }
     </style>
 <body>
-    <span>01-03-2023_V0.2</span>
+    <span>01-03-2023_V0.3</span>
     <button onclick="myFunction_Init()">Init</button>
     <button onclick="myFunction_Start()">Start</button>
     <button id="myStop">Stop</button>
@@ -42,6 +42,11 @@
     docReady(function () {
         var resultContainer = document.getElementById('qr-reader-results');
         var lastResult, countResults = 0;
+
+        var elem = document.getElementById('txtResult');
+            //elem.innerHTML += decodedResult + "<br>";
+            elem.innerHTML = "Scan result " + "decodedText";
+
         function onScanSuccess(decodedText, decodedResult) {
             if (decodedText !== lastResult) {
                 ++countResults;
@@ -52,7 +57,7 @@
 
                 var elem = document.getElementById('txtResult');
                 //elem.innerHTML += decodedResult + "<br>";
-                elem.innerHTML = "Scan result " + decodedText, decodedResult;
+                elem.innerHTML = "Scan result " + decodedText;
                 //elem.parentElement.scrollTop = 10000;
             }
 
