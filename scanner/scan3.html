@@ -13,7 +13,7 @@
         }
     </style>
 <body>
-    <span>01-03-2023_V0.3</span>
+    <span>01-03-2023_V0.4</span>
     <button onclick="myFunction_Init()">Init</button>
     <button onclick="myFunction_Start()">Start</button>
     <button id="myStop">Stop</button>
@@ -57,8 +57,13 @@
 
                 var elem = document.getElementById('txtResult');
                 //elem.innerHTML += decodedResult + "<br>";
-                elem.innerHTML = "Scan result " + decodedText;
-                //elem.parentElement.scrollTop = 10000;
+
+                elem.innerText = "**** Scan result";
+
+                elem.innerText = "**** Scan result " + decodedText;
+
+                alert("result = " + decodedText);
+                
             }
 
             var minInterval = 1000;
