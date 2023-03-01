@@ -13,7 +13,7 @@
         }
     </style>
 <body>
-    <span>01-03-2023_V0.6</span>
+    <span>01-03-2023_V0.7</span>
     <button onclick="myFunction_Init()">Init</button>
     <button onclick="myFunction_Start()">Start</button>
     <button id="myStop">Stop</button>
@@ -125,6 +125,7 @@
         (decodedText, decodedResult) => {
             // do something when code is read
             console.log('Result. decodedText = ' + decodedText + ' decodedResult = ' + decodedResult);
+            test();
         },
         (errorMessage) => {
             // parse error, ignore it.
