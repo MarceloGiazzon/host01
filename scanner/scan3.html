@@ -13,7 +13,7 @@
         }
     </style>
 <body>
-    <span>V.2</span>
+    <span>01-03-2023_V0.7</span>
     <button onclick="myFunction_Init()">Init</button>
     <button onclick="myFunction_Start()">Start</button>
     <button id="myStop">Stop</button>
@@ -42,18 +42,34 @@
     docReady(function () {
         var resultContainer = document.getElementById('qr-reader-results');
         var lastResult, countResults = 0;
+
+        var elem = document.getElementById('txtResult');
+            //elem.innerHTML += decodedResult + "<br>";
+            elem.innerHTML = "Scan result " + "decodedText";
+
         function onScanSuccess(decodedText, decodedResult) {
+
+            elem.innerText = "**** Scan result " + decodedText;
+            alert("result = " + decodedText);
+
             if (decodedText !== lastResult) {
                 ++countResults;
                 lastResult = decodedText;
                 // Handle on success condition with the decoded message.
                 console.log(`Scan result ${decodedText}`, decodedResult);
-                //alert(`Scan result ${decodedText}`, decodedResult);
+                alert(`Scan result ${decodedText}`, decodedResult);
 
                 var elem = document.getElementById('txtResult');
                 //elem.innerHTML += decodedResult + "<br>";
-                elem.innerHTML += "<br>" + `Scan result ${decodedText}`, decodedResult;
-                elem.parentElement.scrollTop = 10000;
+
+                elem.innerText = "**** Scan result";
+
+                elem.innerText = "**** Scan result " + decodedText;
+
+                alert("result = " + decodedText);
+                
+                console.log("elem = " + elem);
+
             }
 
             var minInterval = 1000;
@@ -61,13 +77,17 @@
                 beep();
                 lastBeep = Date.now();
             }
+
+            test();
         }
 
         //var html5QrcodeScanner = new Html5QrcodeScanner("qr-reader", { fps: 10, qrbox: 250 });
         //html5QrcodeScanner.render(onScanSuccess);
     });
 
-
+    function test() {
+        alert("dasdsadsada");
+    }
     
     var cameraId;
     var cameraName;
@@ -82,8 +102,8 @@
          * { id: "id", label: "label" }
          */
         if (devices && devices.length) {
-            cameraId = devices[0].id;
-            cameraName = devices[0].label;
+            cameraId = devices[devices.length-1].id;
+            cameraName = devices[devices.length-1].label;
             console.log('cameraId = ' + cameraId + ' cameraName = ' + cameraName);
         }
         }).catch(err => {
@@ -105,6 +125,7 @@
         (decodedText, decodedResult) => {
             // do something when code is read
             console.log('Result. decodedText = ' + decodedText + ' decodedResult = ' + decodedResult);
+            test();
         },
         (errorMessage) => {
             // parse error, ignore it.
