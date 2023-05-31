@@ -1,0 +1,105 @@
+/* Define some basic styles for the website */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .container {
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    .menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .item {
+      width: 30%;
+      margin: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .item img {
+      width: 100%;
+      height: auto;
+    }
+
+    .item h3 {
+      margin: 0;
+      padding: 5px;
+      text-align: center;
+    }
+
+    .item p {
+      margin: 0;
+      padding: 5px;
+      text-align: center;
+    }
+
+    .item button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background-color: #333;
+      color: white;
+      cursor: pointer;
+    }
+
+.sub-level {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0; 
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+}
+
+.sub-level li {
+  display: block;
+  padding: 10px;
+}
+
+.sub-level li:hover {
+  background-color: #f0f0f0;
+}
+
+.item button:hover + .sub-level {
+  display: block; }
+
+    .order {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .order h2 {
+      margin-top: 0;
+    }
+
+    .order ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .order li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .order li span {
+      font-weight: bold;
+    }

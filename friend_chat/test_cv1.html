@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+svg {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #000, #0f0f0f, #1a1a1a, #252525);
+}
+
+#moon {
+  fill: #fff;
+  filter: url(#glow);
+}
+
+#city {
+  fill: #333;
+}
+
+#windows {
+  fill: #ff0;
+}
+
+#grid {
+  fill: none;
+  stroke: #ff0;
+  stroke-width: 0.5;
+}
+
+#glow {
+  filter: url(#blur) brightness(200%);
+}
+
+#blur {
+  stdDeviation: 2;
+}
+</style>
+</head>
+<body>
+<svg viewBox="0 0 200 100" preserveAspectRatio="none">
+  <!-- Draw a crescent moon using a path with two arcs -->
+  <defs>
+    <filter id="blur">
+      <feGaussianBlur in="SourceGraphic"/>
+    </filter>
+    <filter id="glow">
+      <feFlood flood-color="#fff"/>
+      <feComposite in2="SourceAlpha" operator="in"/>
+      <feGaussianBlur stdDeviation="2"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="5"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <path id="moon" d="M50 20 A40 40 0 1 0 50 70 A30 30 0 1 1 50 20 Z"/>
+  
+  <!-- Draw a cityscape using a path with vertical lines -->
+  <path id="city" d="M0 80 V60 H5 V70 H10 V65 H15 V75 H20 V60 H25 V80 Z
+                     M30 80 V55 H35 V65 H40 V55 H45 V80 Z
+                     M50 80 V50 H55 V60 H60 V50 H65 V80 Z
+                     M70 80 V45 H75 V55 H80 V45 H85 V80 Z
+                     M90 80 V40 H95 V50 H100 V40 H105 V80 Z
+                     M110 80 V55 H115 V65 H120 V55 H125 V80 Z
+                     M130 80 V60 H135 V70 H140 V60 H145 V80 Z
+                     M150 80 V50 H155 V60 H160 V50 H165 V80 Z
+                     M170 80 V45 H175 V55 H180 V45 H185 V80 Z
+                     M190 80 V40 H195 V50 H200 V40"/>
+  
+   <!-- Draw windows using a path with horizontal and vertical lines -->
+   <path id="windows" d="M2.5V62.5H3.5V63.5H2.5ZM6.5V62.5H7.5V63.5H6.5Z
+                         M12.5V67.5H13.5V68.5H12.5ZM16.5V67.5H17.5V68.5H16.5Z
+                         M32.5V57.5H33.5V58.5H32.5ZM36.5V57.5H37.5V58.5H36.5Z
+                         M42.V57.H43.V58.H42.ZM46.V57.H47.V58.H46.Z
+                         M52.V52.H53.V53.H52.ZM56.V52.H57.V53.H56.Z
+                         M62.V52.H63.V53.H62.ZM66.V52.H67.V53.H66.Z
+                         M72.V47.H73.V48.H72.ZM76.V47.H77.V48.H76.Z
+                         M82.V47.H83.V48.H82.ZM86.V47.H87.V48.H86.Z
+                         M92.V42.H93.V43.H92.ZM96.V42.H97.V43.H96.Z
+                         M102.V42.H103.V43.H102.ZM106.V42.H107.V43.H106.Z
+                         M112.V57.H113.V58.H112.ZM116.V57.H117.V58.H116.Z
+                         M122.V57.H123.V58.H122.ZM126.V57.H127.V58.M126.Z
+                         M132.M60.M133.M61.M132.M133.M61.M132.M136.M60.M137.M61.M136.M137.M61.M136.M142.M60.M143.M61.M142.M143.M61.M142.M146.M60.M147.M61.M146.M147.M61.M146.
+                         M152V50H153V51H152ZM156V50H157V51M156Z
+                         M162M50M163M51M162M163M51M162M166M50M167M51M166M167M51M166M172M45M173M46M172M173M46M172M176M45M177M46M176M177M46M176.
+                         M182V40H183V41H182ZM186V40H187V41H186Z
+                         M192V40H193V41H192ZM196V40H197V41H196Z"/>
+  
+   <!-- Draw a grid using a path with diagonal lines -->
+   <path id="grid" d="m0,100 l200,-100 m-200,0 l200,-100 m-200,0 l200,-100 m-200,0 l200,-100 m-200,0 l200,-100 m-200,0 l200,-100 m-200,0 l200,-100 m-200,0 l200,-100 m-200,0 l200,-100 m-200,0 l200,-100 m-200,0 l200,-100 m-200,0 l200,-100 m-10,10 l210,-110 m-210,10 l210,-110 m-210,10 l210,-110 m-210,10 l210,-110 m-210,10 l210,-110 m-210,10 l210,-110 m-210,10 l210,-110 m-210,10 l210,-110 m-210,10 l210,-110"/>
+</svg>
+</body>
+</html>
