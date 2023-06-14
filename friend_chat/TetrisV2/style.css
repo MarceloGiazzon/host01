@@ -1,0 +1,57 @@
+#tetris-grid {
+    width: 300px;
+    height: 600px;
+    margin: 0 auto;
+    background-color: #000;
+    display: grid;
+    grid-template-columns: repeat(10, 30px); /* 10 columnas de 30px cada una */
+    grid-template-rows: repeat(20, 30px); /* 20 filas de 30px cada una */
+    gap: 1px; /* Espacio de 1px entre los divs */
+  }
+  
+  .tetris-piece {
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    border: 1px solid #fff;
+  }
+  
+  .empty {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #fff;
+  }
+  
+  #score {
+    color: #fff;
+    text-align: center;
+    font-size: 24px;
+  }
+  
+  .piece-I {
+    background-color: #FF6384; /* Rojo */
+  }
+  
+  .piece-J {
+    background-color: #36A2EB; /* Azul */
+  }
+  
+  .piece-L {
+    background-color: #FFCE56; /* Amarillo */
+  }
+  
+  .piece-O {
+    background-color: #4BC0C0; /* Verde azulado */
+  }
+  
+  .piece-S {
+    background-color: #E84393; /* Rosa */
+  }
+  
+  .piece-T {
+    background-color: #9966FF; /* Púrpura */
+  }
+  
+  .piece-Z {
+    background-color: #FF9F40; /* Naranja */
+  }

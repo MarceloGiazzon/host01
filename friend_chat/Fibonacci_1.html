@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    svg {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body style="background-color: #111;">
+  <svg id="svg" width="400" height="400"></svg>
+
+  <script>
+    function createCircle(parent, x, y, radius, color) {
+      const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circle.setAttribute("cx", x);
+      circle.setAttribute("cy", y);
+      circle.setAttribute("r", radius);
+      circle.setAttribute("fill", color);
+      parent.appendChild(circle);
+    }
+
+    function createLine(parent, x1, y1, x2, y2, color, width) {
+      const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+      line.setAttribute("x1", x1);
+      line.setAttribute("y1", y1);
+      line.setAttribute("x2", x2);
+      line.setAttribute("y2", y2);
+      line.setAttribute("stroke", color);
+      line.setAttribute("stroke-width", width);
+      parent.appendChild(line);
+    }
+
+    function drawSpiral() {
+      const svg = document.getElementById("svg");
+
+      const width = svg.getAttribute("width");
+      const height = svg.getAttribute("height");
+
+      const centerX = width / 2;
+      const centerY = height / 2;
+
+      const maxIterations = 1000; // Número máximo de iterações para a espiral
+      const angleIncrement = 0.2; // Incremento do ângulo
+
+      let hue = 0; // Valor inicial de matiz
+
+      let prevX = centerX;
+      let prevY = centerY;
+
+      for (let i = 0; i < maxIterations; i++) {
+        const angle = i * angleIncrement;
+        const radius = i * 0.5;
+
+        const x = centerX + radius * Math.cos(angle);
+        const y = centerY + radius * Math.sin(angle);
+
+        const color = `hsl(${hue}, 100%, 50%)`;
+        createCircle(svg, x, y, 1, color);
+
+        const lineWidth = 2; // Ajuste a largura das linhas
+        createLine(svg, prevX, prevY, x, y, color, lineWidth);
+
+        hue = (hue + 1) % 360; // Incrementa o valor de matiz
+
+        // Atualiza as coordenadas anteriores
+        prevX = x;
+        prevY = y;
+
+        // Quebra o loop se a espiral sair dos limites do svg
+        if (x < 0 || x > width || y < 0 || y > height) {
+          break;
+        }
+      }
+    }
+
+    drawSpiral();
+  </script>
+</body>
+</html>

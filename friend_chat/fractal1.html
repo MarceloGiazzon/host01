@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fractal de Mandelbrot</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="fractal-canvas" width="800" height="800"></canvas>
+
+    <script>
+        // Función para dibujar el fractal de Mandelbrot
+        function drawMandelbrot() {
+            const canvas = document.getElementById('fractal-canvas');
+            const context = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+
+            for (let x = 0; x < width; x++) {
+                for (let y = 0; y < height; y++) {
+                    let a = map(x, 0, width, -2.5, 1);
+                    let b = map(y, 0, height, -1, 1);
+                    let ca = a;
+                    let cb = b;
+                    let n = 0;
+
+                    while (n < 100) {
+                        const aa = a * a - b * b;
+                        const bb = 2 * a * b;
+                        a = aa + ca;
+                        b = bb + cb;
+                        
+                        if (a * a + b * b > 16) {
+                            break;
+                        }
+                        
+                        n++;
+                    }
+
+                    const brightness = map(n, 0, 100, 0, 255);
+                    const color = 'rgb(' + brightness + ', ' + brightness + ', ' + brightness + ')';
+                    context.fillStyle = color;
+                    context.fillRect(x, y, 1, 1);
+                }
+            }
+        }
+
+        // Función de mapeo para convertir valores
+        function map(value, start1, stop1, start2, stop2) {
+            return (value - start1) * (stop2 - start2) / (stop1 - start1) + start2;
+        }
+
+        // Dibujar el fractal de Mandelbrot al cargar la página
+        window.addEventListener('load', drawMandelbrot);
+    </script>
+</body>
+</html>

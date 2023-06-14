@@ -66,3 +66,69 @@ function getCurrentScale() {
   const match = scaleRegex.exec(currentTransform);
   return match ? parseFloat(match[1]) : 1;
 }
+
+
+
+function Calculo() {
+    var Count = 0;
+    var Fator = 0.01;
+    var FatorDia = 1.01;
+  
+    var ValTotCalc = 0;
+    var ValConcedido = 100000;
+  
+    var Col_valpre = [];
+    var Col_NumeroDias = [100, 200, 300, 400, 500];
+  
+    // Cálculo do valor para cada elemento da coleção
+    var valorInicial = (ValConcedido * 1.5) / Col_NumeroDias.length;
+    for (var i = 0; i < Col_NumeroDias.length; i++) {
+      Col_valpre.push(valorInicial);
+    }
+  
+    while (Count < 100000) {
+      var ValCalAnt = ValTotCalc;
+      var ValDifAnt = ValTotCalc - ValConcedido;
+      var X = 1;
+      var SubTot = 0;
+  
+      for (var i = 0; i < Col_valpre.length; i++) {
+        var AuxValor = Col_valpre[i];
+        var Desc = Math.round(AuxValor - AuxValor / (Math.pow(FatorDia, Col_NumeroDias[X])), 8);
+        SubTot += Math.round(AuxValor - Desc, 8);
+        X += 1;
+      }
+  
+      ValTotCalc = Math.round(SubTot, 8);
+  
+      if (ValTotCalc === ValConcedido) {
+        ValTotCalc = ValConcedido;
+        break;
+      } else {
+        if (ValTotCalc > ValConcedido) {
+          FatorDia += Fator;
+        } else {
+          if (Fator !== 0.0000000001) {
+            FatorDia = FatorDia - Fator;
+            Fator = Fator / 10;
+            FatorDia = FatorDia + Fator;
+          } else {
+            ValDif = ValTotCalc - ValConcedido;
+            break;
+          }
+        }
+      }
+      Count += 1;
+    }
+  
+    ValTotCalc = Math.round(ValTotCalc, 2);
+    var Tir = Math.round(((Math.pow(FatorDia, 30) - 1) * 100), 8);
+    var TirAno = Math.round(((Math.pow(FatorDia, 365) - 1) * 100), 8);
+  
+    console.log("ValTotCalc:", ValTotCalc);
+    console.log("Tir:", Tir);
+    console.log("TirAno:", TirAno);
+  }
+  
+  // Chamada da função para testar
+  Calculo();

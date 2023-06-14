@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fractal de Mandelbrot con Colores Mejorados</title>
+    <style>
+        body {
+            background-color: #020202;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="fractal-canvas"></canvas>
+
+    <script>
+        // Variables globales
+        let offsetX = -0.7;
+        let offsetY = 0;
+        let zoomSpeed = 0.1;
+        let zoom = 1.5;
+
+        // Función para dibujar el fractal de Mandelbrot
+        function drawMandelbrot() {
+            const canvas = document.getElementById('fractal-canvas');
+            const context = canvas.getContext('2d');
+            const width = canvas.width = window.innerWidth;
+            const height = canvas.height = window.innerHeight;
+            const maxIterations = 200;
+
+            for (let x = 0; x < width; x++) {
+                for (let y = 0; y < height; y++) {
+                    let zx = 0;
+                    let zy = 0;
+                    const cx = (x - width / 2) / (width / 4 * zoom) + offsetX;
+                    const cy = (y - height / 2) / (height / 4 * zoom) + offsetY;
+                    let i = maxIterations;
+
+                    while (zx * zx + zy * zy < 4 && i > 0) {
+                        const xtemp = zx * zx - zy * zy + cx;
+                        zy = 2 * zx * zy + cy;
+                        zx = xtemp;
+                        i--;
+                    }
+
+                    const brightness = i / maxIterations;
+                    const color = getColor(brightness);
+                    context.fillStyle = color;
+                    context.fillRect(x, y, 1, 1);
+                }
+            }
+        }
+
+        // Función para asignar colores en función de la luminosidad
+        function getColor(brightness) {
+            const hue = 200 + Math.floor(brightness * 180);
+            const saturation = 80 + Math.floor(brightness * 23);
+            const lightness = 10 + Math.floor(brightness * 30);
+            return 'hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)';
+        }
+
+        // Dibujar el fractal de Mandelbrot al cargar la página
+        window.addEventListener('load', drawMandelbrot);
+
+        // Volver a dibujar el fractal de Mandelbrot al cambiar el tamaño de la ventana
+        window.addEventListener('resize', drawMandelbrot);
+
+        // Zoom interactivo en el fractal de Mandelbrot usando la rueda del mouse
+        window.addEventListener('wheel', function (event) {
+            const zoomDirection = event.deltaY > 0 ? 1 : -1;
+            const zoomFactor = 1 + zoomSpeed * zoomDirection;
+            const canvas = document.getElementById('fractal-canvas');
+            const canvasRect = canvas.getBoundingClientRect();
+            const mouseX = event.clientX - canvasRect.left;
+            const mouseY = event.clientY - canvasRect.top;
+            const zoomX = (mouseX - canvas.width / 2) / (canvas.width / 4 * zoomFactor) + offsetX;
+            const zoomY = (mouseY - canvas.height / 2) / (canvas.height / 4 * zoomFactor) + offsetY;
+            offsetX = zoomX - (mouseX - canvas.width / 2) / (canvas.width / 4 * zoom);
+            offsetY = zoomY - (mouseY - canvas.height / 2) / (canvas.height / 4 * zoom);
+            zoom *= zoomFactor;
+            drawMandelbrot();
+        });
+    </script>
+</body>
+</html>
