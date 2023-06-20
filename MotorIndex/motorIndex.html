@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Read File</title>
+</head>
+<body>
+  <input type="file" id="fileInput">
+  <pre id="fileContent"></pre>
+
+  <script>
+    const fileInput = document.getElementById('fileInput');
+    const fileContent = document.getElementById('fileContent');
+
+    fileInput.addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      var textAsArray;
+
+      reader.onload = function(e) {
+        const content = e.target.result;
+
+        console.log("Linha = " + content);
+
+        textAsArray = content.split("\n");
+        console.log("textAsArray = " + textAsArray);
+
+        
+        fileContent.textContent = content + ' ' + textAsArray;
+
+        for (let index = 0; index < textAsArray.length; index++) {
+          const element = textAsArray[index];
+          console.log('element = ' + element);
+
+          var newElem = element.replace('C:\\Users\\Marcelo\\RepoGit\\host01\\host01\\','').replace('\r','');
+          textAsArray[index] = newElem;
+        }
+
+        var myJsonString = JSON.stringify(textAsArray).replace('C:\\Users\\Marcelo\\RepoGit\\host01\\host01','');
+        console.log('myJsonString = ' + myJsonString);
+      };
+
+      reader.readAsText(file);
+    });
+  </script>
+</body>
+</html>

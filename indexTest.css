@@ -1,0 +1,46 @@
+/* CSS styles for the tree visualization */
+#tree {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #tree ul {
+    list-style-type: none;
+    margin: 0;
+    padding-left: 20px;
+  }
+  
+  #tree li {
+    position: relative;
+    padding-left: 20px;
+    line-height: 1.5em;
+    cursor: pointer;
+  }
+  
+  #tree li:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 1px solid #999;
+    height: 100%;
+  }
+  
+  #tree li:last-child:before {
+    height: calc(100% - 1.5em);
+  }
+  
+  #tree li:after {
+    content: "";
+    position: absolute;
+    top: 0.75em;
+    left: -10px;
+    border-top: 1px solid #999;
+    width: 10px;
+  }
+  
+  #tree .hidden {
+    display: none;
+  }
+  
