@@ -32,7 +32,11 @@
         const scan = document.querySelector('#scan');
         const batteryIndicator = document.querySelector('#battery-indicator');
 
+        console.log("#1. Estou no if bluetooth in navigator...");
+
         scan.addEventListener('click', async () => {
+
+            console.log("#2. Estou no scan.addEventListener...");
 
             const connectToDevice = async ({bleService, bleCharacteristic}) => {
             try {
@@ -42,17 +46,27 @@
                 }]
                 });
 
+                console.log("#3. Estou no connectToDevice...");
+
                 device.addEventListener('gattserverdisconnected', () => {
                 batteryIndicator.value = 0;
                 });
 
+                console.log("#4. Estou no connectToDevice...");
+
                 const server = await device.gatt.connect();
+                console.log("#4.1.");
                 const service = await server.getPrimaryService(bleService);
+                console.log("#4.2.");
                 const characteristic = await service.getCharacteristic(bleCharacteristic);
+                console.log("#4.3.");
                 await characteristic.startNotifications();
+                console.log("#4.4.");
 
                 characteristic.addEventListener('characteristicvaluechanged', e => {
                 const value = e.target.value.getUint8(0);
+                
+                console.log("#5. ");
 
                 console.log(`${bleCharacteristic} changed`, value);
 
@@ -60,6 +74,8 @@
                 });
 
                 characteristic.readValue();
+
+                console.log("#6.");
 
                 return characteristic;
             }
@@ -69,8 +85,8 @@
             };
 
             await connectToDevice({
-                bleService: '00001801-0000-1000-8000-00805f9b34fb',
-                bleCharacteristic: '00002a05-0000-1000-8000-00805f9b34fb'});
+                bleService: '0000180d-0000-1000-8000-00805f9b34fb',
+                bleCharacteristic: '00002a37-0000-1000-8000-00805f9b34fb'});
         });  
             
 
