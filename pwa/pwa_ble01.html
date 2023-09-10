@@ -68,7 +68,9 @@
             }
             };
 
-            await connectToDevice({bleService: 'battery_service', bleCharacteristic: 'battery_level'});
+            await connectToDevice({
+                bleService: '00001801-0000-1000-8000-00805f9b34fb',
+                bleCharacteristic: '00002a05-0000-1000-8000-00805f9b34fb'});
         });  
             
 
