@@ -2,46 +2,32 @@
 <html>
 <head>
   <title>Read File</title>
+  <!-- link to js-->
+  <script src="contentFinal.js"></script>
+
+  <!-- link to css-->
+  <link rel="stylesheet" type="text/css" href="motorIndex.css">
 </head>
 <body>
-  <input type="file" id="fileInput">
-  <pre id="fileContent"></pre>
+
+  <div class="caixa">
+    <span>First name:</span>
+    <input type="text" id="name" name="name"><br><br>
+    <input type="button" value="Submit" onclick="myFunction()"><br><br>
+  </div>
 
   <script>
-    const fileInput = document.getElementById('fileInput');
-    const fileContent = document.getElementById('fileContent');
+    console.log("Estou no script ao final do body...");
 
-    fileInput.addEventListener('change', function(event) {
-      const file = event.target.files[0];
-      const reader = new FileReader();
+    var data = pages; 
+    result = {};
+    data.forEach(p => p.split('/').reduce((o, k) => o[k] = o[k] || {}, result));
+    console.log(result);
 
-      var textAsArray;
-
-      reader.onload = function(e) {
-        const content = e.target.result;
-
-        console.log("Linha = " + content);
-
-        textAsArray = content.split("\n");
-        console.log("textAsArray = " + textAsArray);
-
-        
-        fileContent.textContent = content + ' ' + textAsArray;
-
-        for (let index = 0; index < textAsArray.length; index++) {
-          const element = textAsArray[index];
-          console.log('element = ' + element);
-
-          var newElem = element.replace('C:\\Users\\Marcelo\\RepoGit\\host01\\host01\\','').replace('\r','');
-          textAsArray[index] = newElem;
-        }
-
-        var myJsonString = JSON.stringify(textAsArray).replace('C:\\Users\\Marcelo\\RepoGit\\host01\\host01','');
-        console.log('myJsonString = ' + myJsonString);
-      };
-
-      reader.readAsText(file);
-    });
+    function myFunction() {
+      var test = document.getElementById("name").value;
+      console.log("Valor do campo é " + test);
+    }
   </script>
 </body>
 </html>
