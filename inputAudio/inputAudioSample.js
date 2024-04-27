@@ -1,4 +1,12 @@
-		//{
+
+    	/*Audio input Start Here*/
+        /*var final_transcript = '';
+        var recognizing = false;
+        var ignore_onend;
+        var start_timestamp;*/
+        /*Audio input End Here*/
+
+            //{
 			/*Audio input Start Here*/
 			
 			if (logActive)
