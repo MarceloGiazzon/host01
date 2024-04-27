@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled Table</title>
+    <style>
+
+        * {
+            font-family: sans-serif;
+            font-size: 11pt;
+        }
+
+        .Bold {
+            font-weight: 600;
+        }
+
+        #general {
+            width: 100%;
+            padding-top: 20px;
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+        #superior {
+            width: 100%;
+            padding-bottom: 35px;
+        }
+
+        .label {
+            color: #777;
+            margin-right: -25px;
+        }
+
+        .title {
+            font-size: 28pt;
+        }
+
+        #inv_num {
+            font-weight: bold;
+            margin-bottom: 50px;
+            color: #777;
+            top: 5px;
+            /* padding-top: 10px; */
+            position: relative;
+            padding-bottom: 100px;
+            line-height: 70px;
+            top: -25px;
+        }
+
+        .tab_superior_right {
+            vertical-align: top;
+            float: right;
+            /*background-color: #4CAF50;*/
+            text-align: right;
+            /*display: inline-grid;*/
+            width: 100%;
+        }
+
+        #sec_invNum {
+            padding-bottom: 80px;
+            width: 100%;
+        }
+
+        .tab_payinfo {
+            border-spacing: 0;
+            line-height: 28px;
+        }
+        
+        .tab_payinfo td {
+            width: 30%;
+        }
+
+        .tr_subtitle {
+            background-color: #e5e5e5;
+        }
+        .subtitle {
+            font-size: 12pt;
+            font-weight: bold;
+            margin-right: -25px;
+        }
+
+        .tr_subtitle span {
+            font-size: 12pt;
+            font-weight: bold;
+        }
+
+
+        #sec_griditems {
+            border-spacing: 0;
+            width: 99%;
+            margin-bottom: 80px;
+        }
+        
+        #sec_griditems td {
+            font-weight: bold;
+            font-size: 11pt;
+        }
+
+
+        .head_grid {
+            background-color: #333;
+            border-radius: 3px;
+            text-align: left;
+            font-weight: bold;
+            height: 30px;
+        }
+
+        #sec_griditems tr th:first-child,
+        #sec_griditems tr td:first-child {
+            padding-left: 7px;
+        }
+
+        #sec_griditems tr th:last-child,
+        #sec_griditems tr td:last-child {
+            text-align: right;
+            padding-right: 5px;
+        }
+
+        th {
+            /*background-color: #333;*/
+            color: white;
+            font-weight: 100;
+            
+        }
+
+        #inferior {
+            width: 100%;
+        }
+
+        #sec_subtotal {
+            width: 100%;
+            text-align: right;
+            line-height: 28px;;
+        }
+
+        #sec_subtotal .label {
+            margin-right: -25px;
+        }
+
+        #sec_subtotal td {
+            width: 30%;
+        }
+
+    </style>
+</head>
+<body>
+
+
+    <table id="general" border="0">
+        <tbody>
+            <tr>
+                <td>
+                    <table id="superior" border="0">
+                        <tr>
+                            <td style="
+                                width: 50%;
+                            ">
+                                <table id="sec_personal">
+                                    <tr>
+                                        <td><span class="Bold">Marcelo Giazzon dos Santos</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>CPF: 009.401.450-73</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Dirección: Rua Marquês do Herval, 973 / 01</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Código postal: 95020-260</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Caxias do Sul - RS - Brasil</span></td>
+                                    </tr>                                <tr>
+                                        <td><p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Telefone: +55 54 99681012</span></td>
+                                    </tr>                                <tr>
+                                        <td><p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="label">Bill To:</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="Bold">PuntoExe Consultores</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>RUT: 216464600013</span></td>
+                                    </tr>                                <tr>
+                                        <td><p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Dirección: Calle Yaguarón, 1407 / 909</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Montevideo - Uruguay</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Código postal: 11800</span></td>
+                                    </tr>                                <tr>
+                                        <td><p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Telefone: +598 290 46 2 46</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Site: www.puntoexe.com.uy</a></span></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td class="tab_superior_right">    
+                                <table id="sec_invNum">
+                                    <tr>
+                                        <td><span class="title">INVOICE</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span id="inv_num"># 26</span></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>
+                                            <table class="tab_payinfo">
+                                                <tr>
+                                                    <td><span class="label">Date:</span></td>
+                                                    <td><span>Apr 04, 2024</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="label">Payment Terms:</span></td>
+                                                    <td><span>Transferencia bancaria</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="label">Due Date:</span></td>
+                                                    <td><span>Apr 09, 2024</span></td>
+                                                </tr>
+                                                <tr class="tr_subtitle">
+                                                    <td class="td_subtitle"><span class="subtitle">Balance Due:</span></td>
+                                                    <td><span>$3,210.00</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <table id="sec_griditems">
+                        <tr class="head_grid">
+                            <th>Item</th>
+                            <th>Quantity</th>
+                            <th>Rate</th>
+                            <th>Amount</th>
+                        </tr>
+                        <tr>
+                            <td>Entreinamiento en informática (horas)</td>
+                            <td>428</td>
+                            <td>$7.50</td>
+                            <td>$3,210.00</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <table id="inferior" border="0">
+                        <tr>
+                            <td style="
+    width: 50%;
+">
+
+                            </td>
+                            <td>
+                                <table id="sec_subtotal">
+                                    <tr>
+                                        <td><span class="label">Subtotal:</span></td>
+                                        <td><span>$3,210.00</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="label">Tax (0%):</span></td>
+                                        <td><span>$0.00</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="label">Total:</span></td>
+                                        <td><span>$3,210.00</span></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

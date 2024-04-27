@@ -1,0 +1,46 @@
+<html>
+<head>
+    <script type="text/javascript" src="readWSDL.js"></script>
+    <title>SOAP JavaScript Client Test</title>
+
+    <script type="text/javascript">
+
+        console.log('func soapTest. V0.0001');
+        
+        function soapTest() {
+
+            readWSDL();
+
+            var refreshIntervalId = setInterval(soapTestInt, 300);
+
+            function soapTestInt() {
+
+                var wsdlStatus = localStorage.getItem('wsdlStatus');
+
+                console.log('check status... ' + wsdlStatus);
+
+                if (wsdlStatus == 'done') {
+                    clearInterval(refreshIntervalId);
+
+                    var emptyRequest = localStorage.getItem('wsdlEmptyRequest');
+
+                    console.log('emptyRequest = ' + emptyRequest);
+                }
+
+            }
+        }
+
+        
+
+    </script>
+</head>
+<body>
+    <form name="Demo" action="" method="post">
+        <div>
+            <input type="button" value="readWSDL" onclick="soapTest();" />
+        </div>
+    </form>
+
+    <script>soapTest();</script>
+</body>
+</html>

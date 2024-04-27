@@ -1,0 +1,482 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<definitions name="API.Inventory.SOAPTInventoryV1Alt" targetNamespace="iGMP4" xmlns:wsdlns="iGMP4" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="iGMP4">
+	<types>
+		<schema targetNamespace="iGMP4" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" elementFormDefault="qualified">
+			<complexType name="WSDataTInventoryV1In">
+				<sequence>
+					<element name="Connection" type="tns:SDTConnection">
+					</element>
+					<element name="InventoryReceiptNumber" type="xsd:int">
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="SDTConnection">
+				<sequence>
+					<element name="UserCode" type="xsd:string">
+					</element>
+					<element name="UserPassword" type="xsd:string">
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="WSDataTInventoryV1Out">
+				<sequence>
+					<element name="Succeed" type="xsd:boolean">
+					</element>
+					<element name="Error" type="tns:API.Inventory.WSDataTInventoryV1Out.Error">
+					</element>
+					<element name="Response" type="tns:WSDataTInventoryV1Fields">
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="API.Inventory.WSDataTInventoryV1Out.Error">
+				<sequence>
+					<element name="Code" type="xsd:string">
+					</element>
+					<element name="Message" type="xsd:string">
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="WSDataTInventoryV1Fields">
+				<sequence>
+					<element name="RequisitionId" type="xsd:int">
+					</element>
+					<element name="PurchaseOrderNumber" type="xsd:string">
+					</element>
+					<element name="MaterialId" type="xsd:int">
+					</element>
+					<element name="MaterialVersionId" type="xsd:int">
+					</element>
+					<element name="ReceiptNumber" type="xsd:int">
+					</element>
+					<element name="SplitFromReceiptNumber" type="xsd:int">
+					</element>
+					<element name="MaterialName" type="xsd:string">
+					</element>
+					<element name="MaterialCode" type="xsd:string">
+					</element>
+					<element name="RequisitionVendorName" type="xsd:string">
+					</element>
+					<element name="MFGLotNumber" type="xsd:string">
+					</element>
+					<element name="InternalLotNumber" type="xsd:string">
+					</element>
+					<element name="RequisitionVendorOrderNumber" type="xsd:string">
+					</element>
+					<element name="Specification" type="xsd:string">
+					</element>
+					<element name="BatchNumber" type="xsd:string">
+					</element>
+					<element name="BPRProdNumber" type="xsd:string">
+					</element>
+					<element name="MaterialUnitName" type="xsd:string">
+					</element>
+					<element name="ReceivedDate" type="xsd:date" nillable="true">
+					</element>
+					<element name="QuantityReceived" type="xsd:double">
+					</element>
+					<element name="ActRcvUnitName" type="xsd:string">
+					</element>
+					<element name="Balance" type="xsd:double">
+					</element>
+					<element name="RemainMaterialUnitName" type="xsd:string">
+					</element>
+					<element name="UnitMaterialCost" type="xsd:double">
+					</element>
+					<element name="UnitCostTxt" type="xsd:string">
+					</element>
+					<element name="Status" type="xsd:int">
+					</element>
+					<element name="ReceiptComment" type="xsd:string">
+					</element>
+					<element name="ProjectCode" type="xsd:string">
+					</element>
+					<element name="Date" type="xsd:date" nillable="true">
+					</element>
+					<element name="MaterialReceiptRetestDate" type="xsd:date" nillable="true">
+					</element>
+					<element name="MaterialReceiptExpiryDate" type="xsd:date" nillable="true">
+					</element>
+					<element name="MetricLabel" type="xsd:string">
+					</element>
+					<element name="SpecFullRetestDate" type="xsd:date" nillable="true">
+					</element>
+					<element name="SpecMicroRetestDate" type="xsd:date" nillable="true">
+					</element>
+					<element name="SpecImpurityRetestDate" type="xsd:date" nillable="true">
+					</element>
+					<element name="SpecMFGRetestDate" type="xsd:date" nillable="true">
+					</element>
+					<element name="SpecMFGExpiryDate" type="xsd:date" nillable="true">
+					</element>
+					<element name="SpecInternalExpiryDate" type="xsd:date" nillable="true">
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="WSQueryTInventoryV1In">
+				<sequence>
+					<element name="Connection" type="tns:SDTConnection">
+					</element>
+					<element name="Data" type="tns:DPQueryTInventoryV1In">
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="DPQueryTInventoryV1In">
+				<sequence>
+					<element name="Filters" type="tns:API.Inventory.DPQueryTInventoryV1In.Filters">
+					</element>
+					<element name="Page" type="xsd:int">
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="API.Inventory.DPQueryTInventoryV1In.Filters">
+				<sequence>
+					<element name="MaterialId" type="xsd:int">
+					</element>
+					<element name="ReceiptNumber" type="xsd:int">
+					</element>
+					<element name="SplitFromReceiptNumber" type="xsd:int">
+					</element>
+					<element name="RequisitionId" type="xsd:int">
+					</element>
+					<element name="RequisitionMaterialNameContains" type="xsd:string">
+					</element>
+					<element name="InventoryMaterialCodeContains" type="xsd:string">
+					</element>
+					<element name="PurchaseOrderNumberContains" type="xsd:string">
+					</element>
+					<element name="MFGLotNumberContains" type="xsd:string">
+					</element>
+					<element name="ReceivedDateFrom" type="xsd:date" nillable="true">
+					</element>
+					<element name="ReceivedDateTo" type="xsd:date" nillable="true">
+					</element>
+					<element name="InternalLotNumberContains" type="xsd:string">
+					</element>
+					<element name="ProjectCode" type="xsd:string">
+					</element>
+					<element name="Status" type="xsd:int">
+					</element>
+					<element name="MaterialSytType" type="xsd:string">
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="WSQueryTInventoryV1Out">
+				<sequence>
+					<element name="Succeed" type="xsd:boolean">
+					</element>
+					<element name="Error" type="tns:API.Inventory.WSQueryTInventoryV1Out.Error">
+					</element>
+					<element name="Response" type="tns:DPQueryTInventoryV1Out">
+					</element>
+					<element name="IsLastPage" type="xsd:boolean">
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="API.Inventory.WSQueryTInventoryV1Out.Error">
+				<sequence>
+					<element name="Code" type="xsd:string">
+					</element>
+					<element name="Message" type="xsd:string">
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="DPQueryTInventoryV1Out">
+				<sequence>
+					<element minOccurs="0" maxOccurs="unbounded" name="Item" type="tns:API.Inventory.DPQueryTInventoryV1Out.Item">
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="API.Inventory.DPQueryTInventoryV1Out.Item">
+				<sequence>
+					<element name="InventoryReceiptNumber" type="xsd:int">
+					</element>
+					<element name="UsageSequence" type="xsd:short">
+					</element>
+					<element name="MaterialId" type="xsd:int">
+					</element>
+					<element name="MaterialVersionId" type="xsd:int">
+					</element>
+					<element name="ReceiptNumber" type="xsd:int">
+					</element>
+					<element name="SplitFromReceiptNumber" type="xsd:int">
+					</element>
+					<element name="RequisitionId" type="xsd:int">
+					</element>
+					<element name="PurchaseOrderNumber" type="xsd:string">
+					</element>
+					<element name="MetricLabel" type="xsd:string">
+					</element>
+					<element name="MaterialName" type="xsd:string">
+					</element>
+					<element name="MaterialCode" type="xsd:string">
+					</element>
+					<element name="MaterialSytType" type="xsd:string">
+					</element>
+					<element name="RequisitionVendorName" type="xsd:string">
+					</element>
+					<element name="ProjectCode" type="xsd:string">
+					</element>
+					<element name="MFGLotNumber" type="xsd:string">
+					</element>
+					<element name="InternalLotNumber" type="xsd:string">
+					</element>
+					<element name="BatchNumber" type="xsd:string">
+					</element>
+					<element name="BprProdNumber" type="xsd:string">
+					</element>
+					<element name="QuantityReceived" type="xsd:double">
+					</element>
+					<element name="ActRcvUnitName" type="xsd:string">
+					</element>
+					<element name="Balance" type="xsd:double">
+					</element>
+					<element name="MaterialUnitName" type="xsd:string">
+					</element>
+					<element name="ReceivedDate" type="xsd:date" nillable="true">
+					</element>
+					<element name="Status" type="xsd:int">
+					</element>
+					<element name="StatusDescription" type="xsd:string">
+					</element>
+					<element name="Date" type="xsd:date" nillable="true">
+					</element>
+					<element name="MaterialReceiptRetestDate" type="xsd:date" nillable="true">
+					</element>
+					<element name="MaterialReceiptExpiryDate" type="xsd:date" nillable="true">
+					</element>
+					<element name="BinLocation" type="xsd:string">
+					</element>
+					<element name="MPRProductName" type="xsd:string">
+					</element>
+					<element name="RequsitionVendorPartNum" type="xsd:string">
+					</element>
+					<element name="RequisitionVendorOrderNumber" type="xsd:string">
+					</element>
+					<element name="UnitMaterialCost" type="xsd:double">
+					</element>
+					<element name="MaterialTypesNameDescription" type="xsd:string">
+					</element>
+					<element name="SpecFullRetestDate" type="xsd:date" nillable="true">
+					</element>
+					<element name="SpecMicroRetestDate" type="xsd:date" nillable="true">
+					</element>
+					<element name="SpecImpurityRetestDate" type="xsd:date" nillable="true">
+					</element>
+					<element name="SpecMFGRetestDate" type="xsd:date" nillable="true">
+					</element>
+					<element name="SpecMFGExpiryDate" type="xsd:date" nillable="true">
+					</element>
+					<element name="SpecInternalExpiryDate" type="xsd:date" nillable="true">
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="WSQueryTInventoryUsageV1In">
+				<sequence>
+					<element name="Connection" type="tns:SDTConnection">
+					</element>
+					<element name="Data" type="tns:DPQueryTInventoryUsageV1In">
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="DPQueryTInventoryUsageV1In">
+				<sequence>
+					<element name="Filters" type="tns:API.Inventory.DPQueryTInventoryUsageV1In.Filters">
+					</element>
+					<element name="Page" type="xsd:int">
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="API.Inventory.DPQueryTInventoryUsageV1In.Filters">
+				<sequence>
+					<element name="InventoryReceiptNumber" type="xsd:int">
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="WSQueryTInventoryUsageV1Out">
+				<sequence>
+					<element name="Succeed" type="xsd:boolean">
+					</element>
+					<element name="Error" type="tns:API.Inventory.WSQueryTInventoryUsageV1Out.Error">
+					</element>
+					<element name="Response" type="tns:DPQueryTInventoryUsageV1Out">
+					</element>
+					<element name="IsLastPage" type="xsd:boolean">
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="API.Inventory.WSQueryTInventoryUsageV1Out.Error">
+				<sequence>
+					<element name="Code" type="xsd:string">
+					</element>
+					<element name="Message" type="xsd:string">
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="DPQueryTInventoryUsageV1Out">
+				<sequence>
+					<element minOccurs="0" maxOccurs="unbounded" name="Item" type="tns:API.Inventory.DPQueryTInventoryUsageV1Out.Item">
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="API.Inventory.DPQueryTInventoryUsageV1Out.Item">
+				<sequence>
+					<element name="Sequence" type="xsd:short">
+					</element>
+					<element name="Date" type="xsd:date" nillable="true">
+					</element>
+					<element name="InventoryProductionNumber" type="xsd:string">
+					</element>
+					<element name="BatchNumber" type="xsd:string">
+					</element>
+					<element name="Quantity" type="xsd:double">
+					</element>
+					<element name="UnitId" type="xsd:int">
+					</element>
+					<element name="Purpose" type="xsd:string">
+					</element>
+					<element name="Balance" type="xsd:double">
+					</element>
+					<element name="InventoryMaterialUnitName" type="xsd:string">
+					</element>
+					<element name="ApprovalPersonDescription" type="xsd:string">
+					</element>
+					<element name="ApprovalDateTime" type="xsd:dateTime" nillable="true">
+					</element>
+					<element name="BinLocation" type="xsd:string">
+					</element>
+					<element name="Action" type="xsd:short">
+					</element>
+					<element name="SplitToReceiptNumber" type="xsd:int">
+					</element>
+					<element name="NewInventoryStatus" type="xsd:int">
+					</element>
+					<element name="InventoryAllocToProject" type="xsd:string">
+					</element>
+					<element name="PicklistName" type="xsd:string">
+					</element>
+					<element name="ShippingManifestName" type="xsd:string">
+					</element>
+					<element name="PackageAdjTypeName" type="xsd:string">
+					</element>
+					<element name="RequsitionVendorPartNum" type="xsd:string">
+					</element>
+					<element name="RequisitionVendorOrderNumber" type="xsd:string">
+					</element>
+					<element name="NewInvUnitMaterialCost" type="xsd:double">
+					</element>
+					<element name="OldInventoryMFGLotNumber" type="xsd:string">
+					</element>
+				</sequence>
+			</complexType>
+			<element name="API.Inventory.SOAPTInventoryV1Alt.DATA">
+				<complexType>
+					<sequence>
+						<element minOccurs="1" maxOccurs="1" name="Datain" type="tns:WSDataTInventoryV1In" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="API.Inventory.SOAPTInventoryV1Alt.DATAResponse">
+				<complexType>
+					<sequence>
+						<element minOccurs="1" maxOccurs="1" name="Dataout" type="tns:WSDataTInventoryV1Out" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="API.Inventory.SOAPTInventoryV1Alt.QUERY">
+				<complexType>
+					<sequence>
+						<element minOccurs="1" maxOccurs="1" name="Queryin" type="tns:WSQueryTInventoryV1In" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="API.Inventory.SOAPTInventoryV1Alt.QUERYResponse">
+				<complexType>
+					<sequence>
+						<element minOccurs="1" maxOccurs="1" name="Queryout" type="tns:WSQueryTInventoryV1Out" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="API.Inventory.SOAPTInventoryV1Alt.QUERYUSAGE">
+				<complexType>
+					<sequence>
+						<element minOccurs="1" maxOccurs="1" name="Queryusagein" type="tns:WSQueryTInventoryUsageV1In" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="API.Inventory.SOAPTInventoryV1Alt.QUERYUSAGEResponse">
+				<complexType>
+					<sequence>
+						<element minOccurs="1" maxOccurs="1" name="Queryusageout" type="tns:WSQueryTInventoryUsageV1Out" />
+					</sequence>
+				</complexType>
+			</element>
+		</schema>
+	</types>
+	<message name="API.Inventory.SOAPTInventoryV1Alt.DATASoapIn">
+		<part name="parameters" element="tns:API.Inventory.SOAPTInventoryV1Alt.DATA" />
+	</message>
+	<message name="API.Inventory.SOAPTInventoryV1Alt.DATASoapOut">
+		<part name="parameters" element="tns:API.Inventory.SOAPTInventoryV1Alt.DATAResponse" />
+	</message>
+	<message name="API.Inventory.SOAPTInventoryV1Alt.QUERYSoapIn">
+		<part name="parameters" element="tns:API.Inventory.SOAPTInventoryV1Alt.QUERY" />
+	</message>
+	<message name="API.Inventory.SOAPTInventoryV1Alt.QUERYSoapOut">
+		<part name="parameters" element="tns:API.Inventory.SOAPTInventoryV1Alt.QUERYResponse" />
+	</message>
+	<message name="API.Inventory.SOAPTInventoryV1Alt.QUERYUSAGESoapIn">
+		<part name="parameters" element="tns:API.Inventory.SOAPTInventoryV1Alt.QUERYUSAGE" />
+	</message>
+	<message name="API.Inventory.SOAPTInventoryV1Alt.QUERYUSAGESoapOut">
+		<part name="parameters" element="tns:API.Inventory.SOAPTInventoryV1Alt.QUERYUSAGEResponse" />
+	</message>
+	<portType name="API.Inventory.SOAPTInventoryV1AltSoapPort">
+		<operation name="DATA">
+			<input message="wsdlns:API.Inventory.SOAPTInventoryV1Alt.DATASoapIn" />
+			<output message="wsdlns:API.Inventory.SOAPTInventoryV1Alt.DATASoapOut" />
+		</operation>
+		<operation name="QUERY">
+			<input message="wsdlns:API.Inventory.SOAPTInventoryV1Alt.QUERYSoapIn" />
+			<output message="wsdlns:API.Inventory.SOAPTInventoryV1Alt.QUERYSoapOut" />
+		</operation>
+		<operation name="QUERYUSAGE">
+			<input message="wsdlns:API.Inventory.SOAPTInventoryV1Alt.QUERYUSAGESoapIn" />
+			<output message="wsdlns:API.Inventory.SOAPTInventoryV1Alt.QUERYUSAGESoapOut" />
+		</operation>
+	</portType>
+	<binding name="API.Inventory.SOAPTInventoryV1AltSoapBinding" type="wsdlns:API.Inventory.SOAPTInventoryV1AltSoapPort">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="DATA">
+			<soap:operation soapAction="iGMP4action/api.inventory.ASOAPTINVENTORYV1ALT.DATA" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+		<operation name="QUERY">
+			<soap:operation soapAction="iGMP4action/api.inventory.ASOAPTINVENTORYV1ALT.QUERY" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+		<operation name="QUERYUSAGE">
+			<soap:operation soapAction="iGMP4action/api.inventory.ASOAPTINVENTORYV1ALT.QUERYUSAGE" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+	</binding>
+	<service name="API.Inventory.SOAPTInventoryV1Alt">
+		<port name="API.Inventory.SOAPTInventoryV1AltSoapPort" binding="wsdlns:API.Inventory.SOAPTInventoryV1AltSoapBinding">
+			<soap:address location="http://puntoexe.com.uy:8115/iGMP4trunk/api.inventory.asoaptinventoryv1alt.aspx" />
+		</port>
+	</service>
+</definitions>

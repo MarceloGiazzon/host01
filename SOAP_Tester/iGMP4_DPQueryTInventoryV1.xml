@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ExportFile>
+  <KMW>
+    <MajorVersion>4</MajorVersion>
+    <MinorVersion>0</MinorVersion>
+    <Build>160000</Build>
+  </KMW>
+  <Source kb="47165b48-4579-4406-8970-c9fdc851483f" username="PUNTOEXE\mgiazzon" UNCPath="\\GENEXUS15\Models\GX17\iGMP4">
+    <Version guid="cd5869b7-37cb-41f1-9936-5140047d2919" name="iGMP4" />
+  </Source>
+  <Objects>
+    <Object parentGuid="5aa7f099-26bc-4d6e-b3eb-c0c23cd084f0" user="PUNTOEXE\mgiazzon" versionDate="0001-01-01T00:00:00.0000000" lastUpdate="2024-03-17T07:00:02.0000000Z" checksum="fb4f382caee402fb57818a9aeafbba45" fullyQualifiedName="API.Inventory.DPQueryTInventoryV1" moduleGuid="3e701de6-9c3f-4e06-9e6e-fc3e5072b236" guid="f9db2b5d-241b-4442-b325-03156b186bb6" name="DPQueryTInventoryV1" type="2a9e9aba-d2de-4801-ae7f-5e3819222daf" description=" Save Method for Version " parent="API.Inventory.PXWSQueryInventory" parentType="c122f122-4570-4cb8-9119-90000bbaef42">
+      <Part type="1d8aeb5a-6e98-45a7-92d2-d8de7384e432">
+        <Source><![CDATA[DPQueryTInventoryV1Out
+{
+	Item [Count = &Count] [Skip = &Skip]
+	Order (ReceiptNumber)
+	Where InventoryMaterialId = &Parameters.Filters.MaterialId When not &Parameters.Filters.MaterialId.IsEmpty()
+	Where ReceiptNumber = &Parameters.Filters.ReceiptNumber When not &Parameters.Filters.ReceiptNumber.IsEmpty()
+	Where SplitFromReceiptNumber = &Parameters.Filters.SplitFromReceiptNumber When not &Parameters.Filters.SplitFromReceiptNumber.IsEmpty()
+	Where RequisitionId = &Parameters.Filters.RequisitionId When not &Parameters.Filters.RequisitionId.IsEmpty()
+	Where RequisitionMaterialName like &Parameters.Filters.RequisitionMaterialNameContains When not &Parameters.Filters.RequisitionMaterialNameContains.IsEmpty()
+	Where InventoryMaterialCode like &Parameters.Filters.InventoryMaterialCodeContains When not &Parameters.Filters.InventoryMaterialCodeContains.IsEmpty()
+	Where PurchaseOrderNumber like &Parameters.Filters.PurchaseOrderNumberContains When not &Parameters.Filters.PurchaseOrderNumberContains.IsEmpty()
+	Where InventoryMFGLotNumber like &Parameters.Filters.MFGLotNumberContains When not &Parameters.Filters.MFGLotNumberContains.IsEmpty()
+	Where InventoryReceivedDate >= &Parameters.Filters.ReceivedDateFrom When not &Parameters.Filters.ReceivedDateFrom.IsEmpty()
+	Where InventoryReceivedDate <= &Parameters.Filters.ReceivedDateTo When not &Parameters.Filters.ReceivedDateTo.IsEmpty()
+	Where InventoryInternalLotNumber like &Parameters.Filters.InternalLotNumberContains When not &Parameters.Filters.InternalLotNumberContains.IsEmpty()
+	Where InventoryProjectCode = &Parameters.Filters.ProjectCode When not &Parameters.Filters.ProjectCode.IsEmpty()
+	Where InventoryStatus = &Parameters.Filters.Status When not &Parameters.Filters.Status.IsEmpty()
+	Where InventoryMaterialSytType = &Parameters.Filters.MaterialSytType When not &Parameters.Filters.MaterialSytType.IsEmpty()
+	Where InventoryQuantityReceived > 0
+	Where InventoryReceivedApproval = check.true when not &Parameters.Filters.MaterialId.IsEmpty()
+	Where InventoryBalance > 0 when not &showDepletedInventory
+	Where InventoryBalance <= 0 when &showDepletedInventory
+	{
+		InventoryReceiptNumber = InventoryReceiptNumber
+		UsageSequence = InventoryUsageSequence
+		MaterialId = InventoryMaterialId
+		MaterialVersionId = InventoryMaterialVersionId
+		ReceiptNumber = ReceiptNumber
+		SplitFromReceiptNumber = SplitFromReceiptNumber
+		RequisitionId = RequisitionId
+		PurchaseOrderNumber = PurchaseOrderNumber
+		MetricLabel = InvMetricLabel
+		MaterialName = InventoryMaterialName
+		MaterialCode = InventoryMaterialCode
+		MaterialSytType = InventoryMaterialSytType
+		RequisitionVendorName = PGetRequsitionVendorName.Udp(RequisitionId)
+		ProjectCode = InventoryProjectCode
+		MFGLotNumber = InventoryMFGLotNumber
+		InternalLotNumber = InventoryInternalLotNumber
+		BatchNumber = InventoryBatchNumber
+		BprProdNumber = InventoryBprProdNumber
+		QuantityReceived = InventoryQuantityReceived
+		ActRcvUnitName = InventoryActRcvUnitName
+		Balance = InventoryBalance
+		MaterialUnitName = InventoryMaterialUnitName
+		ReceivedDate = InventoryReceivedDate
+		Status = InventoryStatus
+		StatusDescription = getStatusDescription(InventoryStatus)
+		Date = InventoryDate
+		MaterialReceiptRetestDate = MaterialReceiptRetestDate
+		MaterialReceiptExpiryDate = MaterialReceiptExpiryDate
+		BinLocation = iif(BinId.IsEmpty(),'',BinLocation)
+		MPRProductName = getProdNameFGfromRecNum(InventoryReceiptNumber)
+		RequsitionVendorPartNum = RequsitionVendorPartNum
+		RequisitionVendorOrderNumber = RequisitionVendorOrderNumber
+		UnitMaterialCost = InventoryUnitMaterialCost
+		MaterialTypesNameDescription = MaterialTypesNameDescription
+		SpecFullRetestDate = SpecFullRetestDate
+		SpecMicroRetestDate = SpecMicroRetestDate
+		SpecImpurityRetestDate = SpecImpurityRetestDate
+		SpecMFGRetestDate = SpecMFGRetestDate
+		SpecMFGExpiryDate = SpecMFGExpiryDate
+		SpecInternalExpiryDate = SpecInternalExpiryDate
+	}
+}
+]]></Source>
+        <Properties><Property><Name>IsDefault</Name><Value>False</Value></Property><Property><Name>Defaults</Name><Value>PXWSQuery:Templates\DataProviderQuerySource.dll</Value></Property></Properties>
+      </Part>
+      <Part type="9b0a32a3-de6d-4be1-a4dd-1b85d3741534">
+        <Properties><Property><Name>IsDefault</Name><Value>True</Value></Property><Property><Name>Defaults</Name><Value>PXWSQuery:Templates\DataProviderQueryRules.dll</Value></Property></Properties>
+      </Part>
+      <Part type="e4c4ade7-53f0-4a56-bdfd-843735b66f47">
+        <Variable Name="Count">
+          <Documentation />
+          <Properties><Property><Name>Name</Name><Value>Count</Value></Property><Property><Name>idBasedOn</Name><Value>Domain:VarLen</Value></Property></Properties>
+        </Variable>
+        <Variable Name="Parameters">
+          <Documentation />
+          <Properties><Property><Name>Name</Name><Value>Parameters</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>sdt:DPQueryTInventoryV1In, API.Inventory</Value></Property></Properties>
+        </Variable>
+        <Variable Name="showDepletedInventory">
+          <Documentation />
+          <Properties><Property><Name>Name</Name><Value>showDepletedInventory</Value></Property><Property><Name>ATTCUSTOMTYPE</Name><Value>bas:Boolean</Value></Property></Properties>
+        </Variable>
+        <Variable Name="Skip">
+          <Documentation />
+          <Properties><Property><Name>Name</Name><Value>Skip</Value></Property><Property><Name>idBasedOn</Name><Value>Domain:VarLen</Value></Property></Properties>
+        </Variable>
+        <Properties><Property><Name>IsDefault</Name><Value>False</Value></Property><Property><Name>Defaults</Name><Value>PXWSQuery:Templates\DataProviderQueryVariables.dll</Value></Property></Properties>
+      </Part>
+      <Part type="ad3ca970-19d0-44e1-a7b7-db05556e820c">
+        <Help>
+          <HelpItem>
+            <Language>88313f43-5eb2-0000-0028-e8d9f5bf9588-English</Language>
+            <Content />
+          </HelpItem>
+        </Help>
+        <Properties><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+      </Part>
+      <Part type="babf62c5-0111-49e9-a1c3-cc004d90900a">
+        <Properties />
+      </Part>
+      <Properties><Property><Name>Name</Name><Value>DPQueryTInventoryV1</Value></Property><Property><Name>Description</Name><Value> Save Method for Version </Value></Property><Property><Name>OutputSDT</Name><Value>447527b5-9210-4523-898b-5dccb17be60a-API.Inventory.DPQueryTInventoryV1Out</Value></Property><Property><Name>IsGeneratedObject</Name><Value>True</Value></Property><Property><Name>InstanceKey</Name><Value>c122f122-4570-4cb8-9119-90000bbaef42-API.Inventory.PXWSQueryInventory</Value></Property><Property><Name>ElementKey</Name><Value>/instance/version[1]/method[@name="&lt;default&gt;"]</Value></Property><Property><Name>PatternObjectId</Name><Value>DataProvider</Value></Property><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+    </Object>
+  </Objects>
+  <Dependencies>
+    <Reference Package="3ea7e1c6-b849-4df9-931a-070171a8a2f0" Type="Object" Id="2a9e9aba-d2de-4801-ae7f-5e3819222daf">
+      <Properties Name="Data Provider" PackageName="GenexusBL" />
+    </Reference>
+    <Reference Package="3ea7e1c6-b849-4df9-931a-070171a8a2f0" Type="Part" Id="1d8aeb5a-6e98-45a7-92d2-d8de7384e432">
+      <Properties Name="Source" PackageName="GenexusBL" />
+    </Reference>
+    <Reference Package="3ea7e1c6-b849-4df9-931a-070171a8a2f0" Type="Part" Id="9b0a32a3-de6d-4be1-a4dd-1b85d3741534">
+      <Properties Name="Rules" PackageName="GenexusBL" />
+    </Reference>
+    <Reference Package="3ea7e1c6-b849-4df9-931a-070171a8a2f0" Type="Part" Id="e4c4ade7-53f0-4a56-bdfd-843735b66f47">
+      <Properties Name="Variables" PackageName="GenexusBL" />
+    </Reference>
+    <Reference Package="3ea7e1c6-b849-4df9-931a-070171a8a2f0" Type="Part" Id="ad3ca970-19d0-44e1-a7b7-db05556e820c">
+      <Properties Name="Help" PackageName="GenexusBL" />
+    </Reference>
+    <Reference Package="3ea7e1c6-b849-4df9-931a-070171a8a2f0" Type="Part" Id="babf62c5-0111-49e9-a1c3-cc004d90900a">
+      <Properties Name="Documentation" PackageName="GenexusBL" />
+    </Reference>
+    <Reference Package="df0eb164-d030-4b53-b022-0ea225fb61d6" Type="Pattern" Id="c122f122-4570-4cb8-9119-90000bbaef42">
+      <Properties Description="PXWSQuery" Provider="PuntoExe" Version="10.3.0" />
+    </Reference>
+  </Dependencies>
+  <ObjectsIdentityMapping>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryReceiptNumber" parent="">
+      <Guid>d3070b01-cfcb-7c12-1f5f-9f5d0afff7b8</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="c122f122-4570-4cb8-9119-90000bbaef42" Name="PXWSQueryInventory" parent="API.Inventory">
+      <Guid>5aa7f099-26bc-4d6e-b3eb-c0c23cd084f0</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="c88fffcd-b6f8-0000-8fec-00b5497e2117" Name="Inventory" parent="API">
+      <Guid>3e701de6-9c3f-4e06-9e6e-fc3e5072b236</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="c88fffcd-b6f8-0000-8fec-00b5497e2117" Name="API" parent="">
+      <Guid>3c4a4ac7-dd09-4346-8c62-e8041421f435</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="RequisitionId" parent="">
+      <Guid>2086507a-a720-2df3-d577-2f7fb5c1b9f9</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryMaterialVersionId" parent="">
+      <Guid>e1d78377-7305-cd21-eb2f-f2ebc825780b</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryMaterialId" parent="">
+      <Guid>34116496-2f16-c1ab-6f27-b5eb6e0e5aaa</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryStatus" parent="">
+      <Guid>3d7a9fd9-7555-cdd6-a41b-b1d664735d7c</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryUsageSequence" parent="">
+      <Guid>acaa5119-dae7-5fcd-3986-9700bf5398ad</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryReceivedDate" parent="">
+      <Guid>3e9a7435-8802-8866-611e-dbc4dc5d2335</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryQuantityReceived" parent="">
+      <Guid>8b17a887-9840-1490-53a5-a10db414eb70</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryBalance" parent="">
+      <Guid>9b1424c2-14ae-83de-5532-90cb8b8d8cfe</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryDate" parent="">
+      <Guid>0ab01c0a-cd07-7d89-b85c-c137490f2609</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryMFGLotNumber" parent="">
+      <Guid>e5ed4b17-33d1-8c6a-a9eb-38a04b7598c7</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="RequisitionMaterialName" parent="">
+      <Guid>5374c466-3523-511d-5bfb-26f6d7f8bc54</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryMaterialName" parent="">
+      <Guid>40f737b4-3dbc-d0af-b78d-f573005959fb</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryReceivedApproval" parent="">
+      <Guid>e6c374bf-6e73-ad80-3262-c80f5517d63b</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryMaterialUnitName" parent="">
+      <Guid>bf249e54-a29b-3189-dad5-71a1f43fe5db</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="RequisitionVendorOrderNumber" parent="">
+      <Guid>0c196d39-d447-45b2-8e61-95043d0b0e81</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="MaterialTypesNameDescription" parent="">
+      <Guid>0d6e2ef4-1f34-48e8-85ba-444c2c9c4c25</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryMaterialCode" parent="">
+      <Guid>f5ebad77-8498-4430-a62a-2ddd924c40cb</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryActRcvUnitName" parent="">
+      <Guid>3ec18cd5-ec46-4835-a5f4-b8ef356f766b</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryBatchNumber" parent="">
+      <Guid>58c2ac91-8509-4614-825e-420fb60a22a3</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryBprProdNumber" parent="">
+      <Guid>c41a6b03-7fdc-4fb6-95fe-c9db00f3b096</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="BinId" parent="">
+      <Guid>5c6e2ed1-2ea4-4d8b-a4ed-335856d55fc2</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="BinLocation" parent="">
+      <Guid>aa6d2876-853a-45f4-86d0-071da852bf17</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="ReceiptNumber" parent="">
+      <Guid>13f1078c-5c85-4697-8b31-6fc14cdcc347</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="SplitFromReceiptNumber" parent="">
+      <Guid>eb22be81-548e-4b0f-bd1a-67fcb84173b1</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="PurchaseOrderNumber" parent="">
+      <Guid>f45433ac-8952-42ff-ad76-05f870c4c492</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="MaterialReceiptRetestDate" parent="">
+      <Guid>d6aa9ae2-688e-43ba-b50f-3f1ff6bde479</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="MaterialReceiptExpiryDate" parent="">
+      <Guid>33d194b9-7183-4f7e-9627-f710e2c59daf</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryProjectCode" parent="">
+      <Guid>86f4e5f6-f89e-4537-bfc1-d693b98b26c2</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="RequsitionVendorPartNum" parent="">
+      <Guid>773850a4-5d46-49ad-bd13-0c0543a3e8b9</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryInternalLotNumber" parent="">
+      <Guid>6267bfe7-0015-431b-9062-867fb757f7ea</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InvMetricLabel" parent="">
+      <Guid>ec43e3ce-e1ff-42f3-b2f5-51e9babb1f36</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryUnitMaterialCost" parent="">
+      <Guid>eecd5e7e-2342-4620-a9d4-e8613d422738</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryMaterialSytType" parent="">
+      <Guid>9829216e-0477-422c-a7d4-e3b9ad09ab71</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="SpecMicroRetestDate" parent="">
+      <Guid>f23248e1-8a12-41ed-9962-f65c4e495019</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="SpecFullRetestDate" parent="">
+      <Guid>2401062f-3bbe-48d1-b777-6631b58e3aad</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="SpecImpurityRetestDate" parent="">
+      <Guid>4de26d18-b71b-442c-8912-c5b44c500907</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="SpecMFGRetestDate" parent="">
+      <Guid>61567ef6-eabd-4ce8-bff7-6dd7fee13aaf</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="SpecMFGExpiryDate" parent="">
+      <Guid>ad727a7a-d7b2-497b-a85b-f03276cae96b</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="SpecInternalExpiryDate" parent="">
+      <Guid>ddbabbac-8c96-492e-b455-0fa7edb59af6</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="00972a17-9975-449e-aab1-d26165d51393" Name="VarLen" parent="">
+      <Guid>5e0e12a9-998c-484e-930e-33ff0dc8ea70</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="00972a17-9975-449e-aab1-d26165d51393" Name="check" parent="">
+      <Guid>3565cfbf-db56-951b-3da5-83ff88f750fd</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="84a12160-f59b-4ad7-a683-ea4481ac23e9" Name="PGetRequsitionVendorName" parent="iGMP">
+      <Guid>55914897-f0af-406a-bcb0-c21f1901311f</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="00000000-0000-0000-0000-000000000008" Name="F06_Inventory" parent="iGMP">
+      <Guid>5739155b-373a-fcfc-d5e7-b65b7a13e543</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="c88fffcd-b6f8-0000-8fec-00b5497e2117" Name="iGMP" parent="">
+      <Guid>5204e185-e4d8-452b-a035-e03d2b5479bb</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="84a12160-f59b-4ad7-a683-ea4481ac23e9" Name="getStatusDescription" parent="iGMP">
+      <Guid>10793310-aad2-4635-bf2d-a112443d409f</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="84a12160-f59b-4ad7-a683-ea4481ac23e9" Name="getProdNameFGfromRecNum" parent="iGMP">
+      <Guid>58db9580-0ec2-48a5-974a-410dd2c477ed</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="447527b5-9210-4523-898b-5dccb17be60a" Name="DPQueryTInventoryV1In" parent="API.Inventory">
+      <Guid>081e389a-18ed-48b4-8f07-ff4d0541daf9</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="447527b5-9210-4523-898b-5dccb17be60a" Name="DPQueryTInventoryV1Out" parent="API.Inventory">
+      <Guid>87a059ad-098a-4a1a-bf28-c1299f3731d2</Guid>
+    </ObjectIdentity>
+  </ObjectsIdentityMapping>
+</ExportFile>
