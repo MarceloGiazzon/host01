@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Read File</title>
+  <!-- link to js-->
+  <script src="pwa_ble01.js"></script>
+
+  <!-- link to css-->
+  <link rel="stylesheet" type="text/css" href="pwa_ble01.css">
+</head>
+<body>
+
+  <div class="caixa">
+    <span>First name:::::::::</span>
+    <input type="text" id="battery-indicator" name="battery-indicator"><br><br>
+    <input type="button" value="Submit" onclick="myFunction()"><br><br>
+    
+    <input type="button" id="scan" value="scan"><br><br>
+  </div>
+
+  <script>
+    console.log("Estou no script ao final do body...");
+
+
+
+    //var test = document.getElementById("name").value;
+    //console.log("Valor do campo é " + test);
+
+      
+      
+    if('bluetooth' in navigator) {
+        const scan = document.querySelector('#scan');
+        const batteryIndicator = document.querySelector('#battery-indicator');
+
+        console.log("#1. Estou no if bluetooth in navigator...");
+
+        scan.addEventListener('click', async () => {
+
+            console.log("#2. Estou no scan.addEventListener...");
+
+            const connectToDevice = async ({bleService, bleCharacteristic}) => {
+            try {
+                const device = await navigator.bluetooth.requestDevice({
+                filters: [{
+                    services: [bleService]
+                }]
+                });
+
+                console.log("#3. Estou no connectToDevice...");
+
+                device.addEventListener('gattserverdisconnected', () => {
+                batteryIndicator.value = 0;
+                });
+
+                console.log("#4. Estou no connectToDevice...");
+
+                const server = await device.gatt.connect();
+                console.log("#4.1.");
+                const service = await server.getPrimaryService(bleService);
+                console.log("#4.2.");
+                const characteristic = await service.getCharacteristic(bleCharacteristic);
+                console.log("#4.3.");
+                await characteristic.startNotifications();
+                console.log("#4.4.");
+
+                characteristic.addEventListener('characteristicvaluechanged', e => {
+                const value = e.target.value.getUint8(0);
+                
+                console.log("#5. ");
+
+                console.log(`${bleCharacteristic} changed`, value);
+
+                batteryIndicator.value = value;
+                });
+
+                characteristic.readValue();
+
+                console.log("#6.");
+
+                return characteristic;
+            }
+            catch(err) {
+                console.error(err);
+            }
+            };
+
+            await connectToDevice({
+                bleService: '0000180d-0000-1000-8000-00805f9b34fb',
+                bleCharacteristic: '00002a37-0000-1000-8000-00805f9b34fb'});
+        });
+    }
+  </script>
+</body>
+</html>

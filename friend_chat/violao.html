@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Violão SVG</title>
+  <style>
+    svg {
+      background-color: #f2f2f2;
+      border: 1px solid #ccc;
+      transform: rotate(-90deg); /* Girar o SVG para exibir na horizontal */
+    }
+  </style>
+</head>
+<body>
+  <svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+    <!-- Corpo do violão -->
+    <path fill="#884211" d="M100,300 C200,250 200,150 300,200 C400,250 400,250 500,200 C600,150 600,250 500,300 L500,100 L100,100 Z" />
+
+    <!-- Braço do violão -->
+    <rect x="500" y="100" width="200" height="300" fill="#884211" />
+
+    <!-- Trastes -->
+    <rect x="200" y="100" width="5" height="300" fill="#d6d6d6" />
+    <rect x="250" y="100" width="5" height="300" fill="#d6d6d6" />
+    <rect x="300" y="100" width="5" height="300" fill="#d6d6d6" />
+    <rect x="350" y="100" width="5" height="300" fill="#d6d6d6" />
+    <rect x="400" y="100" width="5" height="300" fill="#d6d6d6" />
+
+    <!-- Cordas -->
+    <line id="string1" x1="215" y1="110" x2="215" y2="390" stroke="red" stroke-width="2" />
+    <line id="string2" x1="265" y1="110" x2="265" y2="390" stroke="green" stroke-width="2" />
+    <line id="string3" x1="315" y1="110" x2="315" y2="390" stroke="blue" stroke-width="2" />
+    <line id="string4" x1="365" y1="110" x2="365" y2="390" stroke="purple" stroke-width="2" />
+
+    <!-- Cavalete -->
+    <rect x="100" y="390" width="400" height="10" fill="#884211" />
+
+    <!-- Rótulo -->
+    <text x="300" y="80" font-family="Verdana" font-size="32" fill="#333" text-anchor="middle">Violão SVG</text>
+  </svg>
+
+  <script src="violao.js"></script>
+</body>
+</html>

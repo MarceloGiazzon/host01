@@ -1,0 +1,110 @@
+<html>
+<head>
+    <title>SOAP JavaScript Client Test</title>
+    <script type="text/javascript">
+        function soap() {
+
+            console.log('V0.0001');
+
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open('POST', 'http://puntoexe.com.uy:8115/iGMP4trunk/api.inventory.asoaptinventoryv1alt.aspx', true);
+
+            // build SOAP request
+            var sr = '<?xml version="1.0" encoding="utf-8"?>' +
+            '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:igm="iGMP4">' +
+                '<soapenv:Header/>' +
+                '<soapenv:Body>' +
+                    '<igm:API.Inventory.SOAPTInventoryV1Alt.QUERY>' +
+                        '<igm:Queryin>' +
+                            '<igm:Connection>' +
+                            '<igm:UserCode></igm:UserCode>' +
+                            '<igm:UserPassword></igm:UserPassword>' +
+                            '</igm:Connection>' +
+                            '<igm:Data>' +
+                            '<igm:Filters>' +
+                                '<igm:MaterialId></igm:MaterialId>' +
+                                '<igm:ReceiptNumber>455</igm:ReceiptNumber>' +
+                                '<igm:SplitFromReceiptNumber></igm:SplitFromReceiptNumber>' +
+                                '<igm:RequisitionId></igm:RequisitionId>' +
+                                '<igm:RequisitionMaterialNameContains></igm:RequisitionMaterialNameContains>' +
+                                '<igm:InventoryMaterialCodeContains></igm:InventoryMaterialCodeContains>' +
+                                '<igm:PurchaseOrderNumberContains></igm:PurchaseOrderNumberContains>' +
+                                '<igm:MFGLotNumberContains></igm:MFGLotNumberContains>' +
+                                '<igm:ReceivedDateFrom></igm:ReceivedDateFrom>' +
+                                '<igm:ReceivedDateTo></igm:ReceivedDateTo>' +
+                                '<igm:InternalLotNumberContains></igm:InternalLotNumberContains>' +
+                                '<igm:ProjectCode></igm:ProjectCode>' +
+                                '<igm:Status></igm:Status>' +
+                                '<igm:MaterialSytType></igm:MaterialSytType>' +
+                            '</igm:Filters>' +
+                            '<igm:Page></igm:Page>' +
+                            '</igm:Data>' +
+                        '</igm:Queryin>' +
+                    '</igm:API.Inventory.SOAPTInventoryV1Alt.QUERY>' +
+                '</soapenv:Body>' +
+                '</soapenv:Envelope>';
+
+
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4) {
+                    if (xmlhttp.status == 200) {
+                        console.log('xmlhttp.responseText = ' + xmlhttp.responseText);
+                        alert(xmlhttp.responseText);
+                        // alert('done. use firebug/console to see network response');
+                    }
+                }
+            }
+            // Send the POST request
+            xmlhttp.setRequestHeader('Content-Type', 'text/xml');
+            xmlhttp.send(sr);
+            // send request
+            // ...
+
+            if (1 == 2) {
+
+                localStorage.setItem('Log3','ids: ');
+
+                var elemGrid = document.getElementsByClassName('Grid');
+                //if (elemGrid == null || elemGrid == undefined)
+                //    return;
+                
+                var tableReal = elemGrid.item(elemGrid.length-1);
+                //if (tableReal == null || tableReal == undefined)
+                //    return;
+
+                //if (tableReal.childNodes.length > 0 && tableReal.childNodes[1].childNodes[])
+                var row = tableReal.childNodes[1].childNodes[0];
+                //if (row == null || row == undefined)
+                //    return;
+
+                for (let index = 0; index < row.childNodes.length; index++) {
+                    var element = row.childNodes[index];
+                    localStorage.setItem('Log','index = ' + index + ' ' + element.innerHTML);
+
+                    var posAux = element.innerHTML.indexOf('id="span_',0);
+                    if (posAux >0)
+                    {
+                        var pos = element.innerHTML.indexOf('"',posAux + 4);
+                        var str = element.innerHTML.substring(posAux + 4, pos);
+                        localStorage.setItem('Log2','str ' + str);
+
+                        var idsStr = localStorage.getItem('Log3');
+                        localStorage.setItem('Log3',idsStr + ' , ' + str);
+
+                    }
+                }
+
+            }
+
+
+        }
+    </script>
+</head>
+<body>
+    <form name="Demo" action="" method="post">
+        <div>
+            <input type="button" value="Soap" onclick="soap();" />
+        </div>
+    </form>
+</body>
+</html> <!-- typo -->

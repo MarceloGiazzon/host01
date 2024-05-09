@@ -1,0 +1,114 @@
+<html>
+<head>
+    <title>SOAP JavaScript Client Test</title>
+    <script type="text/javascript">
+        function readWSDL() {
+
+            console.log('V0.0001');
+            var wsdlURL = 'http://puntoexe.com.uy:8115/iGMP4trunk/api.inventory.asoaptinventoryv1alt.aspx?wsdl';
+
+            //wsdl request
+            var client = new XMLHttpRequest();
+            client.open('GET', wsdlURL);
+            client.onreadystatechange = function () {
+            var request = client.responseText;//here the wsdl
+            
+                var xmlString = request;
+
+                // Criar um novo parser DOM
+                const parser = new DOMParser();
+
+                // Converter a string XML em um objeto XML
+                const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+
+                // Obter todos os elementos "element" do documento XML
+                const elementos = xmlDoc.getElementsByTagName("");
+
+                // Iterar sobre cada elemento encontrado
+                for (let i = 0; i < elementos.length; i++) {
+                    // Obter o texto de cada elemento e imprimir na console
+                    const texto = elementos[i].textContent.trim();
+                    console.log("Linha " + (i + 1) + ": " + texto);
+
+                    console.log("Linha " + (i + 1) + ": " + elementos[i].outerHTML);
+                }
+
+
+                const fs = require('fs');
+                const xml2js = require('xml-js');
+
+                // Função para ler o arquivo WSDL e criar o JSON de request
+                function criarJsonDeRequest(caminhoArquivoWSDL) {
+                    // Ler o conteúdo do arquivo WSDL
+                    const xml = fs.readFileSync(caminhoArquivoWSDL, 'utf8');
+
+                    // Converter o XML em um objeto JavaScript
+                    const wsdlObj = xml2js.xml2js(xml, { compact: true });
+
+                    // Extrair informações necessárias do objeto WSDL
+                    const operations = wsdlObj.definitions.portType.operation;
+
+                    // Criar um objeto para armazenar informações do request
+                    const jsonRequest = {
+                        operations: []
+                    };
+
+                    // Iterar sobre as operações no WSDL
+                    operations.forEach(operation => {
+                        const operationName = operation._attributes.name;
+                        const inputMessage = operation.input._attributes.message;
+
+                        // Adicionar informações da operação ao objeto JSON de request
+                        jsonRequest.operations.push({
+                            operationName,
+                            inputMessage
+                            // Adicione mais informações conforme necessário
+                        });
+                    });
+
+                    // Retornar o JSON de request
+                    return jsonRequest;
+                }
+
+                // Caminho do arquivo WSDL
+                const caminhoArquivoWSDL = wsdlURL;
+
+                // Criar o JSON de request
+                const jsonRequest = criarJsonDeRequest(caminhoArquivoWSDL);
+
+                // Exibir o JSON de request
+                console.log(jsonRequest);
+
+
+                    //SOAP request
+
+                    /*
+                    var client2 = new XMLHttpRequest();
+                    client2.open('POST', 'http://puntoexe.com.uy:8115/iGMP4trunk/api.inventory.asoaptinventoryv1alt.aspx', true);
+
+                    client2.onreadystatechange = function () {
+                      if (client2.readyState == 4) {
+                        if (client2.status == 200) {
+                          console.log(client.responseText);//here the response
+                        }
+                      }
+                    }
+                    client2.setRequestHeader('Content-Type', 'text/xml');
+                    client2.send(request);*/
+            }
+
+            client.send();
+
+
+
+        }
+    </script>
+</head>
+<body>
+    <form name="Demo" action="" method="post">
+        <div>
+            <input type="button" value="readWSDL" onclick="readWSDL();" />
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Solar System</title>
+  <style>
+    body {
+      background-color: black;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .planet-path {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.3);
+      stroke-width: 1;
+    }
+
+    .planet-label {
+      fill: white;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      text-anchor: middle;
+    }
+
+    body {
+        background-image: url('https://images.unsplash.com/photo-1593642634313-85eeaa0a771f');
+        background-size: cover;
+        background-repeat: no-repeat;
+        }
+  </style>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1000 1000">
+    <!-- Sun -->
+    <circle id="sun" cx="500" cy="500" r="50" fill="yellow" />
+
+    <!-- Celestial bodies and paths -->
+    <g id="celestial-bodies">
+      <circle id="mercury" cx="0" cy="0" r="10" fill="gray" />
+      <circle id="venus" cx="0" cy="0" r="15" fill="orange" />
+      <circle id="earth" cx="0" cy="0" r="17" fill="blue" />
+      <circle id="mars" cx="0" cy="0" r="13" fill="red" />
+      <circle id="jupiter" cx="0" cy="0" r="30" fill="brown" />
+      <circle id="saturn" cx="0" cy="0" r="27" fill="tan" />
+      <circle id="uranus" cx="0" cy="0" r="25" fill="lightblue" />
+      <circle id="neptune" cx="0" cy="0" r="23" fill="darkblue" />
+    </g>
+
+    <!-- Paths -->
+    <g id="planet-paths">
+      <path class="planet-path" d="" />
+      <path class="planet-path" d="" />
+      <path class="planet-path" d="" />
+      <path class="planet-path" d="" />
+      <path class="planet-path" d="" />
+      <path class="planet-path" d="" />
+      <path class="planet-path" d="" />
+      <path class="planet-path" d="" />
+    </g>
+
+    <!-- Labels -->
+    <g id="planet-labels">
+      <text class="planet-label" x="0" y="0">Mercury</text>
+      <text class="planet-label" x="0" y="0">Venus</text>
+      <text class="planet-label" x="0" y="0">Earth</text>
+      <text class="planet-label" x="0" y="0">Mars</text>
+      <text class="planet-label" x="0" y="0">Jupiter</text>
+      <text class="planet-label" x="0" y="0">Saturn</text>
+      <text class="planet-label" x="0" y="0">Uranus</text>
+      <text class="planet-label" x="0" y="0">Neptune</text>
+    </g>
+  </svg>
+
+  <script>
+    // Get the references to each planet and path
+    const sun = document.getElementById('sun');
+    const celestialBodies = Array.from(document.getElementById('celestial-bodies').children);
+    const planetPaths = Array.from(document.getElementById('planet-paths').children);
+    const planetLabels = Array.from(document.getElementById('planet-labels').children);
+
+    // Set the initial positions and angles
+    const radii = [150, 200, 250, 300, 400, 500, 600, 700]; // Radii of the planet paths
+    let angles = Array.from({ length: 8 }, () => 0); // Initial angles for each planet
+
+    // Define the animation function
+    function animate() {
+      // Calculate new positions for each planet and update the paths
+      celestialBodies.forEach((body, index) => {
+        const angle = angles[index];
+        const radius = radii[index];
+        const x = 500 + radius * Math.cos(angle);
+        const y = 500 + radius * Math.sin(angle);
+
+        body.setAttribute('cx', x);
+        body.setAttribute('cy', y);
+
+        const path = planetPaths[index];
+        path.setAttribute('d', `M 500 500 A ${radius} ${radius - 100} 0 0 1 ${x} ${y}`);
+
+        const label = planetLabels[index];
+        label.setAttribute('x', x);
+        label.setAttribute('y', y);
+      });
+
+      // Update the angles for the next frame
+      angles = angles.map((angle, index) => angle + (index + 1) * 0.005);
+
+      // Call animate function recursively to create animation loop
+      requestAnimationFrame(animate);
+    }
+
+    // Start the animation
+    animate();
+  </script>
+
+    <script src="zoom.js"></script>
+    
+</body>
+</html>

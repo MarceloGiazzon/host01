@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Página Ejemplo</title>
+    <style>
+        /* Estilo CSS */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: #0070f3;
+        }
+        #miBoton {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 2px;
+            cursor: pointer;
+        }
+
+        #contenedorPadre {
+            width: 100%;
+            height: 300px;
+            background-color: #000;
+            color: white;
+            text-align: center;
+            line-height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>¡Hola, Mundo!</h1>
+    <p>Esta es una página HTML sencilla con CSS y JavaScript.</p>
+
+    <button id="miBoton">Haz clic</button>
+
+    <div id="contenedorPadre">Este div ocupa todo el ancho y tiene 300px de altura.</div>
+
+
+    <script>
+        //for (let index = 0; index < 10000; index++) {
+            setInterval(crearDivAleatorio, 70);
+        //}
+
+        function getRandomValue(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        function getRandomColor() {
+            return '#' + Math.floor(Math.random()*16777215).toString(16);
+        }
+
+        let divCount = 0; // Variable para rastrear el número de divs creados
+
+        function crearDivAleatorio() {
+            const contenedorPadre = document.getElementById("contenedorPadre");
+    
+            if (divCount >= 5) {
+                // Si hay más de 50 divs, elimina el div más antiguo
+                var divAntiguo = contenedorPadre.firstElementChild;
+                contenedorPadre.removeChild(divAntiguo);
+                divCount--;
+            }
+
+            const nuevoDiv = document.createElement("div");
+            nuevoDiv.style.position = "absolute";
+            nuevoDiv.style.left = getRandomValue(0, 80) + "%"; // Variación de 0% a 80% del ancho del padre
+            nuevoDiv.style.top = getRandomValue(0, 80) + "%"; // Variación de 0% a 80% de la altura del padre
+            const tamano = getRandomValue(30, 300); // Tamaño aleatorio entre 30px y 300px
+            nuevoDiv.style.width = `${tamano}px`;
+            nuevoDiv.style.height = `${tamano}px`;
+            nuevoDiv.style.backgroundColor = getRandomColor();
+            nuevoDiv.style.border = `2px solid ${getRandomColor()}`;
+            nuevoDiv.style.borderRadius = "50%"; // Border-Radius al 50%
+            nuevoDiv.id = `div-${divCount}`; // Asigna una ID única
+            contenedorPadre.appendChild(nuevoDiv);
+
+            divCount++;
+        }
+
+
+        // JavaScript
+        document.getElementById("miBoton").addEventListener("click", function() {
+            alert("¡Has hecho clic en el botón!");
+        });
+    </script>
+</body>
+</html>
