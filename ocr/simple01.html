@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <script src="https://unpkg.com/tesseract.js@2.0.0-beta.1/dist/tesseract.min.js"></script>
+    <script src="https://unpkg.com/tesseract.js@2.0.1/dist/worker.min.js"</script>
+  </head>
+  <body>
+    <img src="ocr_test_01.jpg" />
+    <div id="message">Recognizing...</div>
+    <script>
+      const { createWorker } = Tesseract;
+
+      const worker = createWorker({
+        langPath: '..',
+        gzip: false,
+        logger: m => console.log(m)
+      });
+
+      (async () => {
+        await worker.load();
+        await worker.loadLanguage('LCDDot_FT_500');
+        await worker.initialize('LCDDot_FT_500');
+        const { data: { text } } = await worker.recognize('ocr_test_01.jpg');
+        document.getElementById('message').innerHTML = text;
+        await worker.terminate();
+      })();
+    </script>
+  </body>
+</html>

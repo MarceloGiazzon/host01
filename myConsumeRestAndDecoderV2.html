@@ -1,0 +1,169 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 to File Converter with REST API</title>
+</head>
+<body>
+    <h1>Base64 to File Converter with REST API</h1>
+    <form id="apiForm">
+        <label for="urlInput">API URL:</label><br>
+        <input type="text" id="urlInput" size="78" required><br><br>
+        
+        <label for="requestBodyInput">Request Body (JSON):</label><br>
+        <textarea id="requestBodyInput" rows="15" cols="80" required></textarea><br><br>
+        
+        <button type="button" id="apiSubmitButton">Fetch and Populate Base64</button>
+        <input type="checkbox" id="autoDownloadCheckbox"> Enable Auto Download<br><br>
+    </form>
+    
+    <form id="base64Form">
+        <label for="base64Input">Base64 Encoded Text:</label><br>
+        <textarea id="base64Input" rows="15" cols="80" required></textarea><br><br>
+        
+        <label for="fileNameInput">File Name:</label><br>
+        <input type="text" id="fileNameInput" size="78" required><br><br>
+        
+        <button type="submit">Convert and Download</button>
+    </form>
+
+    <button id="OldBase64Form">testOldBase64Form</button>
+    
+    <span id="messageSpan"></span>
+
+    <script>
+
+        
+        function displayMessage(message) {
+            document.getElementById('messageSpan').innerText = message;
+        }
+
+        document.getElementById('apiSubmitButton').addEventListener('click', async function() {
+            // Get the input values
+            const apiUrl = document.getElementById('urlInput').value;
+            const requestBody = document.getElementById('requestBodyInput').value;
+            const autoDownload = document.getElementById('autoDownloadCheckbox').checked;
+            
+            try {
+                displayMessage('Fetching data...');
+                
+                // Call the REST API with POST request
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: requestBody
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+
+                const responseData = await response.json();
+                console.log('API Response:', responseData);
+
+                if (responseData.Succeed) {
+                    displayMessage('Data fetched successfully!');
+
+                    // Populate the Base64 Encoded Text input with the FileBase64 from the response
+                    const base64Text = responseData.Response.FileBase64;
+                    const fileName = responseData.Response.FileName;
+                    document.getElementById('base64Input').value = base64Text;
+                    document.getElementById('fileNameInput').value = fileName;
+
+                    // Check if auto download is enabled
+                    if (autoDownload) {
+                        downloadFile(base64Text, fileName);
+                        displayMessage('File downloaded automatically.');
+                    }
+                } else {
+                    alert('Error: ' + responseData.Response.ErrorMessage);
+                    displayMessage('Error: ' + responseData.Response.ErrorMessage);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                displayMessage('Error: ' + error.message);
+            }
+        });
+
+        document.getElementById('base64Form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Get the input values
+            const base64Text = document.getElementById('base64Input').value;
+            const fileName = document.getElementById('fileNameInput').value;
+            
+            // Decode the base64 text and download the file
+            downloadFile(base64Text, fileName);
+            displayMessage('File downloaded manually.');
+        });
+
+        function downloadFile(base64Text, fileName) {
+            // Decode the base64 text
+            const byteCharacters = atob(base64Text);
+            const byteNumbers = new Array(byteCharacters.length);
+            for (let i = 0; i < byteCharacters.length; i++) {
+                byteNumbers[i] = byteCharacters.charCodeAt(i);
+            }
+            const byteArray = new Uint8Array(byteNumbers);
+            
+            // Create a blob from the byte array
+            const blob = new Blob([byteArray], { type: 'application/octet-stream' });
+            
+            // Create a link element
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = fileName;
+            
+            // Append the link to the body
+            document.body.appendChild(link);
+            
+            // Programmatically click the link to trigger the download
+            link.click();
+            
+            // Remove the link from the document
+            document.body.removeChild(link);
+        }
+
+
+
+        document.getElementById('OldBase64Form').addEventListener('click', function(event) {
+            event.preventDefault();
+            
+            // Get the input values
+            const base64Text = document.getElementById('base64Input').value;
+            const fileName = document.getElementById('fileNameInput').value;
+            
+            // Decode the base64 text
+            const byteCharacters = atob(base64Text);
+            const byteNumbers = new Array(byteCharacters.length);
+            for (let i = 0; i < byteCharacters.length; i++) {
+                byteNumbers[i] = byteCharacters.charCodeAt(i);
+            }
+            const byteArray = new Uint8Array(byteNumbers);
+            
+            // Create a blob from the byte array
+            const blob = new Blob([byteArray], { type: 'application/octet-stream' });
+            
+            // Create a link element
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = fileName;
+            
+            // Append the link to the body
+            document.body.appendChild(link);
+            
+            // Programmatically click the link to trigger the download
+            link.click();
+            
+            // Remove the link from the document
+            document.body.removeChild(link);
+        });
+    </script>
+</body>
+</html>

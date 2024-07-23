@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous">
+  </script>
+
+  <link rel="stylesheet" type="text/css" href="css_themes/w3-theme-amber.css">
+  <link rel="stylesheet" type="text/css" href="css_themes/w3-theme-black.css">
+  <link rel="stylesheet" type="text/css" href="css_themes/w3-theme-blue.css">
+  <link rel="stylesheet" type="text/css" href="css_themes/w3-theme-blue-grey.css">
+  <link rel="stylesheet" type="text/css" href="css_themes/w3-theme-brown.css">
+  <link rel="stylesheet" type="text/css" href="css_themes/w3-theme-cyan.css">
+  <link rel="stylesheet" type="text/css" href="css_themes/w3-theme-dark-grey.css">
+  <link rel="stylesheet" type="text/css" href="css_themes/w3-theme-deep-orange.css">
+  <link rel="stylesheet" type="text/css" href="css_themes/w3-theme-deep-purple.css">
+  <link rel="stylesheet" type="text/css" href="css_themes/w3-theme-green.css">
+  <link rel="stylesheet" type="text/css" href="css_themes/w3-theme-grey.css">
+  <link rel="stylesheet" type="text/css" href="css_themes/w3-theme-indigo.css">
+  <link rel="stylesheet" type="text/css" href="css_themes/w3-theme-khaki.css">
+  <link rel="stylesheet" type="text/css" href="css_themes/w3-theme-light-blue.css">
+  <link rel="stylesheet" type="text/css" href="css_themes/w3-theme-light-green.css">
+  <link rel="stylesheet" type="text/css" href="css_themes/w3-theme-lime.css">
+  <link rel="stylesheet" type="text/css" href="css_themes/w3-theme-orange.css">
+  <link rel="stylesheet" type="text/css" href="css_themes/w3-theme-pink.css">
+  <link rel="stylesheet" type="text/css" href="css_themes/w3-theme-purple.css">
+  <link rel="stylesheet" type="text/css" href="css_themes/w3-theme-red.css">
+  <link rel="stylesheet" type="text/css" href="css_themes/w3-theme-teal.css">
+  <link rel="stylesheet" type="text/css" href="css_themes/w3-theme-yellow.css">
+
+  <style>
+
+    .w3-theme- {}
+
+    .SuportAll td {
+      vertical-align: top;
+    }
+
+    .boxViewType {
+      border: 2px dashed teal;
+    }
+
+    .cellGXColor {
+      display: flex;
+      border-bottom: 1px darkgrey solid;
+      position: sticky;
+      width: 300px;
+      min-width: 300px;
+      max-width: 300px;
+      left: 0px;
+      background-color: #0a1c25; 
+      padding-bottom: 25px;
+    }
+
+    .rowTypes {
+      background-color: #0a1c25; 
+    }
+
+    .gxColor {font-size: 12px}
+    .gxColor-006400 {background-color:#006400 !important}
+    .gxColor-228b22 {background-color:#228b22 !important}
+    .gxColor-fff {background-color:#fff !important}
+    .gxColor-005000 {background-color:#005000 !important}
+    .gxColor-ffcca1 {background-color:#ffcca1 !important}
+    .gxColor-000 {background-color:#000 !important}
+    .gxColor-f3f3f3 {background-color:#f3f3f3 !important}
+    .gxColor-341d5b {background-color:#341d5b !important}
+    .gxColor-b1b1b1 {background-color:#b1b1b1 !important}
+    .gxColor-00a046 {background-color:#00a046 !important}
+    .gxColor-f0f0f0 {background-color:#f0f0f0 !important}
+    .gxColor-767676 {background-color:#767676 !important}
+    .gxColor-c8c8c8 {background-color:#f3f3f3 !important}
+    .gxColor-d9d9d9 {background-color:#d9d9d9 !important}
+    .gxColor-darkgray {background-color:darkgray !important}
+    .colorTransp {background-color:transparent !important}
+    
+
+    body {
+      background: #0a1c25;
+      font-family: "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+      font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+      margin:0px;
+    }
+
+  .w3-card {
+    margin-right: 15px;
+  }
+
+  .suportW3Themes {
+    float: left;
+    display: flex;
+  }
+
+  .suportW3Themes > div {
+    width: 200px;
+  }
+
+  .w3-ul {
+    margin: 0;
+    padding-left: 2px;
+    padding-right: 42px;
+  }
+
+  li {
+    list-style: none;
+  }
+  .dataset {
+    float: left;
+    vertical-align: top;
+
+  }
+  #result {
+    background: yellow;
+    font-color: #000;
+  }
+
+  #suportColors {
+    background: #0a1c25;
+    color: whitesmoke;
+    width: 100%;
+    display: block;
+    font-size: 11px;
+    display: flex;
+  }
+
+  .gxColor {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+  }
+
+  .boxViewType {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+  }
+
+  .gxNames {
+    width:244px;
+  }
+  #gxColor1 {
+    background: red;
+  }
+  #gxColor2 {
+    background: blue;
+  }
+  #gxColor3 {
+    background: green;
+  }
+  #suportColors li div {
+    padding: 4px;
+  }
+  #suportColors li {
+    display: flex;
+    border-bottom: 1px darkgrey solid;
+  }
+
+  .w3themeChooser {
+    font-size: 8pt;
+    border-radius: 6px;
+  }
+
+  </style>
+</head>
+
+  <div id="suportColors">
+  </div>
+
+  <input type='file' id="asd" />
+
+  <textarea id="textXpz" rows="4" cols="50"><?xml version="1.0" encoding="utf-8"?>
+    <ExportFile>
+      <KMW>
+        <MajorVersion>4</MajorVersion>
+        <MinorVersion>0</MinorVersion>
+        <Build>126726</Build>
+      </KMW>
+      <Source kb="fa82e3da-77c9-421d-8e2d-7245730a8da5" username="PUNTOEXE\mgiazzon" UNCPath="\\GENEXUS15\Models\GeneXus 15\PrinterIt">
+        <Version guid="5dc06a1f-c53b-47a8-b505-6b0f411645d8" name="PrinterIt" />
+      </Source>
+      <Objects>
+        <Object parentGuid="00000000-0000-0000-0000-000000000000" user="PUNTOEXE\mgiazzon" versionDate="0001-01-01T00:00:00.0000000" lastUpdate="2018-12-16T12:05:05.0000000Z" checksum="9004127e2bdc4e6d371af3e74b12b0a1" fullyQualifiedName="PXToolsResponsive" moduleGuid="00000000-0000-0000-0000-000000000000" guid="6891cfa3-1339-611a-e6bf-2727d426e8c2" name="PXToolsResponsive" type="3affc0b3-494b-4d84-9ec1-3a6ab8349cda" description="PXTools Responsive">
+          <Part type="5d481862-64bc-4e88-8af2-e21c276dab77">
+            <PaletteColors>
+              <PaletteColor name="Action" color="#006400" />
+              <PaletteColor name="ActionHover" color="#228b22" />
+              <PaletteColor name="ActionForeColor" color="#FFF" />
+              <PaletteColor name="ForeColor" color="#005000" />
+              <PaletteColor name="GridBackground" color="#FFCCA1" />
+              <PaletteColor name="PXToolsRespBackgroundTitleBar" color="#341d5b" />
+              <PaletteColor name="PXToolsRespFontTitleBar" color="#FFF" />
+              <PaletteColor name="PXToolsRespFontRecentLinksBar" color="#000" />
+              <PaletteColor name="PXToolsRespBackgroundRecentLinksBar" color="#F3F3F3" />
+              <PaletteColor name="PXToolsRespBackgroundSideLayout" color="#341d5b" />
+              <PaletteColor name="PXToolsRespFontOrderFilterFloatHeader" color="#341d5b" />
+              <PaletteColor name="PXToolsRespFontOrderFilterFloatOption" color="#000" />
+              <PaletteColor name="PXToolsRespBorderOrderFilterFloatBox" color="#B1B1B1" />
+              <PaletteColor name="PXToolsRespBorderOrderFilterFloatSeparator" color="#B1B1B1" />
+              <PaletteColor name="PXToolsRespBackgroudOrderFilterFloat" color="#FFF" />
+              <PaletteColor name="PXToolsRespFontPrgmName" color="#00A046" />
+              <PaletteColor name="PXToolsRespBackgroudGridLineOdd" color="#F0F0F0" />
+              <PaletteColor name="PXToolsRespBackgroudGridLineEven" color="#FFF" />
+              <PaletteColor name="PXToolsRespBackgroudGridSort" color="#FFF" />
+              <PaletteColor name="PXToolsRespBackgroudGridSortOver" color="#FFEEE0" />
+              <PaletteColor name="PXToolsRespBackgroudGridBarHeader" color="#767676" />
+              <PaletteColor name="PXToolsRespBackgroudGridBarFooter" color="#767676" />
+              <PaletteColor name="PXToolsRespBackgroudGridLine" color="#FFEEE0" />
+              <PaletteColor name="PXToolsRespFontGridContent" color="#000" />
+              <PaletteColor name="PXToolsRespFontGridSort" color="#000" />
+              <PaletteColor name="PXToolsRespFontGridFooter" color="#FFF" />
+              <PaletteColor name="PXToolsRespFontGridTitle" color="#FFF" />
+              <PaletteColor name="PXToolsRespBorderGrid" color="#B1B1B1" />
+              <PaletteColor name="PXToolsRespMainDataArea" color="#FFF" />
+              <PaletteColor name="PXToolsBorderMP" color="#F3F3F3" />
+              <PaletteColor name="PXToolsGridSelectedLine" color="#FFEEE0" />
+              <PaletteColor name="PXToolsFontAttributeReadOnlyGrid" color="#000" />
+              <PaletteColor name="PXToolsBorderMainArea" color="#F3F3F3" />
+              <PaletteColor name="PXToolsColorLabelOrderFilters" color="#341d5b" />
+              <PaletteColor name="PXToolsBorderFooterGrid" color="#B1B1B1" />
+              <PaletteColor name="PXToolsGridBottomButtoms" color="#C8C8C8" />
+              <PaletteColor name="PXToolsGridBottomButtomsHover" color="#341d5b" />
+              <PaletteColor name="PXToolsGridPageStatusFont" color="#FFF" />
+              <PaletteColor name="PXToolsRespDefaultBtn" color="#341d5b" />
+              <PaletteColor name="PXToolsRespBtnDefaultHover" color="#228b22" />
+              <PaletteColor name="PXToolsRespIconExpFont" color="#FFF" />
+              <PaletteColor name="PXToolsRespReadonlyGridAttributeLink" color="#341d5b" />
+              <PaletteColor name="PXToolsRespGridActionButton" color="#D9D9D9" />
+              <PaletteColor name="PXToolsRespGridActionButtonRowHover" color="DarkGray" />
+              <PaletteColor name="PXToolsRespGridActionButtonHover" color="#228b22" />
+              <PaletteColor name="PXToolsRespGridColumnOrderHover" color="#228b22" />
+              <PaletteColor name="PXToolsDataImageActionsBackground" color="#341d5b" />
+              <PaletteColor name="PXToolsGridBarActionHover" color="#341d5b" />
+              <PaletteColor name="PXToolsRespButtomExpColOrdersFilters" color="#341d5b" />
+            </PaletteColors>
+            <Properties />
+          </Part>
+          <Part type="babf62c5-0111-49e9-a1c3-cc004d90900a">
+            <Properties />
+          </Part>
+          <Properties><Property><Name>Name</Name><Value>PXToolsResponsive</Value></Property><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+        </Object>
+      </Objects>
+      <Dependencies>
+        <Reference Package="3ea7e1c6-b849-4df9-931a-070171a8a2f0" Type="Object" Id="3affc0b3-494b-4d84-9ec1-3a6ab8349cda">
+          <Properties Name="Color Palette" PackageName="GenexusBL" />
+        </Reference>
+        <Reference Package="3ea7e1c6-b849-4df9-931a-070171a8a2f0" Type="Part" Id="5d481862-64bc-4e88-8af2-e21c276dab77">
+          <Properties Name="Colors" PackageName="GenexusBL" />
+        </Reference>
+        <Reference Package="3ea7e1c6-b849-4df9-931a-070171a8a2f0" Type="Part" Id="babf62c5-0111-49e9-a1c3-cc004d90900a">
+          <Properties Name="Documentation" PackageName="GenexusBL" />
+        </Reference>
+      </Dependencies>
+      <ObjectsIdentityMapping>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="Action" parent="">
+          <Guid>ce3a249f-a6aa-4ab3-9a13-9663409d441b</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="ActionHover" parent="">
+          <Guid>ca95ff57-5025-435c-b95e-b565703dbf51</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="ActionForeColor" parent="">
+          <Guid>f902d65d-4f7c-4fd7-bcd2-af187517f2fd</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="ForeColor" parent="">
+          <Guid>8aaa8193-80d6-4ac1-9a3c-0678f244bbc6</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="GridBackground" parent="">
+          <Guid>89eaab39-e357-4d67-a1cd-b4af45694eac</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespBackgroundTitleBar" parent="">
+          <Guid>c8370be6-7dcc-413e-abf2-5a8fad038cb5</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespFontTitleBar" parent="">
+          <Guid>e31b431e-5041-4af0-a35a-8edc8d193d19</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespFontRecentLinksBar" parent="">
+          <Guid>3590cba1-0db0-478e-8769-3c64797033e3</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespBackgroundRecentLinksBar" parent="">
+          <Guid>23a6d5ab-f618-4900-849a-b5b28f267af3</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespBackgroundSideLayout" parent="">
+          <Guid>feccb50e-17c3-42ed-bb57-5b27401d4d21</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespFontOrderFilterFloatHeader" parent="">
+          <Guid>30abafe1-8be7-4ab4-bdc9-6cb12dce1610</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespFontOrderFilterFloatOption" parent="">
+          <Guid>1274bbaf-8905-423d-a846-e3c9f93e1127</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespBorderOrderFilterFloatBox" parent="">
+          <Guid>98427f30-6d0f-4802-a19c-5a013b24be68</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespBorderOrderFilterFloatSeparator" parent="">
+          <Guid>bdca02a6-be42-44ea-a488-5a700dafc657</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespBackgroudOrderFilterFloat" parent="">
+          <Guid>d2365dcc-ede8-4539-96db-2ab71e9df8ff</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespFontPrgmName" parent="">
+          <Guid>d71dfcca-36b4-4dfc-a94a-4fe205292c65</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespBackgroudGridLineOdd" parent="">
+          <Guid>a98af219-4724-4067-826f-1d75f91ea948</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespBackgroudGridLineEven" parent="">
+          <Guid>30116d11-c930-455e-b9f5-d69511649d9f</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespBackgroudGridSort" parent="">
+          <Guid>49b323b0-2380-4db0-b84d-d2fa28c201ba</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespBackgroudGridSortOver" parent="">
+          <Guid>7f1989d1-26db-439a-811f-d91b48630226</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespBackgroudGridBarHeader" parent="">
+          <Guid>9d3e093d-ef41-440d-b90b-58a5890e19ed</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespBackgroudGridBarFooter" parent="">
+          <Guid>5781b495-e358-4d8d-a535-deae96dcb89f</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespBackgroudGridLine" parent="">
+          <Guid>cc30511a-1af6-4de5-85eb-1d7f3a6bd55f</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespFontGridContent" parent="">
+          <Guid>6aa70332-2b7a-49e4-ab8c-770946127c5d</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespFontGridSort" parent="">
+          <Guid>73babc13-2bc7-487a-8bf0-e1f9798d2ca6</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespFontGridFooter" parent="">
+          <Guid>d5f2a8da-6df0-4123-821a-197646ba8025</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespFontGridTitle" parent="">
+          <Guid>498a1ec2-84c0-4321-9cb7-a80194726aac</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespBorderGrid" parent="">
+          <Guid>8da49096-9753-44f3-ae1d-4fc61a52e538</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespMainDataArea" parent="">
+          <Guid>3cadc991-b9f2-4939-b390-4212ddb60bf4</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsBorderMP" parent="">
+          <Guid>ce597cc2-efd3-44a4-9622-09351ffa5492</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsDataImageActionsBackground" parent="">
+          <Guid>d6ca4e68-f17c-4530-a338-9d3b054d41c6</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsGridSelectedLine" parent="">
+          <Guid>9e3dfb73-2538-4327-8876-7a37f584cae8</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsFontAttributeReadOnlyGrid" parent="">
+          <Guid>6703fe3a-125f-4e5b-8cc1-004375875398</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsBorderMainArea" parent="">
+          <Guid>810c97c8-9439-4448-b924-4d9f3b6a6ba6</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsColorLabelOrderFilters" parent="">
+          <Guid>e47108ed-5aa9-46bc-9cf4-8d47ca507c58</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsBorderFooterGrid" parent="">
+          <Guid>2d43ebd4-3f8b-45ec-a00b-4acf63ffaa32</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsGridBottomButtoms" parent="">
+          <Guid>e807524a-c327-46e8-8506-e8f8ba122c55</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsGridBottomButtomsHover" parent="">
+          <Guid>d10b5683-52b1-4582-9336-20bfec04b636</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsGridPageStatusFont" parent="">
+          <Guid>ad18fc0d-c09b-45bc-8c6f-d041bd4262b3</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespDefaultBtn" parent="">
+          <Guid>d5ced86a-5e0d-431a-a53f-8f501d4fbd53</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespBtnDefaultHover" parent="">
+          <Guid>bb55e285-7324-454f-a656-38be13cbfecc</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespIconExpFont" parent="">
+          <Guid>97b0838e-2b3b-4433-9dbe-7f5eebcae588</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsGridBarActionHover" parent="">
+          <Guid>97e73e33-0fc4-4b44-80bf-73b6eadd8fb8</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespGridActionButton" parent="">
+          <Guid>281ad419-57b8-4237-ad74-fb9259e17801</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespGridActionButtonHover" parent="">
+          <Guid>fba6024d-f05e-449f-8987-fab20ed731bb</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespGridActionButtonRowHover" parent="">
+          <Guid>d666eeb3-ec8a-47bd-a8be-45b4541d1e20</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespReadonlyGridAttributeLink" parent="">
+          <Guid>d754a868-2926-455b-8442-c7e771d55a67</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespGridColumnOrderHover" parent="">
+          <Guid>cf00eed0-d255-4aec-bbdd-4b1f1d4f21b1</Guid>
+        </ObjectIdentity>
+        <ObjectIdentity Type="5592de59-d30a-499d-9100-a7006d3674f2" Name="PXToolsRespButtomExpColOrdersFilters" parent="">
+          <Guid>03955f90-383d-41e3-abc7-300ae7cec9cb</Guid>
+        </ObjectIdentity>
+      </ObjectsIdentityMapping>
+    </ExportFile>
+  </textarea>
+
+  <textarea id="newXpz" rows="6" cols="60">
+  </textarea>
+
+
+  <button onclick="funcParse();">What day is today?</button>
+
+  <button onclick="saveCustomTheme();">saveCustomTheme</button>
+  
+  <div id="result">
+  </div>
+
+
+  <div class="suportW3Themes">
+    <div class="w3themeAmber">
+
+      <div class="w3-container w3-theme w3-card">
+        <h1>Amber</h1>
+      </div>
+
+      <div class="w3-container w3-text-theme">
+      <h2>w3-text-theme Amber</h2></div>
+
+      <ul class="w3-ul w3-border-top">
+        <li class="w3-theme-l5">
+        <p>w3-theme-l5 (w3-theme-light)</p>
+        </li>
+        <li class="w3-theme-l4">
+          <p>w3-theme-l4</p>
+        </li>
+        <li class="w3-theme-l3">
+          <p>w3-theme-l3</p>
+        </li>
+        <li class="w3-theme-l2">
+          <p>w3-theme-l2</p>
+        </li>
+        <li class="w3-theme-l1">
+          <p>w3-theme-l1</p>
+        </li>
+        <li class="w3-theme">
+          <p>w3-theme</p>
+        </li>
+        <li class="w3-theme-d1">
+          <p>w3-theme-d1</p>
+        </li>
+        <li class="w3-theme-d2">
+          <p>w3-theme-d2</p>
+        </li>
+        <li class="w3-theme-d3">
+          <p>w3-theme-d3</p>
+        </li>
+        <li class="w3-theme-d4">
+          <p>w3-theme-d4</p>
+        </li>
+        <li class="w3-theme-d5">
+          <p>w3-theme-d5 (w3-theme-dark)</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <i class="fas fa-home"></i>
+  <i class="fas fa-lock"></i>
+  <i class="fas fa-sign-out-alt"></i>
+  <i class="fas fa-bars"></i>
+
+background-image: -webkit-gradient(linear, to bottom, to top, color-stop(0%, #341d5b), color-stop(100%, #482880)); background-image: -webkit-linear-gradient(to bottom, #341d5b, #482880); background-image: -moz-linear-gradient(to bottom, #341d5b, #482880); background-image: -o-linear-gradient(to bottom, #341d5b, #482880); background-image: linear-gradient(to bottom, #341d5b, #482880);
+
+border: 0 !important; padding: 9px 23px; background: transparent; color: #482880; -webkit-border-radius: 0 !important; -moz-border-radius: 0 !important; -ms-border-radius: 0 !important; -o-border-radius: 0 !important; border-radius: 0 !important;
+
+  <div id="setThemesHere" class="suportW3Themes">
+  </div>
+341d5b
+  482880
+
+
+  <script type="text/javascript">
+
+    function processColor(color) {
+
+      var textOrg = document.getElementById("textXpz").value;
+      var dataTypes = localStorage.getItem('dataGXTypes');
+      var dataGXColor = localStorage.getItem('dataGXColor');
+      var vetGXTypes = JSON.parse(dataTypes);
+      var vetGXColor = JSON.parse(dataGXColor);
+
+      var txt = textOrg;
+
+      for (var i = 0; i < vetGXTypes.length; i++) {
+
+        var rows = document.getElementsByClassName("row" + i);
+        var auxClass = '.select' + color;
+
+        console.log('auxClass = ' + auxClass);
+
+        var auxElem = rows[0].querySelectorAll(auxClass);
+        var newColor;
+        var valueChoose = auxElem[0].value;
+
+        // DeepPurple
+        switch(valueChoose) {
+          case 'w3-theme-l5':
+            newColor = '#f6f3fb';
+            break;
+          case 'w3-theme-l4':
+            newColor = '#e0d6f2';
+            break;
+          case 'w3-theme-l3':
+            newColor = '#c1ade5';
+            break;
+          case 'w3-theme-l2':
+            newColor = '#a384d8';
+            break;
+          case 'w3-theme-l1':
+            newColor = '#845bcb';
+            break;
+          case 'w3-theme-d1':
+            newColor = '#5d34a4';
+            break;
+          case 'w3-theme-d2':
+            newColor = '#532e92';
+            break;
+          case 'w3-theme-d3':
+            newColor = '#482880';
+            break;
+          case 'w3-theme-d4':
+            newColor = '#3e236d';
+            break;
+          case 'w3-theme-d5':
+            newColor = '#341d5b';
+            break;
+          case 'w3-theme-light':
+            newColor = '#f6f3fb';
+            break;
+          case 'w3-theme-dark':
+            newColor = '#341d5b';
+            break;
+          case 'w3-theme-action':
+            newColor = '#341d5b';
+            break;
+          case 'w3-theme':
+            newColor = '#673ab7';
+            break;
+          default:
+            newColor = valueChoose.replace('gxColor-','');
+        }
+
+        var oldColor = vetGXColor[i];
+        
+        console.log('Antes Replace **** valueChoose =' + valueChoose + ' Old = ' + oldColor + ' new ' + newColor);
+
+        var auxInd1 = txt.indexOf(oldColor.trim());
+        console.log('Antes Replace **** auxInd1 = ' + auxInd1);
+
+        var auxInd2 = txt.indexOf(oldColor.toLowerCase().trim());
+        console.log('Antes Replace **** auxInd2 = ' + auxInd2);
+
+        var re = new RegExp(oldColor.toLowerCase().trim(), 'g');
+        txt = txt.replace(re,newColor);
+
+        var re = new RegExp(oldColor.toUpperCase().trim(), 'g');
+        txt = txt.replace(re,newColor);
+
+        var re = new RegExp(oldColor.trim(), 'g');
+        txt = txt.replace(re,newColor);
+
+        var auxInd1 = txt.indexOf(oldColor.trim());
+        console.log('Depois Replace **** auxInd1 = ' + auxInd1);
+
+        var auxInd2 = txt.indexOf(oldColor.toLowerCase().trim());
+        console.log('Depois Replace **** auxInd2 = ' + auxInd2);
+      }
+
+      return txt;
+    }
+
+    function saveCustomTheme(color) {
+
+      var textFile = processColor(color);
+
+      uriContent = "data:application/octet-stream," + encodeURIComponent(textFile);
+      newWindow = window.open(uriContent, 'neuesDokument');
+
+    }
+
+    function changeComboColor(groupId,selectId) {
+      console.log('changeComboColor. groupId = ' + groupId + " selectId = " + selectId);
+
+      var auxId = groupId + selectId;
+
+      var columnElem = document.getElementById(auxId);
+      var selElem = columnElem.querySelector(".sel" + selectId);
+
+      console.log("Value = " + selElem.value);
+
+      var blockElem =  columnElem.querySelector(".view" + selectId);
+      var delClass =  "";
+      var vetClass = blockElem.classList;
+
+      for (var i = 0; i < vetClass.length; i++) {
+        if (vetClass[i].indexOf('w3-theme') >= 0 || vetClass[i].indexOf('gxColor') >= 0)
+        {
+          delClass = vetClass[i];
+        }
+        console.log('---> Old: ' + vetClass[i]);
+      }
+
+      if (delClass.length > 0)
+       blockElem.classList.remove(delClass);
+      
+      blockElem.classList.add(selElem.value.replace('#',''));
+      //blockElem.style.backgroundColor = "pink";
+
+      vetClass = blockElem.classList;
+      for (var i = 0; i < vetClass.length; i++) {
+        console.log('---> New: ' + vetClass[i]);
+      }
+
+      // var vetClass = blockElem.ClassLust;
+      // selectId    selectId
+
+    }
+
+    function funcParse() {
+      window.vetBrutoTyṕe = [];
+      window.vetBrutoColor = [];
+
+      window.vetFinalType = [];
+      window.vetFinalColor = [];
+
+      var posIni = 0;
+      var textOrg = document.getElementById("textXpz").value;
+      
+      console.log("textOrg.len= " + textOrg.length);
+      
+      var parsedText = textOrg;
+
+      xmlDoc = new DOMParser().parseFromString(parsedText, 'text/xml' ),
+
+      //xmlDoc = parser.parseFromString(parsedText,"text/xml");
+
+      listHtml = nodeMarkup(xmlDoc.documentElement);
+
+      document.getElementById('result').innerHTML = listHtml;
+
+      console.log('End. vetBrutoTyṕe = ' + JSON.stringify(vetBrutoTyṕe));
+      console.log('End. vetBrutoColor = ' + JSON.stringify(vetBrutoColor));
+
+      for (var i = 0; i < vetBrutoColor.length; i++) {
+        if (JSON.stringify(vetFinalColor).indexOf(vetBrutoColor[i]) < 0)
+        {
+          vetFinalColor.push(vetBrutoColor[i]);
+          vetFinalType.push("");
+        }
+      }
+
+      console.log('*** vetFinalType = ' + JSON.stringify(vetFinalType));
+      console.log('*** vetFinalColor = ' + JSON.stringify(vetFinalColor));
+
+      for (var i = 0; i < vetFinalColor.length; i++) {
+        for (var i2 = 0; i2 < vetBrutoColor.length; i2++) {
+          if (vetBrutoColor[i2] == vetFinalColor[i])
+            vetFinalType[i] += vetBrutoTyṕe[i2] + " ";
+        }
+      }
+
+      localStorage.setItem('dataGXTypes', JSON.stringify(vetFinalType));
+      localStorage.setItem('dataGXColor', JSON.stringify(vetFinalColor));
+
+      console.log('End. vetFinalType = ' + JSON.stringify(vetFinalType));
+      console.log('End. vetFinalColor = ' + JSON.stringify(vetFinalColor));
+
+      var gxPaleteHtml = '<div class="suportColor" id="suportColorGX">'
+                       + '<table class="SuportAll">';
+
+      var colors = ['Amber','Black','Blue','Blue-Grey','Brown','Cyan','Dark-Grey','Deep-Orange','Deep-Purple','Green','Grey','Indigo','Khaki','Light-Blue','Light-Green','Lime','Orange','Pink','Purple','Red','Teal','Yellow'];
+      
+      
+      for (var i = 0; i < vetFinalType.length; i++) {
+        if (i == 0)
+        {
+          gxPaleteHtml += '<tr class="rowTitle">';
+          gxPaleteHtml += '<td class="cellGXColor"><span>Base GX</span></td>';
+
+          for (var iColor = 0; iColor < colors.length; iColor++) {
+            gxPaleteHtml += '<td><span>' + colors[iColor] + '</span></td>';
+          }
+        }
+        gxPaleteHtml +=   '<tr class="rowTypes row' + i + '">';
+        
+        gxPaleteHtml += '<td class="cellGXColor">'
+                      +  '<div class="gxNames"><span>' + vetFinalType[i] + '</span></div>'
+                      +  '<table>'
+                      +   '<tr>'
+                      +    '<td><div class="boxViewType gxColor-' + vetFinalColor[i].toLowerCase().replace('#','') + '"></div></td>'
+                      +   '</tr>'
+                      +   '<tr>'
+                      +    '<td><span class="nameColor"' + vetFinalType[i] + '">' + vetFinalColor[i] + '</span></td>'
+                      +   '</tr>'
+                      +  '</table>'
+                      + '</td>';
+
+        for (var iColor = 0; iColor < colors.length; iColor++) {
+          var auxCombo = "changeComboColor('w3theme" + colors[iColor] +"' ,'Type" + i +  "');";
+
+          gxPaleteHtml += '<td>'
+                        +  '<table id="w3theme' + colors[iColor] + 'Type' + i + '" class="w3theme' + colors[iColor] + '">'
+                        +   '<tr>'
+                        +    '<td><div class="boxViewType viewType' + i + '"></div></td>'
+                        +   '</tr>'
+                        +   '<tr>'
+                        +    '<td>'
+                        +     '<select class="w3themeChooser select' + colors[iColor] + ' selType' + i + '" onchange="' + auxCombo +'">'
+                        +       '<option class="w3-theme" value="w3-theme">theme</option>'
+                        +       '<option class="w3-theme-light" value="w3-theme-light">light</option>'
+                        +       '<option class="w3-theme-dark" value="w3-theme-dark">dark</option>'
+                        +       '<option class="w3-theme-action" value="w3-theme-action">action</option>'
+                        +       '<option class="w3-theme-l5" value="w3-theme-l5">l5</option>'
+                        +       '<option class="w3-theme-l4" value="w3-theme-l4">l4</option>'
+                        +       '<option class="w3-theme-l3" value="w3-theme-l3">l3</option>'
+                        +       '<option class="w3-theme-l2" value="w3-theme-l2">l2</option>'
+                        +       '<option class="w3-theme-l1" value="w3-theme-l1">l1</option>'
+                        +       '<option class="w3-theme-d1" value="w3-theme-d1">d1</option>'
+                        +       '<option class="w3-theme-d2" value="w3-theme-d2">d2</option>'
+                        +       '<option class="w3-theme-d3" value="w3-theme-d3">d3</option>'
+                        +       '<option class="w3-theme-d4" value="w3-theme-d4">d4</option>'
+                        +       '<option class="w3-theme-d5" value="w3-theme-d5">d5</option>'
+                        +       '<option class="colorTransp" value="colorTransp">Transparent</option>';
+          for (var indFC = 0; indFC < vetFinalColor.length; indFC++) {
+            var auxDefault = '';
+            if (indFC == i) //Default
+              auxDefault = ' selected';
+
+            gxPaleteHtml  += '<option class="gxColor-' + vetFinalColor[indFC].toLowerCase().replace('#','')
+                          +  '" value="gxColor-' + vetFinalColor[indFC].toLowerCase() + '"' + auxDefault + '>' + vetFinalColor[indFC] + '</option>';
+          }
+
+          gxPaleteHtml  += '</select>'
+                        +    '</td>'
+                        +   '</tr>';
+          if (i + 1 === vetFinalType.length)
+          {
+            var auxEvt = "saveCustomTheme('" + colors[iColor] + "');";
+            gxPaleteHtml  += '<tr><td><button onclick="' + auxEvt + '">save</button></td></tr>';
+          }
+
+          gxPaleteHtml  +=  '</table>'
+                        + '</td>';
+        }
+        gxPaleteHtml +=   '</tr>';
+      }
+      gxPaleteHtml += '</table></div>'
+
+      document.getElementById('suportColors').innerHTML += gxPaleteHtml;
+    };
+
+    function nodeMarkup(node){
+      if( node.childNodes.length ) {
+          var list = '', header = '';
+          for( var index = 0; index < node.childNodes.length; index++ ) {
+
+              console.log('node.childNodes[index].tagName = ' + node.childNodes[index].tagName);
+              console.log('node.childNodes[index] = ' + node.childNodes[index]);
+              console.log('tagName = ' + node.tagName);
+              console.log('attributes = ' + node.attributes);
+
+              if (node.childNodes[index].tagName == 'PaletteColor')
+              {
+                vetBrutoTyṕe.push(node.childNodes[index].attributes[0].value);
+                vetBrutoColor.push(node.childNodes[index].attributes[1].value);
+              }
+
+              if( node.childNodes[index].tagName == 'name' ) {
+                  header = node.childNodes[index].textContent;
+              } else {
+                  list += nodeMarkup(node.childNodes[index] );
+              };
+          };
+          return node.hasAttribute('submenu') 
+              ? '<li>' + header + '<ul>' + list + '</ul></li>'
+              : list;
+      } else {
+          return '<li>' + node.textContent + '</li>';
+      };
+    }; 
+
+    console.log("jeeeyyy");
+
+    var textNot = "Default text empty";
+
+    var colors = ['Amber','Black','Blue','Blue-Grey','Brown','Cyan','Dark-Grey','Deep-Orange','Deep-Purple','Green','Grey','Indigo','Khaki','Light-Blue','Light-Green','Lime','Orange','Pink','Purple','Red','Teal','Yellow'];
+    var text = "";
+
+    for (var i = 0; i < colors.length; i++) {
+      var color = colors[i];
+      
+      text += '<div class="w3theme' + color + '"> <div class="w3-container w3-theme w3-card"> <h3>!!' + color + '!!</h3> </div> <div class="w3-container w3-text-theme"> <h2>w3-text-theme ' + color + '</h2></div> <ul class="w3-ul w3-border-top"> <li class="w3-theme-l5"> <p>w3-theme-l5 (w3-theme-light)</p> </li> <li class="w3-theme-l4"> <p>w3-theme-l4</p> </li> <li class="w3-theme-l3"> <p>w3-theme-l3</p> </li> <li class="w3-theme-l2"> <p>w3-theme-l2</p> </li> <li class="w3-theme-l1"> <p>w3-theme-l1</p> </li> <li class="w3-theme"> <p>w3-theme</p> </li> <li class="w3-theme-d1"> <p>w3-theme-d1</p> </li> <li class="w3-theme-d2"> <p>w3-theme-d2</p> </li> <li class="w3-theme-d3"> <p>w3-theme-d3</p> </li> <li class="w3-theme-d4"> <p>w3-theme-d4</p> </li> <li class="w3-theme-d5"> <p>w3-theme-d5 (w3-theme-dark)</p> </li> </ul> </div>';
+    }
+
+    document.getElementById("setThemesHere").innerHTML = text;
+
+
+    funcParse();
+
+  </script>
+
+</html>

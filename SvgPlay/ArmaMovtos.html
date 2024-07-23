@@ -1,0 +1,1029 @@
+	<!doctype html>
+	<html>
+		<script type="text/javascript" src="dataCor.json"></script>
+		<script type="text/javascript" src="dataMovtos5.json"></script>
+
+		<style>
+			.testeCss {stroke:red;}
+			#quadroArma {background-color: black;}
+		</style>
+
+	<body>
+		
+		<div style="position:absolute; top:0px; left:0px; width: 100%; height: 100%; background-color: black; ">
+			<svg id="quadro" width="620" height="400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">'
+				<g id="quadroArma">
+					<g>
+						<rect id=rectBack width="620" height="400" x="0" y="0" opacity=".4" fill="darkgrey"\>
+					</g>
+
+					<g>
+						<animateTransform 
+						  id="suportTriAni"
+						  attributeName="transform"
+	                      attributeType="XML"
+	                      type="scale"
+	                      from="1"
+	                      to="10"
+	                      dur="8s"
+	                      repeatCount="indefinite"/>
+
+						<polygon id="tri" points="60,30 90,90 30,90" fill="red">
+					        <animateTransform id="triAni"
+					        				  attributeName="transform"
+					                          attributeType="XML"
+					                          type="rotate"
+					                          from="0 60 70"
+					                          to="360 60 70"
+					                          dur="3s"
+					                          repeatCount="indefinite"/>
+					    </polygon>
+
+					    <foreignobject class="node" x="46" y="22" width="100" height="100">
+					        <div id="divInsideSvg" style="border:1px grey solid">I'm a div inside a SVG.</div>
+					    </foreignobject>
+					</g>
+				</g>
+			</svg>
+		</div>
+
+		<script>
+			var configTamLocal	=	5;
+			var configEspLocal	=	1;
+			var auxNum			=	0;
+			var vetPathId		=	[];
+			var localId			=	0;
+			var limparAnimacao	=	[];
+			var countDifMovto 	=	0;
+			var okD				=	"";
+			var iAux 			=	0;
+			var antAcuTime 		=	0.0;
+			var aniTempoTotal	=	0.0;
+			var opcGeraBtMovto 	=	1;
+
+			var tamFaixaTempo	=	240;
+			var posControleX 	=	60;
+			var posControleY 	=	190;
+
+			var canvasSizeX		=	620;
+			var canvasSizeY		=	400;
+
+			var funcMontaBotoes = function() {
+
+				console.log("Start funcMontaBotoes");
+
+				var N = document.createElementNS("http://www.w3.org/2000/svg", "g");
+				N.setAttributeNS(null, "id", "controle");
+				N.setAttributeNS(null, "transform", "translate(" + posControleX + "," + posControleY + ")");
+				S.appendChild(N);
+
+				var N = document.getElementById("controle");
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "bordaControle");
+				C.setAttributeNS(null, "x", "-5");
+				C.setAttributeNS(null, "y", "-5");
+				C.setAttributeNS(null, "width", "300");
+				C.setAttributeNS(null, "height", "105");
+				C.setAttributeNS(null, "fill", "none");
+				C.setAttributeNS(null, "opacity", ".8");
+				C.setAttributeNS(null, "stroke", "grey");
+				C.setAttributeNS(null, "stroke-width", "4");
+				C.setAttributeNS(null, "stroke-dasharray", "5,5");
+				C.setAttributeNS(null, "rx", "9");
+				N.appendChild(C);
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "btVoltaIni");
+				C.setAttributeNS(null, "x", "4");
+				C.setAttributeNS(null, "y", "70");
+				C.setAttributeNS(null, "width", "15");
+				C.setAttributeNS(null, "height", "15");
+				C.setAttributeNS(null, "fill", "yellow");
+				C.setAttributeNS(null, "opacity", ".5");
+				C.setAttributeNS(null, "stroke", "grey");
+				C.setAttributeNS(null, "stroke-width", "2");
+				C.setAttributeNS(null, "rx", "3");
+				C.setAttributeNS(null, "onclick", "funcPrev()");
+				C.setAttributeNS(null, "title", "Prev");
+				N.appendChild(C);
+
+				var auxBtPath = "M 13 71 13 83 5 77";
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "path");
+				C.setAttributeNS(null, "id", "lablePrev");
+				C.setAttributeNS(null, "d", auxBtPath);
+				C.setAttributeNS(null, "fill", "black");
+				C.setAttributeNS(null, "opacity", "1");
+				C.setAttributeNS(null, "pointer-events","none");
+				N.appendChild(C);
+
+				N.appendChild(C);
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "lablePrev2");
+				C.setAttributeNS(null, "fill", "black");
+				C.setAttributeNS(null, "height","12");
+				C.setAttributeNS(null, "width","2");
+				C.setAttributeNS(null, "x","14");
+				C.setAttributeNS(null, "y","71");
+				C.setAttributeNS(null, "pointer-events","none");	
+				N.appendChild(C);
+				
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "btPrev");
+				C.setAttributeNS(null, "x", "24");
+				C.setAttributeNS(null, "y", "70");
+				C.setAttributeNS(null, "width", "15");
+				C.setAttributeNS(null, "height", "15");
+				C.setAttributeNS(null, "fill", "orange");
+				C.setAttributeNS(null, "opacity", ".5");
+				C.setAttributeNS(null, "stroke", "grey");
+				C.setAttributeNS(null, "stroke-width", "2");
+				C.setAttributeNS(null, "rx", "3");
+				C.setAttributeNS(null, "onclick", "funcBtVolta1S()");
+				C.setAttributeNS(null, "title", "Retroceder 1 Segundo");
+				N.appendChild(C);
+
+				var auxBtPath = "M 33 71 33 83 25 77";
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "path");
+				C.setAttributeNS(null, "id", "lablePrevS");
+				C.setAttributeNS(null, "d", auxBtPath);
+				C.setAttributeNS(null, "fill", "black");
+				C.setAttributeNS(null, "opacity", "1");
+				C.setAttributeNS(null, "pointer-events","none");
+				N.appendChild(C);
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg","text");
+				C.setAttributeNS(null, "x", "33");
+				C.setAttributeNS(null, "y", "82");
+				C.setAttributeNS(null, "fill","black");
+				C.setAttributeNS(null, "font-size","14px");
+				var textNode = document.createTextNode("s");
+				C.appendChild(textNode);
+				N.appendChild(C);
+
+				
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "btInicio0");
+				C.setAttributeNS(null, "x", "44");
+				C.setAttributeNS(null, "y", "68");
+				C.setAttributeNS(null, "width", "18");
+				C.setAttributeNS(null, "height", "18");
+				C.setAttributeNS(null, "fill", "lime");
+				//C.setAttributeNS(null, "opacity", ".5");
+				C.setAttributeNS(null, "stroke", "grey");
+				C.setAttributeNS(null, "stroke-width", "3");
+				C.setAttributeNS(null, "rx", "3");
+				C.setAttributeNS(null, "title", "Play");
+				C.setAttributeNS(null, "onclick", "setTimeZero()");
+				var ani = document.createElementNS("http://www.w3.org/2000/svg","animate");
+				ani.setAttribute("attributeName", "opacity");
+				ani.setAttribute("to", 0);
+				ani.setAttribute("begin", "startAni.end");
+				C.appendChild(ani);
+				N.appendChild(C);
+
+				var auxBtPath = "M 49 71 49 83 58 77";
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "path");
+				C.setAttributeNS(null, "id", "lablePlay");
+				C.setAttributeNS(null, "d", auxBtPath);
+				C.setAttributeNS(null, "fill", "black");
+				C.setAttributeNS(null, "opacity", "1");
+				C.setAttributeNS(null, "pointer-events","none");
+				N.appendChild(C);
+
+				
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "btPause");
+				C.setAttributeNS(null, "x", "67");
+				C.setAttributeNS(null, "y", "70");
+				C.setAttributeNS(null, "width", "15");
+				C.setAttributeNS(null, "height", "15");
+				C.setAttributeNS(null, "fill", "aqua");
+				C.setAttributeNS(null, "opacity", ".5");
+				C.setAttributeNS(null, "stroke", "grey");
+				C.setAttributeNS(null, "stroke-width", "2");
+				C.setAttributeNS(null, "rx", "3");
+				C.setAttributeNS(null, "onclick", "funcBtPause()");
+				C.setAttributeNS(null, "title", "Pause");
+				N.appendChild(C);
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "lablePause");
+				C.setAttributeNS(null, "fill", "black");
+				C.setAttributeNS(null, "height","8");
+				C.setAttributeNS(null, "width","2");
+				C.setAttributeNS(null, "x","72");
+				C.setAttributeNS(null, "y","73");
+				C.setAttributeNS(null, "pointer-events","none");
+				N.appendChild(C);
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "lablePause2");
+				C.setAttributeNS(null, "fill", "black");
+				C.setAttributeNS(null, "height","8");
+				C.setAttributeNS(null, "width","2");
+				C.setAttributeNS(null, "x","75");
+				C.setAttributeNS(null, "y","73");
+				C.setAttributeNS(null, "pointer-events","none");	
+				N.appendChild(C);
+
+				
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "btStop");
+				C.setAttributeNS(null, "x", "87");
+				C.setAttributeNS(null, "y", "70");
+				C.setAttributeNS(null, "width", "15");
+				C.setAttributeNS(null, "height", "15");
+				C.setAttributeNS(null, "fill", "darkGrey");
+				C.setAttributeNS(null, "opacity", ".5");
+				C.setAttributeNS(null, "stroke", "grey");
+				C.setAttributeNS(null, "stroke-width", "2");
+				C.setAttributeNS(null, "rx", "3");
+				C.setAttributeNS(null, "onclick", "funcBtStop()");
+				C.setAttributeNS(null, "title", "Stop");
+				N.appendChild(C);
+				
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "lableStop");
+				C.setAttributeNS(null, "fill", "black");
+				C.setAttributeNS(null, "height","8");
+				C.setAttributeNS(null, "width","8");
+				C.setAttributeNS(null, "x","90");
+				C.setAttributeNS(null, "y","73");
+				C.setAttributeNS(null, "pointer-events","none");	
+				N.appendChild(C);
+
+				
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "btNext");
+				C.setAttributeNS(null, "x", "107");
+				C.setAttributeNS(null, "y", "70");
+				C.setAttributeNS(null, "width", "15");
+				C.setAttributeNS(null, "height", "15");
+				C.setAttributeNS(null, "fill", "pink");
+				C.setAttributeNS(null, "opacity", ".5");
+				C.setAttributeNS(null, "stroke", "grey");
+				C.setAttributeNS(null, "stroke-width", "2");
+				C.setAttributeNS(null, "rx", "1");
+				C.setAttributeNS(null, "onclick", "funcNext()");
+				C.setAttributeNS(null, "title", "Next");
+				N.appendChild(C);
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "lableNext1");
+				C.setAttributeNS(null, "fill", "black");
+				C.setAttributeNS(null, "height","12");
+				C.setAttributeNS(null, "width","2");
+				C.setAttributeNS(null, "x","110");
+				C.setAttributeNS(null, "y","71");
+				C.setAttributeNS(null, "pointer-events","none");	
+				N.appendChild(C);
+
+
+				var auxBtPath = "M 113 71 113 83 121 77";
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "path");
+				C.setAttributeNS(null, "id", "lableNext");
+				C.setAttributeNS(null, "d", auxBtPath);
+				C.setAttributeNS(null, "fill", "black");
+				C.setAttributeNS(null, "opacity", "1");
+				C.setAttributeNS(null, "pointer-events","none");
+				N.appendChild(C);
+				
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "btEscalaUm");
+				C.setAttributeNS(null, "x", "137");
+				C.setAttributeNS(null, "y", "70");
+				C.setAttributeNS(null, "width", "15");
+				C.setAttributeNS(null, "height", "15");
+				C.setAttributeNS(null, "fill", "purple");
+				C.setAttributeNS(null, "opacity", ".5");
+				C.setAttributeNS(null, "stroke", "grey");
+				C.setAttributeNS(null, "stroke-width", "2");
+				C.setAttributeNS(null, "rx", "1");
+				C.setAttributeNS(null, "onclick", "setEscala('p')");
+				C.setAttributeNS(null, "title", "Escala Padrão");
+				N.appendChild(C);
+
+
+				var auxBtPath		=	"m54.047058,49.512161l-9.132507,-9.130493c1.230042,-2.029648 1.951843,-4.40274 1.951843,-6.947968c0,-7.421494 -6.004333,-13.435135 -13.434265,-13.435135c-7.409851,0 -13.430969,6.013641 -13.430969,13.435135c0,7.416748 6.021118,13.427368 13.430969,13.427368c2.549866,0 4.927368,-0.719406 6.93988,-1.950775l9.140991,9.133713l4.534058,-4.531845zm-28.915894,-16.078461c0.007446,-4.590851 3.714661,-8.302048 8.300964,-8.310028c4.58075,0.00798 8.30426,3.719177 8.30426,8.310028c0,4.58638 -3.723511,8.297729 -8.30426,8.308426c-4.586304,-0.010696 -8.293518,-3.722046 -8.300964,-8.308426z";
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "path");
+				C.setAttributeNS(null, "id", "lableEscala1");
+				C.setAttributeNS(null, "d", auxBtPath);
+				C.setAttributeNS(null, "fill", "black");
+				C.setAttributeNS(null, "opacity", "1");
+				C.setAttributeNS(null, "pointer-events","none");
+				C.setAttributeNS(null, "transform","scale(0.35),translate(376,182)");
+				N.appendChild(C);
+				
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "btEscalaMenos");
+				C.setAttributeNS(null, "x", "157");
+				C.setAttributeNS(null, "y", "70");
+				C.setAttributeNS(null, "width", "15");
+				C.setAttributeNS(null, "height", "15");
+				C.setAttributeNS(null, "fill", "tomato");
+				C.setAttributeNS(null, "opacity", ".5");
+				C.setAttributeNS(null, "stroke", "grey");
+				C.setAttributeNS(null, "stroke-width", "2");
+				C.setAttributeNS(null, "rx", "1");
+				C.setAttributeNS(null, "onclick", "setEscala('-')");
+				C.setAttributeNS(null, "title", "Reduzir Escala");
+				N.appendChild(C);
+				
+				var auxBtPath		=	"m41.746521,38.00209c1.024384,-1.682297 1.620819,-3.649429 1.620819,-5.759277c0,-6.150833 -4.984436,-11.134949 -11.128296,-11.134949c-6.151154,0 -11.135773,4.984116 -11.135773,11.134949c0,6.147736 4.984619,11.129288 11.135773,11.129288c2.105835,0 4.075684,-0.59639 5.755463,-1.617416l7.56955,7.570496l3.753174,-3.756165l-7.570709,-7.566925zm-9.507477,1.128113c-3.804962,-0.010376 -6.883545,-3.085434 -6.890289,-6.88739c0.006744,-3.804413 3.085327,-6.880234 6.890289,-6.886978c3.798065,0.006744 6.877075,3.082565 6.88382,6.886978c-0.006744,3.801956 -3.085754,6.877014 -6.88382,6.88739zm-5.13385,-9.013199l0,4.249084l10.259216,0l0,-4.249084l-10.259216,0z";
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "path");
+				C.setAttributeNS(null, "id", "lableEscala3");
+				C.setAttributeNS(null, "d", auxBtPath);
+				C.setAttributeNS(null, "fill", "black");
+				C.setAttributeNS(null, "opacity", "1");
+				C.setAttributeNS(null, "pointer-events","none");
+				C.setAttributeNS(null, "transform","scale(0.45),translate(330,138)");
+				N.appendChild(C);
+
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "btEscalaMenos");
+				C.setAttributeNS(null, "x", "177");
+				C.setAttributeNS(null, "y", "70");
+				C.setAttributeNS(null, "width", "15");
+				C.setAttributeNS(null, "height", "15");
+				C.setAttributeNS(null, "fill", "brown");
+				C.setAttributeNS(null, "opacity", ".5");
+				C.setAttributeNS(null, "stroke", "grey");
+				C.setAttributeNS(null, "stroke-width", "2");
+				C.setAttributeNS(null, "rx", "1");
+				C.setAttributeNS(null, "onclick", "setEscala('+')");
+				C.setAttributeNS(null, "title", "Aumentar Escala");
+				N.appendChild(C);
+
+				var auxBtPath		=	"m39.567261,35.074615c0.856781,-1.403137 1.353943,-3.045059 1.353943,-4.806656c0,-5.13295 -4.16037,-9.293732 -9.289734,-9.293732c-5.13327,0 -9.293213,4.160782 -9.293213,9.293732c0,5.13179 4.159943,9.290009 9.293213,9.290009c1.757507,0 3.404541,-0.498215 4.806274,-1.35051l6.316956,6.318176l3.130829,-3.134613l-6.318268,-6.316406zm-7.935791,0.942841c-3.174652,-0.009262 -5.74588,-2.575531 -5.752136,-5.749496c0.006256,-3.174057 2.577484,-5.740677 5.752136,-5.747314c3.169861,0.006638 5.73999,2.573257 5.74527,5.747314c-0.00528,3.173965 -2.575409,5.740234 -5.74527,5.749496zm1.769806,-10.033463l-3.54541,0l0,2.51152l-2.507477,0l0,3.544327l2.507477,0l0,2.51358l3.54541,0l0,-2.51358l2.510193,0l0,-3.544327l-2.510193,0l0,-2.51152l0,0z";
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "path");
+				C.setAttributeNS(null, "id", "lableEscala2");
+				C.setAttributeNS(null, "d", auxBtPath);
+				C.setAttributeNS(null, "fill", "black");
+				C.setAttributeNS(null, "opacity", "1");
+				C.setAttributeNS(null, "pointer-events","none");
+				C.setAttributeNS(null, "transform","scale(0.55),translate(302,109)");
+				N.appendChild(C);
+
+
+
+				
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "btRotate");
+				C.setAttributeNS(null, "x", "197");
+				C.setAttributeNS(null, "y", "70");
+				C.setAttributeNS(null, "width", "15");
+				C.setAttributeNS(null, "height", "15");
+				C.setAttributeNS(null, "fill", "MediumSeaGreen");
+				C.setAttributeNS(null, "opacity", ".5");
+				C.setAttributeNS(null, "stroke", "grey");
+				C.setAttributeNS(null, "stroke-width", "2");
+				C.setAttributeNS(null, "rx", "1");
+				C.setAttributeNS(null, "onclick", "setRotate()");
+				C.setAttributeNS(null, "title", "Rotacionar");
+				N.appendChild(C);
+				
+				var auxBtPath		=	"m21.283203,32.760101c0,-0.405655 0.370544,-2.895111 0.811646,-5.531036c1.388855,-8.218796 1.401062,-8.25589 3.15625,-5.636185l1.044739,1.550278l3.035645,-1.53421c4.019226,-2.026932 8.810425,-2.777634 13.208679,-2.067932c1.879395,0.301788 3.857788,0.792053 4.410706,1.089203c1.107056,0.58989 1.033752,1.095947 -0.72583,5.198273c-0.958923,2.24971 -1.054504,2.313812 -2.715027,1.886505c-2.824524,-0.729141 -7.445679,-0.499008 -9.668396,0.479919l-2.088806,0.919434l1.474182,1.527496c0.796997,0.841812 1.252197,1.65361 1.007385,1.807358c-0.246887,0.154236 -3.254822,0.452881 -6.695007,0.663162c-5.163696,0.31781 -6.256165,0.25618 -6.256165,-0.352264l0,0zm26.564819,22.662292l-2.234924,-2.959518l2.026733,-1.966949c2.100464,-2.02388 3.611633,-4.865982 4.276062,-8.034409l0.380249,-1.808868l-2.198853,0.349609c-1.204651,0.19281 -2.18811,0.168213 -2.200134,-0.05542c-0.036682,-1.041122 5.675964,-11.310394 6.242004,-11.191635c0.871765,0.188644 9.742493,7.876801 9.742493,8.44751c0,0.25473 -0.934387,0.611328 -2.061768,0.794312l-2.077332,0.330627l-0.209534,3.536377c-0.256653,4.535416 -2.652771,9.767059 -5.972107,13.093887c-1.338562,1.333084 -2.66571,2.423691 -2.961304,2.423691c-0.28186,0 -1.521484,-1.331726 -2.751587,-2.959213l0,0zm-20.176025,8.293396c0,-0.327637 0.358887,-1.273026 0.787964,-2.102966c0.772522,-1.505753 0.772522,-1.511551 -2.125854,-3.439316c-4.548035,-3.013092 -7.914673,-8.3638 -8.983582,-14.229706l-0.343079,-1.922943l2.48175,-0.339264c5.113403,-0.701141 5.162659,-0.680786 6.180054,2.805405c0.689392,2.351654 1.548157,3.760925 3.380737,5.593292c1.338623,1.347809 2.627869,2.333084 2.862122,2.191162c0.232239,-0.142044 0.566284,-0.98233 0.736267,-1.866409c0.185486,-0.885529 0.553101,-1.609879 0.825623,-1.609879c0.624817,0 6.558533,9.342117 6.645935,10.482132c0.061646,0.762314 -3.134216,2.080933 -11.490295,4.729782c-0.527588,0.168442 -0.957642,0.039734 -0.957642,-0.29129l0,0z";
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "path");
+				C.setAttributeNS(null, "id", "lableEscala2");
+				C.setAttributeNS(null, "d", auxBtPath);
+				C.setAttributeNS(null, "fill", "black");
+				C.setAttributeNS(null, "opacity", "1");
+				C.setAttributeNS(null, "pointer-events","none");
+				C.setAttributeNS(null, "transform","scale(0.33),translate(580,193)");
+				N.appendChild(C);
+
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "btShowPath");
+				C.setAttributeNS(null, "x", "217");
+				C.setAttributeNS(null, "y", "70");
+				C.setAttributeNS(null, "width", "15");
+				C.setAttributeNS(null, "height", "15");
+				C.setAttributeNS(null, "fill", "gold");
+				C.setAttributeNS(null, "opacity", ".5");
+				C.setAttributeNS(null, "stroke", "grey");
+				C.setAttributeNS(null, "stroke-width", "2");
+				C.setAttributeNS(null, "rx", "1");
+				C.setAttributeNS(null, "onclick", "funcBtShowPath()");
+				C.setAttributeNS(null, "title", "Mostra/Esconde Caminhos");
+				N.appendChild(C);
+
+				var auxBtPath	=	"M 230 73 222 73 222 83";
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "path");
+				C.setAttributeNS(null, "d", auxBtPath);
+				C.setAttributeNS(null, "fill", "none");
+				C.setAttributeNS(null, "opacity", "1");
+				C.setAttributeNS(null, "pointer-events","none");
+				C.setAttributeNS(null, "stroke", "black");
+				C.setAttributeNS(null, "stroke-width", 2);
+				//C.setAttributeNS(null, "fill", "none");
+				C.setAttributeNS(null, "stroke-dasharray", "2,2");
+				N.appendChild(C);
+
+				
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "btShowBtMov");
+				C.setAttributeNS(null, "x", "247");
+				C.setAttributeNS(null, "y", "70");
+				C.setAttributeNS(null, "width", "15");
+				C.setAttributeNS(null, "height", "15");
+				C.setAttributeNS(null, "fill", "blue");
+				C.setAttributeNS(null, "opacity", ".5");
+				C.setAttributeNS(null, "stroke", "grey");
+				C.setAttributeNS(null, "stroke-width", "2");
+				C.setAttributeNS(null, "rx", "1");
+				C.setAttributeNS(null, "onclick", "funcBtShowBtMov()");
+				C.setAttributeNS(null, "title", "Mostra/Esconde Caminhos");
+				N.appendChild(C);
+
+				var auxBtPath	=	"M 249 74 254 79 260 74";
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "path");
+				C.setAttributeNS(null, "id", "labelBtShow");
+				C.setAttributeNS(null, "d", auxBtPath);
+				C.setAttributeNS(null, "fill", "none");
+				C.setAttributeNS(null, "stroke", "black");
+				C.setAttributeNS(null, "stroke-width", "3");
+				C.setAttributeNS(null, "opacity", "1");
+				C.setAttributeNS(null, "pointer-events","none");
+				N.appendChild(C);
+				//console.log("#17");
+
+			};
+
+			var colIntTempo		=	[];
+			var colIntPosX		=	[];
+
+			function funcCalcIntervalosMovtos() {
+				
+				//console.log("#11");
+
+
+				funcMontaBotoes();
+
+				var ind 			=	dataMovtos.length;
+				var iniMovtoDth		=	new Date((dataMovtos[0].RegFimDth || "").replace(/-/g,"/").replace(/[TZ]/g," "));
+				var fimMovtoDth		=	new Date((dataMovtos[ind-1].RegFimDth || "").replace(/-/g,"/").replace(/[TZ]/g," "));
+				var diff			=	Math.abs(fimMovtoDth.getTime() - iniMovtoDth.getTime());
+				var hDif			=	parseInt((diff / 1000 /60 / 60));
+				var mDif		 	=	parseInt(((diff / 1000 /60 / 60) - parseInt((diff / 1000 /60 / 60))) * 60);
+				var tempoIntervalos	=	10;
+
+				var N = document.getElementById("controle");
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "barra");
+				C.setAttributeNS(null, "x", "0");
+				C.setAttributeNS(null, "y", "0");
+				C.setAttributeNS(null, "width", tamFaixaTempo);
+				C.setAttributeNS(null, "height", "40");
+				C.setAttributeNS(null, "fill", "grey");
+				C.setAttributeNS(null, "opacity", "1");
+				C.setAttributeNS(null, "onclick", "testeM(evt)");
+				N.appendChild(C);
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "faixa");
+				C.setAttributeNS(null, "x", "0");
+				C.setAttributeNS(null, "y", "0");
+				C.setAttributeNS(null, "width", "3");
+				C.setAttributeNS(null, "height", "40");
+				C.setAttributeNS(null, "fill", "green");
+				C.setAttributeNS(null, "opacity", "0.6");
+				N.appendChild(C);
+
+				var auxDth 		= 	new Date((dataMovtos[0].RegFimDth || "").replace(/-/g,"/").replace(/[TZ]/g," "));
+				var iniFaixaDth = 	new Date((dataMovtos[0].RegFimDth || "").replace(/-/g,"/").replace(/[TZ]/g," "));
+
+				var auxY2 			= 	120;
+				var auxX2 			= 	20;
+				var countMovto		= 	0;
+				var auxChar	=	auxDth.toString();
+				var hDifIntervalo	=	0;
+				var auxText			=	"";
+
+
+				//console.log("#12");
+
+				if (hDif > 0 && hDif < (1 / 60)) {
+					
+					hDifIntervalo	=	1 / 60;
+					auxDth.setSeconds(1);
+					auxDth.setMinutes(0);
+					iniFaixaDth.setSeconds(1);
+					iniFaixaDth.setMinutes(0);
+					
+				} else if (hDif > 0 && hDif < 5) {
+					
+					hDifIntervalo	=	0.5;
+					auxDth.setSeconds(1);
+					auxDth.setMinutes(0);
+					iniFaixaDth.setSeconds(1);
+					iniFaixaDth.setMinutes(0);
+					
+				} else if (hDif > 0 && hDif < 10) {
+					
+					hDifIntervalo	=	1;
+					auxDth.setSeconds(1);
+					auxDth.setMinutes(0);
+					iniFaixaDth.setSeconds(1);
+					iniFaixaDth.setMinutes(0);
+					
+				} else if (hDif > 0 && hDif < 60) {
+					
+					hDifIntervalo	=	parseInt(hDif / 10) + 1;
+					
+					auxDth.setSeconds(1);
+					auxDth.setMinutes(0);
+					auxDth.setHours(auxDth.getHours()-1);
+					iniFaixaDth.setSeconds(1);
+					iniFaixaDth.setMinutes(0);
+					iniFaixaDth.setHours(iniFaixaDth.getHours()-1);
+					
+				} else if (hDif > 0 && hDif < 100) {
+					
+					hDifIntervalo	=	10;
+					
+					auxDth.setSeconds(1);
+					auxDth.setMinutes(0);
+					auxDth.setHours(auxDth.getHours()-5);
+					iniFaixaDth.setSeconds(1);
+					iniFaixaDth.setSeconds(0);
+					iniFaixaDth.setHours(iniFaixaDth.getHours()-5);
+					
+				} else if (hDif > 0 && hDif < 120) {
+					
+					hDifIntervalo	=	12;
+					
+					auxDth.setSeconds(1);
+					auxDth.setMinutes(0);
+					auxDth.setHours(auxDth.getHours()-6);
+					iniFaixaDth.setSeconds(1);
+					iniFaixaDth.setMinutes(0);
+					iniFaixaDth.setHours(iniFaixaDth.getHours()-6);
+					
+				} else if (hDif > 0 && hDif < 240) {
+					
+					hDifIntervalo	=	24;
+					
+					auxDth.setSeconds(1);
+					auxDth.setMinutes(0);
+					auxDth.setHours(0);
+					iniFaixaDth.setSeconds(1);
+					iniFaixaDth.setMinutes(0);
+					iniFaixaDth.setHours(0);
+				} else if (hDif > 0 && hDif < 480) {
+					
+					hDifIntervalo	=	48;
+					
+					auxDth.setSeconds(1);
+					auxDth.setMinutes(0);
+					auxDth.setHours(0);
+					iniFaixaDth.setSeconds(1);
+					iniFaixaDth.setMinutes(0);
+					iniFaixaDth.setHours(0);
+					
+				} else if (hDif > 0 && hDif < 1200) {
+					
+					hDifIntervalo	=	120;
+					
+					auxDth.setSeconds(1);
+					auxDth.setMinutes(0);
+					auxDth.setHours(0);
+					iniFaixaDth.setSeconds(1);
+					iniFaixaDth.setMinutes(0);
+					iniFaixaDth.setHours(0);
+					
+				} else if (hDif > 0 && hDif < 1680) {
+					
+					hDifIntervalo	=	168;
+					
+					auxDth.setSeconds(1);
+					auxDth.setMinutes(0);
+					auxDth.setHours(0);
+					iniFaixaDth.setSeconds(1);
+					iniFaixaDth.setMinutes(0);
+					iniFaixaDth.setHours(0);
+				};
+
+				var qtdIntervalos	=	parseInt(hDif / hDifIntervalo) + 2;
+				var widthFaixa 		=	tamFaixaTempo / qtdIntervalos;
+
+				S.setCurrentTime(0);
+
+				for (var i1 = 0; i1 < qtdIntervalos; i1++) {
+
+					var auxChar	=	auxDth.toString();
+
+					if (hDif > 0 && hDif < 13) {
+						auxText			=	auxChar[16] + auxChar[17] + auxChar[18] + auxChar[19] + auxChar[20];
+					} else {
+						auxText			=	auxChar[8] + auxChar[9] + " " + auxChar[4] + auxChar[5] + auxChar[6]
+										+ 	" " + auxChar[16] + auxChar[17] + auxChar[18] + auxChar[19] + auxChar[20];
+					};
+
+					var auxChar	=	auxDth.toString();
+					
+					var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+					C.setAttributeNS(null, "id", "regua" + auxDth);
+					C.setAttributeNS(null, "x", ((widthFaixa*i1) - 1));
+					C.setAttributeNS(null, "y", "39");
+					C.setAttributeNS(null, "width", "2");
+					C.setAttributeNS(null, "height", "4");
+					C.setAttributeNS(null, "stroke", "red");
+					C.setAttributeNS(null, "stroke-width", "1");
+					C.setAttributeNS(null, "fill", "none");
+					C.setAttributeNS(null, "opacity", "0.6");
+					N.appendChild(C);
+					
+					var C = document.createElementNS("http://www.w3.org/2000/svg","text");
+					C.setAttributeNS(null, "id", "txt" + auxDth);
+					C.setAttributeNS(null, "x", (widthFaixa*i1));
+					C.setAttributeNS(null, "y", "47");
+					C.setAttributeNS(null, "fill","red");
+					C.setAttributeNS(null, "font-size","8px");
+					var textNode = document.createTextNode(auxText);
+					C.appendChild(textNode);
+					N.appendChild(C);
+					
+					auxDth.setSeconds(auxDth.getSeconds() + (60*60*hDifIntervalo));
+				};
+
+				//console.log("#14");
+
+				var ptFaixaTempo	=	 hDifIntervalo / widthFaixa;
+				
+				var M = document.createElementNS("http://www.w3.org/2000/svg", "g");
+				M.setAttributeNS(null, "id", "gprBtMov");
+				M.setAttribute("opacity", "0");
+				N.appendChild(M);
+
+				var M = document.getElementById("gprBtMov");
+
+				for (var i = 0; i < dataMovtos.length; i++) {
+					fimMovtoDth		=	new Date((dataMovtos[i].RegFimDth || "").replace(/-/g,"/").replace(/[TZ]/g," "));
+
+					var diff		=	Math.abs(fimMovtoDth.getTime() - iniFaixaDth.getTime());
+					var hDif		=	(diff / 1000 /60 / 60);
+					var mDif		=	parseInt(((diff / 1000 /60 / 60) - parseInt((diff / 1000 /60 / 60))) * 60);
+
+					var auxX 		=	hDif / ptFaixaTempo;
+
+					var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+					C.setAttributeNS(null, "id", "fxmovto" + i);
+					C.setAttributeNS(null, "x", auxX);
+					C.setAttributeNS(null, "y", "0");
+					C.setAttributeNS(null, "width", "1");
+					C.setAttributeNS(null, "height", "40");
+					C.setAttributeNS(null, "stroke", "blue");
+					C.setAttributeNS(null, "stroke-width", "0");
+					C.setAttributeNS(null, "fill", "blue");
+					C.setAttributeNS(null, "opacity", "1");
+					N.appendChild(C);
+					
+					if (i=== 0) {
+						C.setAttributeNS(null, "onclick", "setTimeEsp(" + (tempoIntervalos * (hDif * ptFaixaTempo / tamFaixaTempo)) + ")");	
+					};
+
+					colIntTempo[i]	=	tempoIntervalos * (hDif * ptFaixaTempo / tamFaixaTempo);
+					colIntPosX[i]	=	auxX;
+
+					if (opcGeraBtMovto === 1) {
+
+						auxY2 += 30;
+
+						if (i % 5 === 0) {
+							auxY2 = 150;
+							auxX2 += 30;
+						};
+
+						var C = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+						C.setAttributeNS(null, "id", "btinimov" + dataMovtos[i].RegId);
+						C.setAttributeNS(null, "fill", "grey");
+						C.setAttributeNS(null, "cx", auxX2);
+						C.setAttributeNS(null, "cy", auxY2);
+						C.setAttributeNS(null, "r", 10);
+						C.setAttributeNS(null, "stroke", cor[((i) % 30)]);
+						C.setAttributeNS(null, "stroke-width", 4);
+						C.setAttributeNS(null, "title", "Movto No.: " + dataMovtos[i].RegId + " - Conclusão: " + dataMovtos[i].RegFimDth);
+						M.appendChild(C);
+					};
+				};
+
+				//console.log("#6 - colIntTempo = " + colIntTempo);
+			};
+
+			var	colMovtoInicio	=	[];
+			var vetPathId 		=	[];
+
+			function testeM (evt) {
+
+				if (staEscala === 1) {
+					var C = evt.target;
+					var auxX = C.getAttributeNS(null, "x") + posControleX;
+					var auxY = C.getAttributeNS(null, "y") + posControleY;
+					var x 	=	evt.clientX - auxX;
+					var y 	=	evt.clientY - auxY;
+
+					var fx = 0;
+					if (x > colIntPosX[0]) {
+
+						for (var i = 0; i < colIntPosX.length-1; i++) {
+							if (x >= colIntPosX[i] && x < colIntPosX[i+1]) {
+								var fx = i+1;
+							};
+						};
+						
+						var novoTempo = colMovtoInicio[fx] - (colIntTempo[fx] / 3);
+
+					} else {
+						var novoTempo = colMovtoInicio[0] / 2;
+					};
+
+					setTimeEsp(novoTempo);
+				};
+			};
+
+
+			//if (opcDesenhaArma === 1) {
+			//	desenhaArma();
+			//} else {
+				var S = document.getElementById("quadro");
+
+				//var C = document.createElementNS("http://www.w3.org/2000/svg", "g");
+				//C.setAttributeNS(null, "id", "quadroArma");
+				//S.appendChild(C);
+			//};
+
+
+			var staAni = 1;
+			var funcBtPause =function() {
+				if (staAni === 1) {
+					S.pauseAnimations();
+					staAni = 0;
+				} else {
+					S.unpauseAnimations();
+					staAni = 1;
+				};
+			};
+
+
+			var funcBtPlay2 =function() {
+				if (staAni === 0) {
+					S.unpauseAnimations();
+					staAni = 1;
+				};
+			};
+
+
+			var funcBtStop = function() {
+				S.pauseAnimations();
+				S.setCurrentTime(0);
+				staAni = 0;
+			};
+
+
+			var getTime =function() {
+				alert(S.getCurrentTime());
+			};
+
+
+			var setTimeEsp =function(newTime) {
+				console.log("setTimeEsp. newTime = " + newTime);
+				S.setCurrentTime(newTime);
+			};
+
+
+			var funcBtVolta1S =function() {
+				S.setCurrentTime(S.getCurrentTime() - 1);
+			};
+
+
+			var setTimeZero =function() {	
+				console.log("setTimeZero");
+				S.setCurrentTime(0);
+			};
+
+
+			var staShowPath = 1;
+			var funcBtShowPath = function() {
+				
+				for (var i = 0; i < vetPathId.length; i++) {
+
+					var aux2Id = vetPathId[i].substring(1,vetPathId[i].length);
+
+					//console.log("#1 staShowPath = " + staShowPath
+					//	+	" i = " + i 
+					//	+	" auxI2d = " + aux2Id);
+
+					var C = document.getElementById(aux2Id);
+
+					if (staShowPath === 1) {
+						console.log("zera!");
+
+						C.setAttribute("stroke-width", "0");
+						
+					} else {
+						C.setAttribute("stroke-width", "2");
+					};
+
+				};
+				
+				if (staShowPath === 1) {
+					staShowPath	= 0;
+				} else {
+					staShowPath	= 1;
+				};
+
+				console.log("vetPathId.length = " + vetPathId.length);
+					
+			};
+
+
+
+			var staShowBtMov = 0;
+			var funcBtShowBtMov = function() {
+				
+				var C = document.getElementById("gprBtMov");
+				var D = document.getElementById("bordaControle");
+				var K = document.getElementById("labelBtShow");
+
+				if (staShowBtMov === 1) {
+					console.log("zera!");
+
+					C.setAttribute("opacity", "0");
+					D.setAttribute("height","105");
+					K.setAttribute("d","M 249 74 254 79 260 74");
+
+				} else {
+
+					C.setAttribute("opacity", "1");
+					D.setAttribute("height","310");
+					K.setAttribute("d","M 249 79 254 74 260 79");
+				};
+
+
+				if (staShowBtMov === 1) {
+					staShowBtMov	= 0;
+				} else {
+					staShowBtMov	= 1;
+				};
+			};
+
+			var staEscala = 1.0;
+			var txtEscala = "scale(1.0)";
+
+			var setEscala =function(opcEscala) {
+
+				if (opcEscala === "p") {
+					staEscala = 1;
+				} else {
+					if (opcEscala === "+") {
+						staEscala	*=	2;
+					} else {
+						staEscala	/=	2;
+					};
+				};
+
+				txtEscala = "scale(" + staEscala + ")";
+
+
+				//var C = document.getElementById("svgquadro");
+				var C = document.getElementById("quadro");
+
+				if (staEscala > 1) {
+					C.setAttributeNS(null, "width", canvasSizeX*staEscala);
+					C.setAttributeNS(null, "height", canvasSizeY*staEscala);
+				} else {
+					C.setAttributeNS(null, "width", canvasSizeX);
+					C.setAttributeNS(null, "height", canvasSizeY);
+				};
+
+				var C = document.getElementById("quadroArma");
+				C.setAttributeNS(null, "transform", txtEscala + " " + txtRotate);
+
+				console.log("fim setEscala. txtEscala = " + txtEscala
+					+	" txtRotate = " + txtRotate);
+
+			};
+
+			var staRotate = 0;
+			var txtRotate = "";
+
+			var setRotate =function() {
+				
+				console.log("Ini. staRotate = " + staRotate)
+
+				if (staRotate === 0) {
+					txtRotate 	= 	"rotate(270 460 460) translate(-100 -100)";
+
+					staRotate	=	1;
+				} else if (staRotate === 1) {
+					txtRotate	=	"rotate(180 645 645)";
+
+					staRotate	=	2;
+				} else if (staRotate === 2) {
+					txtRotate 	= 	"rotate(90 650 650) translate(100 100)";
+
+					staRotate	=	3;
+				} else if (staRotate === 3) {
+					txtRotate 	= 	"";
+
+					staRotate	=	0;
+				};
+
+				var C = document.getElementById("quadroArma");
+				C.setAttributeNS(null, "transform", txtEscala + " " + txtRotate);
+
+				console.log("fim setRotate. txtEscala = " + txtEscala
+					+	" txtRotate = " + txtRotate);
+			};
+
+			var funcPrev = function() {
+
+				var atualTempo	=	S.getCurrentTime();
+
+				var fx 			=	0;
+				var novoTempo 	=	0;
+
+				if (atualTempo > colMovtoInicio[colMovtoInicio.length-1]) {
+				
+					novoTempo = colMovtoInicio[colMovtoInicio.length-2];
+
+				} else if (atualTempo > colMovtoInicio[1]) {
+
+					for (var i = 1; i < colMovtoInicio.length-1; i++) {
+						if (atualTempo >= colMovtoInicio[i] && atualTempo < colMovtoInicio[i+1]) {
+							fx = i;
+						};
+					};
+
+					if (colMovtoInicio[fx-1] === colMovtoInicio[fx] && fx > 1) {
+						novoTempo = colMovtoInicio[fx-2];
+					} else {
+						novoTempo = colMovtoInicio[fx-1];
+					};
+				};
+
+				setTimeEsp(novoTempo);
+
+			};
+
+			var funcNext = function() {
+				
+				var atualTempo	=	S.getCurrentTime();
+
+				var fx 			=	0;
+				var novoTempo 	=	0;
+
+				if (atualTempo < colMovtoInicio[colMovtoInicio.length-1]) {
+
+					if (atualTempo > colMovtoInicio[0]) {
+						for (var i = 1; i < colMovtoInicio.length-1; i++) {
+							if (atualTempo >= colMovtoInicio[i] && atualTempo < colMovtoInicio[i+1]) {
+								fx = i;
+							};
+						};
+					};
+
+					if (colMovtoInicio[fx+1] === colMovtoInicio[fx] && colMovtoInicio.length > (fx+2)) {
+						novoTempo = colMovtoInicio[fx+2];
+					} else {
+						novoTempo = colMovtoInicio[fx+1];
+					};
+				};
+
+				setTimeEsp(novoTempo);
+			};
+
+			funcCalcIntervalosMovtos();
+
+			console.log("Tudo Ok! dataMovtos.length = " + dataMovtos.length);
+
+			setInterval(function() {
+				var atualTempo	=	S.getCurrentTime();
+				console.log("atualTempo = " + atualTempo);
+			}, 400);
+
+			setInterval(function(){
+				//if (S.getCurrentTime() > (aniTempoTotal+0.8)){
+				if (S.getCurrentTime() > 10){
+					S.setCurrentTime(0.1);
+				};
+			}, 100);
+
+		</script>
+
+	</body>
+
+	</html>

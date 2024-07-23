@@ -1,0 +1,67 @@
+<html>
+<head>
+    <title>mimic</title>
+    <script type="text/javascript">
+        console.log("head");
+    </script>
+    <style>
+        .td1 {background-color: red;}
+    </style>
+        
+    </head>
+    <body>
+
+        <div>
+            <input type="button" value="mimic" onclick="mimic('test1');" />
+        </div>
+        
+        <table>
+            <tr>
+                <td class="td1"><textarea class="test" id="source">Resize me.</textarea></td>
+                <td class="td2"><textarea class="test" id="target">Resize me.</textarea></td>
+
+            <tr>
+                <td class="td1"><textarea class="test1" id="source">Resize me.</textarea></td>
+                <td class="td2"><textarea class="test1" id="target">Resize me.</textarea></td>
+            </tr>
+        </table>
+        
+    </body>
+    <script type="text/javascript">
+        console.log("end body");
+
+
+        function mimic(className) {
+            function outputsize(e) {
+                target.value = 0;
+
+                var source = e[0].target;
+                var parent = source.closest('tr');
+                var ref = source.closest('td');
+
+                var refH = source.offsetHeight;
+
+                var vetElem = parent.querySelectorAll("." + className);
+
+                for (let ind2 = 0; ind2 < vetElem.length; ind2++) {
+                    if (vetElem[ind2] != source)
+                    vetElem[ind2].style.height = refH;
+                }
+            }
+
+            var vElem = document.getElementsByClassName(className);
+
+            for (let index = 0; index < vElem.length; index++) {
+                var elem = vElem[index];
+                new ResizeObserver(outputsize).observe(elem);
+            }
+        }
+
+                
+    </script>
+    </html>
+        
+
+
+
+    

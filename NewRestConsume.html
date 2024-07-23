@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Consume REST Web Service</title>
+</head>
+<body>
+  <h1>Consume REST Web Service</h1>
+  <script>
+    const apiUrl = 'http://puntoexe.com.uy:8115/iGMP4Newtrunk/API/Inventory/InventoryManagement/APITInventoryUsageV1';
+    const jsonData = {
+      "DownloadFileIn": {
+        "Connection": {
+          "UserCode": "***",
+          "UserPassword": "***"
+        },
+        "InventoryReceiptNumber": "650",
+        "MaterialReceiptFilesId": "1"
+      }
+    };
+
+    fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(jsonData)
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
+  </script>
+</body>
+</html>

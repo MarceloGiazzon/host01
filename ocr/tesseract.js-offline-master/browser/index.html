@@ -1,0 +1,38 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tesseract.js Offline</title>
+  
+
+  <script src='https://cdn.jsdelivr.net/gh/naptha/tesseract.js@v1.0.14/dist/tesseract.min.js'></script>
+  <script>
+    const { createWorker } = Tesseract;
+    const worker = createWorker({
+      workerPath: 'https://cdn.jsdelivr.net/gh/naptha/tesseract.js@1.0.13/dist/worker.js',
+      langPath: 'https://marcelogiazzon.github.io/host01/ocr/JS-OCR-demo-gh-pages/por/',
+      corePath: 'https://cdn.jsdelivr.net/gh/naptha/tesseract.js-core@0.1.0/index.js',
+      logger: m => console.log(m),
+    });
+
+    //<script src="../node_modules/tesseract.js/dist/tesseract.min.js">
+    
+    //  https://cdn.jsdelivr.net/gh/naptha/tesseract.js-core@0.1.0/index.js
+    //  https://cdn.jsdelivr.net/gh/naptha/tesseract.js@1.0.13/dist/worker.js
+
+
+    (async () => {
+      await worker.load();
+      await worker.loadLanguage('eng');
+      await worker.initialize('eng');
+      const { data: { text } } = await worker.recognize('../images/testocr.png');
+      console.log(text);
+      await worker.terminate();
+    })();
+  </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>SVG Stroke Recorder</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  
+      <style>
+      /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+      main {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background: #222;
+  background: #11252f;
+  overflow: hidden;
+}
+
+.info {
+  color: #fafafa;
+  padding: 15px;
+}
+
+#svg-drawing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#pencil-path {
+  fill: none;
+  stroke: #aaa;
+  stroke-width: 3;
+}
+
+#smooth-path {
+  fill: none;
+  stroke: #fafafa;
+  stroke-width: 3;
+}
+
+    </style>
+
+</head>
+
+<body>
+  <main>
+  <div class="info">Draw Something...</div>
+  <svg id="svg-drawing">
+    
+  </svg>
+</main>
+  <script  src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/utils/Draggable.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenMax.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/utils/Draggable.min.js'></script>
+
+    <script  src="js/index.js"></script>
+  
+
+</body>
+</html>

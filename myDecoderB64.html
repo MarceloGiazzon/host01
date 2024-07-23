@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 to File Converter</title>
+</head>
+<body>
+    <h1>Base64 to File Converter</h1>
+    <form id="base64Form">
+        <label for="base64Input">Base64 Encoded Text:</label><br>
+        <textarea id="base64Input" rows="10" cols="50" required></textarea><br><br>
+        
+        <label for="fileNameInput">File Name:</label><br>
+        <input type="text" id="fileNameInput" required><br><br>
+        
+        <button type="submit">Convert and Download</button>
+    </form>
+
+    <script>
+        document.getElementById('base64Form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            console.log("Test123");
+            
+            // Get the input values
+            const base64Text = document.getElementById('base64Input').value;
+            const fileName = document.getElementById('fileNameInput').value;
+            
+            // Decode the base64 text
+            const byteCharacters = atob(base64Text);
+            const byteNumbers = new Array(byteCharacters.length);
+            for (let i = 0; i < byteCharacters.length; i++) {
+                byteNumbers[i] = byteCharacters.charCodeAt(i);
+            }
+            const byteArray = new Uint8Array(byteNumbers);
+            
+            // Create a blob from the byte array
+            const blob = new Blob([byteArray], { type: 'application/octet-stream' });
+            
+            // Create a link element
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = fileName;
+            
+            // Append the link to the body
+            document.body.appendChild(link);
+            
+            // Programmatically click the link to trigger the download
+            link.click();
+            
+            // Remove the link from the document
+            document.body.removeChild(link);
+        });
+    </script>
+</body>
+</html>

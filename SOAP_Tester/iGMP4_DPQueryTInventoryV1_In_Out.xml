@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ExportFile>
+  <KMW>
+    <MajorVersion>4</MajorVersion>
+    <MinorVersion>0</MinorVersion>
+    <Build>160000</Build>
+  </KMW>
+  <Source kb="47165b48-4579-4406-8970-c9fdc851483f" username="PUNTOEXE\mgiazzon" UNCPath="\\GENEXUS15\Models\GX17\iGMP4">
+    <Version guid="cd5869b7-37cb-41f1-9936-5140047d2919" name="iGMP4" />
+  </Source>
+  <Objects>
+    <Object parentGuid="5aa7f099-26bc-4d6e-b3eb-c0c23cd084f0" user="PUNTOEXE\mgiazzon" versionDate="0001-01-01T00:00:00.0000000" lastUpdate="2024-02-27T21:38:02.0000000Z" checksum="236df3f5f382367badab615facc256e5" fullyQualifiedName="API.Inventory.DPQueryTInventoryV1In" moduleGuid="3e701de6-9c3f-4e06-9e6e-fc3e5072b236" guid="081e389a-18ed-48b4-8f07-ff4d0541daf9" name="DPQueryTInventoryV1In" type="447527b5-9210-4523-898b-5dccb17be60a" description="DPQuery TInventory V1 In" parent="API.Inventory.PXWSQueryInventory" parentType="c122f122-4570-4cb8-9119-90000bbaef42">
+      <Part type="5c2aa9da-8fc4-4b6b-ae02-8db4fa48976a">
+        <Properties><Property><Name>IsDefault</Name><Value>True</Value></Property><Property><Name>Defaults</Name><Value>PXWSQuery:Templates\SDTDPQueryIn.dll</Value></Property></Properties>
+      </Part>
+      <Part type="babf62c5-0111-49e9-a1c3-cc004d90900a">
+        <Properties />
+      </Part>
+      <Properties><Property><Name>Name</Name><Value>DPQueryTInventoryV1In</Value></Property><Property><Name>IsGeneratedObject</Name><Value>True</Value></Property><Property><Name>InstanceKey</Name><Value>c122f122-4570-4cb8-9119-90000bbaef42-API.Inventory.PXWSQueryInventory</Value></Property><Property><Name>ElementKey</Name><Value>/instance/version[1]/method[@name="&lt;default&gt;"]</Value></Property><Property><Name>PatternObjectId</Name><Value>SDTDPQueryIn</Value></Property><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+    </Object>
+    <Object parentGuid="5aa7f099-26bc-4d6e-b3eb-c0c23cd084f0" user="PUNTOEXE\mgiazzon" versionDate="0001-01-01T00:00:00.0000000" lastUpdate="2024-02-27T21:38:07.0000000Z" checksum="7d3c99d88ff09eb8274dbe93ad45eb71" fullyQualifiedName="API.Inventory.DPQueryTInventoryV1Out" moduleGuid="3e701de6-9c3f-4e06-9e6e-fc3e5072b236" guid="87a059ad-098a-4a1a-bf28-c1299f3731d2" name="DPQueryTInventoryV1Out" type="447527b5-9210-4523-898b-5dccb17be60a" description="DPQuery TInventory V1 Out" parent="API.Inventory.PXWSQueryInventory" parentType="c122f122-4570-4cb8-9119-90000bbaef42">
+      <Part type="5c2aa9da-8fc4-4b6b-ae02-8db4fa48976a">
+        <Properties><Property><Name>IsDefault</Name><Value>True</Value></Property><Property><Name>Defaults</Name><Value>PXWSQuery:Templates\SDTDPQueryOut.dll</Value></Property></Properties>
+      </Part>
+      <Part type="babf62c5-0111-49e9-a1c3-cc004d90900a">
+        <Properties />
+      </Part>
+      <Properties><Property><Name>Name</Name><Value>DPQueryTInventoryV1Out</Value></Property><Property><Name>IsGeneratedObject</Name><Value>True</Value></Property><Property><Name>InstanceKey</Name><Value>c122f122-4570-4cb8-9119-90000bbaef42-API.Inventory.PXWSQueryInventory</Value></Property><Property><Name>ElementKey</Name><Value>/instance/version[1]/method[@name="&lt;default&gt;"]</Value></Property><Property><Name>PatternObjectId</Name><Value>SDTDPQueryOut</Value></Property><Property><Name>IsDefault</Name><Value>False</Value></Property></Properties>
+    </Object>
+  </Objects>
+  <Dependencies>
+    <Reference Package="3ea7e1c6-b849-4df9-931a-070171a8a2f0" Type="Object" Id="447527b5-9210-4523-898b-5dccb17be60a">
+      <Properties Name="Structured Data Type" PackageName="GenexusBL" />
+    </Reference>
+    <Reference Package="3ea7e1c6-b849-4df9-931a-070171a8a2f0" Type="Part" Id="5c2aa9da-8fc4-4b6b-ae02-8db4fa48976a">
+      <Properties Name="Structure" PackageName="GenexusBL" />
+    </Reference>
+    <Reference Package="3ea7e1c6-b849-4df9-931a-070171a8a2f0" Type="Part" Id="babf62c5-0111-49e9-a1c3-cc004d90900a">
+      <Properties Name="Documentation" PackageName="GenexusBL" />
+    </Reference>
+    <Reference Package="df0eb164-d030-4b53-b022-0ea225fb61d6" Type="Pattern" Id="c122f122-4570-4cb8-9119-90000bbaef42">
+      <Properties Description="PXWSQuery" Provider="PuntoExe" Version="10.3.0" />
+    </Reference>
+  </Dependencies>
+  <ObjectsIdentityMapping>
+    <ObjectIdentity Type="d4876646-98dd-419b-8c1c-896f83c48368" Name="Attribute" parent="">
+      <Guid>7f83da99-bc71-5230-bf17-0352ce27c129</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="c122f122-4570-4cb8-9119-90000bbaef42" Name="PXWSQueryInventory" parent="API.Inventory">
+      <Guid>5aa7f099-26bc-4d6e-b3eb-c0c23cd084f0</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="c88fffcd-b6f8-0000-8fec-00b5497e2117" Name="Inventory" parent="API">
+      <Guid>3e701de6-9c3f-4e06-9e6e-fc3e5072b236</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="c88fffcd-b6f8-0000-8fec-00b5497e2117" Name="API" parent="">
+      <Guid>3c4a4ac7-dd09-4346-8c62-e8041421f435</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="RequisitionId" parent="">
+      <Guid>2086507a-a720-2df3-d577-2f7fb5c1b9f9</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryMaterialId" parent="">
+      <Guid>34116496-2f16-c1ab-6f27-b5eb6e0e5aaa</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryStatus" parent="">
+      <Guid>3d7a9fd9-7555-cdd6-a41b-b1d664735d7c</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryReceivedDate" parent="">
+      <Guid>3e9a7435-8802-8866-611e-dbc4dc5d2335</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryMFGLotNumber" parent="">
+      <Guid>e5ed4b17-33d1-8c6a-a9eb-38a04b7598c7</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="RequisitionMaterialName" parent="">
+      <Guid>5374c466-3523-511d-5bfb-26f6d7f8bc54</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryMaterialCode" parent="">
+      <Guid>f5ebad77-8498-4430-a62a-2ddd924c40cb</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="ReceiptNumber" parent="">
+      <Guid>13f1078c-5c85-4697-8b31-6fc14cdcc347</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="SplitFromReceiptNumber" parent="">
+      <Guid>eb22be81-548e-4b0f-bd1a-67fcb84173b1</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="PurchaseOrderNumber" parent="">
+      <Guid>f45433ac-8952-42ff-ad76-05f870c4c492</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryProjectCode" parent="">
+      <Guid>86f4e5f6-f89e-4537-bfc1-d693b98b26c2</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryInternalLotNumber" parent="">
+      <Guid>6267bfe7-0015-431b-9062-867fb757f7ea</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryMaterialSytType" parent="">
+      <Guid>9829216e-0477-422c-a7d4-e3b9ad09ab71</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="00972a17-9975-449e-aab1-d26165d51393" Name="VarLen" parent="">
+      <Guid>5e0e12a9-998c-484e-930e-33ff0dc8ea70</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryReceiptNumber" parent="">
+      <Guid>d3070b01-cfcb-7c12-1f5f-9f5d0afff7b8</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryMaterialVersionId" parent="">
+      <Guid>e1d78377-7305-cd21-eb2f-f2ebc825780b</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="MaterialStatusDescription" parent="">
+      <Guid>94d3be65-90c1-f46c-b483-8e7a41ac522f</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryUsageSequence" parent="">
+      <Guid>acaa5119-dae7-5fcd-3986-9700bf5398ad</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryQuantityReceived" parent="">
+      <Guid>8b17a887-9840-1490-53a5-a10db414eb70</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryBalance" parent="">
+      <Guid>9b1424c2-14ae-83de-5532-90cb8b8d8cfe</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryDate" parent="">
+      <Guid>0ab01c0a-cd07-7d89-b85c-c137490f2609</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryMaterialName" parent="">
+      <Guid>40f737b4-3dbc-d0af-b78d-f573005959fb</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryMaterialUnitName" parent="">
+      <Guid>bf249e54-a29b-3189-dad5-71a1f43fe5db</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="RequisitionVendorOrderNumber" parent="">
+      <Guid>0c196d39-d447-45b2-8e61-95043d0b0e81</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="MaterialTypesNameDescription" parent="">
+      <Guid>0d6e2ef4-1f34-48e8-85ba-444c2c9c4c25</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryActRcvUnitName" parent="">
+      <Guid>3ec18cd5-ec46-4835-a5f4-b8ef356f766b</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryBatchNumber" parent="">
+      <Guid>58c2ac91-8509-4614-825e-420fb60a22a3</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryBprProdNumber" parent="">
+      <Guid>c41a6b03-7fdc-4fb6-95fe-c9db00f3b096</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="RequisitionVendorName" parent="">
+      <Guid>09d82d81-79d5-486a-b746-ee8f51abb50d</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="MPRProductName" parent="">
+      <Guid>df75d594-0d89-43dc-aa43-bd713bbebfb6</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="BinLocation" parent="">
+      <Guid>aa6d2876-853a-45f4-86d0-071da852bf17</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="MaterialReceiptRetestDate" parent="">
+      <Guid>d6aa9ae2-688e-43ba-b50f-3f1ff6bde479</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="MaterialReceiptExpiryDate" parent="">
+      <Guid>33d194b9-7183-4f7e-9627-f710e2c59daf</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="RequsitionVendorPartNum" parent="">
+      <Guid>773850a4-5d46-49ad-bd13-0c0543a3e8b9</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InvMetricLabel" parent="">
+      <Guid>ec43e3ce-e1ff-42f3-b2f5-51e9babb1f36</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="InventoryUnitMaterialCost" parent="">
+      <Guid>eecd5e7e-2342-4620-a9d4-e8613d422738</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="SpecMicroRetestDate" parent="">
+      <Guid>f23248e1-8a12-41ed-9962-f65c4e495019</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="SpecFullRetestDate" parent="">
+      <Guid>2401062f-3bbe-48d1-b777-6631b58e3aad</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="SpecImpurityRetestDate" parent="">
+      <Guid>4de26d18-b71b-442c-8912-c5b44c500907</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="SpecMFGRetestDate" parent="">
+      <Guid>61567ef6-eabd-4ce8-bff7-6dd7fee13aaf</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="SpecMFGExpiryDate" parent="">
+      <Guid>ad727a7a-d7b2-497b-a85b-f03276cae96b</Guid>
+    </ObjectIdentity>
+    <ObjectIdentity Type="adbb33c9-0906-4971-833c-998de27e0676" Name="SpecInternalExpiryDate" parent="">
+      <Guid>ddbabbac-8c96-492e-b455-0fa7edb59af6</Guid>
+    </ObjectIdentity>
+  </ObjectsIdentityMapping>
+</ExportFile>

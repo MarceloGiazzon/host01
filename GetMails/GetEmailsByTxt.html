@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <!--<link href="PXToolsGridPaging.css" rel="stylesheet" />
+    <script src="PXToolsGridPagingRender.js"></script>
+    <script src="jquery-3.4.1.min.js"></script>
+  -->
+    <title>Get Emails</title>
+  </head>
+<body>
+  <input id="clickMe" type="button" value="GetMailsFromText" onclick="doFunction();" />
+
+  <textarea id="dataAsText" name="data" rows="8" cols="80">
+    CADASTRO DE ESTABELECIMENTOS DE ENSINO - REDE FEDERAL - RS 2017
+1 Porto Alegre 43001190 IFRS - CAMPUS PORTO ALEGRE RESTINGA Urbana -51,12944169 -30,14312094 RUA ALBERTO HOFFMANN 285 DISTRITO INDUSTRIAL RESTINGA 91791508 51 32478400 DI@RESTINGA.IFRS.EDU.BR
+1 Porto Alegre 43104932 COLEGIO DE APLICACAO UFRGS Urbana -51,12292948 -30,07583325 AVENIDA BENTO GONCALVES 9500 AGRONOMIA 91501970 51 33086977 GERENCIA_APLICACAO@UFRGS.BR
+1 Porto Alegre 43191118 CRECHE FRANCESCA ZACARO FARACO Urbana -51,20531154 -30,04238926 RUA SAO MANOEL SN PREDIO 21104 RIO BRANCO 90620110 51 33085273 CRECHE@UFRGS.BR
+  </textarea>
+
+  <div class="ucContainer" id="ucContainer">
+    <br>
+    <span id="total"></span>
+    <br><br>
+    <span id="result"></span>
+  </div>
+
+  <script>
+    function extractEmails (text)
+    {
+        return text.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi);
+    }
+
+    function copyStringToClipboard(str)
+    {
+     // Create new element
+     var el = document.createElement('textarea');
+     // Set value (string to be copied)
+     el.value = str;
+     // Set non-editable to avoid focus and move outside of view
+     el.setAttribute('readonly', '');
+     el.style = {position: 'absolute', left: '-9999px'};
+     document.body.appendChild(el);
+     // Select text inside element
+     el.select();
+     // Copy text to clipboard
+     document.execCommand('copy');
+     // Remove temporary element
+     document.body.removeChild(el);
+    }
+
+    function doFunction() {
+      var text = document.getElementById("dataAsText").value;
+      var emails = extractEmails(text).join('\n<br>');
+      var emailsToCopy = extractEmails(text).join('\n');
+
+      var result = document.getElementById("result");
+      result.innerHTML = emails;
+
+      copyStringToClipboard(emailsToCopy);
+
+      var count = emails.replace(/[^@]/g, "").length;
+      var total = document.getElementById("total");
+
+      //jQuery('body').prepend(jQuery('<a/>').attr('href','data:text/octet-stream;base64,SGVsbG8gV29ybGQh').text('Click to download'))
+      total.innerHTML = "Total " + count + " - copied to clipboard...";
+
+    }
+  </script>
+</body>
+</html>

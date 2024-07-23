@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leitura de WSDL para JSON</title>
+</head>
+<body>
+
+<input type="file" id="inputFile" accept=".wsdl" onchange="handleFile(this.files)">
+
+<script>
+  // Função para lidar com o arquivo WSDL
+  function handleFile(files) {
+    const file = files[0];
+    
+    const reader = new FileReader();
+    
+    reader.onload = function(event) {
+      const xmlText = event.target.result;
+      
+      // Converte o XML em um objeto JavaScript
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+
+      // Extrai informações necessárias do XML
+      const operations = xmlDoc.querySelectorAll("portType operation");
+
+      // Cria um objeto para armazenar informações do request
+      const jsonRequest = {
+        operations: []
+      };
+
+      // Itera sobre as operações no WSDL
+      operations.forEach(operation => {
+        const operationName = operation.getAttribute("name");
+        const inputMessage = operation.querySelector("input").getAttribute("message");
+
+        // Adiciona informações da operação ao objeto JSON de request
+        jsonRequest.operations.push({
+          operationName,
+          inputMessage
+          // Adicione mais informações conforme necessário
+        });
+      });
+
+      // Exibe o JSON de request no console
+      console.log(jsonRequest);
+    };
+    
+    reader.readAsText(file);
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,2913 @@
+	<!doctype html>
+	<html>
+
+		<script type="text/javascript" src="dataPath.json"></script>
+		<script type="text/javascript" src="dataEst.json"></script>
+		<script type="text/javascript" src="dataCor.json"></script>
+		<script type="text/javascript" src="dataMovtos5.json"></script>
+		<script type="text/javascript" src="dataPosFim.json"></script>
+		<script type="text/javascript" src="dataFil1b.json"></script>
+		<script type="text/javascript" src="dataFil2.json"></script>
+		<script type="text/javascript" src="dataDestaquesn2.json"></script>
+
+		<style>
+
+			.sitpos0 {fill:PaleGreen}
+			.sitpos1 {fill:#9AFF9A}	
+			.sitpos2 {fill:#696969}
+			.sitpos3 {fill:#7FFF00}
+			.sitpos4 {fill:#6A5ACD}
+			.sitpos5 {fill:#669}
+			.sitpos6 {fill:#556B2F}
+			.sitpos7 {fill:#669}
+			.sitpos8 {fill:#6FF}
+			.sitpos9 {fill:#009}
+			.sitpos10 {fill:#CCC}
+			.sitpos11 {fill:#00F}
+			.sitpos12 {fill:#CC0}
+			
+			.sitpos20 {stroke:#000}
+
+			.testeCss {stroke:red}
+
+		</style>
+
+	<body>
+		
+		<div style="position:absolute; top:0px; left:0px; width: 100%; height: 100%;">
+			<svg id="quadro" width="1320" height="1800" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">'
+				<ellipse cx="10" cy="10" rx="10" ry="10" fill="green">
+					<animate attributeName="rx" dur="0.001s" values="1;" repeatCount="1" begin="btInicio0.click" id="startAni"/>'
+				</ellipse>
+			</svg>
+		</div>
+
+		<script>
+		//pointer-events: none;
+			var funcSelConfig = function() {
+				
+				console.log("funcSelConfig = " + document.getElementById("selConfig").value);
+
+				colSelDestaqueId[0]	=	parseInt(document.getElementById("selConfig").value);
+
+				var remover 	= 	document.getElementById("quadroArma");
+		       	var parent    	= 	document.getElementById("quadro");
+
+		       	console.log("remover = " + remover + " parent " + parent);
+
+		       	parent.removeChild(remover);
+
+
+		       //	myCircle.parentNode.removeChild(myCircle);
+
+				desenhaArma();
+
+				funcAplicaFiltros();
+
+			};
+
+			var opcDesenhaArma = 1;
+			var S = document.getElementById("quadro");
+
+			if (opcDesenhaArma === 1) {
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "fundo");
+				C.setAttributeNS(null, "width", "100%");
+				C.setAttributeNS(null, "height", "100%");
+				C.setAttributeNS(null, "fill", "black");
+				S.appendChild(C);
+			};
+
+			var configTamLocal	=	5;
+			var configEspLocal	=	1;
+			var auxNum			=	0;
+			var vetPathId		=	[];
+			var localId			=	0;
+			var limparAnimacao	=	[];
+			var countDifMovto 	=	0;
+			var okD				=	"";
+			var iAux 			=	0;
+			var antAcuTime 		=	0.0;
+			var aniTempoTotal	=	0.0;
+			var opcGeraBtMovto 	=	1;
+
+			var dadosAuxDocExp = [300,600,900,1200,1300,1600,1900,2200,2400,2800,3200,3400,3900,4100,4500,4900,5000,5600,6000,6200,6300,6400];
+			var dadosAuxNFeRec = [101,201,401,501,701,801,1001,1101,1401,1501,1701,1801,2001,2101,001,2301,2501,2601,2701,2901,3001,3101,3301,3501,3601,3701,3801,4001,4201,4301,4401,4601,4701,4801,5101,5201,5301,5401,5501,5701,5801,5901,6101,001,6501,6601,6701,6801,6901,7001,7201,7301,7401,7501,7601,7701,7801,7901,8001,8101,8201,8301,8401,8501,8601,8701,8801,8901,9001,9101,9201];
+			var dadosAuxMovExp = [3,6,9,12,13,16,19,22,24,28,32,34,39,41,45,49,50,56,60,62,63,64];
+			var dadosAuxMovRec = [1,2,4,5,7,8,10,11,14,15,17,18,20,21,0,23,25,26,27,29,30,31,33,35,36,37,38,40,42,43,44,46,47,48,51,52,53,54,55,57,58,59,61,0,65,66,67,68,69,70,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92];
+			var dadosAuxMovtoSeq = [61,62,63,65,80,93];
+			var dadosAuxMovtoSit = [1,1,1,1,1,1];
+			var dadosauxMovtoTipoDes = [1,3,3,1,1,2];
+			var dadosAuxMovtoReg = [43,20,21,45,59,93];
+			var dadosAuxCdExpId = [20];
+			var dadosAuxCdLoteId = [12315062703];
+			var dadosAuxCdRecId = [43];
+			var dadosAuxDbrLoteId = [5215042301,8015040901,5215042201,11015060701,8015061301,11015042202,30615042701,8015050402,5215060801,5215052102,11015070301,30615062402,8015060201,8015071401];
+			var dadosAuxAvaLoteId = [11015061001,30615060201,5215053001,5215051501,8015051602,29315062402,5215080303];
+			var dadosAuxRecLoteId = [5215061601,11015051201,11015052901,11015061701,30615040701,30615042601,11015051001,5215041701,8015060701,11015050601,5215050201,5215052601,8015061901,30615062401,5215041702,8015041501,11015040902,11015041801,8015042601,5215040901,5215061001,11015062401,8015051301,11015052001,8015051601,8015061902,5215062101,8015062001,11015042201,8015050401,11015051101,30615061801,30615050301,5215042601,5215061101,5215052101,11015042301,5215050901,11015041701,30615060801,8015041401,8015062201,5215052801,8015041402,11015060601,5215041202,11015051501,30615052701,5215061401,8015050701,11015051401,5215060601,8015042501,5215041302,30615042401,5215052301,5215050501,8015050801,11015062201,5215061501,8015060601,8015063001,5215061402,8015062202,30615051901,8015060901,5215041401,5215050101,30615061701,5215062401,30615050401,30615070601,8015070301,11015051502,8015062701,11115062701,11815062701,12315062704,11015062701,11815062702,12315062702,14415062701,17215062501,29315062401,5215052901,5215062001,11015061101,11015053101,5215053101,5215080301,11015061601,11015072201,5215071601,8015062601,5215061301,8015052701,8015062002,5215062501,8015080301,5215053102,5215080302,8015060101,5215061901,5215072601,5215060301,8015060602,8015072601,5215060802,30715062801,30615062801,27515062801,65015062801,32115062801,43315062801,19215062801,32515062801,14815062801,16615062801,28615062801,32515062802,46615062801,30615062802,30615072801,8015062203,30615061401,30615070901,8015070701,8015072101,30615062501,5215071301,8015061201,11015060501,5215060101,5215062102,8015063002,8015071101,11015062202,30615061901,11015061001,30615060201,5215053001,5215051501,8015051602,29315062402,5215080303,5215042301,8015040901,5215042201,11015060701,8015061301,11015042202,30615042701,8015050402,5215060801,5215052102,11015070301,30615062402,8015060201,8015071401,12315062703];
+			var dadosAuxRecId = [1,1,1,2,2,3,4,5,5,5,6,7,7,8,9,10,10,10,11,13,13,13,14,14,17,17,18,18,18,19,19,19,20,21,21,22,22,24,24,24,25,25,26,26,26,28,28,28,29,29,29,30,31,33,33,34,35,35,35,36,36,36,37,37,37,39,40,40,40,41,41,41,42,42,43,43,43,43,44,44,44,44,45,45,46,46,46,47,48,48,48,48,49,49,51,51,51,52,53,55,55,55,56,56,57,57,57,58,59,59,60,60,61,61,62,62,63,63,63,63,63,63,64,65,65,65,66,66,66,67,68,68,69,70,71,71,71,71,5,22,25,26,32,45,69,1,2,12,16,23,25,27,38,49,50,50,54,64,68,43];
+
+			var vetTipo				=	["Rec","Livre","Exp"];
+
+			var TxtPart 			=	""
+			var TxtParticao 		=	""
+			var LocalPerc 			=	0;
+			
+			var FlagApenasDisp		=	0;
+			var FlagTemDisp			=	0;
+			var FlagTemDispRsv		=	0;
+			var FlagTemOcup			=	0;
+			var FlagTemOcupRsv		=	0;
+			var okIndCriterio		=	0;
+
+			var col02RgLoc			=	[];
+			var col02RgPart			=	[];
+			var col02RgRua			=	[];
+
+			var okIndCriterio 		=	0;
+
+			var auxRecId 			=	0;
+			var auxNFeRec 			=	0;
+			var auxMovtoSeq 		=	0;
+			var auxMovtoSit 		= 	0;
+			var auxMovtoReg 		= 	0;
+			var auxMovtoTipoDes 	= 	"";
+			var auxDateVal 			= 	0;
+			var auxMesVal 			= 	0;
+			var auxLote 			= 	0;
+			var auxProd 			=	0;
+			var auxMovtoTipo 		=	0;
+
+			var vetRuaId			=	[];
+			var vetRuaTamX			=	[];
+			var vetRuaTamY			=	[];
+			var vetRuaPosX			=	[];
+			var vetRuaPosY			=	[];
+
+
+			var indLoc 				=	0;
+			var vetQtdLoteSit 		=	[];
+			var countGeral			=	0;
+			var ruaTxtPosPart		=	"";
+
+			var auxFiltroOperador	=	0;
+			var indRegra 			=	0;
+			var indCriterio 		=	0;
+			var indDestaque 		=	0;
+			var dadosFil 			=	[];
+			var flagRegraOk			=	0;
+			
+			var col03TempRgLoc		=	[];
+			var col03TempEfLoc 		=	[];
+
+			var colSelDestaqueId 	=	[999];
+			var colRemEfcId 		=	[];
+			var colRemEfcAtt		=	[];
+
+			var funcMontaSelConfig = function() {
+				
+				/*
+				En Desarrollo
+
+				var x5 = document.getElementById("selConfig");
+				var option = document.createElement("option");
+				option.text = "selecione destaque";
+			    option.value = 0;
+			    x5.add(option);
+
+				for (var i5 = 0; i5 < dadosDestaques.length; i5++) {
+				    var option = document.createElement("option");
+				    option.text = dadosDestaques[i5].Titulo;
+				    option.value = dadosDestaques[i5].Id;
+				    x5.add(option);
+				};*/
+			};
+
+			var funcTestaCriterios = function() {
+				//
+				//	ABAIXO FICAM OS TESTES DOS DIFERENTES CRITÉRIOS / FILTROS.
+				//
+				//
+				//
+				//	B2-5-1 - Sit.: 3 Prod.: 80 Val.: 2015-6-27 Qtd.: 80 (1pos.) Lote: 8015062701 Rec No.: 43 NF-e: 6101 Mov/Sub: 61 / 1 Em Movto Rec
+				//
+				//	Rec1-20-1 - Sit.: 4 Prod.: 110 Val.: 2015-4-22 Qtd.: 80 (1pos.) Lote: 11015042202 Rec No.: 25 NF-e: 3601 Mov/Sub: 62 / 3 Em Movto Exp 20
+				//
+				//	F1-5-2 - Sit.: 3 Prod.: 80 Val.: 2015-6-2 Qtd.: 80 (1pos.) Lote: 8015060201 Rec No.: 64 NF-e: 8501 Mov/Sub: 93 / 1 Em Movto Livre 93
+				//	txtParticao = Picking1-91-1 - Sit = 2 Prod.: 317 Val.: 2015-4-11 Qtd.: 40 (1pos.) Lote: 31715041101
+				//
+				//
+				if ( (dadosPos[indLoc][0] ===  110170011
+					|| dadosPos[indLoc][0] === 111290012
+					|| dadosPos[indLoc][0] === 110730012
+					|| dadosPos[indLoc][0] === 112530031
+					)
+					&& 1 === 2) {
+
+					console.log(
+						" FiltroId: " + dadosFil[indRegra].Filtro[indCriterio].FiltroId
+						+ " auxFiltroOperador = " + auxFiltroOperador
+						+ " FiltroVal1Int = " + dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int
+						+ " FiltroVal1Char = " + dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Char
+						+ " FiltroValVarChar = " + dadosFil[indRegra].Filtro[indCriterio].FiltroValVarChar
+						+ " FiltroVal2Int = " + dadosFil[indRegra].Filtro[indCriterio].FiltroVal2Int
+						+ " FiltroVal1Dta = " + dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Dta
+						+ " FiltroVal2Dta = " + dadosFil[indRegra].Filtro[indCriterio].FiltroVal2Dta
+					);
+
+					console.log("Local = " + dadosPos[indLoc][0]
+						+ " Lote = " + auxLote
+						+ " MesVal = " + auxMesVal
+						+ " RecId = " + auxRecId
+						+ " NFeRec = " + auxNFeRec
+						+ " MovtoSeq = " + auxMovtoSeq
+						+ " DateVal = " + auxDateVal
+						+ " Prod = " + auxProd
+						+ " MovtoTipo = " + auxMovtoTipo
+					);
+				};
+				//
+				//
+				//console.log("indRegra = " + indRegra + " & " + dadosFil.length);
+				//
+				switch (dadosFil[indRegra].Filtro[indCriterio].FiltroId) {
+					case 1: 		//	Tipo Reg
+
+						if (
+							(auxFiltroOperador === 1 &&  auxMovtoTipo === dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int)			//	"="
+						||  (auxFiltroOperador === 8 && auxMovtoTipo !== dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int)		//	"<>"
+						) {
+							flagRegraOk			=	1;
+						};
+
+						//
+						// Fim Case 1
+						//
+					case 2: 		//	N° Reg
+
+						if (
+							(auxFiltroOperador === 1 && auxRecId === dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int)	//	"="
+							|| (auxFiltroOperador === 2 && auxRecId >= dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int)	//	">="
+							|| (auxFiltroOperador === 3 && auxRecId > dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int)	//	">"
+							|| (auxFiltroOperador === 4 && auxRecId <= dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int)	//	"<="
+							|| (auxFiltroOperador === 5 && auxRecId < dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int)	//	"<"
+							|| (auxFiltroOperador === 6 && dadosFil[indRegra].Filtro[indCriterio].FiltroValVarChar.indexOf(auxRecId) > -1) // "in"
+							|| (auxFiltroOperador === 7 && auxRecId >= dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int
+							 && auxRecId <= dadosFil[indRegra].Filtro[indCriterio].FiltroVal2Int)								//	"beetween"
+							|| (auxFiltroOperador === 8 && auxRecId !== dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Char)	//	"<>"
+							) {
+								flagRegraOk						=	1;
+						};
+
+						if (flagRegraOk === 0) {
+
+							if (
+								(auxFiltroOperador === 1 && auxMovtoReg === dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int)	//	"="
+								|| (auxFiltroOperador === 2 && auxMovtoReg >= dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int)	//	">="
+								|| (auxFiltroOperador === 3 && auxMovtoReg > dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int)	//	">"
+								|| (auxFiltroOperador === 4 && auxMovtoReg <= dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int)	//	"<="
+								|| (auxFiltroOperador === 5 && auxMovtoReg < dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int)	//	"<"
+								|| (auxFiltroOperador === 6 && dadosFil[indRegra].Filtro[indCriterio].FiltroValVarChar.indexOf(auxMovtoReg) > -1) // "in"
+								|| (auxFiltroOperador === 7 && auxMovtoReg >= dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int
+								 && auxMovtoReg <= dadosFil[indRegra].Filtro[indCriterio].FiltroVal2Int)								//	"beetween"
+								|| (auxFiltroOperador === 8 && auxMovtoReg !== dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Char)	//	"<>"
+								) {
+									flagRegraOk						=	1;
+							};
+						};
+						//
+						// Fim Case 2
+						//
+					case 3: 		//	Data Val
+
+						if (
+						(auxFiltroOperador === 1 && auxDateVal === dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Dta)		//	"="
+						|| (auxFiltroOperador === 2 && auxDateVal >= dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Dta)		//	">="
+						|| (auxFiltroOperador === 3 && auxDateVal > dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Dta)		//	">"
+						|| (auxFiltroOperador === 4 && auxDateVal <= dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Dta)		//	"<="
+						|| (auxFiltroOperador === 5 && auxDateVal < dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Dta)		//	"<"
+						|| (auxFiltroOperador === 6 && dadosFil[indRegra].Filtro[indCriterio].FiltroValVarChar.indexOf(auxDateVal) > -1)	//	"in"
+						|| (auxFiltroOperador === 7 && auxDateVal >= dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Dta
+						 && auxDateVal <= dadosFil[indRegra].Filtro[indCriterio].FiltroVal2Dta)								//	"beetween"
+						|| (auxFiltroOperador === 8 && auxDateVal !== dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Dta)	//	"<>"
+						) {
+							flagRegraOk						=	1;
+						};
+						//
+						// Fim Case 3
+						//
+					case 4: 		//	Mês Val.
+
+						if (
+						(auxFiltroOperador === 1 && auxMesVal === dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int)		//	"="
+						|| (auxFiltroOperador === 2 && auxMesVal >= dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int)		//	">="
+						|| (auxFiltroOperador === 3 && auxMesVal > dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int)		//	">"
+						|| (auxFiltroOperador === 4 && auxMesVal <= dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int)		//	"<="
+						|| (auxFiltroOperador === 5 && auxMesVal < dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int)		//	"<"
+						|| (auxFiltroOperador === 6 && dadosFil[indRegra].Filtro[indCriterio].FiltroValVarChar.indexOf(auxMesVal) > -1)	//	"in"
+						|| (auxFiltroOperador === 7 && auxMesVal >= dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int
+						 && auxMesVal <= dadosFil[indRegra].Filtro[indCriterio].FiltroVal2Int)								//	"beetween"
+						|| (auxFiltroOperador === 8 && auxMesVal !== dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int)	//	"<>"
+						) {
+							flagRegraOk						=	1;
+						};
+						//
+						// Fim Case 4
+						//
+					case 5: 		//	Lote
+
+
+						if (
+						(auxFiltroOperador === 1 && auxLote === dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int)		//	"="
+						|| (auxFiltroOperador === 6 && dadosFil[indRegra].Filtro[indCriterio].FiltroValVarChar.indexOf(auxLote) > -1)	//	"in"
+						|| (auxFiltroOperador === 8 && auxLote !== dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int)	//	"<>"
+						) {
+							flagRegraOk						=	1;
+						};
+
+						//
+						// Fim Case 5
+						//
+					case 6: 		//	Produto
+
+						if (
+						(auxFiltroOperador === 1 && auxProd === dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int)		//	"="
+						|| (auxFiltroOperador === 2 && auxProd >= dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int)		//	">="
+						|| (auxFiltroOperador === 3 && auxProd > dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int)		//	">"
+						|| (auxFiltroOperador === 4 && auxProd <= dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int)		//	"<="
+						|| (auxFiltroOperador === 5 && auxProd < dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int)		//	"<"
+						|| (auxFiltroOperador === 6 && dadosFil[indRegra].Filtro[indCriterio].FiltroValVarChar.indexOf(auxProd) > -1)	//	"in"
+						|| (auxFiltroOperador === 7 && auxProd >= dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int
+						 && auxProd <= dadosFil[indRegra].Filtro[indCriterio].FiltroVal2Int)								//	"beetween"
+						|| (auxFiltroOperador === 8 && auxProd !== dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int)	//	"<>"
+						) {
+							flagRegraOk						=	1;
+						};
+						//
+						// Fim Case 6
+						//
+					case 7: 		//	Cliente
+						//	ADIADO
+						//
+						// Fim Case 7
+						//
+					case 8: 		//	N.: Movto Pendente
+
+						//
+						// Fim Case 8
+						//
+					case 9: 		//	N.: NF-e
+
+						//
+						// Fim Case 9
+						//
+					case 10: 		//	N.: Doc Saida
+						//	ADIADO
+						//
+						// Fim Case 10
+						//
+					case 11: 		//	Equipe
+
+						//
+						// Fim Case 11
+						//
+					case 12: 		//	Sit Reg
+
+						//
+						// Fim Case 12
+						//
+					case 13: 		//	Rua
+
+						//
+						// Fim Case 13
+						//
+					case 14: 		//	Corredor
+
+						//
+						// Fim Case 14
+						//
+					case 15: 		//	Area
+
+						//
+						// Fim Case 15
+						//
+					case 16: 		//	Data Rec
+
+						//
+						// Fim Case 16
+						//
+					case 17: 		//	Mes Rec
+
+						//
+						// Fim Case 17
+						//
+					case 18: 		//	Ult Movto
+						//	ADIADO
+						//
+						// Fim Case 18
+						//
+					case 19: 		//	Ult Inventario
+						//	ADIADO
+						//
+						// Fim Case 19
+						//
+					case 20: 		//	Ocorrencia Rec
+
+						//
+						// Fim Case 20
+						//
+					case 21: 		//	Em Operacao (0/1)
+
+						//
+						// Fim Case 21
+						//
+					case 22: 		//	Movto Sem Saldo
+						//
+						// Fim Case 22
+						//
+					case 23: 		//	Pos Parcial
+
+						//
+						// Fim Case 23
+						//
+					case 24: 		//	Sit Particao
+
+						//
+						// Fim Case 24
+						//
+					case 25: 		//	Sit Loc
+					//
+					// 	Fim Case 25
+					//
+					case 26: 		//	Sub Movto sem Saldo (0/1)
+
+					//
+					// Fim Case 26
+					//
+					case 27: 		//	Nro. Movto - Concluído
+
+					//
+					// Fim Case 27
+					//
+
+				};	//	Fim Swicht
+
+			};
+
+			var funcAuxQuebraLocal = function()	{
+
+
+				if (LocalPerc > 0.0 && LocalPerc < 1.0) {
+					FlagTemDisp		=	1;
+					TxtParticao		+=	" - * Disponível " + (100-(LocalPerc*100)) + "% Pallett;";
+				};
+
+				okIndCriterio 	= 	0;
+				countGeral 		= 	-1;
+				var auxCodStyle = 	"";
+				var colEfeito	=	[];
+
+				//
+				//	Faz apenas a pardrão e o filtro 25 (Sit Local)
+				//
+
+			 	if (FlagTemOcup === 0 && FlagTemDispRsv === 0 && FlagTemOcupRsv === 0)
+			 		{	okIndCriterio = 1};
+			 		
+			 	if (FlagTemOcup ===1 && FlagTemDispRsv === 0 && FlagTemOcupRsv === 0 && FlagTemDisp === 0)
+			 		{	okIndCriterio = 2};
+			 	
+			 	if (FlagTemOcup === 0 && FlagTemDispRsv === 1 && FlagTemOcupRsv === 0 && FlagTemDisp === 0)
+			 		{	okIndCriterio = 3};
+			 	
+			 	if (FlagTemOcup === 0 && FlagTemDispRsv === 0 && FlagTemOcupRsv === 1 && FlagTemDisp === 0)
+			 		{	okIndCriterio = 4};
+			 	
+			 	if (FlagTemOcup ===1 && FlagTemDispRsv === 0 && FlagTemOcupRsv === 0 && FlagTemDisp ===1)
+			 		{	okIndCriterio = 5};
+			 	
+			 	if (FlagTemOcup === 0 && FlagTemDispRsv === 1 && FlagTemOcupRsv === 0 && FlagTemDisp ===1)
+			 		{	okIndCriterio = 6};
+			 	
+			 	if (FlagTemOcup === 0 && FlagTemDispRsv === 0 && FlagTemOcupRsv === 1 && FlagTemDisp ===1)
+			 		{	okIndCriterio = 7};
+			 	
+			 	if (FlagTemOcup ===1 && FlagTemDispRsv === 0 && FlagTemOcupRsv === 1 && FlagTemDisp === 0)
+			 		{	okIndCriterio = 8};
+			 	
+			 	if (FlagTemOcup ===1 && FlagTemDispRsv === 1 && FlagTemOcupRsv === 0 && FlagTemDisp === 0)
+			 		{	okIndCriterio = 9};
+			 	
+			 	if (FlagTemOcup ===1 && FlagTemDispRsv === 0 && FlagTemOcupRsv === 1 && FlagTemDisp ===1)
+			 		{	okIndCriterio = 10};
+			 	
+			 	if (FlagTemOcup ===1 && FlagTemDispRsv === 1 && FlagTemOcupRsv === 0 && FlagTemDisp ===1)
+			 		{	okIndCriterio = 11};
+
+			 	if ( FlagTemOcup ===1 && FlagTemDispRsv === 1 && FlagTemOcupRsv === 1 && FlagTemDisp ===1)
+					{	okIndCriterio = 12};
+
+				var  indLocSit	=	okIndCriterio;
+
+				/*for (indRegra = 0; indRegra < dadosFil.length; indRegra++) {
+
+					for (indCriterio = 0; indCriterio < dadosFil[indRegra].Filtro.length; indCriterio++) {
+
+						if (dadosFil[indRegra].Filtro[indCriterio].FiltroId === 25) {
+
+						 	if (dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int === 1
+						 	&& FlagTemOcup === 0 && FlagTemDispRsv === 0 && FlagTemOcupRsv === 0)
+						 		{	okIndCriterio = indRegra};
+						 		
+						 	if (dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int === 2
+						 	&& FlagTemOcup ===1 && FlagTemDispRsv === 0 && FlagTemOcupRsv === 0 && FlagTemDisp === 0)
+						 		{	okIndCriterio = indRegra};
+						 	
+						 	if (dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int === 3
+						 	&& FlagTemOcup === 0 && FlagTemDispRsv === 1 && FlagTemOcupRsv === 0 && FlagTemDisp === 0)
+						 		{	okIndCriterio = indRegra};
+						 	
+						 	if (dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int === 4
+						 	&& FlagTemOcup === 0 && FlagTemDispRsv === 0 && FlagTemOcupRsv === 1 && FlagTemDisp === 0)
+						 		{	okIndCriterio = indRegra};
+						 	
+						 	if (dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int === 5
+						 	&& FlagTemOcup ===1 && FlagTemDispRsv === 0 && FlagTemOcupRsv === 0 && FlagTemDisp ===1)
+						 		{	okIndCriterio = indRegra};
+						 	
+						 	if (dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int === 6
+						 	&& FlagTemOcup === 0 && FlagTemDispRsv === 1 && FlagTemOcupRsv === 0 && FlagTemDisp ===1)
+						 		{	okIndCriterio = indRegra};
+						 	
+						 	if (dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int === 7
+						 	&& FlagTemOcup === 0 && FlagTemDispRsv === 0 && FlagTemOcupRsv === 1 && FlagTemDisp ===1)
+						 		{	okIndCriterio = indRegra};
+						 	
+						 	if (dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int === 8
+						 	&& FlagTemOcup ===1 && FlagTemDispRsv === 0 && FlagTemOcupRsv === 1 && FlagTemDisp === 0)
+						 		{	okIndCriterio = indRegra};
+						 	
+						 	if (dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int === 9
+						 	&& FlagTemOcup ===1 && FlagTemDispRsv === 1 && FlagTemOcupRsv === 0 && FlagTemDisp === 0)
+						 		{	okIndCriterio = indRegra};
+						 	
+						 	if (dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int === 10
+						 	&& FlagTemOcup ===1 && FlagTemDispRsv === 0 && FlagTemOcupRsv === 1 && FlagTemDisp ===1)
+						 		{	okIndCriterio = indRegra};
+						 	
+						 	if (dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int === 11
+
+						 	&& FlagTemOcup ===1 && FlagTemDispRsv === 1 && FlagTemOcupRsv === 0 && FlagTemDisp ===1)
+						 		{	okIndCriterio = indRegra};
+
+						 	if (dadosFil[indRegra].Filtro[indCriterio].FiltroVal1Int === 12
+						 	&& FlagTemOcup ===1 && FlagTemDispRsv === 1 && FlagTemOcupRsv === 1 && FlagTemDisp ===1)
+								{	okIndCriterio = indRegra};
+
+							var  indLocSit	=	okIndCriterio;
+
+						};
+					};
+				};*/
+
+
+				
+				var dadosOrgPos = 	convertePos(dadosPos[indLoc-1][0]);
+
+				if (dadosOrgPos[0] === "Avarias") {
+					dadosOrgPos[0] = "Avarias1";
+				};
+				
+				var auxId 		=	dadosOrgPos[0] + "-" + dadosOrgPos[3] + "-" + dadosOrgPos[4];
+
+				var C = document.getElementById(auxId);
+				C.setAttributeNS(null, "class", "sitpos" + (indLocSit));
+				C.setAttributeNS(null, "title", auxId + " - " + TxtParticao);
+
+				//console.log("Quebra Local. col03TempEfLoc = " + col03TempEfLoc);
+				
+				if (col03TempEfLoc.length %2 !== 0) {
+					col03TempEfLoc.splice(col03TempEfLoc.length-1, 1);
+				};
+
+				if (col03TempEfLoc.length > 0) {
+					for (var indEfeito = 0; indEfeito < col03TempEfLoc.length; indEfeito += 2) {
+
+						auxEfeito1	=	col03TempEfLoc[indEfeito].replace("{","");
+
+						auxEfeito1	=	auxEfeito1.replace("border-style","stroke-dasharray");
+						auxEfeito1	=	auxEfeito1.replace("border-color","stroke");
+
+						auxEfeito2	=	col03TempEfLoc[indEfeito+1].replace("}","");
+						auxEfeito2	=	col03TempEfLoc[indEfeito+1].replace("}","");
+						auxEfeito2	=	auxEfeito2.replace("dashed","2,2");
+
+						//console.log("Quebra Local. auxEfeito1 = " + auxEfeito1 + " auxEfeito2 = " + auxEfeito2);
+
+						auxEfeito1	=	auxEfeito1.replace(" ","");
+						auxEfeito2	=	auxEfeito2.replace(" ","");
+						auxEfeito1	=	auxEfeito1.replace(" ","");
+						auxEfeito2	=	auxEfeito2.replace(" ","");
+						auxEfeito1	=	auxEfeito1.replace(" ","");
+						auxEfeito2	=	auxEfeito2.replace(" ","");
+						auxEfeito1	=	auxEfeito1.replace(" ","");
+						auxEfeito2	=	auxEfeito2.replace(" ","");
+						auxEfeito1	=	auxEfeito1.replace(" ","");
+						auxEfeito2	=	auxEfeito2.replace(" ","");
+
+
+						C.setAttributeNS(null, auxEfeito1, auxEfeito2);
+
+						colRemEfcId[colRemEfcId.length] 		=	[auxId];
+						colRemEfcAtt[colRemEfcAtt.length]		=	[auxEfeito1];
+					};
+				};
+
+
+
+				ruaTxtPosPart	+=	TxtParticao
+
+				TxtPart 		=	""
+				TxtParticao 	=	""
+				LocalPerc 		=	0;
+				FlagApenasDisp	=	0;
+				FlagTemDisp		=	0;
+				FlagTemDispRsv	=	0;
+				FlagTemOcup		=	0;
+				FlagTemOcupRsv	=	0;
+				vetQtdLoteSit	=	[];
+
+			};
+
+			
+
+			var funcAplicaFiltros = function(){
+				
+				//console.log("funcAplicaFiltros. colSelDestaqueId[0] = " + colSelDestaqueId[0]
+				//	+	" dadosDestaques.length = " + dadosDestaques.length);
+
+				countGeral	=	-1;
+
+				for (indDestaque = 0; indDestaque < dadosDestaques.length; indDestaque++) {
+
+					dadosFil = dadosDestaques[indDestaque].Regra;
+
+					//console.log("#dadosDestaques[indDestaque].Id = " + dadosDestaques[indDestaque].Id
+					//+	" ## " + (colSelDestaqueId[0] === dadosDestaques[indDestaque].Id));
+
+
+					//if (colSelDestaqueId.indexOf(dadosDestaques[indDestaque].Id) > -1 || colSelDestaqueId.length === 0) {*/
+
+					if (colSelDestaqueId[0] === dadosDestaques[indDestaque].Id) {
+
+						for (indRegra = 0; indRegra < dadosFil.length; indRegra++) {
+										
+							console.log("#Regra. " + dadosFil[indRegra].Efeito.length);
+
+							countGeral	+= 1;
+
+							for (var indEfeito = 0; indEfeito < dadosFil[indRegra].Efeito.length; indEfeito++) {
+								
+								console.log("#EfeitoId. " + dadosFil[indRegra].Efeito[indEfeito].EfeitoId);
+
+								if (dadosFil[indRegra].Efeito[indEfeito].EfeitoId < 100) {				//	Local
+									
+									if (col02RgLoc.indexOf(countGeral) === -1) {
+										col02RgLoc[col02RgLoc.length] = countGeral;
+									};
+										
+								} else if (dadosFil[indRegra].Efeito[indEfeito].EfeitoId < 200) {		//	Rua
+									
+									if (col02RgRua.indexOf(countGeral) === -1) {
+										col02RgRua[col02RgRua.length] = countGeral;
+									};
+
+								} else {																//	Particao
+									
+									if (col02RgPart.indexOf(countGeral) === -1) {
+										col02RgPart[col02RgPart.length] = countGeral;
+									};
+									
+								};
+							};
+						};
+					};
+				};
+
+				//console.log("col02RgPart = " + col02RgPart);
+				//console.log("col02RgRua = " + col02RgRua);
+				//console.log("col02RgLoc = " + col02RgLoc);
+
+				var col03TempRgRua	=	col02RgRua;
+				var col03TempEfRua	=	[];
+				col03TempRgLoc		=	col02RgLoc;
+				col03TempEfLoc	 	=	[];
+
+				for (indLoc = 0; indLoc < dadosPos.length; indLoc++) {
+				//for (var indLoc = 0; indLoc < 420; indLoc++) {
+					
+					if (indLoc > 0) {
+						
+						if (dadosPos[indLoc][0] !== dadosPos[indLoc-1][0]) {
+
+							funcAuxQuebraLocal();
+
+							col03TempRgLoc	=	col02RgLoc;
+							col03TempEfLoc	=	[];
+
+							if (parseInt(dadosPos[indLoc][0]/10000) !== parseInt(dadosPos[indLoc-1][0]/10000))
+							{
+								console.log("Quebra de Rua. col03TempEfRua = " + col03TempEfRua);
+							};
+
+							if (parseInt(dadosPos[indLoc][0]/10000) !== parseInt(dadosPos[indLoc-1][0]/10000)
+							&& col03TempEfRua.length > 0) {
+								
+								//	Quebra Rua
+								auxDadosPos 	=	convertePos(dadosPos[indLoc-1][0]);
+
+								var auxInd 		=	vetRuaId.indexOf(auxDadosPos[0]);
+								var auxId3 		=	auxDadosPos[0] + "-1-1";
+
+								var C = document.getElementById(auxId3);
+								var N = C.cloneNode(true);
+								var testeEle = document.getElementById("Rua_" + auxDadosPos[0]);
+								testeEle.appendChild(N);
+
+								var C = document.getElementById(auxId3);
+								C.setAttributeNS(null,"id" , "dest" + auxDadosPos[0]);
+								C.setAttributeNS(null, "fill", "none");
+								C.setAttributeNS(null, "width", vetRuaTamX[auxInd]+4);
+								C.setAttributeNS(null, "height", vetRuaTamY[auxInd]+4);
+								C.setAttributeNS(null, "class", "");
+								C.setAttributeNS(null, "x", vetRuaPosX[auxInd]-2);
+								C.setAttributeNS(null, "y", vetRuaPosY[auxInd]-2);
+								//C.setAttributeNS(null, "stroke", "none");
+
+								console.log("Id = " + auxId3 + " col03TempEfRua = " + col03TempEfRua);
+
+								if (col03TempEfRua.length %2 !== 0) {
+									col03TempEfRua.splice(col03TempEfRua.length-1, 1);
+								};
+
+								for (var indEfeito = 0; indEfeito < col03TempEfRua.length; indEfeito += 2) {
+									
+									auxEfeito1	=	col03TempEfRua[indEfeito].replace("{","");
+
+									auxEfeito1	=	auxEfeito1.replace("border-style","stroke-dasharray");
+									auxEfeito1	=	auxEfeito1.replace("border-color","stroke");
+
+									auxEfeito2	=	col03TempEfRua[indEfeito+1].replace("}","");
+									auxEfeito2	=	col03TempEfRua[indEfeito+1].replace("}","");
+									auxEfeito2	=	auxEfeito2.replace("dashed","2,2");
+
+									console.log("auxEfeito1 = " + auxEfeito1 + " auxEfeito2 = " + auxEfeito2);
+
+									auxEfeito1	=	auxEfeito1.replace(" ","");
+									auxEfeito2	=	auxEfeito2.replace(" ","");
+									auxEfeito1	=	auxEfeito1.replace(" ","");
+									auxEfeito2	=	auxEfeito2.replace(" ","");
+									auxEfeito1	=	auxEfeito1.replace(" ","");
+									auxEfeito2	=	auxEfeito2.replace(" ","");
+									auxEfeito1	=	auxEfeito1.replace(" ","");
+									auxEfeito2	=	auxEfeito2.replace(" ","");
+									auxEfeito1	=	auxEfeito1.replace(" ","");
+									auxEfeito2	=	auxEfeito2.replace(" ","");
+
+
+									C.setAttributeNS(null, auxEfeito1, auxEfeito2);
+
+									//indEfeito +=2;
+								};
+
+								col03TempRgRua	=	col02RgRua;
+								col03TempEfRua	=	[];
+							};// "{border-style: dashed; border-color: Aqua;}"
+
+						};
+					};
+
+					if (dadosPos[indLoc][2] === 3) {
+						FlagTemDispRsv		=	1;
+					} else if (dadosPos[indLoc][2] === 2) {
+						FlagTemOcup			=	1;
+					} else if (dadosPos[indLoc][2] === 4) {
+						FlagTemOcupRsv		=	1;
+					};
+
+					var auxOk = 0
+					
+					for (indVet = 0; indVet < vetQtdLoteSit.length; indVet++) {
+						if (vetQtdLoteSit[indVet][0] === dadosPos[indLoc][1]		//	Lote
+						&&	vetQtdLoteSit[indVet][1] === dadosPos[indLoc][2]) {		//	Sit
+							auxOk = 1;
+							
+							vetQtdLoteSit[indVet][2]	+=	dadosPos[indLoc][5];	//	Qtd
+							vetQtdLoteSit[indVet][3]	+=	dadosPos[indLoc][6];	//	Pos
+						};
+					};
+					
+					var auxVet = [dadosPos[indLoc][1],dadosPos[indLoc][2],dadosPos[indLoc][5],dadosPos[indLoc][6]];
+
+					if (auxOk === 0) {
+						vetQtdLoteSit[vetQtdLoteSit.length]	=	auxVet;	//	Lote
+					};
+
+					if (dadosAuxRecLoteId.indexOf(dadosPos[indLoc][1]) > -1
+					//|| dadosAuxCdLoteId.indexOf(dadosPos[indLoc][1]) > -1
+					//|| dadosAuxDbrLoteId.indexOf(dadosPos[indLoc][1]) > -1
+					//|| dadosAuxAvaLoteId.indexOf(dadosPos[indLoc][1]) > -1
+					)  {
+						
+						auxRecId 	=	dadosAuxRecId[dadosAuxRecLoteId.indexOf(dadosPos[indLoc][1])];
+						auxNFeRec 	=	dadosAuxNFeRec[auxRecId-1];
+
+						//dadosAuxCdLoteId
+						//dadosAuxCdRecId
+						//dadosAuxDbrLoteId
+						//dadosAuxAvaLoteId
+
+					} else if (dadosAuxRecLoteId.indexOf(dadosPos[indLoc][1]) > -1) {
+
+					} else if (dadosAuxRecLoteId.indexOf(dadosPos[indLoc][1]) > -1) {
+
+					} else if (dadosAuxRecLoteId.indexOf(dadosPos[indLoc][1]) > -1) {
+
+						auxRecId 	=	0;
+						auxNFeRec 	=	0;	// Rec No. 1 na [0];dadosAuxNFeRec[auxRecId-1];
+					};
+					
+					if (dadosPos[indLoc][3] !== 0) {
+
+						auxMovtoSeq 			= 	dadosPos[indLoc][3];
+						auxMovtoSit 			= 	dadosAuxMovtoSit[dadosAuxMovtoSeq.indexOf(auxMovtoSeq)];
+						auxMovtoReg 			= 	dadosAuxMovtoReg[dadosAuxMovtoSeq.indexOf(auxMovtoSeq)];
+
+						auxDateVal 				= 	new Date("20" + parseInt((dadosPos[indLoc][1] - (parseInt(dadosPos[indLoc][1]/100000000) * 100000000)) / 1000000)
+												+	"/"	 +	parseInt((dadosPos[indLoc][1] - (parseInt(dadosPos[indLoc][1]/1000000) * 1000000)) / 10000)
+												+	"/"  +	parseInt((dadosPos[indLoc][1] - (parseInt(dadosPos[indLoc][1]/10000) * 10000)) / 100));
+						
+						auxMesVal 				= 	parseInt("20" + parseInt((dadosPos[indLoc][1] - (parseInt(dadosPos[indLoc][1]/100000000) * 100000000)) / 1000000)) * 100
+												+	parseInt((dadosPos[indLoc][1] - (parseInt(dadosPos[indLoc][1]/1000000) * 1000000)) / 10000);
+						
+						auxLote 				= 	dadosPos[indLoc][1];
+
+						auxProd 				=	parseInt(dadosPos[indLoc][1] / 100000000);
+
+						auxMovtoTipo 			=	dadosauxMovtoTipoDes[dadosAuxMovtoSeq.indexOf(auxMovtoSeq)];
+
+						auxMovtoTipoDes 		= 	"Em Movto " + vetTipo[(dadosauxMovtoTipoDes[dadosAuxMovtoSeq.indexOf(auxMovtoSeq)]-1)];
+
+						if (dadosauxMovtoTipoDes[dadosAuxMovtoSeq.indexOf(auxMovtoSeq)] !== 1) {
+							auxMovtoTipoDes 	+= 	" " + auxMovtoReg;
+						};
+					};
+
+					TxtParticao		+=	"Sit.: " 		+	dadosPos[indLoc][2]
+									+	" Prod.: " 		+	auxProd
+									+	" Val.: "		+	auxDateVal
+									+	" Qtd.: "		+	dadosPos[indLoc][5]
+									+	" (" 			+	dadosPos[indLoc][6] +  "pos.)"
+									//+	' Dt. Rec.: '	+	&LocalItemRecDataHora.ToString().Trim()
+									+	" Lote: "		+	auxLote + "";
+
+					if (auxRecId > 0) {
+						TxtParticao		+=	" Rec No.: "	+	auxRecId
+										+ 	" NF-e: "		+	auxNFeRec;	// Rec No. 1 na [0];dadosAuxNFeRec[auxRecId-1];
+					};
+
+					if (dadosPos[indLoc][3] !== 0) {
+						TxtParticao		+=	" Mov/Sub: " 	+	dadosPos[indLoc][3] + " / " + dadosPos[indLoc][4]
+										+	" " + auxMovtoTipoDes;
+					};
+
+
+					for (indDestaque = 0; indDestaque < dadosDestaques.length; indDestaque++) {
+
+						if (colSelDestaqueId.indexOf(dadosDestaques[indDestaque].Id) > -1 || colSelDestaqueId.length === 0) {
+
+							dadosFil = dadosDestaques[indDestaque].Regra;
+
+							for (indRegra = 0; indRegra < dadosFil.length; indRegra++) {
+
+								//console.log("indRegra = " + indRegra + " * " + dadosFil.length) ;
+
+								countGeral	+=	1;
+								flagRegraOk = 	0;
+								
+								//if (indLoc < 200) {
+								//	console.log("#0. countGeral" + countGeral);
+								//	console.log("#1. col03TempRgRua = " + col03TempRgRua);
+								//};
+
+								if (col03TempRgLoc.indexOf(countGeral) > -1 || col03TempRgRua.indexOf(countGeral) || col02RgPart.indexOf(countGeral)) {
+
+									for (indCriterio = 0; indCriterio < dadosFil[indRegra].Filtro.length; indCriterio++) {	
+										auxFiltroOperador	=	dadosFil[indRegra].Filtro[indCriterio].FiltroOperador;
+										
+										funcTestaCriterios();
+										
+									};
+
+									if (flagRegraOk === 1) {
+
+										if (indLoc < 200) {
+											console.log("ok! countGeral" + countGeral + " col03TempRgRua = " + col03TempRgRua) ;
+										} 
+
+										for (var indEfeito = 0; indEfeito < dadosFil[indRegra].Efeito.length; indEfeito++) {
+
+											var auxArray1 	=	dadosFil[indRegra].Efeito[indEfeito].EfeitoAuxVarChar.replace(":",",");
+											auxArray1 		=	auxArray1.replace(":",",");
+											auxArray1 		=	auxArray1.replace(";",",");
+											auxArray1 		=	auxArray1.replace(":",",");
+											auxArray1 		=	auxArray1.replace(";",",");
+											auxArray1 		=	auxArray1.replace(":",",");
+											auxArray1 		=	auxArray1.replace(";",",");
+											auxArray1 		=	auxArray1.replace(":",",");
+											auxArray1 		=	auxArray1.replace(";",",");
+											auxArray1 		=	auxArray1.replace(":",",");
+											auxArray1 		=	auxArray1.replace(";",",");
+
+											var auxArray 	= 	auxArray1.split(",");
+
+											if (dadosFil[indRegra].Efeito[indEfeito].EfeitoId < 100) {				//	Local
+									
+												col03TempEfLoc	=	col03TempEfLoc.concat(auxArray);
+
+												if (col03TempRgLoc.indexOf(countGeral) > -1) {
+													col03TempRgLoc[col03TempRgLoc.indexOf(countGeral)]	=	9999;
+												};
+													
+											} else if (dadosFil[indRegra].Efeito[indEfeito].EfeitoId < 200) {		//	Rua
+
+												//console.log("#0b. countGeral" + countGeral);
+												//console.log("#1b. col03TempRgRua = " + col03TempRgRua);
+
+												if (col03TempRgRua.indexOf(countGeral) > -1) {
+													col03TempRgRua[col03TempRgRua.indexOf(countGeral)]	=	9999;
+													col03TempEfRua	=	col03TempEfRua.concat(auxArray);
+												};
+
+											} else {																//	Particao
+												
+												//	Aplicar!!!
+												
+											};
+
+											//	colEfeito	 	=	colEfeito.concat(auxArray);
+
+											//
+											//	Adicionar efeito no Particao / col03TempEfLoc / col03TempEfRua
+											//
+											//	Remove do col03TempRgLoc / col03TempRgRua
+											//
+
+										};
+									};
+
+								};			// Fim 	If col02RgLoc.indexOf(countGeral) > -1
+
+							};				// Fim 	For dadosFil
+
+						};				 	//if (colSelDestaqueId.indexOf(indDestaque) > -1) {
+
+					};						// Fim 	For dadosDestaques
+
+
+					LocalPerc +=	dadosPos[indLoc][6];
+				};
+
+				
+				if (dadosPos.length > 0) {
+					
+					indLoc 	=	dadosPos.length -1;
+					funcAuxQuebraLocal();
+
+					//	Quebra Rua
+
+					if (col03TempEfRua.length > 0) {
+						auxDadosPos 	=	convertePos(dadosPos[indLoc-1][0]);
+						var auxInd 		=	vetRuaId.indexOf(auxDadosPos[0]);
+						var auxId3 		=	auxDadosPos[0] + "-1-1";
+
+						var C = document.getElementById(auxId3);
+						var N = C.cloneNode(true);
+						var testeEle = document.getElementById("Rua_" + auxDadosPos[0]);
+						testeEle.appendChild(N);
+
+						var C = document.getElementById(auxId3);
+						C.setAttributeNS(null,"id" , "dest" + auxDadosPos[0]);
+						C.setAttributeNS(null, "fill", "none");
+						C.setAttributeNS(null, "width", vetRuaTamX[auxInd]+4);
+						C.setAttributeNS(null, "height", vetRuaTamY[auxInd]+4);
+						C.setAttributeNS(null, "class", "");
+						C.setAttributeNS(null, "x", vetRuaPosX[auxInd]-2);
+						C.setAttributeNS(null, "y", vetRuaPosY[auxInd]-2);
+						//C.setAttributeNS(null, "stroke", "none");
+
+						console.log("ult Quebra Rua. col03TempEfRua = " + col03TempEfRua);
+
+						if (col03TempEfRua.length %2 !== 0) {
+							col03TempEfRua.splice(col03TempEfRua.length-1, 1);
+						};
+
+						for (var indEfeito = 0; indEfeito < col03TempEfRua.length; indEfeito += 2) {
+							
+							auxEfeito1	=	col03TempEfRua[indEfeito].replace("{","");
+
+							auxEfeito1	=	auxEfeito1.replace("border-style","stroke-dasharray");
+							auxEfeito1	=	auxEfeito1.replace("border-color","stroke");
+
+							auxEfeito2	=	col03TempEfRua[indEfeito+1].replace("}","");
+							auxEfeito2	=	col03TempEfRua[indEfeito+1].replace("}","");
+							auxEfeito2	=	auxEfeito2.replace("dashed","2,2");
+
+							console.log("ult. auxEfeito1 = " + auxEfeito1 + " auxEfeito2 = " + auxEfeito2);
+
+							auxEfeito1	=	auxEfeito1.replace(" ","");
+							auxEfeito2	=	auxEfeito2.replace(" ","");
+							auxEfeito1	=	auxEfeito1.replace(" ","");
+							auxEfeito2	=	auxEfeito2.replace(" ","");
+							auxEfeito1	=	auxEfeito1.replace(" ","");
+							auxEfeito2	=	auxEfeito2.replace(" ","");
+							auxEfeito1	=	auxEfeito1.replace(" ","");
+							auxEfeito2	=	auxEfeito2.replace(" ","");
+							auxEfeito1	=	auxEfeito1.replace(" ","");
+							auxEfeito2	=	auxEfeito2.replace(" ","");
+
+
+							C.setAttributeNS(null, auxEfeito1, auxEfeito2);
+
+							//indEfeito +=2;
+						};
+
+					};
+
+				};	//	if (dadosPos.length > 0) {
+
+			};	//	Fim Function
+
+
+			var retDadosPath = function(pathId) {
+
+				var x 		=  	0;
+				var sair 	=	0;
+
+				if (dataPath.length > 0) {
+					while(sair === 0) {
+
+						if (dataPath[x].id === pathId) {
+							sair	=	2;
+						};
+						
+						if (sair === 0) {
+							if (dataPath.length === (x + 1)) {
+								sair	=	1;
+							} else {
+								x 		+=	1;
+							};
+						};
+					};
+				};
+
+				if (sair === 2) {
+					return ([dataPath[x].x1,dataPath[x].x2,dataPath[x].y1,dataPath[x].y2]);
+				} else {
+					return ([0,0,0,0]);
+				};
+			};
+
+			var retDadosEstrutura = function(estId) {
+
+				var x 		=  	0;
+				var sair 	=	0;
+
+				if (dataEst.length > 0) {
+					while(sair === 0) {
+
+						if (dataEst[x].id === estId) {
+							sair	=	2;
+						};
+						
+						if (sair === 0) {
+							if (dataEst.length === (x + 1)) {
+								sair	=	1;
+							} else {
+								x 		+=	1;
+							};
+						};
+					};
+				};
+
+				if (sair === 2) {
+					return ([dataEst[x].id,dataEst[x].nome,dataEst[x].tipo,dataEst[x].posX,dataEst[x].posY,dataEst[x].padraoRuasQtdPos,dataEst[x].padraoRuasAndares,
+							dataEst[x].qtdRuas,dataEst[x].orientaPosRua,dataEst[x].orientaRuaArea,dataEst[x].ptPath,dataEst[x].multiR,dataEst[x].ptFix]);
+				} else {
+					return ([0,0,0,0,0,0,0,0,0,0,0,0,0]);
+				};
+			};
+
+			var desenhaArma = function() {
+				
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "g");
+				C.setAttributeNS(null, "id", "quadroArma");
+				S.appendChild(C);
+
+				var G = document.getElementById("quadroArma");
+				
+				for(var i=0;i<dataEst.length;i++) {
+
+					var posRuaX 		= dataEst[i].posX;
+					var posRuaY 		= dataEst[i].posY;		
+					var tamRuaX 		= 0;
+					var tamRuaY 		= 0;
+					var configEspRua	=	dataEst[i].espRua;
+
+					var C = document.createElementNS("http://www.w3.org/2000/svg", "g");
+					C.setAttributeNS(null, "id", dataEst[i].nome);
+					G.appendChild(C);
+
+					for (var indRua=1;indRua<=dataEst[i].qtdRuas;indRua++) {
+
+
+
+						if (indRua > 1) {
+							if (dataEst[i].orientaRuaArea === "Horizontal") {
+								posRuaX += tamRuaX + configEspRua;
+							} else if (dataEst[i].orientaRuaArea === "Verical") {
+								posRuaY += tamRuaY + configEspRua;
+							};
+						};
+
+
+
+						var posLocalX = posRuaX;
+						var posLocalY = posRuaY;
+
+						if (indRua === 1) {
+							if (dataEst[i].orientaPosRua === "Horizontal") {
+								tamRuaX	=	(configTamLocal + configEspLocal) * dataEst[i].padraoRuasQtdPos;
+								tamRuaY	=	(configTamLocal + configEspLocal) * dataEst[i].padraoRuasAndares;
+							} else if (dataEst[i].orientaPosRua === "Verical") {
+								tamRuaY	=	(configTamLocal + configEspLocal) * dataEst[i].padraoRuasQtdPos;
+								tamRuaX	=	(configTamLocal + configEspLocal) * dataEst[i].padraoRuasAndares;
+							} else if (dataEst[i].orientaPosRua === "Coluna Base10") {
+								tamRuaX	=	(configTamLocal + configEspLocal) * 10;
+
+								if (dataEst[i].padraoRuasQtdPos % 10 === 0) {
+									tamRuaY	=	(configTamLocal + configEspLocal) * dataEst[i].padraoRuasQtdPos / 10;
+								} else {
+									tamRuaY	=	(configTamLocal + configEspLocal) * (parseInt(dataEst[i].padraoRuasQtdPos / 10) + 1);
+								};
+									
+							} else if (dataEst[i].orientaPosRua === "Linha Base3") {
+								tamRuaY	=	(configTamLocal + configEspLocal) * 3;
+
+								if (dataEst[i].padraoRuasQtdPos % 3 === 0) {
+									tamRuaX	=	(configTamLocal + configEspLocal) * dataEst[i].padraoRuasQtdPos / 3;
+								} else {
+									tamRuaX	=	(configTamLocal + configEspLocal) * (parseInt(dataEst[i].padraoRuasQtdPos / 3) + 1);
+								};
+
+							} else if (dataEst[i].orientaPosRua === "Linha Base5") {
+								tamRuaY	=	(configTamLocal + configEspLocal) * 5;
+
+								if (dataEst[i].padraoRuasQtdPos % 5 === 0) {
+									tamRuaX	=	(configTamLocal + configEspLocal) * dataEst[i].padraoRuasQtdPos / 5;
+								} else {
+									tamRuaX	=	(configTamLocal + configEspLocal) * (parseInt(dataEst[i].padraoRuasQtdPos / 5) + 1);
+								};
+							};
+						};
+
+						var aux = dataEst[i].nome.indexOf(" ");
+						var len = dataEst[i].nome.length;
+
+						if (aux > 0) {
+							aux +=	1
+							var ruaId = dataEst[i].nome.substring(aux,len) + indRua.toString();
+						} else {
+							var ruaId = dataEst[i].nome + indRua;
+						};
+
+						vetRuaId[vetRuaId.length]			=	ruaId;
+						vetRuaPosY[vetRuaPosY.length]		=	posRuaY;
+						vetRuaPosX[vetRuaPosX.length]		=	posRuaX;
+						vetRuaTamY[vetRuaTamY.length]		=	tamRuaY;
+						vetRuaTamX[vetRuaTamX.length]		=	tamRuaX;
+
+						var auxGrpRuaId 	= 	"Rua_" + ruaId //+ "(" + tamRuaX + "," + tamRuaY + ")";
+						var C = document.createElementNS("http://www.w3.org/2000/svg", "g");
+						C.setAttributeNS(null, "id", auxGrpRuaId);
+						document.getElementById(dataEst[i].nome).appendChild(C);
+
+						for (var indPos=0;indPos<dataEst[i].padraoRuasQtdPos;indPos++) {
+
+							if (indPos !== 0) {
+
+								if (dataEst[i].orientaPosRua === "Horizontal") {
+									posLocalX	+=	configTamLocal + configEspLocal;
+									posLocalY	=	posRuaY
+								} else if (dataEst[i].orientaPosRua === "Verical") {
+									posLocalX	=	posRuaX
+									posLocalY	+=	configTamLocal + configEspLocal;
+								} else if (dataEst[i].orientaPosRua === "Coluna Base10") {
+									posLocalX	+=	configTamLocal + configEspLocal;
+
+									if (indPos % 10 === 0) {
+										posLocalX	=	posRuaX;
+										posLocalY	+=	configTamLocal + configEspLocal;
+									};
+
+								} else if (dataEst[i].orientaPosRua === "Linha Base3") {
+									posLocalY	+=	configTamLocal + configEspLocal;
+
+									if (indPos % 3 === 0) {
+										posLocalX	+=	configTamLocal + configEspLocal;
+										posLocalY	=	posRuaY;
+									};
+
+								} else if (dataEst[i].orientaPosRua === "Linha Base5") {
+									posLocalY	+=	configTamLocal + configEspLocal;
+
+									if (indPos % 5 === 0) {
+										posLocalX	+=	configTamLocal + configEspLocal;
+										posLocalY	=	posRuaY;
+									};
+								};
+								
+							};
+							
+							var localId = ruaId + "-" + (indPos + 1).toString() + "-1";
+
+							var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+							C.setAttributeNS(null, "id", localId);
+							C.setAttributeNS(null, "height", configTamLocal);
+							C.setAttributeNS(null, "width", configTamLocal);
+							C.setAttributeNS(null, "x", posLocalX);
+							C.setAttributeNS(null, "y", posLocalY);
+							C.setAttributeNS(null, "fill", "PaleGreen");
+							C.setAttributeNS(null, "class", "sitpos0");
+							document.getElementById(auxGrpRuaId).appendChild(C);
+
+							for (var indAnd=2;indAnd<=dataEst[i].padraoRuasAndares;indAnd++) {
+								
+								if (dataEst[i].orientaPosRua === "Horizontal") {
+									posLocalY	+=	configTamLocal + configEspLocal;
+								} else if (dataEst[i].orientaPosRua === "Verical") {
+									posLocalX	+=	configTamLocal + configEspLocal;
+								};
+
+								var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+								localIdAnd	=	ruaId + "-" + (indPos + 1).toString() + "-" + indAnd.toString();
+								C.setAttributeNS(null, "id", localIdAnd);
+								C.setAttributeNS(null, "height", configTamLocal);
+								C.setAttributeNS(null, "width", configTamLocal);
+								C.setAttributeNS(null, "x", posLocalX);
+								C.setAttributeNS(null, "y", posLocalY);
+								//C.setAttributeNS(null, "fill", "PaleGreen");
+								C.setAttributeNS(null, "class", "sitpos0");
+								document.getElementById(auxGrpRuaId).appendChild(C);
+							};
+
+						};
+					};
+				};
+			};
+
+
+			var desenhaPaths = function() {
+
+				var G = document.getElementById("quadroArma");
+
+				for (indPath=0;indPath<dataPath.length;indPath++) {
+
+			    	var auxD = "M " + dataPath[indPath].x1 + " " + dataPath[indPath].y1
+			    		+	   " L " + dataPath[indPath].x2 + " " + dataPath[indPath].y2;
+
+				    var C = document.createElementNS("http://www.w3.org/2000/svg", "path");
+						C.setAttributeNS(null, "id", dataPath[indPath].id);
+						C.setAttributeNS(null, "d", auxD);
+						C.setAttributeNS(null, "stroke", "red");
+						C.setAttributeNS(null, "stroke-width", 3);
+						C.setAttributeNS(null, "fill", "none");
+						C.setAttributeNS(null, "stroke-dasharray","5, 5");
+					G.appendChild(C);
+			    };
+			};
+
+
+
+
+			var retPtSaida = function(ptLocalId) {
+
+				var dadosLocal				=	convertePos(ptLocalId);
+				var dadosEst 				=	retDadosEstrutura(dadosLocal[1]);
+
+				var estNome 				=	dadosEst[1];
+				var estTipo				 	=	dadosEst[2];
+				var estPosX 				=	dadosEst[3];
+				var estPosY 				=	dadosEst[4];
+				var estPadraoRuasQtdPos		=	dadosEst[5];
+				var estPadraoRuasAndares	=	dadosEst[6];
+				var estqtdRuas 				=	dadosEst[7];
+				var estorientaPosRua 		=	dadosEst[8];
+				var estOrientaRuaArea 		=	dadosEst[9];
+				var estPtPath 				=	dadosEst[10];
+				var estMultiR 				=	dadosEst[11];
+				var estPtFix 				=	dadosEst[12];
+
+				var auxPath = estPtPath.substring(0,2);
+
+				var dadosPath = retDadosPath(auxPath);
+
+				var ptSaida = [0,0];
+
+				if (estPtPath.substring(0,1) === "V") {
+					ptSaida[0]	=	dadosPath[0];
+					ptSaida[1]	=	estMultiR * dadosLocal[2] + estPtFix + dadosPath[2];
+					ptSaida[2]	=	auxPath;
+				} else {
+					ptSaida[0]	=	estMultiR * dadosLocal[2] + estPtFix + dadosPath[0];
+					ptSaida[1]	=	dadosPath[2];
+					ptSaida[2]	=	auxPath;
+				};
+
+				return ptSaida;
+			};
+
+			var desenhaPtSaida = function(ptLocalId) {
+
+				var ptSaida = retPtSaida(ptLocalId);
+
+				var G = document.getElementById("quadroArma");
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+					C.setAttributeNS(null, "id", ptLocalId);
+					C.setAttributeNS(null, "fill", "red");
+					C.setAttributeNS(null, "cx", ptSaida[0]);
+					C.setAttributeNS(null, "cy", ptSaida[1]);
+					C.setAttributeNS(null, "r", 10);
+				G.appendChild(C);
+
+			};
+
+
+			var desenhaPathLigaPt = function(orgLocalId,dstLocalId,auxPathId) {
+
+				var G = document.getElementById("quadroArma");
+
+				var orgPtSaida = retPtSaida(orgLocalId);
+				var dstPtSaida = retPtSaida(dstLocalId);
+
+				var dadosOrgPos = convertePos(orgLocalId);
+				var dadosDstPos = convertePos(dstLocalId);
+
+				if (auxPathId.length > 0) {
+					var aux2Id = auxPathId.substring(1,auxPathId.length);
+				} else {
+					var aux2Id = "pathLpt" + orgLocalId.toString() + dstLocalId.toString();	
+				};
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+					C.setAttributeNS(null, "id", "org" + aux2Id);
+					C.setAttributeNS(null, "fill", "yellow");
+					C.setAttributeNS(null, "cx", orgPtSaida[0]);
+					C.setAttributeNS(null, "cy", orgPtSaida[1]);
+					C.setAttributeNS(null, "r", 7);
+					C.setAttributeNS(null, "opacity", "0");
+					C.setAttributeNS(null, "title", dadosOrgPos[0]);
+				G.appendChild(C);
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+					C.setAttributeNS(null, "id", "dst" + aux2Id);
+					C.setAttributeNS(null, "fill", "blue");
+					C.setAttributeNS(null, "cx", dstPtSaida[0]);
+					C.setAttributeNS(null, "cy", dstPtSaida[1]);
+					C.setAttributeNS(null, "r", 7);
+					C.setAttributeNS(null, "opacity", "0");
+					C.setAttributeNS(null, "title", dadosDstPos[0]);
+				G.appendChild(C);
+
+				var sair 	=	0;
+				var	x 		=	0;
+
+				var caminho 			=	orgPtSaida[2] + "-" + orgPtSaida[0] + "-" + orgPtSaida[1] + ";"	;
+
+				var col01Nivel			=	[0];
+				var col01PathId			=	[orgPtSaida[2]];
+				var col01Caminho		=	[caminho];
+				var col01D 				=	["M " + orgPtSaida[0] + "," + orgPtSaida[1] + " L"];
+				var	nivel 				=	0;
+				var okCaminho			=	"";
+				okD						=	"";
+
+				while (sair === 0) {
+
+					var qtdVet		=	col01Nivel.length;
+					var auxQtdVet 	=	col01Nivel.length;
+
+					for (var ind=0;ind<qtdVet;ind++) {
+
+						if (col01Nivel[ind] === nivel) {
+							for (var indPath=0;indPath<dataPath.length;indPath++) {
+
+								if (col01PathId[ind] === dataPath[indPath].id) {
+
+									for (var indCross=0;indCross<dataPath[indPath].cross.length;indCross++) {
+
+										if (dstPtSaida[2] === dataPath[indPath].cross[indCross].crossId) {
+											auxD		=	col01D[ind] + " " +  dataPath[indPath].cross[indCross].crossX
+																		+	" " + dataPath[indPath].cross[indCross].crossY;
+											okD			=	auxD + " " +  dstPtSaida[0] + " " + dstPtSaida[1];
+											okCaminho	=	col01Caminho[ind] + dstPtSaida[2] + "-" + dstPtSaida[0] + "-" + dstPtSaida[1] + ";"	;
+											sair		=	1;
+										} else {
+
+											var auxChar = dataPath[indPath].cross[indCross].crossId.toString();
+
+											caminho 				=	col01Caminho[ind];
+											
+
+											var auxIndexOf = caminho.toString().indexOf(dataPath[indPath].cross[indCross].crossId);
+
+											if (auxIndexOf < 0) {
+
+												caminho 				=	col01Caminho[ind] + dataPath[indPath].cross[indCross].crossId
+																		+	"-" + dataPath[indPath].cross[indCross].crossX
+																		+	"-" + dataPath[indPath].cross[indCross].crossY + ";" ;
+
+												auxD					=	col01D[ind] + " " +  dataPath[indPath].cross[indCross].crossX
+																		+	" " + dataPath[indPath].cross[indCross].crossY;
+
+												col01Nivel[auxQtdVet]	=	nivel + 1;
+												col01PathId[auxQtdVet]	=	dataPath[indPath].cross[indCross].crossId;
+												col01Caminho[auxQtdVet]	=	[caminho];
+												col01D[auxQtdVet]		=	auxD;
+
+												auxQtdVet				+=	1;
+											};
+										};
+									};
+								};
+
+							};
+						};
+					};
+
+					if (nivel > 5) {
+						sair	=	1;
+					};
+
+					nivel 	+=	1;
+				};
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "path");
+					C.setAttributeNS(null, "id", aux2Id);
+					C.setAttributeNS(null, "d", okD.toString());
+					C.setAttributeNS(null, "stroke", "lightgray");
+					C.setAttributeNS(null, "stroke-width", 2);
+					C.setAttributeNS(null, "fill", "none");
+					C.setAttributeNS(null, "stroke-dasharray", "3,3");
+					C.setAttributeNS(null, "opacity", "0");
+					C.setAttributeNS(null, "class", "ani");
+					
+				G.appendChild(C);
+				
+				//console.log("#7");	
+			};
+
+
+			var convertePos = function(localId) {
+
+				var novaId		=	"?";
+				var ruaNome		=	"?";
+				var ruaEstId	=  	0;
+				var ruaInt 		=	parseInt(localId.toString().substring(2,5));
+				var ruaNumero	=	0;
+				var localNum	=	parseInt(localId.toString().substring(5,8),10);
+				var localAndar	=	parseInt(localId.toString().substring(8,9),10);
+
+				
+
+				if (ruaInt === 1) {
+					ruaNumero	=	1;
+					ruaNome		=	"A1"
+					ruaEstId	=	4390;
+				}
+				else if (ruaInt >= 2 && ruaInt <= 38) {
+					ruaNumero	=	ruaInt-1;
+					ruaNome		=	"B" + ruaNumero;
+					ruaEstId	=	4391;
+				}
+				else if (ruaInt >= 39 && ruaInt <= 75) {
+					ruaNumero	=	ruaInt-38;
+					ruaNome		=	"C" + ruaNumero;
+					ruaEstId	=	4392;
+				}
+				else if (ruaInt >= 76 && ruaInt <= 112) {
+					ruaNumero	=	ruaInt-75;
+					ruaNome		=	"D" + ruaNumero;
+					ruaEstId	=	4393;
+				}
+				else if (ruaInt >= 113 && ruaInt <= 149) {
+					ruaNumero	=	ruaInt-112;
+					ruaNome		=	"E" + ruaNumero;
+					ruaEstId	=	4394;
+				}
+				else if (ruaInt >= 150 && ruaInt <= 186) {
+					ruaNumero	=	ruaInt-149;
+					ruaNome		=	"F" + ruaNumero;
+					ruaEstId	=	4395;
+				}
+				else if (ruaInt >= 187 && ruaInt <= 224) {
+					ruaNumero	=	ruaInt-186;
+					ruaNome		=	"G" + ruaNumero;
+					ruaEstId	=	4396;
+				}
+				else if (ruaInt === 225) {
+					ruaNumero	=	ruaInt-224;
+					ruaNome		=	"H" + ruaNumero;
+					ruaEstId	=	4397;
+				}
+				else if (ruaInt >= 226 && ruaInt <= 243) {
+					ruaNumero	=	ruaInt-225;
+					ruaNome		=	"I" + ruaNumero;
+					ruaEstId	=	4398;
+				}
+				else if (ruaInt >= 244 && ruaInt <= 261) {
+					ruaNumero	=	ruaInt-243;
+					ruaNome		=	"J" + ruaNumero;
+					ruaEstId	=	4399;
+				}
+				else if (ruaInt >= 262 && ruaInt <= 264) {
+					ruaNumero	=	ruaInt-261;
+					ruaNome		=	"T" + ruaNumero;
+					ruaEstId	=	4400;
+				}
+				else if (ruaInt === 998) {
+					ruaNumero	=	1;
+					ruaNome		=	"Picking" + ruaNumero;
+					ruaEstId	=	4388;
+				}
+				else if (ruaInt >= 800 && ruaInt <= 820) {
+					ruaNumero	=	ruaInt-799;
+					ruaNome		=	"Rec" + ruaNumero;
+					ruaEstId	=	4386;
+				}
+				else if (ruaInt >= 900 && ruaInt <= 920) {
+					ruaNumero	=	ruaInt-899;
+					ruaNome		=	"Exp" + ruaNumero;
+					ruaEstId	=	4387;
+				}
+				else if (ruaInt === 997) {
+					ruaNumero	=	1;
+					ruaNome		=	"Avarias";
+					ruaEstId	=	4389;
+				};
+
+				//console.log("fim. LocalId = " + localId
+				//	+	" ruaNome = " + ruaNome
+				//	+	" ruaEstId = " + ruaEstId
+				//	+	" ruaNumero = " + ruaNumero
+				//	+	" localNum = " + localNum
+				//	+	" localAndar = " + localAndar);
+			
+				return ([ruaNome,ruaEstId,ruaNumero,localNum,localAndar]);
+			};
+
+			var tamFaixaTempo	=	490;
+			var posControleX 	=	820;
+			var posControleY 	=	200;
+
+			var funcMontaBotoes = function() {
+
+
+				//console.log("#15");
+
+				var N = document.createElementNS("http://www.w3.org/2000/svg", "g");
+				N.setAttributeNS(null, "id", "controle");
+				N.setAttributeNS(null, "transform", "translate(" + posControleX + "," + posControleY + ")");
+				S.appendChild(N);
+
+				var N = document.getElementById("controle");
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "bordaControle");
+				C.setAttributeNS(null, "x", "-5");
+				C.setAttributeNS(null, "y", "-5");
+				C.setAttributeNS(null, "width", "500");
+				C.setAttributeNS(null, "height", "105");
+				C.setAttributeNS(null, "fill", "none");
+				C.setAttributeNS(null, "opacity", ".8");
+				C.setAttributeNS(null, "stroke", "grey");
+				C.setAttributeNS(null, "stroke-width", "4");
+				C.setAttributeNS(null, "stroke-dasharray", "5,5");
+				C.setAttributeNS(null, "rx", "9");
+				N.appendChild(C);
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "btVoltaIni");
+				C.setAttributeNS(null, "x", "4");
+				C.setAttributeNS(null, "y", "70");
+				C.setAttributeNS(null, "width", "15");
+				C.setAttributeNS(null, "height", "15");
+				C.setAttributeNS(null, "fill", "yellow");
+				C.setAttributeNS(null, "opacity", ".5");
+				C.setAttributeNS(null, "stroke", "grey");
+				C.setAttributeNS(null, "stroke-width", "2");
+				C.setAttributeNS(null, "rx", "3");
+				C.setAttributeNS(null, "onclick", "funcPrev()");
+				C.setAttributeNS(null, "title", "Prev");
+				N.appendChild(C);
+
+				var auxBtPath = "M 13 71 13 83 5 77";
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "path");
+				C.setAttributeNS(null, "id", "lablePrev");
+				C.setAttributeNS(null, "d", auxBtPath);
+				C.setAttributeNS(null, "fill", "black");
+				C.setAttributeNS(null, "opacity", "1");
+				C.setAttributeNS(null, "pointer-events","none");
+				N.appendChild(C);
+
+				N.appendChild(C);
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "lablePrev2");
+				C.setAttributeNS(null, "fill", "black");
+				C.setAttributeNS(null, "height","12");
+				C.setAttributeNS(null, "width","2");
+				C.setAttributeNS(null, "x","14");
+				C.setAttributeNS(null, "y","71");
+				C.setAttributeNS(null, "pointer-events","none");	
+				N.appendChild(C);
+				
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "btPrev");
+				C.setAttributeNS(null, "x", "24");
+				C.setAttributeNS(null, "y", "70");
+				C.setAttributeNS(null, "width", "15");
+				C.setAttributeNS(null, "height", "15");
+				C.setAttributeNS(null, "fill", "orange");
+				C.setAttributeNS(null, "opacity", ".5");
+				C.setAttributeNS(null, "stroke", "grey");
+				C.setAttributeNS(null, "stroke-width", "2");
+				C.setAttributeNS(null, "rx", "3");
+				C.setAttributeNS(null, "onclick", "funcBtVolta1S()");
+				C.setAttributeNS(null, "title", "Retroceder 1 Segundo");
+				N.appendChild(C);
+
+				var auxBtPath = "M 33 71 33 83 25 77";
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "path");
+				C.setAttributeNS(null, "id", "lablePrevS");
+				C.setAttributeNS(null, "d", auxBtPath);
+				C.setAttributeNS(null, "fill", "black");
+				C.setAttributeNS(null, "opacity", "1");
+				C.setAttributeNS(null, "pointer-events","none");
+				N.appendChild(C);
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg","text");
+				C.setAttributeNS(null, "x", "33");
+				C.setAttributeNS(null, "y", "82");
+				C.setAttributeNS(null, "fill","black");
+				C.setAttributeNS(null, "font-size","14px");
+				var textNode = document.createTextNode("s");
+				C.appendChild(textNode);
+				N.appendChild(C);
+
+				
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "btInicio0");
+				C.setAttributeNS(null, "x", "44");
+				C.setAttributeNS(null, "y", "68");
+				C.setAttributeNS(null, "width", "18");
+				C.setAttributeNS(null, "height", "18");
+				C.setAttributeNS(null, "fill", "lime");
+				//C.setAttributeNS(null, "opacity", ".5");
+				C.setAttributeNS(null, "stroke", "grey");
+				C.setAttributeNS(null, "stroke-width", "3");
+				C.setAttributeNS(null, "rx", "3");
+				C.setAttributeNS(null, "title", "Play");
+				C.setAttributeNS(null, "onclick", "setTimeZero()");
+				var ani = document.createElementNS("http://www.w3.org/2000/svg","animate");
+				ani.setAttribute("attributeName", "opacity");
+				ani.setAttribute("to", 0);
+				ani.setAttribute("begin", "startAni.end");
+				C.appendChild(ani);
+				N.appendChild(C);
+
+				var auxBtPath = "M 49 71 49 83 58 77";
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "path");
+				C.setAttributeNS(null, "id", "lablePlay");
+				C.setAttributeNS(null, "d", auxBtPath);
+				C.setAttributeNS(null, "fill", "black");
+				C.setAttributeNS(null, "opacity", "1");
+				C.setAttributeNS(null, "pointer-events","none");
+				N.appendChild(C);
+
+				
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "btPause");
+				C.setAttributeNS(null, "x", "67");
+				C.setAttributeNS(null, "y", "70");
+				C.setAttributeNS(null, "width", "15");
+				C.setAttributeNS(null, "height", "15");
+				C.setAttributeNS(null, "fill", "aqua");
+				C.setAttributeNS(null, "opacity", ".5");
+				C.setAttributeNS(null, "stroke", "grey");
+				C.setAttributeNS(null, "stroke-width", "2");
+				C.setAttributeNS(null, "rx", "3");
+				C.setAttributeNS(null, "onclick", "funcBtPause()");
+				C.setAttributeNS(null, "title", "Pause");
+				N.appendChild(C);
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "lablePause");
+				C.setAttributeNS(null, "fill", "black");
+				C.setAttributeNS(null, "height","8");
+				C.setAttributeNS(null, "width","2");
+				C.setAttributeNS(null, "x","72");
+				C.setAttributeNS(null, "y","73");
+				C.setAttributeNS(null, "pointer-events","none");
+				N.appendChild(C);
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "lablePause2");
+				C.setAttributeNS(null, "fill", "black");
+				C.setAttributeNS(null, "height","8");
+				C.setAttributeNS(null, "width","2");
+				C.setAttributeNS(null, "x","75");
+				C.setAttributeNS(null, "y","73");
+				C.setAttributeNS(null, "pointer-events","none");	
+				N.appendChild(C);
+
+				
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "btStop");
+				C.setAttributeNS(null, "x", "87");
+				C.setAttributeNS(null, "y", "70");
+				C.setAttributeNS(null, "width", "15");
+				C.setAttributeNS(null, "height", "15");
+				C.setAttributeNS(null, "fill", "darkGrey");
+				C.setAttributeNS(null, "opacity", ".5");
+				C.setAttributeNS(null, "stroke", "grey");
+				C.setAttributeNS(null, "stroke-width", "2");
+				C.setAttributeNS(null, "rx", "3");
+				C.setAttributeNS(null, "onclick", "funcBtStop()");
+				C.setAttributeNS(null, "title", "Stop");
+				N.appendChild(C);
+				
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "lableStop");
+				C.setAttributeNS(null, "fill", "black");
+				C.setAttributeNS(null, "height","8");
+				C.setAttributeNS(null, "width","8");
+				C.setAttributeNS(null, "x","90");
+				C.setAttributeNS(null, "y","73");
+				C.setAttributeNS(null, "pointer-events","none");	
+				N.appendChild(C);
+
+				
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "btNext");
+				C.setAttributeNS(null, "x", "107");
+				C.setAttributeNS(null, "y", "70");
+				C.setAttributeNS(null, "width", "15");
+				C.setAttributeNS(null, "height", "15");
+				C.setAttributeNS(null, "fill", "pink");
+				C.setAttributeNS(null, "opacity", ".5");
+				C.setAttributeNS(null, "stroke", "grey");
+				C.setAttributeNS(null, "stroke-width", "2");
+				C.setAttributeNS(null, "rx", "1");
+				C.setAttributeNS(null, "onclick", "funcNext()");
+				C.setAttributeNS(null, "title", "Next");
+				N.appendChild(C);
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "lableNext1");
+				C.setAttributeNS(null, "fill", "black");
+				C.setAttributeNS(null, "height","12");
+				C.setAttributeNS(null, "width","2");
+				C.setAttributeNS(null, "x","110");
+				C.setAttributeNS(null, "y","71");
+				C.setAttributeNS(null, "pointer-events","none");	
+				N.appendChild(C);
+
+
+				var auxBtPath = "M 113 71 113 83 121 77";
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "path");
+				C.setAttributeNS(null, "id", "lableNext");
+				C.setAttributeNS(null, "d", auxBtPath);
+				C.setAttributeNS(null, "fill", "black");
+				C.setAttributeNS(null, "opacity", "1");
+				C.setAttributeNS(null, "pointer-events","none");
+				N.appendChild(C);
+				
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "btEscalaUm");
+				C.setAttributeNS(null, "x", "137");
+				C.setAttributeNS(null, "y", "70");
+				C.setAttributeNS(null, "width", "15");
+				C.setAttributeNS(null, "height", "15");
+				C.setAttributeNS(null, "fill", "purple");
+				C.setAttributeNS(null, "opacity", ".5");
+				C.setAttributeNS(null, "stroke", "grey");
+				C.setAttributeNS(null, "stroke-width", "2");
+				C.setAttributeNS(null, "rx", "1");
+				C.setAttributeNS(null, "onclick", "setEscala('p')");
+				C.setAttributeNS(null, "title", "Escala Padrão");
+				N.appendChild(C);
+
+
+				var auxBtPath		=	"m54.047058,49.512161l-9.132507,-9.130493c1.230042,-2.029648 1.951843,-4.40274 1.951843,-6.947968c0,-7.421494 -6.004333,-13.435135 -13.434265,-13.435135c-7.409851,0 -13.430969,6.013641 -13.430969,13.435135c0,7.416748 6.021118,13.427368 13.430969,13.427368c2.549866,0 4.927368,-0.719406 6.93988,-1.950775l9.140991,9.133713l4.534058,-4.531845zm-28.915894,-16.078461c0.007446,-4.590851 3.714661,-8.302048 8.300964,-8.310028c4.58075,0.00798 8.30426,3.719177 8.30426,8.310028c0,4.58638 -3.723511,8.297729 -8.30426,8.308426c-4.586304,-0.010696 -8.293518,-3.722046 -8.300964,-8.308426z";
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "path");
+				C.setAttributeNS(null, "id", "lableEscala1");
+				C.setAttributeNS(null, "d", auxBtPath);
+				C.setAttributeNS(null, "fill", "black");
+				C.setAttributeNS(null, "opacity", "1");
+				C.setAttributeNS(null, "pointer-events","none");
+				C.setAttributeNS(null, "transform","scale(0.35),translate(376,182)");
+				N.appendChild(C);
+				
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "btEscalaMenos");
+				C.setAttributeNS(null, "x", "157");
+				C.setAttributeNS(null, "y", "70");
+				C.setAttributeNS(null, "width", "15");
+				C.setAttributeNS(null, "height", "15");
+				C.setAttributeNS(null, "fill", "tomato");
+				C.setAttributeNS(null, "opacity", ".5");
+				C.setAttributeNS(null, "stroke", "grey");
+				C.setAttributeNS(null, "stroke-width", "2");
+				C.setAttributeNS(null, "rx", "1");
+				C.setAttributeNS(null, "onclick", "setEscala('-')");
+				C.setAttributeNS(null, "title", "Reduzir Escala");
+				N.appendChild(C);
+				
+				var auxBtPath		=	"m41.746521,38.00209c1.024384,-1.682297 1.620819,-3.649429 1.620819,-5.759277c0,-6.150833 -4.984436,-11.134949 -11.128296,-11.134949c-6.151154,0 -11.135773,4.984116 -11.135773,11.134949c0,6.147736 4.984619,11.129288 11.135773,11.129288c2.105835,0 4.075684,-0.59639 5.755463,-1.617416l7.56955,7.570496l3.753174,-3.756165l-7.570709,-7.566925zm-9.507477,1.128113c-3.804962,-0.010376 -6.883545,-3.085434 -6.890289,-6.88739c0.006744,-3.804413 3.085327,-6.880234 6.890289,-6.886978c3.798065,0.006744 6.877075,3.082565 6.88382,6.886978c-0.006744,3.801956 -3.085754,6.877014 -6.88382,6.88739zm-5.13385,-9.013199l0,4.249084l10.259216,0l0,-4.249084l-10.259216,0z";
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "path");
+				C.setAttributeNS(null, "id", "lableEscala3");
+				C.setAttributeNS(null, "d", auxBtPath);
+				C.setAttributeNS(null, "fill", "black");
+				C.setAttributeNS(null, "opacity", "1");
+				C.setAttributeNS(null, "pointer-events","none");
+				C.setAttributeNS(null, "transform","scale(0.45),translate(330,138)");
+				N.appendChild(C);
+
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "btEscalaMenos");
+				C.setAttributeNS(null, "x", "177");
+				C.setAttributeNS(null, "y", "70");
+				C.setAttributeNS(null, "width", "15");
+				C.setAttributeNS(null, "height", "15");
+				C.setAttributeNS(null, "fill", "brown");
+				C.setAttributeNS(null, "opacity", ".5");
+				C.setAttributeNS(null, "stroke", "grey");
+				C.setAttributeNS(null, "stroke-width", "2");
+				C.setAttributeNS(null, "rx", "1");
+				C.setAttributeNS(null, "onclick", "setEscala('+')");
+				C.setAttributeNS(null, "title", "Aumentar Escala");
+				N.appendChild(C);
+
+				var auxBtPath		=	"m39.567261,35.074615c0.856781,-1.403137 1.353943,-3.045059 1.353943,-4.806656c0,-5.13295 -4.16037,-9.293732 -9.289734,-9.293732c-5.13327,0 -9.293213,4.160782 -9.293213,9.293732c0,5.13179 4.159943,9.290009 9.293213,9.290009c1.757507,0 3.404541,-0.498215 4.806274,-1.35051l6.316956,6.318176l3.130829,-3.134613l-6.318268,-6.316406zm-7.935791,0.942841c-3.174652,-0.009262 -5.74588,-2.575531 -5.752136,-5.749496c0.006256,-3.174057 2.577484,-5.740677 5.752136,-5.747314c3.169861,0.006638 5.73999,2.573257 5.74527,5.747314c-0.00528,3.173965 -2.575409,5.740234 -5.74527,5.749496zm1.769806,-10.033463l-3.54541,0l0,2.51152l-2.507477,0l0,3.544327l2.507477,0l0,2.51358l3.54541,0l0,-2.51358l2.510193,0l0,-3.544327l-2.510193,0l0,-2.51152l0,0z";
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "path");
+				C.setAttributeNS(null, "id", "lableEscala2");
+				C.setAttributeNS(null, "d", auxBtPath);
+				C.setAttributeNS(null, "fill", "black");
+				C.setAttributeNS(null, "opacity", "1");
+				C.setAttributeNS(null, "pointer-events","none");
+				C.setAttributeNS(null, "transform","scale(0.55),translate(302,109)");
+				N.appendChild(C);
+
+
+
+				
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "btRotate");
+				C.setAttributeNS(null, "x", "197");
+				C.setAttributeNS(null, "y", "70");
+				C.setAttributeNS(null, "width", "15");
+				C.setAttributeNS(null, "height", "15");
+				C.setAttributeNS(null, "fill", "MediumSeaGreen");
+				C.setAttributeNS(null, "opacity", ".5");
+				C.setAttributeNS(null, "stroke", "grey");
+				C.setAttributeNS(null, "stroke-width", "2");
+				C.setAttributeNS(null, "rx", "1");
+				C.setAttributeNS(null, "onclick", "setRotate()");
+				C.setAttributeNS(null, "title", "Rotacionar");
+				N.appendChild(C);
+				
+				var auxBtPath		=	"m21.283203,32.760101c0,-0.405655 0.370544,-2.895111 0.811646,-5.531036c1.388855,-8.218796 1.401062,-8.25589 3.15625,-5.636185l1.044739,1.550278l3.035645,-1.53421c4.019226,-2.026932 8.810425,-2.777634 13.208679,-2.067932c1.879395,0.301788 3.857788,0.792053 4.410706,1.089203c1.107056,0.58989 1.033752,1.095947 -0.72583,5.198273c-0.958923,2.24971 -1.054504,2.313812 -2.715027,1.886505c-2.824524,-0.729141 -7.445679,-0.499008 -9.668396,0.479919l-2.088806,0.919434l1.474182,1.527496c0.796997,0.841812 1.252197,1.65361 1.007385,1.807358c-0.246887,0.154236 -3.254822,0.452881 -6.695007,0.663162c-5.163696,0.31781 -6.256165,0.25618 -6.256165,-0.352264l0,0zm26.564819,22.662292l-2.234924,-2.959518l2.026733,-1.966949c2.100464,-2.02388 3.611633,-4.865982 4.276062,-8.034409l0.380249,-1.808868l-2.198853,0.349609c-1.204651,0.19281 -2.18811,0.168213 -2.200134,-0.05542c-0.036682,-1.041122 5.675964,-11.310394 6.242004,-11.191635c0.871765,0.188644 9.742493,7.876801 9.742493,8.44751c0,0.25473 -0.934387,0.611328 -2.061768,0.794312l-2.077332,0.330627l-0.209534,3.536377c-0.256653,4.535416 -2.652771,9.767059 -5.972107,13.093887c-1.338562,1.333084 -2.66571,2.423691 -2.961304,2.423691c-0.28186,0 -1.521484,-1.331726 -2.751587,-2.959213l0,0zm-20.176025,8.293396c0,-0.327637 0.358887,-1.273026 0.787964,-2.102966c0.772522,-1.505753 0.772522,-1.511551 -2.125854,-3.439316c-4.548035,-3.013092 -7.914673,-8.3638 -8.983582,-14.229706l-0.343079,-1.922943l2.48175,-0.339264c5.113403,-0.701141 5.162659,-0.680786 6.180054,2.805405c0.689392,2.351654 1.548157,3.760925 3.380737,5.593292c1.338623,1.347809 2.627869,2.333084 2.862122,2.191162c0.232239,-0.142044 0.566284,-0.98233 0.736267,-1.866409c0.185486,-0.885529 0.553101,-1.609879 0.825623,-1.609879c0.624817,0 6.558533,9.342117 6.645935,10.482132c0.061646,0.762314 -3.134216,2.080933 -11.490295,4.729782c-0.527588,0.168442 -0.957642,0.039734 -0.957642,-0.29129l0,0z";
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "path");
+				C.setAttributeNS(null, "id", "lableEscala2");
+				C.setAttributeNS(null, "d", auxBtPath);
+				C.setAttributeNS(null, "fill", "black");
+				C.setAttributeNS(null, "opacity", "1");
+				C.setAttributeNS(null, "pointer-events","none");
+				C.setAttributeNS(null, "transform","scale(0.33),translate(580,193)");
+				N.appendChild(C);
+
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "btShowPath");
+				C.setAttributeNS(null, "x", "217");
+				C.setAttributeNS(null, "y", "70");
+				C.setAttributeNS(null, "width", "15");
+				C.setAttributeNS(null, "height", "15");
+				C.setAttributeNS(null, "fill", "gold");
+				C.setAttributeNS(null, "opacity", ".5");
+				C.setAttributeNS(null, "stroke", "grey");
+				C.setAttributeNS(null, "stroke-width", "2");
+				C.setAttributeNS(null, "rx", "1");
+				C.setAttributeNS(null, "onclick", "funcBtShowPath()");
+				C.setAttributeNS(null, "title", "Mostra/Esconde Caminhos");
+				N.appendChild(C);
+
+				var auxBtPath	=	"M 230 73 222 73 222 83";
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "path");
+				C.setAttributeNS(null, "d", auxBtPath);
+				C.setAttributeNS(null, "fill", "none");
+				C.setAttributeNS(null, "opacity", "1");
+				C.setAttributeNS(null, "pointer-events","none");
+				C.setAttributeNS(null, "stroke", "black");
+				C.setAttributeNS(null, "stroke-width", 2);
+				//C.setAttributeNS(null, "fill", "none");
+				C.setAttributeNS(null, "stroke-dasharray", "2,2");
+				N.appendChild(C);
+
+				
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "btShowBtMov");
+				C.setAttributeNS(null, "x", "247");
+				C.setAttributeNS(null, "y", "70");
+				C.setAttributeNS(null, "width", "15");
+				C.setAttributeNS(null, "height", "15");
+				C.setAttributeNS(null, "fill", "blue");
+				C.setAttributeNS(null, "opacity", ".5");
+				C.setAttributeNS(null, "stroke", "grey");
+				C.setAttributeNS(null, "stroke-width", "2");
+				C.setAttributeNS(null, "rx", "1");
+				C.setAttributeNS(null, "onclick", "funcBtShowBtMov()");
+				C.setAttributeNS(null, "title", "Mostra/Esconde Caminhos");
+				N.appendChild(C);
+
+				var auxBtPath	=	"M 249 74 254 79 260 74";
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "path");
+				C.setAttributeNS(null, "id", "labelBtShow");
+				C.setAttributeNS(null, "d", auxBtPath);
+				C.setAttributeNS(null, "fill", "none");
+				C.setAttributeNS(null, "stroke", "black");
+				C.setAttributeNS(null, "stroke-width", "3");
+				C.setAttributeNS(null, "opacity", "1");
+				C.setAttributeNS(null, "pointer-events","none");
+				N.appendChild(C);
+				//console.log("#17");
+
+			};
+
+
+			var colIntTempo		=	[];
+			var colIntPosX		=	[];
+
+			function funcCalcIntervalosMovtos () {
+				
+				//console.log("#11");
+
+
+				funcMontaBotoes();
+
+				var ind 			=	dataMovtos.length;
+				var iniMovtoDth		=	new Date((dataMovtos[0].RegFimDth || "").replace(/-/g,"/").replace(/[TZ]/g," "));
+				var fimMovtoDth		=	new Date((dataMovtos[ind-1].RegFimDth || "").replace(/-/g,"/").replace(/[TZ]/g," "));
+				var diff			=	Math.abs(fimMovtoDth.getTime() - iniMovtoDth.getTime());
+				var hDif			=	parseInt((diff / 1000 /60 / 60));
+				var mDif		 	=	parseInt(((diff / 1000 /60 / 60) - parseInt((diff / 1000 /60 / 60))) * 60);
+				var tempoIntervalos	=	10;
+
+				var N = document.getElementById("controle");
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "barra");
+				C.setAttributeNS(null, "x", "0");
+				C.setAttributeNS(null, "y", "0");
+				C.setAttributeNS(null, "width", tamFaixaTempo);
+				C.setAttributeNS(null, "height", "40");
+				C.setAttributeNS(null, "fill", "grey");
+				C.setAttributeNS(null, "opacity", "1");
+				C.setAttributeNS(null, "onclick", "testeM(evt)");
+				N.appendChild(C);
+
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				C.setAttributeNS(null, "id", "faixa");
+				C.setAttributeNS(null, "x", "0");
+				C.setAttributeNS(null, "y", "0");
+				C.setAttributeNS(null, "width", "3");
+				C.setAttributeNS(null, "height", "40");
+				C.setAttributeNS(null, "fill", "green");
+				C.setAttributeNS(null, "opacity", "0.6");
+				N.appendChild(C);
+
+				var auxDth 		= 	new Date((dataMovtos[0].RegFimDth || "").replace(/-/g,"/").replace(/[TZ]/g," "));
+				var iniFaixaDth = 	new Date((dataMovtos[0].RegFimDth || "").replace(/-/g,"/").replace(/[TZ]/g," "));
+
+				var auxY2 			= 	120;
+				var auxX2 			= 	20;
+				var countMovto		= 	0;
+				var auxChar	=	auxDth.toString();
+				var hDifIntervalo	=	0;
+				var auxText			=	"";
+
+
+				//console.log("#12");
+
+				if (hDif > 0 && hDif < (1 / 60)) {
+					
+					hDifIntervalo	=	1 / 60;
+					auxDth.setSeconds(1);
+					auxDth.setMinutes(0);
+					iniFaixaDth.setSeconds(1);
+					iniFaixaDth.setMinutes(0);
+					
+				} else if (hDif > 0 && hDif < 5) {
+					
+					hDifIntervalo	=	0.5;
+					auxDth.setSeconds(1);
+					auxDth.setMinutes(0);
+					iniFaixaDth.setSeconds(1);
+					iniFaixaDth.setMinutes(0);
+					
+				} else if (hDif > 0 && hDif < 10) {
+					
+					hDifIntervalo	=	1;
+					auxDth.setSeconds(1);
+					auxDth.setMinutes(0);
+					iniFaixaDth.setSeconds(1);
+					iniFaixaDth.setMinutes(0);
+					
+				} else if (hDif > 0 && hDif < 60) {
+					
+					hDifIntervalo	=	parseInt(hDif / 10) + 1;
+					
+					auxDth.setSeconds(1);
+					auxDth.setMinutes(0);
+					auxDth.setHours(auxDth.getHours()-1);
+					iniFaixaDth.setSeconds(1);
+					iniFaixaDth.setMinutes(0);
+					iniFaixaDth.setHours(iniFaixaDth.getHours()-1);
+					
+				} else if (hDif > 0 && hDif < 100) {
+					
+					hDifIntervalo	=	10;
+					
+					auxDth.setSeconds(1);
+					auxDth.setMinutes(0);
+					auxDth.setHours(auxDth.getHours()-5);
+					iniFaixaDth.setSeconds(1);
+					iniFaixaDth.setSeconds(0);
+					iniFaixaDth.setHours(iniFaixaDth.getHours()-5);
+					
+				} else if (hDif > 0 && hDif < 120) {
+					
+					hDifIntervalo	=	12;
+					
+					auxDth.setSeconds(1);
+					auxDth.setMinutes(0);
+					auxDth.setHours(auxDth.getHours()-6);
+					iniFaixaDth.setSeconds(1);
+					iniFaixaDth.setMinutes(0);
+					iniFaixaDth.setHours(iniFaixaDth.getHours()-6);
+					
+				} else if (hDif > 0 && hDif < 240) {
+					
+					hDifIntervalo	=	24;
+					
+					auxDth.setSeconds(1);
+					auxDth.setMinutes(0);
+					auxDth.setHours(0);
+					iniFaixaDth.setSeconds(1);
+					iniFaixaDth.setMinutes(0);
+					iniFaixaDth.setHours(0);
+				} else if (hDif > 0 && hDif < 480) {
+					
+					hDifIntervalo	=	48;
+					
+					auxDth.setSeconds(1);
+					auxDth.setMinutes(0);
+					auxDth.setHours(0);
+					iniFaixaDth.setSeconds(1);
+					iniFaixaDth.setMinutes(0);
+					iniFaixaDth.setHours(0);
+					
+				} else if (hDif > 0 && hDif < 1200) {
+					
+					hDifIntervalo	=	120;
+					
+					auxDth.setSeconds(1);
+					auxDth.setMinutes(0);
+					auxDth.setHours(0);
+					iniFaixaDth.setSeconds(1);
+					iniFaixaDth.setMinutes(0);
+					iniFaixaDth.setHours(0);
+					
+				} else if (hDif > 0 && hDif < 1680) {
+					
+					hDifIntervalo	=	168;
+					
+					auxDth.setSeconds(1);
+					auxDth.setMinutes(0);
+					auxDth.setHours(0);
+					iniFaixaDth.setSeconds(1);
+					iniFaixaDth.setMinutes(0);
+					iniFaixaDth.setHours(0);
+				};
+
+				var qtdIntervalos	=	parseInt(hDif / hDifIntervalo) + 2;
+				var widthFaixa 		=	tamFaixaTempo / qtdIntervalos;
+
+				S.setCurrentTime(0);
+
+				for (var i1 = 0; i1 < qtdIntervalos; i1++) {
+
+					var auxChar	=	auxDth.toString();
+
+					if (hDif > 0 && hDif < 13) {
+						auxText			=	auxChar[16] + auxChar[17] + auxChar[18] + auxChar[19] + auxChar[20];
+					} else {
+						auxText			=	auxChar[8] + auxChar[9] + " " + auxChar[4] + auxChar[5] + auxChar[6]
+										+ 	" " + auxChar[16] + auxChar[17] + auxChar[18] + auxChar[19] + auxChar[20];
+					};
+
+					var auxChar	=	auxDth.toString();
+					
+					var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+					C.setAttributeNS(null, "id", "regua" + auxDth);
+					C.setAttributeNS(null, "x", ((widthFaixa*i1) - 1));
+					C.setAttributeNS(null, "y", "39");
+					C.setAttributeNS(null, "width", "2");
+					C.setAttributeNS(null, "height", "4");
+					C.setAttributeNS(null, "stroke", "cornflowerblue");
+					C.setAttributeNS(null, "stroke-width", "1");
+					C.setAttributeNS(null, "fill", "none");
+					C.setAttributeNS(null, "opacity", "0.6");
+					N.appendChild(C);
+					
+					var C = document.createElementNS("http://www.w3.org/2000/svg","text");
+					C.setAttributeNS(null, "id", "txt" + auxDth);
+					C.setAttributeNS(null, "x", (widthFaixa*i1));
+					C.setAttributeNS(null, "y", "47");
+					C.setAttributeNS(null, "fill","cornflowerblue");
+					C.setAttributeNS(null, "font-size","8px");
+					var textNode = document.createTextNode(auxText);
+					C.appendChild(textNode);
+					N.appendChild(C);
+					
+					auxDth.setSeconds(auxDth.getSeconds() + (60*60*hDifIntervalo));
+				};
+
+				//console.log("#14");
+
+				var ptFaixaTempo	=	 hDifIntervalo / widthFaixa;
+				
+				var M = document.createElementNS("http://www.w3.org/2000/svg", "g");
+				M.setAttributeNS(null, "id", "gprBtMov");
+				M.setAttribute("opacity", "0");
+				N.appendChild(M);
+
+				var M = document.getElementById("gprBtMov");
+
+				for (var i = 0; i < dataMovtos.length; i++) {
+					fimMovtoDth		=	new Date((dataMovtos[i].RegFimDth || "").replace(/-/g,"/").replace(/[TZ]/g," "));
+
+					var diff		=	Math.abs(fimMovtoDth.getTime() - iniFaixaDth.getTime());
+					var hDif		=	(diff / 1000 /60 / 60);
+					var mDif		=	parseInt(((diff / 1000 /60 / 60) - parseInt((diff / 1000 /60 / 60))) * 60);
+
+					var auxX 		=	hDif / ptFaixaTempo;
+
+					var C = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+					C.setAttributeNS(null, "id", "fxmovto" + i);
+					C.setAttributeNS(null, "x", auxX);
+					C.setAttributeNS(null, "y", "0");
+					C.setAttributeNS(null, "width", "1");
+					C.setAttributeNS(null, "height", "40");
+					C.setAttributeNS(null, "stroke", "blue");
+					C.setAttributeNS(null, "stroke-width", "0");
+					C.setAttributeNS(null, "fill", "blue");
+					C.setAttributeNS(null, "opacity", "1");
+					N.appendChild(C);
+					
+					if (i=== 0) {
+						C.setAttributeNS(null, "onclick", "setTimeEsp(" + (tempoIntervalos * (hDif * ptFaixaTempo / tamFaixaTempo)) + ")");	
+					};
+
+					colIntTempo[i]	=	tempoIntervalos * (hDif * ptFaixaTempo / tamFaixaTempo);
+					colIntPosX[i]	=	auxX;
+
+					if (opcGeraBtMovto === 1) {
+
+						auxY2 += 30;
+
+						if (i % 5 === 0) {
+							auxY2 = 150;
+							auxX2 += 30;
+						};
+
+						var C = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+						C.setAttributeNS(null, "id", "btinimov" + dataMovtos[i].RegId);
+						C.setAttributeNS(null, "fill", "grey");
+						C.setAttributeNS(null, "cx", auxX2);
+						C.setAttributeNS(null, "cy", auxY2);
+						C.setAttributeNS(null, "r", 10);
+						C.setAttributeNS(null, "stroke", cor[((i) % 30)]);
+						C.setAttributeNS(null, "stroke-width", 4);
+						C.setAttributeNS(null, "title", "Movto No.: " + dataMovtos[i].RegId + " - Conclusão: " + dataMovtos[i].RegFimDth);
+						M.appendChild(C);
+					};
+				};
+
+				//console.log("#6 - colIntTempo = " + colIntTempo);
+			};
+
+			var	colMovtoInicio	=	[];
+			var vetPathId 		=	[];
+
+			function funcAnimaFila () {
+
+				var colOrgLocalId	=	[];
+				var colDstLocalId	=	[];
+				var colOrgLocalQtd	=	[];
+				var colDstLocalQtd	=	[];
+				var colOrgLoteId	=	[];
+				var colDstLoteId	=	[];
+				var ruaOrgNome		=	"";
+				var ruaDstNome		=	"";
+				var countElem 		=	0;
+				var delayControle	=	0.0;
+
+				var flagRealDst 	=	0;
+				var auxDstLocalId 	= 	0;
+
+				var dadosOrgPos 	= 	[];
+				var dadosDstPos 	= 	[];
+
+				var auxId 			=	0;
+				var auxDstId 		=	0;
+
+				var vetLimpaDstExp	=	[];
+				
+				funcCalcIntervalosMovtos();
+
+				var G = document.getElementById("quadroArma");
+
+				for (var i = 0; i < dataMovtos.length; i++) {
+				
+					var colPath 		=	[];
+					var movtoTipo 		=	dataMovtos[i].RegTipo;
+
+					vetLimpaDstExp		=	[];
+
+					if (dataMovtos[i].hasOwnProperty('SdtXRegSub')){
+
+						var flagCriaFaixaMovto	=	1;
+
+						var indTime		=	0;
+						var auxIniMovto	=	0.0;
+						var auxFimMovto	=	0.0;
+
+						for (var i2 = 0; i2 < dataMovtos[i].SdtXRegSub.length; i2++) {
+
+							colOrgLocalId	=	[];
+							colDstLocalId	=	[];
+							colOrgLocalQtd	=	[];
+							colDstLocalQtd	=	[];
+							colOrgLoteId	=	[];
+							colDstLoteId	=	[];
+
+							for (var i3 = 0; i3 < dataMovtos[i].SdtXRegSub[i2].SdtXRegPos.length; i3++) {
+
+								if (dataMovtos[i].SdtXRegSub[i2].SdtXRegPos[i3].OrgDst === 1) {
+
+									colOrgLocalId[colOrgLocalId.length]		=	dataMovtos[i].SdtXRegSub[i2].SdtXRegPos[i3].LocalId;
+									colOrgLocalQtd[colOrgLocalQtd.length]	=	dataMovtos[i].SdtXRegSub[i2].SdtXRegPos[i3].PosQtd;
+									colOrgLoteId[colOrgLoteId.length]		=	dataMovtos[i].SdtXRegSub[i2].SdtXRegPos[i3].PosLoteId;
+
+								} else {
+
+									colDstLocalId[colDstLocalId.length]		=	dataMovtos[i].SdtXRegSub[i2].SdtXRegPos[i3].LocalId;
+									colDstLocalQtd[colDstLocalQtd.length]	=	dataMovtos[i].SdtXRegSub[i2].SdtXRegPos[i3].PosQtd;
+									colDstLoteId[colDstLoteId.length]		=	dataMovtos[i].SdtXRegSub[i2].SdtXRegPos[i3].PosLoteId;
+
+								};
+							};
+
+							if (colDstLocalId.length > 0 && colOrgLocalId.length > 0) {
+
+								for (var i4 = 0; i4 < colOrgLocalId.length; i4++) {
+
+									flagRealDst 	=	0;
+
+									if (i4 < colDstLocalId.length) {
+
+										flagRealDst		=	1;
+										auxDstLocalId	=	colDstLocalId[i4];
+										dadosDstPos 	= 	convertePos(colDstLocalId[i4]);
+										if (dadosDstPos[0] === "Avarias") {	dadosDstPos[0] 	=	"Avarias1"; };
+										auxDstId 		=	dadosDstPos[0] + "-" + dadosDstPos[3] + "-" + dadosDstPos[4];
+										ruaDstNome		=	dadosDstPos[0];
+
+									};
+
+									dadosOrgPos 		=	convertePos(colOrgLocalId[i4]);
+									if (dadosOrgPos[0] === "Avarias") { dadosOrgPos[0] 	= 	"Avarias1"; };
+									auxId 				=	dadosOrgPos[0] + "-" + dadosOrgPos[3] + "-" + dadosOrgPos[4];
+									ruaOrgNome			=	dadosOrgPos[0];
+
+									if (ruaOrgNome !== ruaDstNome) {
+
+										if (flagCriaFaixaMovto === 1) {
+
+											if (i > 0) {
+												delayControle	=	colIntTempo[i] - colIntTempo[i-1];
+											} else {
+												delayControle	=	colIntTempo[i];
+											};
+
+											antAcuTime		+=	delayControle;
+
+										};
+
+										var pathId =	"#path" + ruaOrgNome + "X" + ruaDstNome;
+
+										if (colPath.indexOf(pathId) === -1) {
+											colPath[colPath.length] = pathId;
+										};
+
+										if (vetPathId.indexOf(pathId) === -1) {
+											iAux 	=	i;
+											desenhaPathLigaPt(colOrgLocalId[i4],auxDstLocalId,pathId);
+											vetPathId[vetPathId.length]	=	pathId;
+										};
+										
+										var inicio = antAcuTime + (indTime/10) + delayControle;
+
+										if (auxIniMovto === 0) {
+											auxIniMovto	=	inicio;
+										};
+										auxFimMovto		=	inicio;
+
+										if (flagCriaFaixaMovto === 1) {
+											flagCriaFaixaMovto = 0;
+
+											var C = document.getElementById(("fxmovto" + i));
+											C.setAttributeNS(null, "onclick", "setTimeEsp(" + inicio + ")");
+
+											colMovtoInicio[i]	=	inicio;
+										};
+
+										if (opcDesenhaArma === 1) {
+											var C = document.getElementById(auxId);
+
+											if (flagRealDst === 1) {
+											
+												//console.log("i = " + i + " Id = " + auxId
+												//	+ 	" auxDstId = " + auxDstId
+												//	+	" inicio = " + inicio
+												//);
+
+												var C2 = document.getElementById(auxDstId);
+
+												var ani = document.createElementNS("http://www.w3.org/2000/svg","set");
+												ani.setAttribute("attributeName", "class");
+												ani.setAttribute("to", "sitpos3");
+												ani.setAttribute("begin", "startAni.end+" + auxIniMovto);
+												C2.appendChild(ani);
+
+												var ani = document.createElementNS("http://www.w3.org/2000/svg","set");
+												ani.setAttribute("attributeName", "class");
+												ani.setAttribute("to", "sitpos2");
+												ani.setAttribute("begin", "startAni.end+" + (inicio+4));
+												C2.appendChild(ani);
+
+												if (movtoTipo === 3 && ruaDstNome.indexOf("Exp") > -1) {	//	Exp
+													vetLimpaDstExp[vetLimpaDstExp.length] = auxDstId;
+												};
+											};
+
+											var ani = document.createElementNS("http://www.w3.org/2000/svg","set");
+											ani.setAttribute("attributeName", "class");
+											ani.setAttribute("to", "sitpos4");
+											ani.setAttribute("begin", "startAni.end+" + auxIniMovto);
+											C.appendChild(ani);
+
+											var ani = document.createElementNS("http://www.w3.org/2000/svg","set");
+											ani.setAttribute("attributeName", "class");
+											ani.setAttribute("to", "sitpos1");
+											ani.setAttribute("begin", "startAni.end+" + (inicio+0.6));
+											C.appendChild(ani);
+
+											
+
+										} else {	//	if opcDesenhaArma === 0
+
+										};
+
+										var N = document.createElementNS("http://www.w3.org/2000/svg","rect");
+										N.setAttributeNS(null, "height", configTamLocal);
+										N.setAttributeNS(null, "width", configTamLocal);
+
+										auxId 		= 	"dup" + countElem;
+										countElem	+=	1;
+
+										var idAni 	=	"ani" + auxId + "-" + i + "-" + i2
+										N.setAttributeNS(null, "class", "");
+										N.setAttributeNS(null, "id", auxId);
+										N.setAttributeNS(null, "fill", cor[i % 30]);
+										N.setAttributeNS(null, "y", "0");
+										N.setAttributeNS(null, "x", "0");
+										var ani = document.createElementNS("http://www.w3.org/2000/svg","animateMotion");
+										ani.setAttribute("id", idAni);
+										ani.setAttribute("begin", "startAni.end+" + inicio);
+										ani.setAttribute("dur", "4");
+										ani.setAttribute("repeatCount", "1");
+										ani.setAttribute("rotate", "auto");
+										var mpath = document.createElementNS("http://www.w3.org/2000/svg","mpath");
+										mpath.setAttributeNS ("http://www.w3.org/1999/xlink", "href", pathId);
+										ani.appendChild(mpath);
+										N.appendChild(ani);
+										G.appendChild(N);
+
+										indTime		+=	1;
+									};
+								};
+							};
+						};
+					};
+
+					if (indTime > 0) {
+
+						var C = document.getElementById("faixa");
+						var ani = document.createElementNS("http://www.w3.org/2000/svg","animate");
+						ani.setAttribute("id", "aniFxInt" + i);
+						ani.setAttribute("attributeName", "x");
+						ani.setAttribute("to", colIntPosX[i]);
+						ani.setAttribute("dur", colIntTempo[i]);
+						ani.setAttribute("repeatCount", "1");
+						ani.setAttribute("fill", "freeze");
+						ani.setAttribute("begin", "startAni.end+" + antAcuTime);
+						C.appendChild(ani);
+
+						antAcuTime	+=	(indTime/10) + delayControle + 4;
+						auxFimMovto	+=	4;
+						
+						var ani = document.createElementNS("http://www.w3.org/2000/svg","animate");
+						ani.setAttribute("id", "aniFxMov" + i);
+						ani.setAttribute("attributeName", "x");
+						ani.setAttribute("to", colIntPosX[i]+1);
+						ani.setAttribute("dur", (indTime/10) + 4);
+						ani.setAttribute("repeatCount", "1");
+						ani.setAttribute("fill", "freeze");
+						ani.setAttribute("begin", "startAni.end+" + auxIniMovto);
+						C.appendChild(ani);
+
+						var C = document.getElementById("btinimov" + dataMovtos[i].RegId);
+						C.setAttributeNS(null, "onclick", "setTimeEsp(" + auxIniMovto + ")");
+
+						for (var i1 = 0; i1 < colPath.length; i1++) {
+							aux2Id	=	colPath[i1].substring(1,colPath[i1].length);
+
+							var C = document.getElementById(aux2Id);
+							
+							var ani = document.createElementNS("http://www.w3.org/2000/svg","set");
+							ani.setAttribute("attributeName", "opacity");
+							ani.setAttribute("to", "0.5");
+							ani.setAttribute("begin", "startAni.end+" + auxIniMovto);
+							C.appendChild(ani);
+							
+							var ani = document.createElementNS("http://www.w3.org/2000/svg","set");
+							ani.setAttribute("attributeName", "opacity");
+							ani.setAttribute("to", "0.0");
+							ani.setAttribute("begin", "startAni.end+" + auxFimMovto);
+							C.appendChild(ani);
+							
+							var C = document.getElementById("org" + aux2Id);
+							var ani = document.createElementNS("http://www.w3.org/2000/svg","set");
+							ani.setAttribute("attributeName", "opacity");
+							ani.setAttribute("to", "0.9");
+							ani.setAttribute("begin", "startAni.end+" +  auxIniMovto);
+							C.appendChild(ani);
+							
+							var ani = document.createElementNS("http://www.w3.org/2000/svg","set");
+							ani.setAttribute("attributeName", "opacity");
+							ani.setAttribute("to", "0");
+							ani.setAttribute("begin", "startAni.end+" + auxFimMovto);
+							C.appendChild(ani);
+							
+							var C = document.getElementById("dst" + aux2Id);
+							var ani = document.createElementNS("http://www.w3.org/2000/svg","set");
+							ani.setAttribute("attributeName", "opacity");
+							ani.setAttribute("to", "0.9");
+							ani.setAttribute("begin", "startAni.end+" + auxIniMovto);
+							C.appendChild(ani);
+							
+							var ani = document.createElementNS("http://www.w3.org/2000/svg","set");
+							ani.setAttribute("attributeName", "opacity");
+							ani.setAttribute("to", "0.0");
+							ani.setAttribute("begin", "startAni.end+" + auxFimMovto);
+							C.appendChild(ani);
+
+							if (movtoTipo === 3) {	// 	Exp
+									
+								//	Saida Produtos
+
+								for (var i4= 0; i4< vetLimpaDstExp.length; i4++) {
+
+									var C2 = document.getElementById(vetLimpaDstExp[i4]);
+									var ani = document.createElementNS("http://www.w3.org/2000/svg","set");
+									ani.setAttribute("attributeName", "class");
+									ani.setAttribute("to", "sitpos1");
+									ani.setAttribute("begin", "startAni.end+" + auxFimMovto);
+									C2.appendChild(ani);
+
+								};
+
+							};
+						};
+					} else {
+
+						if (i > 0) {
+							delayControle	=	colIntTempo[i] - colIntTempo[i-1];
+						} else {
+							delayControle	=	colIntTempo[i];
+						};
+
+						var C = document.getElementById("faixa");
+						var ani = document.createElementNS("http://www.w3.org/2000/svg","animate");
+						ani.setAttribute("id", "aniFxInt" + i);
+						ani.setAttribute("attributeName", "x");
+						ani.setAttribute("to", colIntPosX[i]);
+						ani.setAttribute("dur", colIntTempo[i]);
+						ani.setAttribute("repeatCount", "1");
+						ani.setAttribute("fill", "freeze");
+						ani.setAttribute("begin", "startAni.end+" + antAcuTime);
+						C.appendChild(ani);
+
+						auxIniMovto	=	antAcuTime + delayControle;
+						antAcuTime	+=	(1 + delayControle);
+
+						var ani = document.createElementNS("http://www.w3.org/2000/svg","animate");
+						ani.setAttribute("id", "aniFxMov" + i);
+						ani.setAttribute("attributeName", "x");
+						ani.setAttribute("to", colIntPosX[i]+1);
+						ani.setAttribute("dur", "1");
+						ani.setAttribute("repeatCount", "1");
+						ani.setAttribute("fill", "freeze");
+						ani.setAttribute("begin", "startAni.end+" + auxIniMovto);
+						C.appendChild(ani);
+
+						colMovtoInicio[i]	=	auxIniMovto;
+
+					};
+				};
+				
+				for (var i = 0; i < colMovtoInicio.length-1; i++) {
+					if (colMovtoInicio[i] === 0) {
+						colMovtoInicio[i] = colMovtoInicio[i+1];
+					};
+				};
+				
+				var C = document.getElementById("faixa");
+				var ani = document.createElementNS("http://www.w3.org/2000/svg","animate");
+				ani.setAttribute("id", "aniFxMovFim");
+				ani.setAttribute("attributeName", "x");
+				ani.setAttribute("to", tamFaixaTempo + 1);
+				ani.setAttribute("dur", "0.5");
+				ani.setAttribute("repeatCount", "1");
+				ani.setAttribute("begin", "startAni.end+" + auxFimMovto);
+				C.appendChild(ani);
+				
+				aniTempoTotal	=	antAcuTime;
+				
+				console.log("***** aniTempoTotal = " + aniTempoTotal
+				+	"idAni = " + idAni
+				+	" C = " + C
+				);
+
+			};
+
+
+
+			function testeM (evt) {
+
+				if (staEscala === 1) {
+					var C = evt.target;
+					var auxX = C.getAttributeNS(null, "x") + posControleX;
+					var auxY = C.getAttributeNS(null, "y") + posControleY;
+					var x 	=	evt.clientX - auxX;
+					var y 	=	evt.clientY - auxY;
+
+					var fx = 0;
+					if (x > colIntPosX[0]) {
+
+						for (var i = 0; i < colIntPosX.length-1; i++) {
+							if (x >= colIntPosX[i] && x < colIntPosX[i+1]) {
+								var fx = i+1;
+							};
+						};
+						
+						var novoTempo = colMovtoInicio[fx] - (colIntTempo[fx] / 3);
+
+					} else {
+						var novoTempo = colMovtoInicio[0] / 2;
+					};
+
+					setTimeEsp(novoTempo);
+				};
+			};
+
+
+			if (opcDesenhaArma === 1) {
+				desenhaArma();
+			} else {
+				var C = document.createElementNS("http://www.w3.org/2000/svg", "g");
+				C.setAttributeNS(null, "id", "quadroArma");
+				S.appendChild(C);
+			};
+
+
+			setInterval(function(){
+				if (S.getCurrentTime() > (aniTempoTotal+0.8)){
+					S.setCurrentTime(0.1);
+				};
+			}, 2000);
+
+
+			var staAni = 1;
+			var funcBtPause =function() {
+				if (staAni === 1) {
+					S.pauseAnimations();
+					staAni = 0;
+				} else {
+					S.unpauseAnimations();
+					staAni = 1;
+				};
+			};
+
+
+			var funcBtPlay2 =function() {
+				if (staAni === 0) {
+					S.unpauseAnimations();
+					staAni = 1;
+				};
+			};
+
+
+			var funcBtStop = function() {
+				S.pauseAnimations();
+				S.setCurrentTime(0);
+				staAni = 0;
+			};
+
+
+			var getTime =function() {
+				alert(S.getCurrentTime());
+			};
+
+
+			var setTimeEsp =function(newTime) {
+				S.setCurrentTime(newTime);
+			};
+
+
+			var funcBtVolta1S =function() {
+				S.setCurrentTime(S.getCurrentTime() - 1);
+			};
+
+
+			var setTimeZero =function() {
+				S.setCurrentTime(0);
+			};
+
+
+			var staShowPath = 1;
+			var funcBtShowPath = function() {
+				
+				for (var i = 0; i < vetPathId.length; i++) {
+
+					var aux2Id = vetPathId[i].substring(1,vetPathId[i].length);
+
+					//console.log("#1 staShowPath = " + staShowPath
+					//	+	" i = " + i 
+					//	+	" auxI2d = " + aux2Id);
+
+					var C = document.getElementById(aux2Id);
+
+					if (staShowPath === 1) {
+						console.log("zera!");
+
+						C.setAttribute("stroke-width", "0");
+						
+					} else {
+						C.setAttribute("stroke-width", "2");
+					};
+
+				};
+				
+				if (staShowPath === 1) {
+					staShowPath	= 0;
+				} else {
+					staShowPath	= 1;
+				};
+
+				console.log("vetPathId.length = " + vetPathId.length);
+					
+			};
+
+
+
+			var staShowBtMov = 0;
+			var funcBtShowBtMov = function() {
+				
+				var C = document.getElementById("gprBtMov");
+				var D = document.getElementById("bordaControle");
+				var K = document.getElementById("labelBtShow");
+
+				if (staShowBtMov === 1) {
+					console.log("zera!");
+
+					C.setAttribute("opacity", "0");
+					D.setAttribute("height","105");
+					K.setAttribute("d","M 249 74 254 79 260 74");
+
+				} else {
+
+					C.setAttribute("opacity", "1");
+					D.setAttribute("height","310");
+					K.setAttribute("d","M 249 79 254 74 260 79");
+				};
+
+
+				if (staShowBtMov === 1) {
+					staShowBtMov	= 0;
+				} else {
+					staShowBtMov	= 1;
+				};
+			};
+
+			var staEscala = 1.0;
+			var txtEscala = "scale(1.0)";
+
+			var setEscala =function(opcEscala) {
+
+				if (opcEscala === "p") {
+					staEscala = 1;
+				} else {
+					if (opcEscala === "+") {
+						staEscala	*=	2;
+					} else {
+						staEscala	/=	2;
+					};
+				};
+
+				txtEscala = "scale(" + staEscala + ")";
+
+
+				//var C = document.getElementById("svgquadro");
+				var C = document.getElementById("quadro");
+
+				if (staEscala > 1) {
+					C.setAttributeNS(null, "width", 1350*staEscala);
+					C.setAttributeNS(null, "height", 1350*staEscala);
+				} else {
+					C.setAttributeNS(null, "width", 1350);
+					C.setAttributeNS(null, "height", 1350);
+				};
+
+				var C = document.getElementById("quadroArma");
+				C.setAttributeNS(null, "transform", txtEscala + " " + txtRotate);
+
+				console.log("fim setEscala. txtEscala = " + txtEscala
+					+	" txtRotate = " + txtRotate);
+
+			};
+
+			var staRotate = 0;
+			var txtRotate = "";
+
+			var setRotate =function() {
+				
+				console.log("Ini. staRotate = " + staRotate)
+
+				if (staRotate === 0) {
+					txtRotate 	= 	"rotate(270 460 460) translate(0 0)";
+
+					staRotate	=	1;
+				} else if (staRotate === 1) {
+					txtRotate	=	"rotate(180 645 645)";
+
+					staRotate	=	2;
+				} else if (staRotate === 2) {
+					txtRotate 	= 	"rotate(90 650 650) translate(0 0)";
+
+					staRotate	=	3;
+				} else if (staRotate === 3) {
+					txtRotate 	= 	"";
+
+					staRotate	=	0;
+				};
+
+				var C = document.getElementById("quadroArma");
+				C.setAttributeNS(null, "transform", txtEscala + " " + txtRotate);
+
+				console.log("fim setRotate. txtEscala = " + txtEscala
+					+	" txtRotate = " + txtRotate);
+			};
+
+			var funcPrev = function() {
+
+				var atualTempo	=	S.getCurrentTime();
+
+				var fx 			=	0;
+				var novoTempo 	=	0;
+
+				if (atualTempo > colMovtoInicio[colMovtoInicio.length-1]) {
+				
+					novoTempo = colMovtoInicio[colMovtoInicio.length-2];
+
+				} else if (atualTempo > colMovtoInicio[1]) {
+
+					for (var i = 1; i < colMovtoInicio.length-1; i++) {
+						if (atualTempo >= colMovtoInicio[i] && atualTempo < colMovtoInicio[i+1]) {
+							fx = i;
+						};
+					};
+
+					if (colMovtoInicio[fx-1] === colMovtoInicio[fx] && fx > 1) {
+						novoTempo = colMovtoInicio[fx-2];
+					} else {
+						novoTempo = colMovtoInicio[fx-1];
+					};
+				};
+
+				setTimeEsp(novoTempo);
+
+			};
+
+			var funcNext = function() {
+				
+				var atualTempo	=	S.getCurrentTime();
+
+				var fx 			=	0;
+				var novoTempo 	=	0;
+
+				if (atualTempo < colMovtoInicio[colMovtoInicio.length-1]) {
+
+					if (atualTempo > colMovtoInicio[0]) {
+						for (var i = 1; i < colMovtoInicio.length-1; i++) {
+							if (atualTempo >= colMovtoInicio[i] && atualTempo < colMovtoInicio[i+1]) {
+								fx = i;
+							};
+						};
+					};
+
+					if (colMovtoInicio[fx+1] === colMovtoInicio[fx] && colMovtoInicio.length > (fx+2)) {
+						novoTempo = colMovtoInicio[fx+2];
+					} else {
+						novoTempo = colMovtoInicio[fx+1];
+					};
+				};
+
+				setTimeEsp(novoTempo);
+			};
+
+
+			funcAplicaFiltros();
+			
+			funcAnimaFila();
+
+			console.log("================================================================================");
+			console.log("================================================================================");
+			console.log("================================================================================");
+			console.log("========= BUSCO TRABAJO. Contacte por email: marcelo.giazzon@gmail.com =========");
+			console.log("================================================================================");
+			console.log("================================================================================");
+			console.log("================================================================================");
+
+			console.log("Tudo Ok! dataMovtos.length = " + dataMovtos.length);
+
+			funcMontaSelConfig();
+
+		</script>
+
+	</body>
+
+	</html>

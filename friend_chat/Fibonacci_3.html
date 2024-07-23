@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    svg {
+      border: 1px solid black;
+      animation: rotate 10s linear infinite;
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body style="background-color: #111;">
+  <svg id="svg" width="400" height="400"></svg>
+
+  <script>
+    function createCircle(parent, x, y, radius, color) {
+      const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circle.setAttribute("cx", x);
+      circle.setAttribute("cy", y);
+      circle.setAttribute("r", radius);
+      circle.setAttribute("fill", color);
+      parent.appendChild(circle);
+    }
+
+    function drawSpiral() {
+      const svg = document.getElementById("svg");
+
+      const width = svg.getAttribute("width");
+      const height = svg.getAttribute("height");
+
+      const centerX = width / 2;
+      const centerY = height / 2;
+
+      const maxIterations = 1000; // Número máximo de iterações para a espiral
+      const goldenRatio = (1 + Math.sqrt(5)) / 2; // Proporção áurea
+      const initialAngle = 0.1; // Ângulo inicial
+      const angleIncrement = 0.1; // Incremento do ângulo
+
+      let hue = 0; // Valor inicial de matiz
+
+      let prevX = centerX;
+      let prevY = centerY;
+
+      for (let i = 0; i < maxIterations; i++) {
+        const angle = initialAngle + i * angleIncrement;
+        const radius = Math.pow(goldenRatio, i) * 5;
+
+        const x = centerX + radius * Math.cos(angle);
+        const y = centerY + radius * Math.sin(angle);
+
+        const color = `hsl(${hue}, 100%, 50%)`;
+        createCircle(svg, x, y, 2, color);
+
+        hue = (hue + 0.1) % 360; // Incrementa o valor de matiz
+
+        const lineWidth = 1; // Ajuste a largura da linha
+        createCircle(svg, prevX, prevY, 1, color);
+        createCircle(svg, prevX, prevY, 1.5, color);
+        createCircle(svg, prevX, prevY, 2, color);
+        createCircle(svg, prevX, prevY, 2.5, color);
+        createCircle(svg, prevX, prevY, 3, color);
+        createCircle(svg, prevX, prevY, 3.5, color);
+        createCircle(svg, prevX, prevY, 4, color);
+        createCircle(svg, prevX, prevY, 4.5, color);
+        createCircle(svg, prevX, prevY, 5, color);
+
+        createCircle(svg, x, y, 1, color);
+        createCircle(svg, x, y, 1.5, color);
+        createCircle(svg, x, y, 2, color);
+        createCircle(svg, x, y, 2.5, color);
+        createCircle(svg, x, y, 3, color);
+        createCircle(svg, x, y, 3.5, color);
+        createCircle(svg, x, y, 4, color);
+        createCircle(svg, x, y, 4.5, color);
+        createCircle(svg, x, y, 5, color);
+
+        createCircle(svg, prevX, prevY, 2, "#111"); // Cria um círculo preto no círculo anterior para criar o efeito de linha contínua
+
+        // Atualiza as coordenadas anteriores
+        prevX = x;
+        prevY = y;
+
+        // Quebra o loop se a espiral sair dos limites do svg
+        if (x < 0 || x > width || y < 0 || y > height) {
+          break;
+        }
+      }
+    }
+
+    drawSpiral();
+  </script>
+</body>
+</html>

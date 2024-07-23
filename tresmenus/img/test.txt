@@ -1,0 +1,59 @@
+ O volume na unidade C ‚ PEDRIZO
+ O N£mero de S‚rie do Volume ‚ 2A1A-7F20
+
+ Pasta de C:\Users\Pedro\Desktop\MenuGoogleStyle\NuevosEjemplos\img
+
+10/08/2020  23:16    <DIR>          .
+10/08/2020  23:16    <DIR>          ..
+08/08/2016  15:24            21.459 aeroplane.png
+08/08/2016  15:24            13.134 agenda.png
+08/08/2016  15:24            17.481 backpack.png
+08/08/2016  15:24             7.326 bed.png
+08/08/2016  15:24            17.735 bike.png
+08/08/2016  15:24             9.837 bikini.png
+08/08/2016  15:24            31.879 binoculars.png
+08/08/2016  15:24            13.265 boot.png
+08/08/2016  15:24            17.583 cactus.png
+08/08/2016  15:24            17.949 car.png
+08/08/2016  15:24             8.354 cityscape.png
+08/08/2016  15:24            23.981 compass.png
+08/08/2016  15:24             8.986 credit-card.png
+08/08/2016  15:24             9.868 dictionary.png
+08/08/2016  15:24            24.636 dinner.png
+08/08/2016  15:24            11.215 directions.png
+08/08/2016  15:24            14.122 exchange.png
+08/08/2016  15:24            19.653 flip-flops.png
+08/08/2016  15:24            28.485 hot-air-balloon.png
+08/08/2016  15:24            16.508 ice-cream.png
+08/08/2016  15:24            19.885 lollipop.png
+08/08/2016  15:24            12.917 luggage.png
+08/08/2016  15:24            17.417 map.png
+08/08/2016  15:24            20.036 motorcycle.png
+08/08/2016  15:24            10.848 mountain.png
+08/08/2016  15:24            19.917 night.png
+08/08/2016  15:24            16.101 no-smoking.png
+08/08/2016  15:24            12.581 open.png
+08/08/2016  15:24            21.416 palm-tree.png
+08/08/2016  15:24            19.891 photo-camera.png
+08/08/2016  15:24            16.963 pine-tree.png
+08/08/2016  15:24            24.822 placeholder.png
+08/08/2016  15:24             9.460 plane-ticket.png
+10/08/2020  23:16    <DIR>          png
+08/08/2016  15:24            14.956 postcard.png
+08/08/2016  15:24             9.212 reception.png
+08/08/2016  15:24            15.933 sailboat.png
+08/08/2016  15:24            11.394 smartphone.png
+08/08/2016  15:24             8.503 suitcase.png
+08/08/2016  15:24            15.930 sun-cream.png
+08/08/2016  15:24            17.262 sun.png
+08/08/2016  15:24            13.979 sunglasses.png
+08/08/2016  15:24            19.681 tent.png
+08/08/2016  15:24            17.717 terrace.png
+10/08/2020  23:16                 0 test.txt
+08/08/2016  15:24            15.960 train.png
+08/08/2016  15:24            19.971 view.png
+08/08/2016  15:24             9.405 wallet.png
+08/08/2016  15:24            18.296 wifi.png
+08/08/2016  15:24            20.427 wristwatch.png
+              49 arquivo(s)        784.336 bytes
+               3 pasta(s)   57.217.597.440 bytes dispon¡veis

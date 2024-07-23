@@ -1,0 +1,1451 @@
+<!doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		
+		<title>Sample Test Paging</title>
+		<meta charset='utf-8'>
+		<link rel="stylesheet" href="css\PXToolsContextualBox.css" type="text/css" media="all">
+		<link rel="stylesheet" href="css\jquery-ui.min.css" type="text/css" media="all">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+		<script language="JavaScript" type="text/javascript" src="js\jquery.js"></script>
+		<script language="JavaScript" type="text/javascript" src="js\jquery-ui.min.js"></script>
+
+	</head>
+	<body>
+		<div class="contentarea">
+			<h2 style="color: #21314d;">
+				PXTools Contextual Box Prototypes
+			</h2>
+			<p>
+				This example demonstrates how to set up a Contextual Box.
+			</p>
+		  <div class="suport_tab">
+		  	<table>
+		  		<tr>
+		  			<td class="opt2_Disp" onclick='activateBox("opt2");'><span id="opt2" onclick='activateBox("opt2");'>Sub Lvl on Middle, Icon on left - No Description</span></td>
+		  			<td class="opt3_Disp" onclick='activateBox("opt3");'><span id="opt3" onclick='activateBox("opt3");'>Sub Lvl on Right, No Icon </span></td>
+		  			<td class="opt4_Disp" onclick='activateBox("opt4");'><span id="opt4" onclick='activateBox("opt4");'>Sub Lvl on Middle, Icon on left - With Description</span></td>
+		  		</tr>
+
+		  		<tr>
+		  			<td ><span style="display: none;" id="opt1" onclick='activateBox("opt1");'>Option 1</span></td>
+		  			<td><span style="display: none;" id="promo2" onclick='activateBox("promo2");'>Promo 2</span></td>
+		  			<td><span style="display: none;" id="promo3" onclick='activateBox("promo3");'>Promo 3</span></td>
+		  		</tr>
+
+		  		<tr>
+		  			<td><span style="display: none;" id="promo4" onclick='activateBox("promo4");'>Promo 4</span></td>
+		  			<td><span style="display: none;" id="promo5" onclick='activateBox("promo5");'>Promo 5</span></td>
+		  			<td><span style="display: none;" id="promo6" onmouseover='activateBox("opt1");' onclick='activateBox("promo6");'>Promo 6</span></td>
+		  		</tr>
+		  	</table>
+		</div>
+
+
+		<div id="box_opt1" style="display: none; width: 210px; height: 244px;" class="ContextualBox">
+			<ul class="suportBox">
+				<li class="ContextualBoxListItem">
+					<div id="suport_PagingRpPTitle" class="suportBoxItem boxItemTypeLabel">
+						<span id="PagingRpPTitle" class="boxItem RpPTitle">Rows per Page</span>
+					</div>
+				</li>
+				<li class="ContextualBoxListItem">
+					<div id="suport_PagingRpPOption10" class="suportBoxItem boxItemTypeButton">
+						<button type="button" id="PagingRpPOption10" class="boxItem RpPBtnOption" onclick="gx.getObj('', false).getUserControl('PXTOOLSCONTEXTUALBOXContainer').ItemActionOnClick(event,'PagingExtraOptions','PagingRpPOption10','NoData');">10 Rows</button>
+					</div>
+				</li>
+				<li class="ContextualBoxListItem">
+					<div id="suport_PagingRpPOption20" class="suportBoxItem boxItemTypeButton">
+						<button type="button" id="PagingRpPOption20" class="boxItem RpPBtnOption" onclick="gx.getObj('', false).getUserControl('PXTOOLSCONTEXTUALBOXContainer').ItemActionOnClick(event,'PagingExtraOptions','PagingRpPOption20','NoData');">20 Rows</button>
+					</div>
+				</li>
+				<li class="ContextualBoxListItem">
+					<div id="suport_PagingRpPOption50" class="suportBoxItem boxItemTypeButton">
+						<button type="button" id="PagingRpPOption50" class="boxItem boxItemSelected RpPBtnOption" onclick="gx.getObj('', false).getUserControl('PXTOOLSCONTEXTUALBOXContainer').ItemActionOnClick(event,'PagingExtraOptions','PagingRpPOption50','');">50 Rows</button>
+					</div>
+				</li>
+				<li class="ContextualBoxListItem">
+					<div id="suport_PagingRpPOption100" class="suportBoxItem boxItemTypeButton">
+						<button type="button" id="PagingRpPOption100" class="boxItem RpPBtnOption" onclick="gx.getObj('', false).getUserControl('PXTOOLSCONTEXTUALBOXContainer').ItemActionOnClick(event,'PagingExtraOptions','PagingRpPOption100','');">100 Rows</button>
+					</div>
+				</li>
+				<li class="ContextualBoxListItem">
+					<hr>
+				</li>
+				<li class="ContextualBoxListItem">
+					<div id="suport_PagingGoToSlider" class="suportBoxItem boxItemTypeIntegerSlider">
+						<div class="sliderStatus">
+							<span id="labelStatusValPagingGoToSlider">1</span>
+							<span id="labelStatusMaxPagingGoToSlider"> of 1</span>
+						</div>
+						<input class="boxItem" id="PagingGoToSlider" type="range" value="1" min="1" max="1">
+						<div class="sliderLimits">
+							<span id="labelMinPagingGoToSlider" style="--i: 0;">1</span>
+							<span id="labelMaxPagingGoToSlider" style="--i: 123;">1</span>
+						</div>
+					</div>
+				</li>
+				<li class="ContextualBoxListItem">
+					<div id="suport_PagingGoToButton" class="suportBoxItem boxItemTypeButton">
+						<button type="button" id="PagingGoToButton" class="boxItem RpPBtnApply inlineTable40" onclick="gx.getObj('', false).getUserControl('PXTOOLSCONTEXTUALBOXContainer').ItemActionOnClick(event,'PagingExtraOptions','PagingGoToButton','BoxData');">Go To Page</button>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<div id="box_opt2" style="display: none; width: 300px; top: 18px; left: 15px;" class="ContextualBox">
+		   <ul class="suportBox">
+		   	<!--
+		      <li id="ContextualBoxSectionUser" style="height: 160px;background-color: purple;" class="ContextualBoxSection SectionUser contextualBoxOnBottom contextualBoxVertical">
+		         <ul class="suportSection">
+		            <li style="width: 100%;" class="ContextualBoxListItem">
+		               <div id="suport_Sample_user_01" class="suportBoxItem boxItemTypeLabel"><span id="Sample_user_01" class="boxItem imgCUserontextualBox">mgiazzon@puntoexe</span></div>
+		            </li>
+		            <li style="width: 100%;" class="ContextualBoxListItem">
+		               <div id="suport_Sample_user_02" class="suportBoxItem boxItemTypeLabel"><span id="Sample_user_02" class="boxItem">Datos extra - 25/07/2020</span></div>
+		            </li>
+		            <li style="width: 100%;" class="ContextualBoxListItem">
+		               <div id="suport_Sample_user_03" class="suportBoxItem boxItemTypeLabel"><span id="Sample_user_03" class="boxItem">sadasdasd dsfsdfsd dfdssfsdf</span></div>
+		            </li>
+		         </ul>
+		      </li>
+		  -->
+		      <li id="ContextualBoxSectionGSuite" style="height: fit-content;" class="ContextualBoxSection SectionGSuite contextualBoxOnTop contextualBoxHorizontal">
+		         <ul class="suportSection">
+		         	<li style="width: 100%;" class="ContextualBoxListTitle" id="li_opt2_title">
+		               <div id="suport_Sample_gsm_07" class="suportBoxItem" onclick='activateSubBox("opt2_title");'><span class="boxItem">Módulos</span></div>
+		            </li>
+
+		            <li style="width: 30%;" class="ContextualBoxListItem" id="li_opt2_sub1">
+		               <div id="suport_Sample_gsm_01" class="suportBoxItem boxItemTypeIconButton" onclick='activateSubBox("opt2_sub1");'><img src="img\cityscape.png" class="iconRetBoxSampleTwoSection"><span class="boxItem">eFacturaz</span></div>
+		            </li>
+		            <li style="width: 30%;" class="ContextualBoxListItem" id="li_opt2_sub2">
+		               <div id="suport_Sample_gsm_02" class="suportBoxItem boxItemTypeIconButton" onclick='activateSubBox("opt2_sub2");'><img src="img\map.png"><span class="boxItem">Facturación</span></div>
+		            </li>
+		            <li style="width: 30%;" class="ContextualBoxListItem" id="li_opt2_sub3">
+		               <div id="suport_Sample_gsm_02" class="suportBoxItem boxItemTypeIconButton" onclick='activateSubBox("opt2_sub3");'><img src="img\postcard.png"><span class="boxItem">Cuentas</span></div>
+		            </li>
+
+		            <li class="ContextualBoxSubLvl" id="sublvl_1to3">
+		               	<div id="suport_eFacturaz" class="suportBoxItem">
+		               		<ul class="suportSubLvl" id="opt2_sublvl_1">
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub1_1");'>
+		               					<i class="fa fa-camera"></i>
+		               					<span class="boxItem">Inicio</span>
+		               				</div>
+		               			</li>
+
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub1_2");'>
+		               					<i class="fa fa-upload"></i>
+		               					<span class="boxItem">CFEs Emitidos</span>
+		               				</div>
+		               			</li>
+
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub1_3");'>
+		               					<i class="fa fa-download"></i>
+		               					<span class="boxItem">CFEs Recibidos</span>
+		               				</div>
+		               			</li>
+
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub1_4");'>
+		               					<i class="fa fa-calendar"></i>
+		               					<span class="boxItem">Reporte Diario</span>
+		               				</div>
+		               			</li>
+
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub1_5");'>
+		               					<i class="fa fa-cogs"></i>
+		               					<span class="boxItem">Configuración</span>
+		               				</div>
+		               			</li>
+		               		</ul>
+
+		               		<ul id="opt2_sublvl_2">
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub2_1");'>
+		               					<i class="fa fa-camera"></i>
+		               					<span class="boxItem">Inicio</span>
+		               				</div>
+		               			</li>
+
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub2_2");'>
+		               					<i class="fa fa-upload"></i>
+		               					<span class="boxItem">Facturas</span>
+		               				</div>
+		               			</li>
+
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub2_3");'>
+		               					<i class="fa fa-download"></i>
+		               					<span class="boxItem">Recibos</span>
+		               				</div>
+		               			</li>
+
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub2_4");'>
+		               					<i class="fa fa-calendar"></i>
+		               					<span class="boxItem">Clientes</span>
+		               				</div>
+		               			</li>
+
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub2_5");'>
+		               					<i class="fa fa-cogs"></i>
+		               					<span class="boxItem">Artículos</span>
+		               				</div>
+		               			</li>
+
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub2_6");'>
+		               					<i class="fa fa-calendar"></i>
+		               					<span class="boxItem">Informes</span>
+		               				</div>
+		               			</li>
+
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub2_7");'>
+		               					<i class="fa fa-cogs"></i>
+		               					<span class="boxItem">Configuración</span>
+		               				</div>
+		               			</li>
+		               		</ul>
+
+		               		<ul id="opt2_sublvl_3">
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub3_1");'>
+		               					<i class="fa fa-camera"></i>
+		               					<span class="boxItem">Inicio</span>
+		               				</div>
+		               			</li>
+
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub3_2");'>
+		               					<i class="fa fa-upload"></i>
+		               					<span class="boxItem">Presupuesto</span>
+		               				</div>
+		               			</li>
+
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub3_3");'>
+		               					<i class="fa fa-download"></i>
+		               					<span class="boxItem">Gastos</span>
+		               				</div>
+		               			</li>
+
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub3_4");'>
+		               					<i class="fa fa-calendar"></i>
+		               					<span class="boxItem">Ingresos</span>
+		               				</div>
+		               			</li>
+
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub3_5");'>
+		               					<i class="fa fa-cogs"></i>
+		               					<span class="boxItem">Trasnferencias</span>
+		               				</div>
+		               			</li>
+
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub3_6");'>
+		               					<i class="fa fa-calendar"></i>
+		               					<span class="boxItem">Ajustes</span>
+		               				</div>
+		               			</li>
+
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub3_7");'>
+		               					<i class="fa fa-cogs"></i>
+		               					<span class="boxItem">Cuentas</span>
+		               				</div>
+		               			</li>
+
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub3_8");'>
+		               					<i class="fa fa-calendar"></i>
+		               					<span class="boxItem">Conceptos</span>
+		               				</div>
+		               			</li>
+
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub3_9");'>
+		               					<i class="fa fa-cogs"></i>
+		               					<span class="boxItem">Etiquetas</span>
+		               				</div>
+		               			</li>
+		               		</ul>
+		               	</div>
+		            </li>
+
+		            <li style="width: 30%;" class="ContextualBoxListItem" id="li_opt2_sub4">
+		               <div id="suport_Sample_gsm_04" class="suportBoxItem boxItemTypeIconButton" onclick='activateSubBox("opt2_sub4");'><img src="img\sailboat.png"><span class="boxItem">Contabilidad</span></div>
+		            </li>
+		            <li style="width: 30%;" class="ContextualBoxListItem" id="li_opt2_sub5">
+		               <div id="suport_Sample_gsm_05" class="suportBoxItem boxItemTypeIconButton" onclick='activateSubBox("opt2_sub5");'><img src="img\reception.png"><span class="boxItem">Gestión</span></div>
+		            </li>
+		            
+
+		            <li class="ContextualBoxSubLvl" id="sublvl_4to6">
+		            	<div id="suport_eFacturaz" class="suportBoxItem">
+		               		<ul class="suportSubLvl" id="opt2_sublvl_4">
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub4_1");'>
+		               					<i class="fa fa-camera"></i>
+		               					<span class="boxItem">Asientos</span>
+		               				</div>
+		               			</li>
+
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub4_2");'>
+		               					<i class="fa fa-upload"></i>
+		               					<span class="boxItem">Informes</span>
+		               				</div>
+		               			</li>
+
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub4_3");'>
+		               					<i class="fa fa-cogs"></i>
+		               					<span class="boxItem">Configuración</span>
+		               				</div>
+		               			</li>
+		               		</ul>
+
+		               		<ul id="opt2_sublvl_5">
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub5_1");'>
+		               					<i class="fa fa-camera"></i>
+		               					<span class="boxItem">Inicio</span>
+		               				</div>
+		               			</li>
+
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub5_2");'>
+		               					<i class="fa fa-upload"></i>
+		               					<span class="boxItem">Comprobantes</span>
+		               				</div>
+		               			</li>
+
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub5_3");'>
+		               					<i class="fa fa-download"></i>
+		               					<span class="boxItem">Oportunidades</span>
+		               				</div>
+		               			</li>
+
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub5_4");'>
+		               					<i class="fa fa-calendar"></i>
+		               					<span class="boxItem">Contractos</span>
+		               				</div>
+		               			</li>
+
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub5_5");'>
+		               					<i class="fa fa-cogs"></i>
+		               					<span class="boxItem">Tareas</span>
+		               				</div>
+		               			</li>
+
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub5_6");'>
+		               					<i class="fa fa-calendar"></i>
+		               					<span class="boxItem">Informes</span>
+		               				</div>
+		               			</li>
+
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub5_7");'>
+		               					<i class="fa fa-cogs"></i>
+		               					<span class="boxItem">Herramientas</span>
+		               				</div>
+		               			</li>
+
+		               			<li>
+		               				<div class="suportBoxItem" onclick='activateSubBox("opt2_sub5_8");'>
+		               					<i class="fa fa-cogs"></i>
+		               					<span class="boxItem">Configuración</span>
+		               				</div>
+		               			</li>
+		               		</ul>
+		               	</div>
+		         </ul>
+		      </li>
+		   </ul>
+		</div>
+
+
+		<div id="box_opt3" style="visibility: hidden;  top: 18px; left: 15px;" class="ContextualBox">
+			<div class="parentExtarSections">
+			   <ul class="suportBox" style="width: 300px;">
+			      <li id="ContextualBoxSectionGSuite" style="height: fit-content;" class="ContextualBoxSection SectionGSuite contextualBoxOnTop contextualBoxHorizontal">
+			         <ul class="suportSection">
+			         	<li style="width: 100%;" class="ContextualBoxListTitle" id="li_opt3_title">
+			               <div id="suport_Sample_gsm_07" class="suportBoxItem" onclick='activateSubBox("opt3_title");'><span class="boxItem">Módulos</span></div>
+			            </li>
+
+			            <li style="width: 30%;" class="ContextualBoxListItem" id="li_opt3_sub1">
+			               <div id="suport_Sample_gsm_01" class="suportBoxItem boxItemTypeIconButton" onclick='activateSubBox("opt3_sub1");'><img src="img\cityscape.png" class="iconRetBoxSampleTwoSection"><span class="boxItem">eFacturaz</span></div>
+			            </li>
+			            <li style="width: 30%;" class="ContextualBoxListItem" id="li_opt3_sub2">
+			               <div id="suport_Sample_gsm_02" class="suportBoxItem boxItemTypeIconButton" onclick='activateSubBox("opt3_sub2");'><img src="img\map.png"><span class="boxItem">Facturación</span></div>
+			            </li>
+			            <li style="width: 30%;" class="ContextualBoxListItem" id="li_opt3_sub3">
+			               <div id="suport_Sample_gsm_02" class="suportBoxItem boxItemTypeIconButton" onclick='activateSubBox("opt3_sub3");'><img src="img\postcard.png"><span class="boxItem">Cuentas</span></div>
+			            </li>
+
+			            <li style="width: 30%;" class="ContextualBoxListItem" id="li_opt3_sub4">
+			               <div id="suport_Sample_gsm_04" class="suportBoxItem boxItemTypeIconButton" onclick='activateSubBox("opt3_sub4");'><img src="img\sailboat.png"><span class="boxItem">Contabilidad</span></div>
+			            </li>
+			            <li style="width: 30%;" class="ContextualBoxListItem" id="li_opt3_sub5">
+			               <div id="suport_Sample_gsm_05" class="suportBoxItem boxItemTypeIconButton" onclick='activateSubBox("opt3_sub5");'><img src="img\reception.png"><span class="boxItem">Gestión</span></div>
+			            </li>
+			         </ul>
+			      </li>
+			   </ul>
+			</div>
+			<!--<hr id="box_opt3_separador" class="separadorOnlyMobile" style="visibility: hidden;">-->
+		   <div class="extraSectionRight">
+
+		   		<ul id="opt3_sublvl_1">
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub1_1");'>
+           					<i class="fa fa-camera"></i>
+           					<span class="boxItem">Inicio</span>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub1_2");'>
+           					<i class="fa fa-upload"></i>
+           					<span class="boxItem">CFEs Emitidos</span>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub1_3");'>
+           					<i class="fa fa-download"></i>
+           					<span class="boxItem">CFEs Recibidos</span>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub1_4");'>
+           					<i class="fa fa-calendar"></i>
+           					<span class="boxItem">Reporte Diario</span>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub1_5");'>
+           					<i class="fa fa-cogs"></i>
+           					<span class="boxItem">Configuración</span>
+           				</div>
+           			</li>
+           		</ul>
+
+           		<ul id="opt3_sublvl_2">
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub2_1");'>
+           					<i class="fa fa-camera"></i>
+           					<span class="boxItem">Inicio</span>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub2_2");'>
+           					<i class="fa fa-upload"></i>
+           					<span class="boxItem">Facturas</span>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub2_3");'>
+           					<i class="fa fa-download"></i>
+           					<span class="boxItem">Recibos</span>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub2_4");'>
+           					<i class="fa fa-calendar"></i>
+           					<span class="boxItem">Clientes</span>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub2_5");'>
+           					<i class="fa fa-cogs"></i>
+           					<span class="boxItem">Artículos</span>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub2_6");'>
+           					<i class="fa fa-calendar"></i>
+           					<span class="boxItem">Informes</span>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub2_7");'>
+           					<i class="fa fa-cogs"></i>
+           					<span class="boxItem">Configuración</span>
+           				</div>
+           			</li>
+           		</ul>
+
+           		<ul id="opt3_sublvl_3">
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub3_1");'>
+           					<i class="fa fa-camera"></i>
+           					<span class="boxItem">Inicio</span>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub3_2");'>
+           					<i class="fa fa-upload"></i>
+           					<span class="boxItem">Presupuesto</span>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub3_3");'>
+           					<i class="fa fa-download"></i>
+           					<span class="boxItem">Gastos</span>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub3_4");'>
+           					<i class="fa fa-calendar"></i>
+           					<span class="boxItem">Ingresos</span>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub3_5");'>
+           					<i class="fa fa-cogs"></i>
+           					<span class="boxItem">Trasnferencias</span>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub3_6");'>
+           					<i class="fa fa-calendar"></i>
+           					<span class="boxItem">Ajustes</span>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub3_7");'>
+           					<i class="fa fa-cogs"></i>
+           					<span class="boxItem">Cuentas</span>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub3_8");'>
+           					<i class="fa fa-calendar"></i>
+           					<span class="boxItem">Conceptos</span>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub3_9");'>
+           					<i class="fa fa-cogs"></i>
+           					<span class="boxItem">Etiquetas</span>
+           				</div>
+           			</li>
+           		</ul>
+		   		
+		   		<ul id="opt3_sublvl_4">
+	       			<li>
+	       				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub4_1");'>
+	       					<i class="fa fa-camera"></i>
+	       					<span class="boxItem">Asientos</span>
+	       				</div>
+	       			</li>
+
+	       			<li>
+	       				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub4_2");'>
+	       					<i class="fa fa-upload"></i>
+	       					<span class="boxItem">Informes</span>
+	       				</div>
+	       			</li>
+
+	       			<li>
+	       				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub4_3");'>
+	       					<i class="fa fa-cogs"></i>
+	       					<span class="boxItem">Configuración</span>
+	       				</div>
+	       			</li>
+	       		</ul>
+
+	       		<ul id="opt3_sublvl_5">
+	       			<li>
+	       				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub5_1");'>
+	       					<i class="fa fa-camera"></i>
+	       					<span class="boxItem">Inicio</span>
+	       				</div>
+	       			</li>
+
+	       			<li>
+	       				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub5_2");'>
+	       					<i class="fa fa-upload"></i>
+	       					<span class="boxItem">Comprobantes</span>
+	       				</div>
+	       			</li>
+
+	       			<li>
+	       				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub5_3");'>
+	       					<i class="fa fa-download"></i>
+	       					<span class="boxItem">Oportunidades</span>
+	       				</div>
+	       			</li>
+
+	       			<li>
+	       				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub5_4");'>
+	       					<i class="fa fa-calendar"></i>
+	       					<span class="boxItem">Contractos</span>
+	       				</div>
+	       			</li>
+
+	       			<li>
+	       				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub5_5");'>
+	       					<i class="fa fa-cogs"></i>
+	       					<span class="boxItem">Tareas</span>
+	       				</div>
+	       			</li>
+
+	       			<li>
+	       				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub5_6");'>
+	       					<i class="fa fa-calendar"></i>
+	       					<span class="boxItem">Informes</span>
+	       				</div>
+	       			</li>
+
+	       			<li>
+	       				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub5_7");'>
+	       					<i class="fa fa-cogs"></i>
+	       					<span class="boxItem">Herramientas</span>
+	       				</div>
+	       			</li>
+
+	       			<li>
+	       				<div class="suportBoxItem" onclick='activateSubBox("opt3_sub5_8");'>
+	       					<i class="fa fa-cogs"></i>
+	       					<span class="boxItem">Configuración</span>
+	       				</div>
+	       			</li>
+	       		</ul>
+		   </div>
+		</div>
+
+
+		<div id="box_opt4" style="display: none;  top: 18px; left: 15px;" class="ContextualBox">
+			<div class="parentExtarSections">
+			   <ul class="suportBox" style="width: 300px;">
+			      <li id="ContextualBoxSectionGSuite" style="height: fit-content;" class="ContextualBoxSection SectionGSuite contextualBoxOnTop contextualBoxHorizontal">
+			         <ul class="suportSection">
+			         	<li style="width: 100%;" class="ContextualBoxListTitle" id="li_opt4_title">
+			               <div id="suport_Sample_gsm_07" class="suportBoxItem" onclick='activateSubBox("opt4_title");'><span class="boxItem">Módulos</span></div>
+			            </li>
+
+			            <li style="width: 30%;" class="ContextualBoxListItem" id="li_opt4_sub1">
+			               <div id="suport_Sample_gsm_01" class="suportBoxItem boxItemTypeIconButton" onclick='activateSubBox("opt4_sub1");'><img src="img\cityscape.png" class="iconRetBoxSampleTwoSection"><span class="boxItem">eFacturaz</span></div>
+			            </li>
+			            <li style="width: 30%;" class="ContextualBoxListItem" id="li_opt4_sub2">
+			               <div id="suport_Sample_gsm_02" class="suportBoxItem boxItemTypeIconButton" onclick='activateSubBox("opt4_sub2");'><img src="img\map.png"><span class="boxItem">Facturación</span></div>
+			            </li>
+			            <li style="width: 30%;" class="ContextualBoxListItem" id="li_opt4_sub3">
+			               <div id="suport_Sample_gsm_02" class="suportBoxItem boxItemTypeIconButton" onclick='activateSubBox("opt4_sub3");'><img src="img\postcard.png"><span class="boxItem">Cuentas</span></div>
+			            </li>
+
+			            <li style="width: 30%;" class="ContextualBoxListItem" id="li_opt4_sub4">
+			               <div id="suport_Sample_gsm_04" class="suportBoxItem boxItemTypeIconButton" onclick='activateSubBox("opt4_sub4");'><img src="img\sailboat.png"><span class="boxItem">Contabilidad</span></div>
+			            </li>
+			            <li style="width: 30%;" class="ContextualBoxListItem" id="li_opt4_sub5">
+			               <div id="suport_Sample_gsm_05" class="suportBoxItem boxItemTypeIconButton" onclick='activateSubBox("opt4_sub5");'><img src="img\reception.png"><span class="boxItem">Gestión</span></div>
+			            </li>
+			         </ul>
+			      </li>
+			   </ul>
+			</div>
+
+			<hr class="separatorHorizontal">
+		   	
+		   	<div class="extraSectionBottom">
+
+		   		<ul id="opt4_sublvl_1">
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub1_1");'>
+           					<i class="fa fa-camera"></i>
+           					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Inicio</span>
+	           					<span class="boxItemDescription">Ejemplo texto de description</span>
+	           				</div>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub1_2");'>
+           					<i class="fa fa-upload"></i>
+           					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">CFEs Emitidos</span>
+	           					<span class="boxItemDescription">Ejemplo texto de description con dos lineas
+	           					</span>
+	           				</div>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub1_3");'>
+           					<i class="fa fa-download"></i>
+           					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">CFEs Recibidos</span>
+	           					<span class="boxItemDescription">Ejemplo texto de description con muchas lineas. Ejemplo texto de description con muchas lineas.
+	           					</span>
+	           				</div>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub1_4");'>
+           					<i class="fa fa-calendar"></i>
+           					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Reporte Diario</span>
+	           					<span class="boxItemDescription">Ejemplo texto de description con muchas lineas. Ejemplo texto de description con muchas lineas.
+	           					</span>
+	           				</div>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub1_5");'>
+           					<i class="fa fa-cogs"></i>
+           					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Configuración</span>
+	           					<span class="boxItemDescription">Ejemplo texto de description; Configuración
+	           					</span>
+	           				</div>
+           				</div>
+           			</li>
+           		</ul>
+
+           		<ul id="opt4_sublvl_2">
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub2_1");'>
+           					<i class="fa fa-camera"></i>
+           					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Inicio</span>
+	           					<span class="boxItemDescription">Ejemplo texto de description.</span>
+	           				</div>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub2_2");'>
+           					<i class="fa fa-upload"></i>
+           					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Facturas</span>
+	           					<span class="boxItemDescription">Ejemplo texto de description.</span>
+	           				</div>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub2_3");'>
+           					<i class="fa fa-download"></i>
+           					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Recibos</span>
+	           					<span class="boxItemDescription">Recibos. Ejemplo texto de description.</span>
+	           				</div>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub2_4");'>
+           					<i class="fa fa-calendar"></i>
+           					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Clientes</span>
+	           					<span class="boxItemDescription">Ejemplo texto de description. Clientes texto de description.</span>
+	           				</div>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub2_5");'>
+           					<i class="fa fa-cogs"></i>
+           					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Artículos</span>
+	           					<span class="boxItemDescription">Ejemplo texto de description. Description media, con dos lineas</span>
+	           				</div>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub2_6");'>
+           					<i class="fa fa-calendar"></i>
+           					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Informes</span>
+	           					<span class="boxItemDescription">Informes, ejemplo texto de description.</span>
+	           				</div>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub2_7");'>
+           					<i class="fa fa-cogs"></i>
+           					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Configuración</span>
+	           					<span class="boxItemDescription">Ejemplo texto de description. Configuración</span>
+	           				</div>
+           				</div>
+           			</li>
+           		</ul>
+
+           		<ul id="opt4_sublvl_3">
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub3_1");'>
+           					<i class="fa fa-camera"></i>
+           					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Inicio</span>
+	           					<span class="boxItemDescription">Ejemplo texto de description.</span>
+	           				</div>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub3_2");'>
+           					<i class="fa fa-upload"></i>
+           					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Presupuesto</span>
+	           					<span class="boxItemDescription">Presupuesto. Ejemplo texto de description.</span>
+	           				</div>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub3_3");'>
+           					<i class="fa fa-download"></i>
+           					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Gastos</span>
+	           					<span class="boxItemDescription">Ejemplo texto de description. Gastos, gastos, gastos, gastos</span>
+	           				</div>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub3_4");'>
+           					<i class="fa fa-calendar"></i>
+           					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Ingresos</span>
+	           					<span class="boxItemDescription">Ejemplo texto de description.</span>
+	           				</div>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub3_5");'>
+           					<i class="fa fa-cogs"></i>
+           					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Trasnferencias</span>
+	           					<span class="boxItemDescription">Ejemplo texto de description. Description media, con dos lineas</span>
+	           				</div>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub3_6");'>
+           					<i class="fa fa-calendar"></i>
+           					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Ajustes</span>
+	           					<span class="boxItemDescription">Ejemplo texto de description.  Description larga, con muchas lineas, con muchas lineas, con muchas lineas, con muchas lineas</span>
+	           				</div>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub3_7");'>
+           					<i class="fa fa-cogs"></i>
+           					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Cuentas</span>
+	           					<span class="boxItemDescription">Ejemplo texto de description.</span>
+	           				</div>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub3_8");'>
+           					<i class="fa fa-calendar"></i>
+           					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Conceptos</span>
+	           					<span class="boxItemDescription">Conceptos. Ejemplo texto de description. texto largo, largo, largo, mucho largo, test</span>
+	           				</div>
+           				</div>
+           			</li>
+
+           			<li>
+           				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub3_9");'>
+           					<i class="fa fa-cogs"></i>
+           					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Etiquetas</span>
+	           					<span class="boxItemDescription">Ejemplo texto de description. Texto medio</span>
+	           				</div>
+           				</div>
+           			</li>
+           		</ul>
+		   		
+		   		<ul id="opt4_sublvl_4">
+	       			<li>
+	       				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub4_1");'>
+	       					<i class="fa fa-camera"></i>
+	       					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Asientos</span>
+	           					<span class="boxItemDescription">Ejemplo texto de description. Asientos</span>
+	           				</div>
+	       				</div>
+	       			</li>
+
+	       			<li>
+	       				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub4_2");'>
+	       					<i class="fa fa-upload"></i>
+	       					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Informes</span>
+	           					<span class="boxItemDescription">Ejemplo texto de description. Informes</span>
+	           				</div>
+	       				</div>
+	       			</li>
+
+	       			<li>
+	       				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub4_3");'>
+	       					<i class="fa fa-cogs"></i>
+	       					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Configuración</span>
+	           					<span class="boxItemDescription">Configuración. Ejemplo texto de description.</span>
+	           				</div>
+	       				</div>
+	       			</li>
+	       		</ul>
+
+	       		<ul id="opt4_sublvl_5">
+	       			<li>
+	       				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub5_1");'>
+	       					<i class="fa fa-camera"></i>
+	       					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Inicio</span>
+	           					<span class="boxItemDescription">Ejemplo texto de description.</span>
+	           				</div>
+	       				</div>
+	       			</li>
+
+	       			<li>
+	       				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub5_2");'>
+	       					<i class="fa fa-upload"></i>
+	       					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Comprobantes</span>
+	           					<span class="boxItemDescription">Prueba. Ejemplo texto de description. texto largo, largo, largo, mucho largo, test </span>
+	           				</div>
+	       				</div>
+	       			</li>
+
+	       			<li>
+	       				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub5_3");'>
+	       					<i class="fa fa-download"></i>
+	       					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Recibos</span>
+	           					<span class="boxItemDescription">Oportunidades description.</span>
+	           				</div>
+	       				</div>
+	       			</li>
+
+	       			<li>
+	       				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub5_4");'>
+	       					<i class="fa fa-calendar"></i>
+	       					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Contractos</span>
+	           					<span class="boxItemDescription">Ejemplo texto de description. Contractos.</span>
+	           				</div>
+	       				</div>
+	       			</li>
+
+	       			<li>
+	       				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub5_5");'>
+	       					<i class="fa fa-cogs"></i>
+	       					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Tareas</span>
+	           					<span class="boxItemDescription">Tareas. Ejemplo texto de description. Tareas. Tareas</span>
+	           				</div>
+	       				</div>
+	       			</li>
+
+	       			<li>
+	       				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub5_6");'>
+	       					<i class="fa fa-calendar"></i>
+	       					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Informes</span>
+	           					<span class="boxItemDescription">Informes. Ejemplo texto de description.</span>
+	           				</div>
+	       				</div>
+	       			</li>
+
+	       			<li>
+	       				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub5_7");'>
+	       					<i class="fa fa-cogs"></i>
+	       					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Herramientas</span>
+	           					<span class="boxItemDescription">Ejemplo texto de description. Herramientas. Herramientas .Herramientas. Herramientas. Herramientas</span>
+	           				</div>
+	       				</div>
+	       			</li>
+
+	       			<li>
+	       				<div class="suportBoxItem" onclick='activateSubBox("opt4_sub5_8");'>
+	       					<i class="fa fa-cogs"></i>
+	       					<div class="suportBoxItemWithDescription">
+	           					<span class="boxItem">Configuración</span>
+	           					<span class="boxItemDescription">Ejemplo texto de description.</span>
+	           				</div>
+	       				</div>
+	       			</li>
+	       		</ul>
+		   </div>
+		</div>
+
+
+
+
+	</body>
+	<script type="text/javascript">
+		console.log("szdssad");
+
+		var minScrollTime = 100;
+
+		function activateBox(id) {
+			console.log('id = ' + id);
+
+			var domBoxId = 'box_' + id;
+			var targetElementId = id;
+			var boxPosition = JSON.parse('{"BoxHorizontal":"Center","BoxVertical":"Top","AtHorizontal":"Center","AtVertical":"Bottom","CollisionHorizontal":"Fit","CollisionVertical":"Fit","ReferenceElement":"' + id +'"}');
+
+			if (id == 'opt2')
+			{
+				boxPosition.BoxHorizontal = "Left";
+				boxPosition.AtHorizontal = "Left";
+			}
+
+			if (id == 'opt4')
+			{
+				boxPosition.BoxHorizontal = "Right";
+				boxPosition.AtHorizontal = "Right";
+			}
+
+			console.log('BoxHorizontal		= ' + boxPosition.BoxHorizontal);
+			console.log('BoxVertical			= ' + boxPosition.BoxVertical);
+			console.log('AtHorizontal		= ' + boxPosition.AtHorizontal);
+			console.log('AtVertical			= ' + boxPosition.AtVertical);
+			console.log('CollisionHorizontal	= ' + boxPosition.CollisionHorizontal);
+			console.log('CollisionVertical	= ' + boxPosition.CollisionVertical);
+			console.log('ReferenceElement	= ' + boxPosition.ReferenceElement);
+
+			if (document.getElementById(domBoxId) == null || document.getElementById(domBoxId) == undefined)
+			{
+				console.warn("domBoxId elem invalid. domBoxId = " + domBoxId);
+				return;
+			}
+
+			if (id == 'opt3')
+			{
+				document.getElementById(domBoxId).style.visibility = "visible";
+			}
+			else
+				document.getElementById(domBoxId).style.display = "block";
+
+			var auxPositionMy = boxPosition.BoxHorizontal.toLowerCase() + " " + boxPosition.BoxVertical.toLowerCase();
+			var auxPositionAt = boxPosition.AtHorizontal.toLowerCase() + " " + boxPosition.AtVertical.toLowerCase();
+			var auxPositionCollision = boxPosition.CollisionHorizontal.toLowerCase() + " " + boxPosition.CollisionVertical.toLowerCase();
+
+			var auxTargetElementId;
+
+			if (boxPosition.ReferenceElement != undefined && boxPosition.ReferenceElement.length > 0)
+				auxTargetElementId = boxPosition.ReferenceElement;
+			else
+				auxTargetElementId = targetElementId;
+
+			if (auxTargetElementId.indexOf('.') < 0)
+				auxTargetElementId =  "#" + auxTargetElementId;
+
+			console.log("auxTargetElementId = " + auxTargetElementId);
+
+			$("#" + domBoxId).position({ my: auxPositionMy,
+														 at: auxPositionAt,
+														 of: auxTargetElementId,
+														 collision: auxPositionCollision});
+
+			window.flagHasActive = true;
+			window.activeControlId = "(noInstanceBoxClicked)";
+
+			$(document).mouseup(function(e)
+			{
+				console.log('auxTargetElementId = ' + auxTargetElementId
+									+	' targetElementId = ' + targetElementId);
+
+				var containerElem = $("#" + domBoxId);
+				var auxTargetElementId = targetElementId.indexOf('.') > -1 ? targetElementId : "#" + targetElementId;
+				var controlElem = $(auxTargetElementId);
+
+				if (containerElem.length > 0 && controlElem.length > 0)
+			    if (!containerElem.is(e.target) && containerElem.has(e.target).length === 0
+					&&  !controlElem.is(e.target) && controlElem.has(e.target).length === 0)
+			    {
+			        if (domBoxId == 'box_opt3')
+					{
+						document.getElementById(domBoxId).style.visibility = "hidden";
+					}
+					else
+					{
+						document.getElementById(domBoxId).style.display = "none";
+						$()
+					}
+
+			        window.flagHasActive = false;
+			    }
+			});
+			/*window.addEventListener("scroll", function()
+			{
+				setTimeout(function(){
+			    var now	= new Date().getTime();
+			    var dif = now - lastScrollTime;
+			    if (dif > minScrollTime)
+					{
+						if (document.getElementById(domBoxId) != null)
+		        {
+		        	document.getElementById(domBoxId).style.display = "none";
+		        	window.flagHasActive = false;
+		        }
+					}
+				},200);
+
+			  lastScrollTime = new Date().getTime();
+			})*/
+
+		}
+
+		
+		function activateSubBox(id) {
+
+			var strAux = "li_" + id;
+			var elemActive = document.getElementById(strAux);
+
+			if (elemActive == null || elemActive == undefined)
+			{
+				console.warn('elemActive == null || elemActive == undefined. strAux = ' + strAux);
+				return;
+			}
+
+			var elems = document.getElementsByClassName('optionActive');
+
+			for (var i = 0; i < elems.length; i++) {
+				if (elems[i].classList.contains('optionActive'))
+					elems[i].classList.remove('optionActive');
+			}
+
+			if (id.startsWith('opt4_'))
+			{
+				var elems = document.getElementsByClassName('separatorHorizontal');
+				elems[0].style.display = 'block';
+			}
+
+			if (id.startsWith('opt3_'))
+			{
+				//document.getElementById('box_opt3_separador').style.visibility = "visible";
+			}
+
+			
+			elemActive.classList.add("optionActive");
+
+			if (id.endsWith('opt2_sub1'))
+			{
+				var elem = document.getElementById("opt2_sublvl_1");
+				$(elem).slideDown("fast");
+
+				elem = document.getElementById("opt2_sublvl_2");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt2_sublvl_3");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt2_sublvl_4");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt2_sublvl_5");
+				$(elem).slideUp("fast");
+			}
+
+			if (id.endsWith('opt2_sub2'))
+			{
+				var elem = document.getElementById("opt2_sublvl_1");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt2_sublvl_2");
+				$(elem).slideDown("fast");
+
+				elem = document.getElementById("opt2_sublvl_3");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt2_sublvl_4");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt2_sublvl_5");
+				$(elem).slideUp("fast");
+			}
+
+			if (id.endsWith('opt2_sub3'))
+			{
+				var elem = document.getElementById("opt2_sublvl_1");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt2_sublvl_2");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt2_sublvl_3");
+				$(elem).slideDown("fast");
+
+				elem = document.getElementById("opt2_sublvl_4");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt2_sublvl_5");
+				$(elem).slideUp("fast");
+			}
+
+			if (id.endsWith('opt2_sub4'))
+			{
+				var elem = document.getElementById("opt2_sublvl_1");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt2_sublvl_2");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt2_sublvl_3");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt2_sublvl_4");
+				$(elem).slideDown("fast");
+
+				elem = document.getElementById("opt2_sublvl_5");
+				$(elem).slideUp("fast");
+			}
+
+			if (id.endsWith('opt2_sub5'))
+			{
+				var elem = document.getElementById("opt2_sublvl_1");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt2_sublvl_2");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt2_sublvl_3");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt2_sublvl_4");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt2_sublvl_5");
+				$(elem).slideDown("fast");
+			}
+
+			if (id.endsWith('opt3_sub1'))
+			{
+				var elem = document.getElementById("opt3_sublvl_1");
+				$(elem).slideDown("fast");
+
+				elem = document.getElementById("opt3_sublvl_2");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt3_sublvl_3");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt3_sublvl_4");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt3_sublvl_5");
+				$(elem).slideUp("fast");
+			}
+
+			if (id.endsWith('opt3_sub2'))
+			{
+				var elem = document.getElementById("opt3_sublvl_1");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt3_sublvl_2");
+				$(elem).slideDown("fast");
+
+				elem = document.getElementById("opt3_sublvl_3");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt3_sublvl_4");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt3_sublvl_5");
+				$(elem).slideUp("fast");
+			}
+
+			if (id.endsWith('opt3_sub3'))
+			{
+				var elem = document.getElementById("opt3_sublvl_1");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt3_sublvl_2");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt3_sublvl_3");
+				$(elem).slideDown("fast");
+
+				elem = document.getElementById("opt3_sublvl_4");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt3_sublvl_5");
+				$(elem).slideUp("fast");
+			}
+
+			if (id.endsWith('opt3_sub4'))
+			{
+				var elem = document.getElementById("opt3_sublvl_1");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt3_sublvl_2");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt3_sublvl_3");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt3_sublvl_4");
+				$(elem).slideDown("fast");
+
+				elem = document.getElementById("opt3_sublvl_5");
+				$(elem).slideUp("fast");
+			}
+
+			if (id.endsWith('opt3_sub5'))
+			{
+				var elem = document.getElementById("opt3_sublvl_1");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt3_sublvl_2");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt3_sublvl_3");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt3_sublvl_4");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt3_sublvl_5");
+				$(elem).slideDown("fast");
+			}
+
+			if (id.endsWith('opt4_sub1'))
+			{
+				var elem = document.getElementById("opt4_sublvl_1");
+				$(elem).slideDown("fast");
+
+				elem = document.getElementById("opt4_sublvl_2");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt4_sublvl_3");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt4_sublvl_4");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt4_sublvl_5");
+				$(elem).slideUp("fast");
+			}
+
+			if (id.endsWith('opt4_sub2'))
+			{
+				var elem = document.getElementById("opt4_sublvl_1");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt4_sublvl_2");
+				$(elem).slideDown("fast");
+
+				elem = document.getElementById("opt4_sublvl_3");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt4_sublvl_4");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt4_sublvl_5");
+				$(elem).slideUp("fast");
+			}
+
+			if (id.endsWith('opt4_sub3'))
+			{
+				var elem = document.getElementById("opt4_sublvl_1");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt4_sublvl_2");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt4_sublvl_3");
+				$(elem).slideDown("fast");
+
+				elem = document.getElementById("opt4_sublvl_4");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt4_sublvl_5");
+				$(elem).slideUp("fast");
+			}
+
+			if (id.endsWith('opt4_sub4'))
+			{
+				var elem = document.getElementById("opt4_sublvl_1");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt4_sublvl_2");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt4_sublvl_3");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt4_sublvl_4");
+				$(elem).slideDown("fast");
+
+				elem = document.getElementById("opt4_sublvl_5");
+				$(elem).slideUp("fast");
+			}
+
+			if (id.endsWith('opt4_sub5'))
+			{
+				var elem = document.getElementById("opt4_sublvl_1");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt4_sublvl_2");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt4_sublvl_3");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt4_sublvl_4");
+				$(elem).slideUp("fast");
+
+				elem = document.getElementById("opt4_sublvl_5");
+				elem.style.display = 'block';
+			}
+		}
+
+	</script>
+</html>
+

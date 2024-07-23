@@ -1,0 +1,1439 @@
+var dataMovtos = [
+  {
+    "RegEstabId": 11,
+    "RegTipo": 2,
+    "RegId": 1,
+    "RegEstagio": 0,
+    "RegSituacao": 5,
+    "RegEquipeId": 0,
+    "RegInclusaoDth": "2014-09-05T12:04:09",
+    "RegInicioDth": "0000-00-00T00:00:00",
+    "RegFimDth": "2014-09-27T03:43:31",
+    "RegOrigem": 0,
+    "RegFlagRec1": 0,
+    "RegFlagRec2": 0,
+    "RegFlagRec3": 0,
+    "RegFlagRec4": 0,
+    "RegFlagRec5": 0,
+    "RegClienteId": 0,
+    "RegMotorista": "",
+    "RegVeiculo": "",
+    "RegTranspId": 0,
+    "RegTranspNome": "",
+    "RegMovtoSeq": 0,
+    "RegObsUsuario": "",
+    "RegUsuarioId": 0,
+    "RegAlertaUsu": "",
+    "NoCarga": 0,
+    "NoViagem": 0,
+    "SdtXRegHist": [
+      
+    ],
+    "SdtXRegSub": [
+      {
+        "ItemSeq": 1,
+        "ProdutoId": 321,
+        "LoteId": "0",
+        "ValData": "0000-00-00",
+        "TotQtd": 1792,
+        "TotPos": 1792,
+        "Ocorrencia": 0,
+        "CdExpId": 0,
+        "AlocarOpc": 0,
+        "SdtXRegPos": [
+          {
+            "OrgDst": 1,
+            "LocalId": 118000011,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000021,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000031,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000041,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000051,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000061,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000071,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000081,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000091,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000101,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000111,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000121,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000131,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000141,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000151,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000161,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000171,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000181,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000191,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000201,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000211,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000221,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000231,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000241,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000251,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000261,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000271,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000281,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 110900044,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 110900051,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 110900052,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 110900053,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 110900054,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 110910053,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 110910054,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 111120054,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112360011,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112360021,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112360031,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112360041,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112360051,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112360061,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112360071,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112370011,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112370021,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112370031,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112370041,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112370051,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112370061,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112380011,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112380021,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112380031,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112380041,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112380051,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112380061,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112380071,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          }
+        ]
+      },
+      {
+        "ItemSeq": 2,
+        "ProdutoId": 433,
+        "LoteId": "0",
+        "ValData": "0000-00-00",
+        "TotQtd": 192,
+        "TotPos": 192,
+        "Ocorrencia": 0,
+        "CdExpId": 0,
+        "AlocarOpc": 0,
+        "SdtXRegPos": [
+          {
+            "OrgDst": 1,
+            "LocalId": 118000291,
+            "LocalItemSeq": 0,
+            "PosQtd": 48,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000301,
+            "LocalItemSeq": 0,
+            "PosQtd": 48,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 110310042,
+            "LocalItemSeq": 1,
+            "PosQtd": 48,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 119980481,
+            "LocalItemSeq": 1,
+            "PosQtd": 48,
+            "PosPerc": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "RegEstabId": 11,
+    "RegTipo": 2,
+    "RegId": 2,
+    "RegEstagio": 0,
+    "RegSituacao": 5,
+    "RegEquipeId": 0,
+    "RegInclusaoDth": "2014-09-05T12:04:09",
+    "RegInicioDth": "0000-00-00T00:00:00",
+    "RegFimDth": "2014-09-27T03:43:31",
+    "RegOrigem": 0,
+    "RegFlagRec1": 0,
+    "RegFlagRec2": 0,
+    "RegFlagRec3": 0,
+    "RegFlagRec4": 0,
+    "RegFlagRec5": 0,
+    "RegClienteId": 0,
+    "RegMotorista": "",
+    "RegVeiculo": "",
+    "RegTranspId": 0,
+    "RegTranspNome": "",
+    "RegMovtoSeq": 0,
+    "RegObsUsuario": "",
+    "RegUsuarioId": 0,
+    "RegAlertaUsu": "",
+    "NoCarga": 0,
+    "NoViagem": 0,
+    "SdtXRegHist": [
+      
+    ],
+    "SdtXRegSub": [
+      {
+        "ItemSeq": 1,
+        "ProdutoId": 321,
+        "LoteId": "0",
+        "ValData": "0000-00-00",
+        "TotQtd": 1792,
+        "TotPos": 1792,
+        "Ocorrencia": 0,
+        "CdExpId": 0,
+        "AlocarOpc": 0,
+        "SdtXRegPos": [
+          {
+            "OrgDst": 1,
+            "LocalId": 118000011,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000021,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000031,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000041,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000051,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000061,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000071,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000081,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000091,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000101,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000111,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000121,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000131,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000141,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000151,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000161,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000171,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000181,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000191,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000201,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000211,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000221,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000231,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000241,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000251,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000261,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000271,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000281,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 110900044,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 110900051,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 110900052,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 110900053,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 110900054,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 110910053,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 110910054,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 111120054,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112360011,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112360021,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112360031,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112360041,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112360051,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112360061,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112360071,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112370011,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112370021,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112370031,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112370041,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112370051,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112370061,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112380011,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112380021,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112380031,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112380041,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112380051,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112380061,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112380071,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          }
+        ]
+      },
+      {
+        "ItemSeq": 2,
+        "ProdutoId": 433,
+        "LoteId": "0",
+        "ValData": "0000-00-00",
+        "TotQtd": 192,
+        "TotPos": 192,
+        "Ocorrencia": 0,
+        "CdExpId": 0,
+        "AlocarOpc": 0,
+        "SdtXRegPos": [
+          {
+            "OrgDst": 1,
+            "LocalId": 118000291,
+            "LocalItemSeq": 0,
+            "PosQtd": 48,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000301,
+            "LocalItemSeq": 0,
+            "PosQtd": 48,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 110310042,
+            "LocalItemSeq": 1,
+            "PosQtd": 48,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 119980481,
+            "LocalItemSeq": 1,
+            "PosQtd": 48,
+            "PosPerc": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "RegEstabId": 11,
+    "RegTipo": 2,
+    "RegId": 3,
+    "RegEstagio": 0,
+    "RegSituacao": 5,
+    "RegEquipeId": 0,
+    "RegInclusaoDth": "2014-09-05T12:04:09",
+    "RegInicioDth": "0000-00-00T00:00:00",
+    "RegFimDth": "2014-09-27T03:43:31",
+    "RegOrigem": 0,
+    "RegFlagRec1": 0,
+    "RegFlagRec2": 0,
+    "RegFlagRec3": 0,
+    "RegFlagRec4": 0,
+    "RegFlagRec5": 0,
+    "RegClienteId": 0,
+    "RegMotorista": "",
+    "RegVeiculo": "",
+    "RegTranspId": 0,
+    "RegTranspNome": "",
+    "RegMovtoSeq": 0,
+    "RegObsUsuario": "",
+    "RegUsuarioId": 0,
+    "RegAlertaUsu": "",
+    "NoCarga": 0,
+    "NoViagem": 0,
+    "SdtXRegHist": [
+      
+    ],
+    "SdtXRegSub": [
+      {
+        "ItemSeq": 1,
+        "ProdutoId": 321,
+        "LoteId": "0",
+        "ValData": "0000-00-00",
+        "TotQtd": 1792,
+        "TotPos": 1792,
+        "Ocorrencia": 0,
+        "CdExpId": 0,
+        "AlocarOpc": 0,
+        "SdtXRegPos": [
+          {
+            "OrgDst": 1,
+            "LocalId": 118000011,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000021,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000031,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000041,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000051,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000061,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000071,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000081,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000091,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000101,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000111,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000121,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000131,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000141,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000151,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000161,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000171,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000181,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000191,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000201,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000211,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000221,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000231,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000241,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000251,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000261,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000271,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000281,
+            "LocalItemSeq": 0,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 110900044,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 110900051,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 110900052,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 110900053,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 110900054,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 110910053,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 110910054,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 111120054,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112360011,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112360021,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112360031,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112360041,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112360051,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112360061,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112360071,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112370011,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112370021,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112370031,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112370041,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112370051,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112370061,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112380011,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112380021,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112380031,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112380041,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112380051,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112380061,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 112380071,
+            "LocalItemSeq": 1,
+            "PosQtd": 32,
+            "PosPerc": 0
+          }
+        ]
+      },
+      {
+        "ItemSeq": 2,
+        "ProdutoId": 433,
+        "LoteId": "0",
+        "ValData": "0000-00-00",
+        "TotQtd": 192,
+        "TotPos": 192,
+        "Ocorrencia": 0,
+        "CdExpId": 0,
+        "AlocarOpc": 0,
+        "SdtXRegPos": [
+          {
+            "OrgDst": 1,
+            "LocalId": 118000291,
+            "LocalItemSeq": 0,
+            "PosQtd": 48,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 1,
+            "LocalId": 118000301,
+            "LocalItemSeq": 0,
+            "PosQtd": 48,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 110310042,
+            "LocalItemSeq": 1,
+            "PosQtd": 48,
+            "PosPerc": 0
+          },
+          {
+            "OrgDst": 2,
+            "LocalId": 119980481,
+            "LocalItemSeq": 1,
+            "PosQtd": 48,
+            "PosPerc": 0
+          }
+        ]
+      }
+    ]
+  }
+]

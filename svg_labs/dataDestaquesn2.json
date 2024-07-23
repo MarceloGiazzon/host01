@@ -1,0 +1,1260 @@
+dadosDestaques = [
+  {
+    "Id": 2,
+    "Titulo": "Degrade Mes Rua",
+    "Tipo": 1,
+    "Opc": "",
+    "Regra": [
+      {
+        "RegraSeq": 1,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 4,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 201411,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 190,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "{border-style: dashed; border-color: Aqua;}"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 2,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 4,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 201412,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 190,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "{border-style: dashed; border-color: yellow;}"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 3,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 4,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 201501,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 190,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "{border-style: dashed; border-color: green;}"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 4,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 4,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 201502,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 190,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "{border-style: dashed; border-color: grey;}"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 5,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 4,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 201503,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 190,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "{border-style: dashed; border-color: blue;}"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 6,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 4,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 201504,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 190,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "{border-style: dashed; border-color: red;}"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 7,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 4,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 201505,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 190,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "{border-style: dashed; border-color: purple;}"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 8,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 4,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 201506,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 190,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "{border-style: dashed; border-color: Brown;}"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 9,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 4,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 201507,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 190,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "{border-style: dashed; border-color: BlueViolet;}"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 10,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 4,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 201508,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 190,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "{border-style: dashed; border-color: CadetBlue;}"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": 3,
+    "Titulo": "Degrade Mes Pos",
+    "Tipo": 1,
+    "Opc": "",
+    "Regra": [
+      {
+        "RegraSeq": 1,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 4,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 201411,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 90,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,Aqua"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 2,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 4,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 201412,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 90,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,yellow"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 3,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 4,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 201501,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 90,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,green"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 4,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 4,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 201502,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 90,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,grey"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 5,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 4,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 201503,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 90,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,blue"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 6,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 4,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 201504,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 90,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,red"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 7,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 4,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 201505,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 90,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,purple"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 8,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 4,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 201506,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 90,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,Brown"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 9,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 4,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 201507,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 90,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,BlueViolet"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 10,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 4,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 201508,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 90,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,CadetBlue"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": 4,
+    "Titulo": "Degrade Quinzena Rec",
+    "Tipo": 1,
+    "Opc": "",
+    "Regra": [
+      {
+        "RegraSeq": 1,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 16,
+            "FiltroOperador": 7,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 0,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "2014-07-01",
+            "FiltroVal2Dta": "2014-07-14",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 90,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,Aqua"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 2,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 16,
+            "FiltroOperador": 7,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 0,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "2014-07-15",
+            "FiltroVal2Dta": "2014-07-31",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 90,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,yellow"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 3,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 16,
+            "FiltroOperador": 7,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 0,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "2014-08-15",
+            "FiltroVal2Dta": "2014-08-14",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 90,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,green"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 4,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 16,
+            "FiltroOperador": 7,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 0,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "2014-08-15",
+            "FiltroVal2Dta": "2014-08-31",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 90,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,grey"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 5,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 16,
+            "FiltroOperador": 7,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 0,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "2014-09-15",
+            "FiltroVal2Dta": "2014-09-14",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 90,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,blue"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 6,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 16,
+            "FiltroOperador": 7,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 0,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "2014-09-15",
+            "FiltroVal2Dta": "2014-09-30",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 90,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,red"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 7,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 16,
+            "FiltroOperador": 7,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 0,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "2014-10-15",
+            "FiltroVal2Dta": "2014-10-14",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 90,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,purple"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 8,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 16,
+            "FiltroOperador": 7,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 0,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "2014-10-15",
+            "FiltroVal2Dta": "2014-10-31",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 90,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,Brown"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": 5,
+    "Titulo": "Intervalo Produtos Rua",
+    "Tipo": 1,
+    "Opc": "",
+    "Regra": [
+      {
+        "RegraSeq": 1,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 6,
+            "FiltroOperador": 6,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 0,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "110,653,191,64,268,172",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 190,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,orange,stroke-dasharray,'5,5'"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 2,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 6,
+            "FiltroOperador": 6,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 0,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "80,306",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 190,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,lime,stroke-dasharray,'3,3'"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": 6,
+    "Titulo": "Intervalo Produtos Pos",
+    "Tipo": 1,
+    "Opc": "",
+    "Regra": [
+      {
+        "RegraSeq": 1,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 6,
+            "FiltroOperador": 6,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 0,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "110,653,191,64,268,172",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 190,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,orange"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 2,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 6,
+            "FiltroOperador": 6,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 0,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "80,306",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 190,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,lime"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": 7,
+    "Titulo": "Ruas Pos Parcial",
+    "Tipo": 1,
+    "Opc": "",
+    "Regra": [
+      {
+        "RegraSeq": 1,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 23,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 0,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 190,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,red,stroke-dasharray,'5,5',stroke-width,3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": 8,
+    "Titulo": "Demanda Exp Sem Saldo",
+    "Tipo": 1,
+    "Opc": "",
+    "Regra": [
+      {
+        "RegraSeq": 1,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 1,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 3,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          },
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 26,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 0,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 190,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,tomato,stroke-dasharray,'2,2',stroke-width,2"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": 9,
+    "Titulo": "Equipe - Atual",
+    "Tipo": 1,
+    "Opc": "",
+    "Regra": [
+      {
+        "RegraSeq": 1,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 11,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "2",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 0,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          },
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 21,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 0,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 90,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,aqua"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": 10,
+    "Titulo": "Equipe - Conclu\u00eddo",
+    "Tipo": 1,
+    "Opc": "",
+    "Regra": [
+      {
+        "RegraSeq": 1,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 11,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "2",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 0,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          },
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 8,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 0,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 90,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,white"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": 11,
+    "Titulo": "Ocorr\u00eancia Pos",
+    "Tipo": 1,
+    "Opc": "",
+    "Regra": [
+      {
+        "RegraSeq": 1,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 20,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 2,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 90,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,brown"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 2,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 20,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 3,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 90,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,frenchblue"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 3,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 20,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 4,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 90,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,darkgrey"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": 12,
+    "Titulo": "Opera\u00e7\u00e3o por Tipo Rua",
+    "Tipo": 1,
+    "Opc": "",
+    "Regra": [
+      {
+        "RegraSeq": 1,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 1,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 1,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          },
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 21,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 0,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 190,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,orange,stroke-width,3"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 1,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 1,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 2,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          },
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 21,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 0,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 190,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,forestgreen,stroke-width,3"
+          }
+        ]
+      },
+      {
+        "RegraSeq": 1,
+        "Filtro": [
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 1,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 3,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          },
+          {
+            "FiltroSeq": 0,
+            "FiltroId": 21,
+            "FiltroOperador": 1,
+            "FiltroVal1Char": "",
+            "FiltroVal2Char": "",
+            "FiltroVal1Int": 0,
+            "FiltroVal2Int": 0,
+            "FiltroValVarChar": "",
+            "FiltroVal1Dta": "0000-00-00",
+            "FiltroVal2Dta": "0000-00-00",
+            "FiltroCondOpe": 0
+          }
+        ],
+        "Efeito": [
+          {
+            "EfeitoSeq": 0,
+            "EfeitoId": 190,
+            "EfeitoAuxChar": "",
+            "EfeitoAuxVarChar": "stroke,navyblue,stroke-width,3"
+          }
+        ]
+      }
+    ]
+  }
+];

@@ -1,0 +1,236 @@
+<html>
+<head>
+    <title>SOAP JavaScript Client Test</title>
+    <script type="text/javascript">
+
+    console.log('V0.0001');
+    var nameFromGX = 'QUERY';
+
+        function readWSDL() {
+
+            
+
+            var wsdlURL = 'http://puntoexe.com.uy:8115/iGMP4trunk/api.inventory.asoaptinventoryv1.aspx?wsdl';
+            //var wsdlURL = 'api.inventory.asoaptinventoryv1alt.xml';
+
+            //wsdl request
+            var client = new XMLHttpRequest();
+            client.open('GET', wsdlURL);
+            client.onreadystatechange = function () {
+                var request = client.responseText;//here the wsdl
+                
+                if (request.length > 0)
+                {
+                    processWSDL(request);
+
+                    // Obter todos os elementos "element" do documento XML
+                    /*const elementos = xmlDoc.getElementsByTagName("*");
+
+                    // Iterar sobre cada elemento encontrado
+                    for (let i = 0; i < elementos.length; i++) {
+                        // Obter o texto de cada elemento e imprimir na console
+                        //const texto = elementos[i].textContent.trim();
+                        //console.log("Linha " + (i + 1) + ": " + texto);
+
+                        //console.log("Linha " + (i + 1) + ": " + elementos[i].outerHTML);
+                    }*/
+                }
+            }
+
+            client.send();
+        }
+
+        var xmlDoc;
+        function processWSDL(xmlAsString) {
+            // Criar um novo parser DOM
+            const parser = new DOMParser();
+
+            // Converter a string XML em um objeto XML
+            xmlDoc = parser.parseFromString(xmlAsString, "text/xml");
+
+            // Extrai informações necessárias do XML
+            const operations = xmlDoc.querySelectorAll("portType operation");
+
+            // Cria um objeto para armazenar informações do request
+            const jsonRequest = {
+                operations: []
+                };
+
+            var elemTarget1, auxWS_METHOD, elemTarget3, elemTarget4, elemTarget5, elemTarget6, elemTarget7, elemTarget8;
+
+            // Itera sobre as operações no WSDL
+            operations.forEach(operation => {
+                const operationName = operation.getAttribute("name");
+                const inputMessage = operation.querySelector("input").getAttribute("message");
+
+                // Adiciona informações da operação ao objeto JSON de request
+                jsonRequest.operations.push({
+                    operationName,
+                    inputMessage
+                    // Adicione mais informações conforme necessário
+                });
+
+                if (operationName == nameFromGX)
+                {
+                    console.log('asaSAS');
+
+                    for (let iTagert1 = 0; iTagert1 < operation.children.length; iTagert1++) {
+                        var nodeName = operation.children[iTagert1].nodeName;
+                        console.log('nodeName = ' + nodeName);
+
+                        if (operation.children[iTagert1].nodeName == "input")
+                        {
+                            var arrayAuxStr = operation.children[iTagert1].attributes[0].textContent.split(':');
+                            elemTarget1 = arrayAuxStr[arrayAuxStr.length-1];
+                            console.log('elemTarget1 = ' + elemTarget1);
+
+                            var arrayAuxStr2 = xmlDoc.getElementsByName(elemTarget1)[0].querySelector('[name="parameters"]').getAttribute('element').split(':');
+                            auxWS_METHOD = arrayAuxStr2[arrayAuxStr2.length-1];
+
+                            elemTarget3 = xmlDoc.getElementsByName(auxWS_METHOD)[0].querySelector('[name="Queryin"]');
+
+
+                            var arrayAuxStr3 = elemTarget3.getAttribute('type').split(':');
+                            elemTarget4 = arrayAuxStr3[arrayAuxStr3.length-1];
+
+                            elemTarget5 = xmlDoc.getElementsByName(elemTarget4);
+                            
+                            var arrayAuxStr4 = elemTarget5[0].querySelector('[name="Data"]').getAttribute('type').split(':');
+                            elemTarget6 = arrayAuxStr4[arrayAuxStr4.length-1];
+
+                            elemTarget7 = xmlDoc.getElementsByName(elemTarget6)[0];
+
+
+                            var arrayAuxStr5 = elemTarget7.querySelector('[name="Filters"]').getAttribute('type').split(':');
+                            elemTarget8 = arrayAuxStr5[arrayAuxStr5.length-1];
+
+                            elemTarget9 = xmlDoc.getElementsByName(elemTarget8)[0];
+
+                            var vetFilters = [];
+                            var jsonFilters = {
+                                filter: []
+                            };
+
+                            var auxFILTERS = '';
+                            var prefixFilters = 'igm:';
+
+                            for (let iFilters = 0; iFilters < elemTarget9.children[0].children.length; iFilters++) {
+                                var filter = elemTarget9.children[0].children[iFilters];
+                                var fName = filter.getAttribute('name');
+                                var fType = filter.getAttribute('type');
+
+                                jsonFilters.filter.push({fName,fType});
+                                
+                                var vetFilter = [];
+                                vetFilter.push(fName);
+                                vetFilter.push(fType.replace('xsd:',''));
+
+                                vetFilters.push(vetFilter);
+
+                                auxFILTERS += '<' + prefixFilters + fName + '></' + prefixFilters + fName + '>';
+
+
+                                console.log("fim loop. fName = " + fName + ' fType ' + fType);
+                            }
+
+
+                            var templateRequest = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:igm="iGMP4">'
+                                                    '<soapenv:Header/>' +
+                                                    '<soapenv:Body>' +
+                                                        '<igm:[[WS_METHOD]]>' +
+                                                            '<igm:Queryin>' +
+                                                                '<igm:Connection>' +
+                                                                '<igm:UserCode></igm:UserCode>' +
+                                                                '<igm:UserPassword></igm:UserPassword>' +
+                                                                '</igm:Connection>' +
+                                                                '<igm:Data>' +
+                                                                    '<igm:Filters>' +
+                                                                        '[[FILTERS]]'
+                                                                    '</igm:Filters>' +
+                                                                    '<igm:Page></igm:Page>' +
+                                                                '</igm:Data>' +
+                                                            '</igm:Queryin>' +
+                                                        '</igm:[[WS_METHOD]]>' +
+                                                    '</soapenv:Body>' +
+                                                    '</soapenv:Envelope>';
+                        
+                            var newRequest = templateRequest.replace('[[WS_METHOD]]',auxWS_METHOD);
+                            newRequest = newRequest.replace('[[FILTERS]]',auxFILTERS);
+
+                            console.log('newRequest = ' + newRequest);
+
+/*
+
+"{\"filter\":[{\"fName\":\"MaterialId\",\"fType\":\"xsd:int\"},{\"fName\":\"ReceiptNumber\",\"fType\":\"xsd:int\"},{\"fName\":\"SplitFromReceiptNumber\",\"fType\":\"xsd:int\"},{\"fName\":\"RequisitionId\",\"fType\":\"xsd:int\"},{\"fName\":\"RequisitionMaterialNameContains\",\"fType\":\"xsd:string\"},{\"fName\":\"InventoryMaterialCodeContains\",\"fType\":\"xsd:string\"},{\"fName\":\"PurchaseOrderNumberContains\",\"fType\":\"xsd:string\"},{\"fName\":\"MFGLotNumberContains\",\"fType\":\"xsd:string\"},{\"fName\":\"ReceivedDateFrom\",\"fType\":\"xsd:date\"},{\"fName\":\"ReceivedDateTo\",\"fType\":\"xsd:date\"},{\"fName\":\"InternalLotNumberContains\",\"fType\":\"xsd:string\"},{\"fName\":\"ProjectCode\",\"fType\":\"xsd:string\"},{\"fName\":\"Status\",\"fType\":\"xsd:int\"},{\"fName\":\"MaterialSytType\",\"fType\":\"xsd:string\"}]}"
+
+
+            var sr = '<?xml version="1.0" encoding="utf-8"?>' +
+            '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:igm="iGMP4">' +
+                '<soapenv:Header/>' +
+                '<soapenv:Body>' +
+                    '<igm:API.Inventory.SOAPTInventoryV1Alt.QUERY>' +
+                        '<igm:Queryin>' +
+                            '<igm:Connection>' +
+                            '<igm:UserCode></igm:UserCode>' +
+                            '<igm:UserPassword></igm:UserPassword>' +
+                            '</igm:Connection>' +
+                            '<igm:Data>' +
+                            '<igm:Filters>' +
+                                '<igm:MaterialId></igm:MaterialId>' +
+                                '<igm:ReceiptNumber>455</igm:ReceiptNumber>' +
+                                '<igm:SplitFromReceiptNumber></igm:SplitFromReceiptNumber>' +
+                                '<igm:RequisitionId></igm:RequisitionId>' +
+                                '<igm:RequisitionMaterialNameContains></igm:RequisitionMaterialNameContains>' +
+                                '<igm:InventoryMaterialCodeContains></igm:InventoryMaterialCodeContains>' +
+                                '<igm:PurchaseOrderNumberContains></igm:PurchaseOrderNumberContains>' +
+                                '<igm:MFGLotNumberContains></igm:MFGLotNumberContains>' +
+                                '<igm:ReceivedDateFrom></igm:ReceivedDateFrom>' +
+                                '<igm:ReceivedDateTo></igm:ReceivedDateTo>' +
+                                '<igm:InternalLotNumberContains></igm:InternalLotNumberContains>' +
+                                '<igm:ProjectCode></igm:ProjectCode>' +
+                                '<igm:Status></igm:Status>' +
+                                '<igm:MaterialSytType></igm:MaterialSytType>' +
+                            '</igm:Filters>' +
+                            '<igm:Page></igm:Page>' +
+                            '</igm:Data>' +
+                        '</igm:Queryin>' +
+                    '</igm:API.Inventory.SOAPTInventoryV1Alt.QUERY>' +
+                '</soapenv:Body>' +
+                '</soapenv:Envelope>';
+
+*/
+                            console.log("fim op");
+
+                        }
+                    }
+                }
+            });
+
+            for (let i = 0; i < jsonRequest.operations.length; i++) {
+                console.log(jsonRequest.operations[i].operationName + ' -> ' + jsonRequest.operations[i].inputMessage);
+
+                if (jsonRequest.operations[i].operationName == nameFromGX) {
+                    console.log("Found operation......");   // ->  wsdlns:API.Inventory.SOAPTInventoryV1.QUERYSoapIn
+                    
+                    var elemOperationMessa = '';
+                    
+                    var target = 0;
+
+
+                }
+                
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <form name="Demo" action="" method="post">
+        <div>
+            <input type="button" value="readWSDL" onclick="readWSDL();" />
+        </div>
+    </form>
+
+    <script>readWSDL();</script>
+</body>
+</html>

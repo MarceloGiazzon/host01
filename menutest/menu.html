@@ -1,0 +1,178 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <script src="jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="menu.css">
+  </head>
+<body>
+  <div id="container">
+    <div id="menu"><img src="images/036-monitor screen.png"></div>
+    <div class="arrow"></div>
+
+
+    <div class="gsmGridBox" id="gridbox">
+      <div class="gsmInnerGrid" id="innergrid">
+        <ul class="gsmIcons">
+          <li>
+            <div class="gsmInnerBox">
+              <img src="images/001-money bag.png">
+              <span>Money Bag Teste Vamos</span>
+            </div>
+          </li>
+          <li>
+            <div class="gsmInnerBox">
+              <img src="images/002-piggy bank.png">
+              <span></span>
+            </div>
+          </li>
+          <li>
+            <div class="gsmInnerBox">
+              <img src="images/003-shopping basket.png">
+              <span>Money Bag</span>
+            </div>
+          </li>
+          <li>
+            <div class="gsmInnerBox" onclick="expandSub();">
+              <img src="images/004-signpost.png">
+              <span>Con Sub</span>
+            </div>
+          </li>
+          <li>
+            <div class="gsmInnerBox">
+              <img src="images/005-signboard.png">
+              <span>dsfsdf</span>
+            </div>
+          </li>
+          <li>
+            <div class="gsmInnerBox">
+              <img src="images/006-cardboard box.png">
+              <span>Money Bag</span>
+            </div>
+          </li>
+
+          <li id="sub" class="sublvl">
+            <ul>
+              <li>
+                <div class="gsmInnerBox">
+                  <img src="images/012-forklift.png">
+                  <span>Sub 1</span>
+                </div>
+              </li>
+              <li>
+                <div class="gsmInnerBox">
+                  <img src="images/013-delivery truck.png">
+                  <span>Sub 2</span>
+                </div>
+              </li>
+              <li>
+                <div class="gsmInnerBox">
+                  <img src="images/017-online shopping.png">
+                  <span>Sub 3</span>
+                </div>
+              </li>
+              <li>
+                <div class="gsmInnerBox">
+                  <img src="images/013-delivery truck.png">
+                  <span>Sub 4</span>
+                </div>
+              </li>
+              <li>
+                <div class="gsmInnerBox">
+                  <img src="images/017-online shopping.png">
+                  <span>Sub 5</span>
+                </div>
+              </li>
+            </ul>
+          </li>
+
+
+          <li>
+            <div class="gsmInnerBox">
+              <img src="images/007-shopping bag.png">
+              <span>Money Bag</span>
+            </div>
+          </li>
+          <li>
+            <div class="gsmInnerBox">
+              <img src="images/008-online shop.png">
+              <span>Money Bag</span>
+            </div>
+          </li>
+          <li>
+            <div class="gsmInnerBox">
+              <img src="images/009-website.png">
+              <span>Money Bag</span>
+            </div>
+          </li>
+          <li>
+            <div class="gsmInnerBox">
+              <img src="images/010-calculator.png">
+              <span>Money Bag</span>
+            </div>
+          </li>
+          <li>
+            <div class="gsmInnerBox">
+              <img src="images/011-discount.png">
+              <span>Money Bag</span>
+            </div>
+          </li>
+          <li>
+            <div class="gsmInnerBox">
+              <img src="images/012-forklift.png">
+              <span>Money Bag</span>
+            </div>
+          </li>
+          <li>
+            <div class="gsmInnerBox">
+              <img src="images/013-delivery truck.png">
+              <span>Money Bag</span>
+            </div>
+          </li>
+          <li>
+            <div class="gsmInnerBox">
+              <img src="images/017-online shopping.png">
+              <span>Money Bag</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+
+
+  </div>
+
+  <script>
+    $('#menu').click(function(event){
+     $('.arrow').slideToggle('fast');
+     $('#gridbox').slideToggle('fast',function(){
+     $('ul').animate({marginTop:'0'});
+     $('#gridbox').animate({height:'355px'});});
+     event.stopPropagation();
+     });
+
+     $('#more').click(function(event){
+     $('ul').animate({marginTop:'-280px'},200);
+     $('#gridbox').animate({height:'280px'},200);
+     event.stopPropagation();
+     });
+
+    $('body').click(function() {
+     $('.arrow').hide();
+     $('#gridbox').hide();
+     $('ul').animate({marginTop:'0'});
+     $('#gridbox').animate({height:'355px'});
+     });
+
+    var expandSub = function() {
+      console.log('dasasdsadsad');
+      $('#sub').toggle();
+    }
+  </script>
+
+
+</body>
+</html>

@@ -1,0 +1,754 @@
+<html>
+<head>
+  <style>
+    /* Define some basic styles for the website */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .container {
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    .menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .item {
+      width: 30%;
+      margin: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .item img {
+      width: 100%;
+      height: auto;
+    }
+
+    .item h3 {
+      margin: 0;
+      padding: 5px;
+      text-align: center;
+    }
+
+    .item p {
+      margin: 0;
+      padding: 5px;
+      text-align: center;
+    }
+
+    .item button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background-color: #333;
+      color: white;
+      cursor: pointer;
+    }
+
+    .order {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .order h2 {
+      margin-top: 0;
+    }
+
+    .order ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .order li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .order li span {
+      font-weight: bold;
+    }
+    
+  </style>
+</head>
+<body>
+  <h1>Fast Food Order Menu</h1>
+  <div class="container">
+    <div class="menu">
+      
+<!-- Define some food items with images, names, prices and buttons -->
+<div class="item">
+        <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YnVyZ2VyfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Burger">
+        <h3>Burger</h3>
+        <p>$5.00</p>
+        <button onclick="addToOrder('Burger',5)">Add to Order</button>
+</div>
+
+<div class="item">
+        <img src="https://images.unsplash.com/photo-1561758033-f8ff74d64906?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGl6emF8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Pizza">
+        <h3>Pizza</h3>
+        <p>$10.00</p>
+        <button onclick="addToOrder('Pizza',10)">Add to Order</button>
+</div>
+
+<div class="item">
+        <img src="https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2FuZHdpY2h8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Sandwich">
+        <h3>Sandwich</h3>
+        <p>$7.00</p>
+        <button onclick="addToOrder('Sandwich',7)">Add to Order</button>
+</div>
+
+<div class="item">
+        <img src="https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2FsYWR8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Salad">
+        <h3>Salad</h3>
+        <p>$6.00</p>
+        <button onclick="addToOrder('Salad',6)">Add to Order</button>
+</div>
+
+<div class="item">
+        <img src="https://images.unsplash.com/photo-1516684669134-de6f7c473a2a?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aWNlJTIwY3JlYW18ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Ice Cream">
+        <h3>Ice Cream</h3>
+        <p>$4.00</p>
+        <button onclick="addToOrder('Ice Cream',4)">Add to Order</button>
+</div>
+
+<div class="item">
+        <img src="https://images.unsplash.com/photo-1584378868079-e2309b70a33d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y29mZmVlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Coffee">
+        <h3>Coffee</h3>
+        <p>$3.00</p>
+        <button onclick="addToOrder('Coffee',3)">Add to Order</button>
+</div>
+
+      
+     
+      
+     
+      
+     
+      
+     
+      
+     
+      
+     
+      
+     
+      
+     
+      
+     
+      
+     
+      
+     
+      
+     
+      
+     
+      
+     
+      
+     
+      
+     
+      
+     
+      
+     
+      
+     
+      
+     
+      
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+<!-- Define a div element for showing the order details -->
+<div class="order">
+<h2>Your Order:</h2>
+<ul id="order-list">
+
+<!-- Define a list item for showing the total price -->
+<li>Total Price:<span id="total-price">$0.00</span></li>
+
+<!-- Define a script tag for writing the javascript code -->
+<script>
+
+// Define a variable to store the total price
+var totalPrice = 0;
+
+// Define a function to add an item to the order list
+function addToOrder(name, price) {
+
+// Create a list item element
+var li = document.createElement("li");
+
+// Set the text content of the list item to show the name and price of the item
+li.textContent = name + ": $" + price.toFixed(2);
+
+// Append the list item to the order list element
+document.getElementById("order-list").appendChild(li);
+
+// Add the price of the item to the total price
+totalPrice += price;
+
+// Update the text content of the total price element to show the new total price
+document.getElementById("total-price").textContent = "$" + totalPrice.toFixed(2);
+
+}
+
+</script>
+
+    
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+  
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+   
+    
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+   
+    
+ 
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+
+<!-- Close the div elements -->
+</ul>
+</div>
+
+<!-- Close the menu and container div elements -->
+ </div>
+ </div>
+
+ </body>
+ </html> 

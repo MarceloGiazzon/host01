@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consume REST API with CORS Proxy</title>
+</head>
+<body>
+    <h1>Consume REST API with CORS Proxy</h1>
+    <form id="apiForm">
+        <button type="button" id="apiSubmitButton">Send Request</button>
+    </form>
+
+    <script>
+        document.getElementById('apiSubmitButton').addEventListener('click', async function() {
+            const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+            const apiUrl = '';
+            const requestBody = {};
+
+            try {
+                // Call the REST API with POST request via CORS proxy
+                const response = await fetch(proxyUrl + apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+
+                const responseData = await response.json();
+                console.log('API Response:', responseData);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    </script>
+</body>
+</html>

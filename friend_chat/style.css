@@ -1,0 +1,73 @@
+#tetris-grid {
+    width: 300px;
+    height: 600px;
+    margin: 0 auto;
+    background-color: #000;
+    display: grid;
+    grid-template-columns: repeat(10, 30px); /* 10 columnas de 30px cada una */
+    grid-template-rows: repeat(20, 30px); /* 20 filas de 30px cada una */
+    gap: 1px; /* Espacio de 1px entre los divs */
+  }
+  
+  .tetris-piece {
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    border: 1px solid #fff;
+  }
+  
+  .empty {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #fff;
+  }
+  
+  #score {
+    color: #fff;
+    text-align: center;
+    font-size: 24px;
+  }
+  
+  .piece-I {
+    background-color: #FF6384; /* Rojo */
+  }
+  
+  .piece-J {
+    background-color: #36A2EB; /* Azul */
+  }
+  
+  .piece-L {
+    background-color: #FFCE56; /* Amarillo */
+  }
+  
+  .piece-O {
+    background-color: #4BC0C0; /* Verde azulado */
+  }
+  
+  .piece-S {
+    background-color: #E84393; /* Rosa */
+  }
+  
+  .piece-T {
+    background-color: #9966FF; /* Púrpura */
+  }
+  
+  .piece-Z {
+    background-color: #FF9F40; /* Naranja */
+  }
+
+  #score {
+    font-family: Arial, sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ff4081;
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(255, 64, 129, 0.5);
+    width: 200px; /* Ajusta el ancho según tus necesidades */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  

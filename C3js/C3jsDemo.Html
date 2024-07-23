@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Suporte UC</title>
+    <link rel="stylesheet" href="C3js/C3.css">
+    <script src="C3js/c3.js"></script>
+    <link rel="stylesheet" href="C3js/my.css">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+	</head>
+	<body>
+    <table class="tabGeneral">
+      <tr>
+        <td>
+          <table class="tabInput">
+            <tr>
+              <td>
+                <textarea id="textData" rows = "5" cols = "50">
+                  Data...
+               </textarea>
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <div id="chart">
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <script type="text/javascript">
+
+      var data = {
+        data: {
+            columns: [
+                ['data1', 30, 20, 50, 40, 60, 50],
+                ['data2', 200, 130, 90, 240, 130, 220],
+                ['data3', 300, 200, 160, 400, 250, 250],
+                ['data4', 200, 130, 90, 240, 130, 220],
+                ['data5', 130, 120, 150, 140, 160, 150],
+                ['data6', 90, 70, 20, 50, 60, 120],
+            ],
+            type: 'bar',
+            groups: [
+                ['data1','data2','data3','data4','data5','data6']
+            ]
+        }
+      }
+      console.log('data = ' + data);
+      console.log('data = ' + data);
+
+      //  var boxPosition = JSON.parse(boxPositionChar);
+      //  JSON.stringify(this.Data))
+
+      var chart = c3.generate(data);
+    </script>
+	</body>
+</html>

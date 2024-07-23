@@ -1,0 +1,185 @@
+/*#TB_VERSION::after {
+  content: "VCss_0.024";
+}*/
+
+/*
+@media only screen and (max-height: 600px) {
+
+    .ucFloatScannerFrame {
+      margin-top: 30px !important;
+      height: 100%;
+      top: 0px !important;
+      transform: translate(-50%, 0%) !important;
+    }
+
+    .ucFloatScannerFrame #qr-reader {
+      height: 285px;
+    }
+
+    .ucFloatScannerFrame #qr-shaded-region {
+      height: 285px;
+    }
+
+    .ucFloatScannerFrame video {
+      max-height: 285px;
+      margin-top: 0px;
+    }
+}
+
+@media only screen and (max-height: 400px) {
+
+  .ucFloatScannerFrame {
+    margin-top: 0px !important;
+    height: 100%;
+    top: 0px !important;
+    transform: translate(-50%, 0%) !important;
+  }
+
+  .ucFloatScannerFrame #qr-reader {
+    height: 275px;
+  }
+
+  .ucFloatScannerFrame #qr-shaded-region {
+    height: 275px;
+  }
+
+  .ucFloatScannerFrame video {
+    max-height: 275px;
+    margin-top: 0px;
+  }
+}
+
+#PXTOOLSCAMSCANNER1Container_dummy
+{
+  border: 1px solid black;
+  width: 600px;
+  height: 400px;
+}
+
+
+#qr-reader, video {
+  max-height: 510px;
+}
+
+.supportUCNotActive {
+  display: none;
+}
+
+.maskScanner {
+  position: fixed;
+  background: black;
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+}
+
+.ucFloatScannerFrame {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 94%;
+  max-width: 600px;
+}
+
+#qr-reader-results, #supportAction {
+  background: #333;
+}
+
+#selectCamNode {
+	color: #111;
+  background: #767676;
+  margin-left: 5px;
+}
+
+#supportUC {
+  color: whitesmoke;
+}
+
+#supportAction {
+	padding-bottom: 3px;
+}
+
+#supportAction span, #labelResult {
+	border-radius: 3px;
+  padding: 7px;
+  width: 65px;
+  display: inline-block;
+}
+
+#labelResult, #labelSelectCamNode {
+	text-align: right;
+}
+
+#txtResult, #labelSelectCamNode {
+  padding: 1px;
+  margin-left: 5px;
+	display: inline-block;
+}
+
+#supportAction #actionConfirm,
+#supportAction #actionConfirmCompact {
+	background: #005525;
+  font-size: 12pt;
+  text-align: center;
+}
+#supportAction #actionClose,
+#supportAction #actionCloseCompact {
+	background: darkred;
+  font-size: 12pt;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+	
+	#supportUC {
+		width: 94vw;
+	}
+	
+	.ucFloatScannerFrame #actionConfirm,
+	.ucFloatScannerFrame #actionClose {
+		display: none;
+	}
+	
+	.ucFloatScannerFrame #actionConfirmCompact,
+	.ucFloatScannerFrame #actionCloseCompact {
+	    width: 35px;
+		height: 25px;
+		display: inline-block;
+		border-radius: 3px;
+		padding-top: 1px;
+		margin-left: 10px;
+		margin-top: 0px;
+	}
+	
+	#supportAction span, #labelResult {
+		padding: 1px;
+	}
+}
+
+@media (max-width: 400px) {
+  #selectCamNode {
+    max-width: 128px;
+  }
+}
+
+@media (min-width: 601px) {
+	.ucFloatScannerFrame_Dummy {
+    transform: translate(-50%, 0%);
+    top: 0px;
+    margin-top: 40px;
+	}
+	
+	.ucFloatScannerFrame_Dummy {
+		left: 50%;
+		min-width: 520px;
+	}
+	
+	.ucFloatScannerFrame #actionConfirmCompact,
+	.ucFloatScannerFrame #actionCloseCompact {
+		display: none;
+	}
+}
+*/
