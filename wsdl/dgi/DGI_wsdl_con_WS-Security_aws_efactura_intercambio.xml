@@ -12,7 +12,7 @@
       <wsdl:types
             xmlns:xsd="http://www.w3.org/2001/XMLSchema">
             <xsd:schema>
-                  <xsd:import schemaLocation="aws_efactura_intercambio.xsd1.xsd" namespace="http://dgi.gub.uy"/>
+                  <xsd:import schemaLocation="host01/wsdl/dgi/DGI_aws_efactura_intercambio.xsd1.xsd" namespace="https://marcelogiazzon.github.io"/>
             </xsd:schema>
       </wsdl:types>
       <wsdl:message name="WS_eFactura_Intercambio.NOTIFICACIONANULACIONCFESoapIn">
