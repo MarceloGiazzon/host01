@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floating Div with Headers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        #floatingDiv {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div id="floatingDiv"></div>
+
+<script>
+// Sample JSON data (replace this with your actual JSON string)
+const jsonData = '[{"order":1,"contentText":"Header 1","elementWidth":100},{"order":2,"contentText":"Header 2","elementWidth":150},{"order":3,"contentText":"Header 3","elementWidth":120}]';
+
+// Parse the JSON data
+const headers = JSON.parse(jsonData);
+
+// Function to create the floating div with list items
+function createFloatingDiv(headers) {
+    const floatingDiv = document.getElementById('floatingDiv');
+    const ul = document.createElement('ul');
+
+    headers.forEach(header => {
+        const li = document.createElement('li');
+
+        // Create checkbox
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        
+        // Create Font Awesome icon
+        const icon = document.createElement('i');
+        icon.className = 'fas fa-sort'; // Default icon (you can change based on logic)
+
+        // Append elements to li
+        li.appendChild(icon);
+        li.appendChild(document.createTextNode(` ${header.contentText}`));
+        li.appendChild(checkbox);
+
+        // Append li to ul
+        ul.appendChild(li);
+    });
+
+    // Append ul to the floating div
+    floatingDiv.appendChild(ul);
+}
+
+// Call the function to create the floating div
+createFloatingDiv(headers);
+</script>
+
+</body>
+</html>

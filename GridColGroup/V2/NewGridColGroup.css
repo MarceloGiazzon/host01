@@ -1,0 +1,19 @@
+body {
+    background-color: #649b67;
+}
+
+.supportTable {
+    padding: 50px;
+}
+
+table {
+    border: 1px solid rgb(143, 96, 96);
+}
+
+td {
+    border: 1px dashed blue;
+}
+
+th {
+    border: 1px dashed rgb(255, 255, 255);
+}

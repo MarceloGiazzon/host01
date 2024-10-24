@@ -1,0 +1,100 @@
+function scaMessage($)
+{
+	this.Width;
+	this.Height;
+	this.MessageType;
+	this.AnimationType;
+
+	this.show = function()
+	{
+		gx.fx.obs.addObserver('gx.onmessages', this, this.showMessages);
+		if (!this.IsPostBack)
+		{
+			var divErrors = $('[id*=gxErrorViewer]').children();
+			if (divErrors.length < 1)
+				divErrors = $('[data-gx-id*=gxErrorViewer]').children();
+
+			var msgsArr = [];
+			$.each(divErrors, function(index, value)
+			{
+				msgsArr.push({ att: '', type: 0, text: $(value).html() });
+			});
+			var msgs = {};
+			msgs['MAIN'] = msgsArr;
+			this.showMessages(msgs);
+		}
+		gx.evt.on_ready(this, this.removeErrorViewers);
+	}
+
+	this.removeErrorViewers = function()
+	{
+		$("[id*=gxErrorViewer]").remove();
+		$("[data-gx-id*=gxErrorViewer]").remove();
+	}
+
+	this.showMessages = function(messages)
+	{
+		switch (this.MessageType)
+		{
+			case "pinesnotify":
+					for (var key in messages)
+						if (key != undefined)
+							this.renderPinesNotify(messages[key]);
+					break;
+			case "dialog":
+					for (var key in messages)
+						if (key != undefined)
+							this.renderPinesNotify(messages[key]);
+					break;
+      case "alert":
+					for (var key in messages)
+						if (key != undefined)
+							this.renderPinesNotify(messages[key]);
+					break;
+		}
+	}
+
+	this.renderPinesNotify = function(messages)
+	{
+    $.each(messages, function(index, value)
+    {
+			if (value.text)
+			{
+				if (value.text.substr(0, 9) == '[!error!]')
+				{
+					value.type = 1;
+					value.text = value.text.slice(9);
+				};
+				if (value.type == 0)
+					$.pnotify({ pnotify_text: value.text, pnotify_animation: this.AnimationType });
+				else
+					$.pnotify({ pnotify_text: value.text, pnotify_animation: this.AnimationType, pnotify_type: 'error' });
+			}
+		});
+	}
+
+	this.renderAlert = function(messages)
+	{
+		$.each(messages, function(index, value)
+		{
+			if (value.text)
+				alert(value.text);
+		});
+	}
+
+	this.renderDialog = function(messages)
+	{
+		_this = this;
+		$.each(messages, function(index, value)
+		{
+			if (value.text)
+			{
+				var buffer = new gx.text.stringBuffer();
+				buffer.clear();
+				buffer.append('<div id="' + _this.ControlName + '" title="' + value.text + '"><p>' + value.text + '</p></div>');
+				_this.setHtml(buffer.toString());
+				$('#' + _this.ControlName).dialog({});
+			}
+		});
+	}
+}
