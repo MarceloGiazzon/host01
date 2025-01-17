@@ -1,0 +1,154 @@
+<html><head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body, html {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            button {
+                height: 5vh;
+                margin: 1vh;
+                /*vertical-align: ;*/
+            }
+            .ndfmessage:even {
+                background-color: #808080;
+            }
+            .ndfmessage {
+                border: 1px solid black;
+                font-size: 14pt;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            .recordType {
+                font-weight:bold;
+            }
+
+            .ndefdata {
+                font-family: 'Courier New', Courier, monospace;
+            }
+
+        </style>
+        <script>
+            var reader; 
+            var abortController = new AbortController();
+            //const READ_TIMEOUT = 60_000;
+            utf8decoder = new TextDecoder('utf8');
+
+            function bufferToString(b) {
+                var Int8Buffer = new Uint8Array(b);
+                var retVal = '';
+                for(var i=0;i<Int8Buffer.length;++i)
+                {
+                    retVal += (" " + Int8Buffer[i].toString(16).padStart(2,'0'));
+                }
+                return retVal;
+            }
+
+            function setup() 
+            {
+                if (! ('NDEFReader' in window))  {
+                    //This device doesn't have NFC capabilities.
+                    document.getElementById('scanButton').disabled = true;                
+                    document.getElementById('stopScanButton').disabled = true;
+                    document.getElementById('lastError').innerText = "Sorry, this app only works on devices capable of reading NFC"
+
+                }
+               reader = new NDEFReader();
+
+               reader.onreadingerror = (e) => {
+                    console.error(e);
+               }
+               reader.onreading = (e) => {
+                var rootResultElement = document.getElementById("scanResult");                
+                rootResultElement.innerText = "";
+
+                var showSerialNumberChecked = document.getElementById('showSerialNumber').checked;
+                if(showSerialNumberChecked) {
+                    var serialNumberElement = document.createElement('div');
+                    serialNumberElement.class = 'serialNumber';
+                    serialNumberElement.innerText = e.serialNumber;
+                    rootResultElement.appendChild(serialNumberElement)                    ;
+                }
+
+                for(var i=0;i<e.message.records.length;++i)
+                {
+                    var record = e.message.records[i];
+                    var envelopeElement = document.createElement('div')
+                    envelopeElement.className = 'ndfmessage';
+                    
+                    var typeText = document.createElement('div');
+                    typeText.className = 'recordType'                    
+                    typeText.innerText = record.recordType;
+
+                    var dataElement = document.createElement('div');
+                    dataElement.className = 'ndefdata'
+                    dataElement.innerText = bufferToString(record.data.buffer);
+                    var dataTextElement = document.createElement('div');
+                    dataTextElement.innerText = utf8decoder.decode(record.data.buffer);
+                    envelopeElement.appendChild(typeText);
+                    envelopeElement.appendChild(dataElement);
+                    envelopeElement.appendChild(dataTextElement);
+                    rootResultElement.appendChild(envelopeElement);
+                }
+               }
+
+               reader.onreadingerror = (e) => {
+                    var lastError = document.getElementById('lastError');
+                    lastError.innerText = e.toString();
+               }
+            }
+
+            function scanTag() {
+                reader.scan({signal: abortController.signal})
+                .then(()=>{})
+                .catch((e)=>{
+                    if(!e) {
+                        return;
+                    }
+                    if(e.isError) {
+                        console.error(e);
+                    } else {
+                        if(e.reasonText) {
+                        console.info(e.reasonText);
+                        }
+                    }
+                })
+                //abortScanHandle.timeout(READ_TIMEOUT)
+                document.getElementById('scanButton').disabled = true;
+                document.getElementById('stopScanButton').disabled = false;
+            }
+
+            function abortScan() {
+                document.getElementById('scanButton').disabled = false;                
+                document.getElementById('stopScanButton').disabled = true;
+                abortController.abort({isError:false, reasonText:"user requested scan termination"});
+
+            }
+
+            window.onload = () => {
+                setup();
+            }
+        </script>
+    </head>
+
+    <body>
+
+        <div>
+            <button id="scanButton" onclick="scanTag()" disabled="">Scan for Tags</button>
+        </div>
+        <div>
+            <button id="stopScanButton" onclick="abortScan()" disabled="">Abort Scan</button>
+        </div>
+        <div style="position:relative;">
+            <input type="checkbox" id="showSerialNumber"> <label for="showSerialNumber">Show Serial Number</label>
+
+        </div>
+
+        
+        
+        
+        <div id="scanResult">
+
+        </div>
+        <div id="lastError">Sorry, this app only works on devices capable of reading NFC</div>
+    
+</body></html>
