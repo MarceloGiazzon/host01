@@ -96,7 +96,7 @@
 
                reader.onreadingerror = (e) => {
                     var lastError = document.getElementById('lastError');
-                    lastError.innerText = e.toString() + ' ' + e.type + ' eventPhase: ' + e.eventPhase + ' isTrusted:' + isTrusted;
+                    lastError.innerText = e.toString() + ' ' + e.type + ' eventPhase: ' + e.eventPhase + ' e.isTrusted:' + isTrusted;
                }
             }
 
@@ -156,6 +156,6 @@
         </div>
         <div id="lastError">Sorry, this app only works on devices capable of reading NFC</div>
         <br>
-        <div >V0.3</div>
+        <div >V0.4</div>
     
 </body></html>
