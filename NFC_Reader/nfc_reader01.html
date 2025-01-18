@@ -45,14 +45,14 @@
 
             function setup() 
             {
-                /*if (! ('NDEFReader' in window))  {
+                if (! ('NDEFReader' in window))  {
                     //This device doesn't have NFC capabilities.
-                    document.getElementById('scanButton').disabled = true;                
-                    document.getElementById('stopScanButton').disabled = true;
+                    //document.getElementById('scanButton').disabled = true;                
+                    //document.getElementById('stopScanButton').disabled = true;
                     document.getElementById('lastError').innerText = "Sorry, this app only works on devices capable of reading NFC"
 
                 }
-                    */
+                    
                reader = new NDEFReader();
 
                reader.onreadingerror = (e) => {
@@ -72,6 +72,8 @@
 
                 for(var i=0;i<e.message.records.length;++i)
                 {
+                    console.log('record>> ' + record);
+                    
                     var record = e.message.records[i];
                     var envelopeElement = document.createElement('div')
                     envelopeElement.className = 'ndfmessage';
@@ -94,7 +96,7 @@
 
                reader.onreadingerror = (e) => {
                     var lastError = document.getElementById('lastError');
-                    lastError.innerText = e.toString();
+                    lastError.innerText = e.toString() + ' ' + e.type + ' eventPhase: ' + e.eventPhase + ' isTrusted:' + isTrusted;
                }
             }
 
@@ -127,6 +129,8 @@
 
             window.onload = () => {
                 setup();
+
+                document.getElementById('scanButton').disabled = false;
             }
         </script>
     </head>
@@ -134,10 +138,10 @@
     <body>
 
         <div>
-            <button id="scanButton" onclick="scanTag()" disabled="">Scan for Tags</button>
+            <button id="scanButton" onclick="scanTag()">Scan for Tags</button>
         </div>
         <div>
-            <button id="stopScanButton" onclick="abortScan()" disabled="">Abort Scan</button>
+            <button id="stopScanButton" onclick="abortScan()">Abort Scan</button>
         </div>
         <div style="position:relative;">
             <input type="checkbox" id="showSerialNumber"> <label for="showSerialNumber">Show Serial Number</label>
@@ -152,6 +156,6 @@
         </div>
         <div id="lastError">Sorry, this app only works on devices capable of reading NFC</div>
         <br>
-        <div >V0.2</div>
+        <div >V0.3</div>
     
 </body></html>
