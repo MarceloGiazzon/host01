@@ -45,13 +45,14 @@
 
             function setup() 
             {
-                if (! ('NDEFReader' in window))  {
+                /*if (! ('NDEFReader' in window))  {
                     //This device doesn't have NFC capabilities.
                     document.getElementById('scanButton').disabled = true;                
                     document.getElementById('stopScanButton').disabled = true;
                     document.getElementById('lastError').innerText = "Sorry, this app only works on devices capable of reading NFC"
 
                 }
+                    */
                reader = new NDEFReader();
 
                reader.onreadingerror = (e) => {
@@ -150,5 +151,7 @@
 
         </div>
         <div id="lastError">Sorry, this app only works on devices capable of reading NFC</div>
+        <br>
+        <div >V0.2</div>
     
 </body></html>
