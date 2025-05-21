@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFC Card Reader</title>
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #6e94c0;
+            --accent-color: #ff9800;
+            --bg-color: #f9f9f9;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .status {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .status-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .status-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .status-circle.ready {
+            background-color: var(--secondary-color);
+        }
+
+        .status-circle.scanning {
+            background-color: var(--accent-color);
+            animation: pulse 1.5s infinite;
+        }
+
+        .status-circle.success {
+            background-color: #4CAF50;
+        }
+
+        .status-circle.error {
+            background-color: #F44336;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .action-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-bottom: 10px;
+        }
+
+        .action-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .action-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .data-section {
+            margin-top: 30px;
+        }
+
+        .data-label {
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: var(--primary-color);
+        }
+
+        .data-value {
+            font-family: monospace;
+            background-color: rgba(0,0,0,0.05);
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            overflow-wrap: break-word;
+            margin-bottom: 15px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .compatibility-notice {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            border-top: 1px solid #eee;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Log section */
+        .log-container {
+            margin-top: 20px;
+            max-height: 150px;
+            overflow-y: auto;
+            border-radius: 6px;
+            background-color: rgba(0,0,0,0.05);
+        }
+
+        .log-entry {
+            padding: 8px 12px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            font-size: 12px;
+            font-family: monospace;
+        }
+
+        .log-entry:last-child {
+            border-bottom: none;
+        }
+
+        .log-entry.info {
+            color: var(--primary-color);
+        }
+
+        .log-entry.error {
+            color: #F44336;
+        }
+
+        .log-entry.success {
+            color: #4CAF50;
+        }
+
+        /* Swipe animation */
+        .nfc-animation {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+
+        .nfc-icon {
+            width: 100%;
+            height: 100%;
+            fill: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>NFC Card Reader</h1>
+            <p>Scan your NFC card to read data</p>
+        </header>
+
+        <div class="card">
+            <p class="status" id="status">Checking NFC compatibility...</p>
+            
+            <div class="status-icon">
+                <div class="status-circle" id="statusCircle">
+                    <div class="nfc-animation">
+                        <svg class="nfc-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20,2H4C2.9,2,2,2.9,2,4v16c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V4C22,2.9,21.1,2,20,2z M20,20H4V4h16V20z M18,6h-5c-1.1,0-2,0.9-2,2v2.28c-0.6,0.35-1,0.98-1,1.72c0,1.1,0.9,2,2,2s2-0.9,2-2c0-0.74-0.4-1.38-1-1.72V8h3v8H8V8h2V6H6v12h12V6z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <button id="scanButton" class="action-btn" disabled>Start Scanning</button>
+            <button id="clearButton" class="action-btn" style="background-color: #9e9e9e;">Clear Data</button>
+        </div>
+
+        <div id="dataCard" class="card hidden">
+            <h2>Card Data</h2>
+            
+            <div class="data-section">
+                <div class="data-label">Card Type</div>
+                <div class="data-value" id="cardType">-</div>
+                
+                <div class="data-label">Serial Number</div>
+                <div class="data-value" id="serialNumber">-</div>
+                
+                <div class="data-label">Raw Data</div>
+                <div class="data-value" id="rawData">-</div>
+                
+                <div class="data-label">Decoded Text</div>
+                <div class="data-value" id="decodedText">-</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Log</h2>
+            <div class="log-container" id="logContainer"></div>
+        </div>
+
+        <p class="compatibility-notice" id="compatNotice">
+            Web NFC is currently only supported in Chrome for Android.
+        </p>
+    </div>
+
+    <script>
+        // DOM Elements
+        const statusElement = document.getElementById('status');
+        const statusCircle = document.getElementById('statusCircle');
+        const scanButton = document.getElementById('scanButton');
+        const clearButton = document.getElementById('clearButton');
+        const dataCard = document.getElementById('dataCard');
+        const cardTypeElement = document.getElementById('cardType');
+        const serialNumberElement = document.getElementById('serialNumber');
+        const rawDataElement = document.getElementById('rawData');
+        const decodedTextElement = document.getElementById('decodedText');
+        const logContainer = document.getElementById('logContainer');
+        const compatNotice = document.getElementById('compatNotice');
+
+        // Check if NFC is supported
+        let nfcSupported = false;
+        
+        function addLogEntry(message, type = 'info') {
+            const logEntry = document.createElement('div');
+            logEntry.classList.add('log-entry', type);
+            logEntry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logContainer.appendChild(logEntry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+
+        function updateStatus(message, state) {
+            statusElement.textContent = message;
+            statusCircle.className = 'status-circle ' + state;
+        }
+
+        function checkNfcSupport() {
+            // Check if running in iframe
+            if (window !== window.top) {
+                updateStatus('Warning: Embedded Context Detected', 'error');
+                compatNotice.innerHTML = 'This app is running in an embedded context (iframe). Web NFC requires a top-level browsing context.<br>Please open this page directly in Chrome for Android.';
+                addLogEntry('Running in iframe or embedded context - NFC will not work', 'error');
+                return;
+            }
+            
+            // Check if HTTPS is being used (required for production)
+            if (window.location.protocol !== 'https:' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+                addLogEntry('Warning: HTTPS is required for Web NFC in production', 'error');
+                compatNotice.innerHTML += '<br>Web NFC requires HTTPS in production environments.';
+            }
+
+            if ('NDEFReader' in window) {
+                nfcSupported = true;
+                updateStatus('NFC Ready - Tap to Scan', 'ready');
+                scanButton.disabled = false;
+                compatNotice.textContent = 'NFC is supported on your device';
+                addLogEntry('NFC is supported on this device', 'success');
+            } else {
+                updateStatus('NFC Not Supported', 'error');
+                compatNotice.innerHTML = 'Web NFC is not supported in your browser.<br>Please use Chrome for Android to access this feature.';
+                addLogEntry('NFC is not supported on this device or browser', 'error');
+            }
+        }
+
+        function clearData() {
+            cardTypeElement.textContent = '-';
+            serialNumberElement.textContent = '-';
+            rawDataElement.textContent = '-';
+            decodedTextElement.textContent = '-';
+            dataCard.classList.add('hidden');
+            addLogEntry('Data cleared');
+        }
+
+        function arrayBufferToHexString(buffer) {
+            return Array.from(new Uint8Array(buffer))
+                .map(b => b.toString(16).padStart(2, '0'))
+                .join(' ');
+        }
+
+        function startNfcScan() {
+            if (!nfcSupported) {
+                addLogEntry('Cannot start scan: NFC not supported', 'error');
+                return;
+            }
+            
+            // Check if we're in a top-level browsing context
+            if (window !== window.top) {
+                updateStatus('Error: NFC requires top-level browsing context', 'error');
+                addLogEntry('Cannot use NFC in iframe or embedded context', 'error');
+                alert('Web NFC can only be used in a standalone browser window, not in an iframe or embedded context. Please open this page directly in Chrome for Android.');
+                return;
+            }
+
+            const ndef = new NDEFReader();
+            updateStatus('Scanning... Hold your card near the device', 'scanning');
+            addLogEntry('Started NFC scan', 'info');
+
+            try {
+                ndef.scan()
+                    .then(() => {
+                        addLogEntry('NFC scan activated successfully', 'success');
+                        
+                        ndef.addEventListener("reading", ({ message, serialNumber }) => {
+                        updateStatus('Card Detected!', 'success');
+                        addLogEntry(`Card detected with serial: ${serialNumber}`, 'success');
+                        
+                        // Display the data card
+                        dataCard.classList.remove('hidden');
+                        
+                        // Display serial number
+                        serialNumberElement.textContent = serialNumber || 'Not available';
+                        
+                        // Process NDEF message
+                        let rawDataText = '';
+                        let decodedText = '';
+                        let cardTypeText = 'NDEF';
+                        
+                        for (const record of message.records) {
+                            const recordType = record.recordType;
+                            const encoding = record.encoding || 'utf-8';
+                            
+                            // Add raw data
+                            rawDataText += `Record Type: ${recordType}\n`;
+                            if (record.data) {
+                                rawDataText += `Data (hex): ${arrayBufferToHexString(record.data.buffer)}\n`;
+                            }
+                            
+                            // Decode and display content based on type
+                            if (recordType === "text") {
+                                const textDecoder = new TextDecoder(encoding);
+                                const text = textDecoder.decode(record.data);
+                                decodedText += `Text: ${text}\n`;
+                                addLogEntry(`Text record found: ${text.substring(0, 30)}${text.length > 30 ? '...' : ''}`, 'info');
+                            } 
+                            else if (recordType === "url") {
+                                const textDecoder = new TextDecoder();
+                                const url = textDecoder.decode(record.data);
+                                decodedText += `URL: ${url}\n`;
+                                addLogEntry(`URL record found: ${url}`, 'info');
+                            }
+                            else if (recordType.startsWith("mime:")) {
+                                const mimeType = recordType.substring(5);
+                                decodedText += `MIME type: ${mimeType}\n`;
+                                if (mimeType.startsWith('text/')) {
+                                    const textDecoder = new TextDecoder();
+                                    const text = textDecoder.decode(record.data);
+                                    decodedText += `Content: ${text}\n`;
+                                } else {
+                                    decodedText += `Binary data of length: ${record.data.byteLength} bytes\n`;
+                                }
+                                addLogEntry(`MIME record found: ${mimeType}`, 'info');
+                            }
+                            else if (recordType === ":smart-poster") {
+                                decodedText += "Smart Poster\n";
+                                addLogEntry('Smart Poster record found', 'info');
+                            }
+                            else if (recordType === ":t") {
+                                const textDecoder = new TextDecoder();
+                                const text = textDecoder.decode(record.data).substring(3); // Skip language code
+                                decodedText += `Text: ${text}\n`;
+                                addLogEntry(`Text record found: ${text.substring(0, 30)}${text.length > 30 ? '...' : ''}`, 'info');
+                            }
+                            else {
+                                decodedText += `Unknown record type: ${recordType}\n`;
+                                addLogEntry(`Unknown record type: ${recordType}`, 'info');
+                            }
+                        }
+                        
+                        // Update UI
+                        cardTypeElement.textContent = cardTypeText;
+                        rawDataElement.textContent = rawDataText || 'No raw data available';
+                        decodedTextElement.textContent = decodedText || 'No decoded data available';
+                        
+                        // Reset scanning status after a brief pause
+                        setTimeout(() => {
+                            updateStatus('Ready to Scan Again', 'ready');
+                        }, 3000);
+                    });
+
+                    ndef.addEventListener("readingerror", (error) => {
+                        addLogEntry(`Error reading NFC: ${error}`, 'error');
+                        updateStatus('Error Reading Card', 'error');
+                        
+                        // Reset scanning status after a brief pause
+                        setTimeout(() => {
+                            updateStatus('Ready to Scan Again', 'ready');
+                        }, 3000);
+                    });
+                })
+                .catch(error => {
+                    updateStatus('Error Starting NFC Scan', 'error');
+                    addLogEntry(`Error activating NFC: ${error}`, 'error');
+                    console.error(`Error scanning: ${error}`);
+                    
+                    if (error.name === 'NotAllowedError') {
+                        addLogEntry('NFC permission denied by user', 'error');
+                    } else if (error.name === 'NotSupportedError') {
+                        addLogEntry('NFC not supported on this device', 'error');
+                        nfcSupported = false;
+                    } else if (error.name === 'InvalidStateError') {
+                        addLogEntry('Invalid state: Make sure you\'re not in an iframe or embedded context', 'error');
+                        alert('Web NFC can only be accessed in a top-level browsing context (not in an iframe). Please open this page directly in Chrome for Android.');
+                    } else if (error.name === 'SecurityError') {
+                        addLogEntry('Security error: HTTPS is required for Web NFC', 'error');
+                        alert('Web NFC requires a secure context (HTTPS). Please access this page through HTTPS.');
+                    }
+                });
+            } catch (error) {
+                updateStatus('Error Starting NFC Scan', 'error');
+                addLogEntry(`Error with NFC: ${error}`, 'error');
+                console.error(`General NFC error: ${error}`);
+            }
+        }
+
+        // Event listeners
+        scanButton.addEventListener('click', startNfcScan);
+        clearButton.addEventListener('click', clearData);
+
+        // Initialize app
+        function init() {
+            addLogEntry('Application initialized');
+            checkNfcSupport();
+        }
+
+        // Start the app when the page is loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
