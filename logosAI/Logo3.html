@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Círculo com Pontos Conectados</title>
+</head>
+<body>
+  <canvas id="myCanvas" width="300" height="300"></canvas>
+
+  <script>
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Número de pontos
+    const numPoints = 10;
+
+    // Raio do círculo
+    const radius = 100;
+
+    // Centro do círculo
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+
+    // Cria um array para armazenar as coordenadas dos pontos
+    const points = [];
+
+    // Função para gerar coordenadas aleatórias dentro do círculo
+    function generateRandomPoint() {
+      let x, y;
+      do {
+        x = Math.random() * canvas.width;
+        y = Math.random() * canvas.height;
+      } while (Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2) > radius * radius);
+      return { x, y };
+    }
+
+    // Cria os pontos e armazena suas coordenadas
+    for (let i = 0; i < numPoints; i++) {
+      points.push(generateRandomPoint());
+    }
+
+    // Função para desenhar as linhas de conexão
+    function drawLines() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Conecta cada ponto a todos os outros
+      for (let i = 0; i < points.length; i++) {
+        for (let j = i + 1; j < points.length; j++) {
+          ctx.beginPath();
+          ctx.moveTo(points[i].x, points[i].y);
+          ctx.lineTo(points[j].x, points[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Desenha os pontos e as linhas
+    drawLines();
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Dome</title>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .dome {
+            position: relative;
+            width: 400px;
+            height: 200px;
+            border-top-left-radius: 200px;
+            border-top-right-radius: 200px;
+            border: 5px solid #00bfff;
+            overflow: hidden;
+        }
+        .node {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #00bfff;
+            border-radius: 50%;
+        }
+        .line {
+            position: absolute;
+            background-color: #00bfff;
+            transform-origin: top left;
+        }
+    </style>
+</head>
+<body>
+    <div class="dome">
+        <div class="node" style="top: 50px; left: 100px;"></div>
+        <div class="node" style="top: 80px; left: 150px;"></div>
+        <div class="node" style="top: 30px; left: 200px;"></div>
+        <div class="node" style="top: 70px; left: 250px;"></div>
+        <div class="node" style="top: 50px; left: 300px;"></div>
+        <div class="line" style="top: 55px; left: 105px; width: 45px; height: 2px; transform: rotate(30deg);"></div>
+        <div class="line" style="top: 85px; left: 155px; width: 45px; height: 2px; transform: rotate(-30deg);"></div>
+        <div class="line" style="top: 35px; left: 205px; width: 45px; height: 2px; transform: rotate(30deg);"></div>
+        <div class="line" style="top: 75px; left: 255px; width: 45px; height: 2px; transform: rotate(-30deg);"></div>
+        <div class="line" style="top: 55px; left: 305px; width: 45px; height: 2px; transform: rotate(30deg);"></div>
+    </div>
+</body>
+</html>

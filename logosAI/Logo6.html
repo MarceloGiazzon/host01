@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Círculo com Pontos e Movimento Aleatório</title>
+</head>
+<body>
+  <canvas id="myCanvas" width="400" height="400"></canvas>
+  <button id="moveButton">Iniciar Movimento</button>
+  <button id="stopButton">Parar Movimento</button>
+
+  <script>
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+    const moveButton = document.getElementById('moveButton');
+    const stopButton = document.getElementById('stopButton');
+
+    // Número de pontos
+    const numPoints = 50;
+
+    // Raio do círculo
+    const radius = 100;
+
+    // Regras de distância
+    const minDistance = 10;
+    const maxDistanceFromCenter = 500;
+
+    // Centro do círculo
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+
+    // Array para armazenar os pontos
+    const points = [];
+
+    // Variável para controlar o movimento
+    let movementInterval = null;
+
+    // Função para calcular a distância entre dois pontos
+    function distanceBetween(p1, p2) {
+      return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
+    }
+
+    // Função para verificar se um ponto é válido
+    function isValidPoint(point, points) {
+      // Verifica se está dentro da distância mínima de outros pontos
+      for (const p of points) {
+        if (distanceBetween(point, p) < minDistance) {
+          return false;
+        }
+      }
+      // Verifica se está dentro da distância máxima do centro
+      return distanceBetween(point, { x: centerX, y: centerY }) <= maxDistanceFromCenter;
+    }
+
+    // Função para gerar pontos válidos
+    function generateValidPoint(maxAttempts = 1000) {
+      let point;
+      let attempts = 0;
+
+      do {
+        if (attempts >= maxAttempts) {
+          console.error(`Falha ao gerar um ponto válido após ${maxAttempts} tentativas.`);
+          alert(`Erro: não foi possível gerar todos os pontos. Tente ajustar as regras.`);
+          return null; // Retorna null em caso de falha
+        }
+
+        point = {
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+        };
+
+        attempts++;
+      } while (!isValidPoint(point, points));
+
+      return point;
+    }
+
+    // Gera os pontos iniciais
+    for (let i = 0; i < numPoints; i++) {
+      const point = generateValidPoint();
+      if (point) {
+        points.push(point);
+      } else {
+        break; // Interrompe a geração de pontos em caso de falha
+      }
+    }
+
+    // Função para encontrar os 3 vizinhos mais próximos de um ponto
+    function findNearestNeighbors(point, points) {
+      const distances = points.map((p, index) => ({
+        index: index,
+        distance: distanceBetween(point, p),
+      }));
+
+      distances.sort((a, b) => a.distance - b.distance);
+
+      return distances.slice(1, 4).map(d => points[d.index]);
+    }
+
+    // Função para desenhar o círculo principal
+    function drawCircle() {
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+      ctx.strokeStyle = 'black';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    // Função para desenhar os pontos e seus círculos
+    function drawPoints() {
+      points.forEach(point => {
+        // Desenha o círculo ao redor do ponto
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, 6, 0, Math.PI * 2);
+        ctx.strokeStyle = 'blue';
+        ctx.stroke();
+
+        // Desenha o ponto
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, 3, 0, Math.PI * 2);
+        ctx.fillStyle = 'blue';
+        ctx.fill();
+      });
+    }
+
+    // Função para desenhar as linhas
+    function drawLines() {
+      ctx.lineWidth = 0.5;
+      ctx.strokeStyle = 'gray';
+
+      for (let i = 0; i < points.length; i++) {
+        const neighbors = findNearestNeighbors(points[i], points);
+
+        neighbors.forEach(neighbor => {
+          ctx.beginPath();
+          ctx.moveTo(points[i].x, points[i].y);
+          ctx.lineTo(neighbor.x, neighbor.y);
+          ctx.stroke();
+        });
+      }
+    }
+
+    // Função para redesenhar o canvas
+    function redrawCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawCircle();
+      drawLines();
+      drawPoints();
+    }
+
+    // Função para movimentar os pontos de forma aleatória
+    function movePoints() {
+      points.forEach(point => {
+        point.x += (Math.random() - 0.5) * 2; // Move em x
+        point.y += (Math.random() - 0.5) * 2; // Move em y
+
+        // Mantém o ponto dentro do círculo
+        const distanceFromCenter = distanceBetween(point, { x: centerX, y: centerY });
+        if (distanceFromCenter > radius) {
+          const angle = Math.atan2(point.y - centerY, point.x - centerX);
+          point.x = centerX + radius * Math.cos(angle);
+          point.y = centerY + radius * Math.sin(angle);
+        }
+      });
+      redrawCanvas();
+    }
+
+    // Função para iniciar o movimento
+    function startMovement() {
+      if (!movementInterval) {
+        movementInterval = setInterval(movePoints, 50); // Move os pontos a cada 50ms
+      }
+    }
+
+    // Função para parar o movimento
+    function stopMovement() {
+      if (movementInterval) {
+        clearInterval(movementInterval);
+        movementInterval = null;
+      }
+    }
+
+    // Adiciona eventos aos botões
+    moveButton.addEventListener('click', startMovement);
+    stopButton.addEventListener('click', stopMovement);
+
+    // Desenha o estado inicial do canvas
+    redrawCanvas();
+  </script>
+</body>
+</html>

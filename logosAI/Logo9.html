@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Círculo com Pontos e Movimento Direcional</title>
+</head>
+<body>
+  <canvas id="myCanvas" width="400" height="400"></canvas>
+  <button id="moveButton">Iniciar Movimento</button>
+  <button id="stopButton">Parar Movimento</button>
+
+  <script>
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+    const moveButton = document.getElementById('moveButton');
+    const stopButton = document.getElementById('stopButton');
+
+    const numPoints = 50;
+    const radius = 150;
+    const minDistance = 10;
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const points = [];
+    const connections = [];
+    let movementInterval = null;
+
+    function distanceBetween(p1, p2) {
+      return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
+    }
+
+    function generateValidPoint(maxAttempts = 1000) {
+      let point;
+      let attempts = 0;
+
+      do {
+        if (attempts >= maxAttempts) {
+          console.error(`Falha ao gerar um ponto válido após ${maxAttempts} tentativas.`);
+          alert(`Erro: não foi possível gerar todos os pontos. Tente ajustar as regras.`);
+          return null;
+        }
+
+        const angle = Math.random() * 2 * Math.PI;
+        const distance = Math.random() * radius;
+        point = {
+          x: centerX + distance * Math.cos(angle),
+          y: centerY + distance * Math.sin(angle),
+          direction: Math.random() * 2 * Math.PI, // Define direção inicial aleatória
+          speed: 0.1 /*+ Math.random() * 1.5*/, // Define uma velocidade entre 1 e 2.5
+        };
+
+        attempts++;
+      } while (!isValidPoint(point, points));
+
+      return point;
+    }
+
+    function isValidPoint(point, points) {
+      for (const p of points) {
+        if (distanceBetween(point, p) < minDistance) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    function findNearestNeighbors(point, points) {
+      const distances = points.map((p, index) => ({
+        index: index,
+        distance: distanceBetween(point, p),
+      }));
+
+      distances.sort((a, b) => a.distance - b.distance);
+      return distances.slice(1, 4).map(d => d.index);
+    }
+
+    for (let i = 0; i < numPoints; i++) {
+      const point = generateValidPoint();
+      if (point) points.push(point);
+      else break;
+    }
+
+    points.forEach((point, index) => {
+      const neighbors = findNearestNeighbors(point, points);
+      neighbors.forEach(neighborIndex => {
+        if (!connections.some(c => (c[0] === index && c[1] === neighborIndex) || (c[0] === neighborIndex && c[1] === index))) {
+          connections.push([index, neighborIndex]);
+        }
+      });
+    });
+
+    function drawCircle() {
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+      ctx.strokeStyle = 'black';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    function drawPoints() {
+      points.forEach(point => {
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, 3, 0, Math.PI * 2);
+        ctx.fillStyle = 'blue';
+        ctx.fill();
+      });
+    }
+
+    function drawLines() {
+      ctx.lineWidth = 0.5;
+      ctx.strokeStyle = 'gray';
+      connections.forEach(([i, j]) => {
+        ctx.beginPath();
+        ctx.moveTo(points[i].x, points[i].y);
+        ctx.lineTo(points[j].x, points[j].y);
+        ctx.stroke();
+      });
+    }
+
+    function redrawCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawCircle();
+      drawLines();
+      drawPoints();
+    }
+
+    function movePoints() {
+      points.forEach(point => {
+        point.x += point.speed * Math.cos(point.direction);
+        point.y += point.speed * Math.sin(point.direction);
+
+        const distanceFromCenter = distanceBetween(point, { x: centerX, y: centerY });
+
+        // Recalcula a direção ao atingir a borda
+        if (distanceFromCenter >= radius) {
+          const angle = Math.atan2(point.y - centerY, point.x - centerX);
+          point.direction = angle + Math.PI; // Gira 180 graus
+          point.x = centerX + radius * Math.cos(angle);
+          point.y = centerY + radius * Math.sin(angle);
+        }
+      });
+      redrawCanvas();
+    }
+
+    function startMovement() {
+      if (!movementInterval) {
+        movementInterval = setInterval(movePoints, 30); // Move os pontos a cada 30ms
+      }
+    }
+
+    function stopMovement() {
+      if (movementInterval) {
+        clearInterval(movementInterval);
+        movementInterval = null;
+      }
+    }
+
+    moveButton.addEventListener('click', startMovement);
+    stopButton.addEventListener('click', stopMovement);
+
+    redrawCanvas();
+  </script>
+</body>
+</html>

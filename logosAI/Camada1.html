@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .container {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .box {
+            width: 300px;
+            height: 300px;
+            border: 2px solid black;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #normalDiv {
+            background-color: navy;
+        }
+
+        #canvasDiv {
+            background-color: darkgray;
+        }
+        
+        .small-square {
+            position: absolute;
+            border-radius: 2px;
+            mix-blend-mode: screen;
+        }
+
+        .squares-container {
+            position: absolute;
+            inset: 0;
+            -webkit-mask-image: linear-gradient(to left bottom, rgba(0,0,0,1), rgba(0,0,0,0.2));
+            mask-image: linear-gradient(to left bottom, rgba(0,0,0,1), rgba(0,0,0,0.2));
+        }
+
+        #canvasWrapper {
+            position: absolute;
+            inset: 0;
+            -webkit-mask-image: linear-gradient(to left bottom, rgba(0,0,0,1), rgba(0,0,0,0.2));
+            mask-image: linear-gradient(to left bottom, rgba(0,0,0,1), rgba(0,0,0,0.2));
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="normalDiv" class="box">
+            <div class="squares-container" id="squares1"></div>
+        </div>
+        <div id="canvasDiv" class="box">
+            <div id="canvasWrapper">
+                <canvas id="myCanvas" width="300" height="300"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function getRandomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        // Criar quadrados na primeira div
+        const squares1 = document.getElementById('squares1');
+        for (let i = 0; i < 20; i++) {
+            const square = document.createElement('div');
+            const size = getRandomNumber(20, 50);
+            const maxX = 300 - size;
+            const maxY = 300 - size;
+            
+            square.className = 'small-square';
+            square.style.width = size + 'px';
+            square.style.height = size + 'px';
+            square.style.backgroundColor = getRandomColor();
+            square.style.left = getRandomNumber(0, maxX) + 'px';
+            square.style.top = getRandomNumber(0, maxY) + 'px';
+            squares1.appendChild(square);
+        }
+
+        // Criar quadrados no canvas
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Canvas transparente
+        ctx.clearRect(0, 0, 300, 300);
+
+        // Desenhar 20 quadrados aleatórios no canvas
+        ctx.globalCompositeOperation = 'screen';
+        for (let i = 0; i < 20; i++) {
+            const size = getRandomNumber(20, 50);
+            const maxX = 300 - size;
+            const maxY = 300 - size;
+            
+            const x = getRandomNumber(0, maxX);
+            const y = getRandomNumber(0, maxY);
+            
+            ctx.fillStyle = getRandomColor();
+            ctx.fillRect(x, y, size, size);
+        }
+    </script>
+</body>
+</html>

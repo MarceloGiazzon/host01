@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Círculo com Pontos Conectados aos 3 Vizinhos Mais Próximos</title>
+</head>
+<body>
+  <canvas id="myCanvas" width="300" height="300"></canvas>
+
+  <script>
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Número de pontos
+    const numPoints = 50;
+
+    // Raio do círculo
+    const radius = 100;
+
+    // Centro do círculo
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+
+    // Cria um array para armazenar as coordenadas dos pontos
+    const points = [];
+
+    // Função para gerar coordenadas aleatórias dentro do círculo
+    function generateRandomPoint() {
+      let x, y;
+      do {
+        x = Math.random() * canvas.width;
+        y = Math.random() * canvas.height;
+      } while (Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2) > radius * radius);
+      return { x, y };
+    }
+
+    // Cria os pontos e armazena suas coordenadas
+    for (let i = 0; i < numPoints; i++) {
+      points.push(generateRandomPoint());
+    }
+
+    // Função para encontrar os 3 vizinhos mais próximos de um ponto
+    function findNearestNeighbors(point, points) {
+      const distances = points.map((p, index) => ({
+        index: index,
+        distance: Math.sqrt(Math.pow(point.x - p.x, 2) + Math.pow(point.y - p.y, 2))
+      }));
+
+      distances.sort((a, b) => a.distance - b.distance);
+
+      return distances.slice(1, 4).map(d => points[d.index]);
+    }
+
+    // Função para desenhar as linhas de conexão
+    function drawLines() {
+      ctx.lineWidth = 0.5; // Define a espessura das linhas como mais fina
+      ctx.strokeStyle = 'gray';
+
+      for (let i = 0; i < points.length; i++) {
+        const neighbors = findNearestNeighbors(points[i], points);
+
+        neighbors.forEach(neighbor => {
+          ctx.beginPath();
+          ctx.moveTo(points[i].x, points[i].y);
+          ctx.lineTo(neighbor.x, neighbor.y);
+          ctx.stroke();
+        });
+      }
+    }
+
+    // Função para desenhar os pontos e círculos ao redor
+    function drawPoints() {
+      points.forEach(point => {
+        // Desenha um pequeno círculo ao redor do ponto
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, 6, 0, Math.PI * 2);
+        ctx.strokeStyle = 'blue';
+        ctx.stroke();
+
+        // Desenha o ponto
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, 3, 0, Math.PI * 2);
+        ctx.fillStyle = 'blue';
+        ctx.fill();
+      });
+    }
+
+    // Função para desenhar o círculo principal
+    function drawCircle() {
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+      ctx.strokeStyle = 'black';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    drawCircle();
+    drawLines();
+    drawPoints();
+  </script>
+</body>
+</html>
