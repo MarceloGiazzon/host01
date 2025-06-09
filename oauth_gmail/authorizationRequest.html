@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google GMail OAuth Authorization Request</title>
+    <title>Google GMail OAuth Authorization Request v02</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
@@ -47,7 +47,7 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Authorize GMail Access</h1>
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Authorize GMail Access v02</h1>
         <p class="text-sm text-gray-600 mb-6 text-center">
             Enter your Google Cloud Project credentials to initiate the OAuth flow.
             <strong class="text-red-600">WARNING: Do not use a clientSecret in client-side code in production environments.</strong>
@@ -73,7 +73,7 @@
             const clientSecret = document.getElementById('clientSecret').value;
             // The callbackURL should be the full URL to authorizationCallback.html
             // Make sure this URL is registered in your Google Cloud Console for the OAuth client ID.
-            const callbackURL = window.location.origin + '/host01/authorizationCallback.html'; // Adjust if not in root directory
+            const callbackURL = window.location.origin + '/host01/oauth_gmail/authorizationCallback.html'; // Adjust if not in root directory
 
             // Save clientId and clientSecret to localStorage
             localStorage.setItem('google_oauth_clientId', clientId);
