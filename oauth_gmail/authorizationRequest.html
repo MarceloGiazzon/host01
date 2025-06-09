@@ -73,7 +73,7 @@
             const clientSecret = document.getElementById('clientSecret').value;
             // The callbackURL should be the full URL to authorizationCallback.html
             // Make sure this URL is registered in your Google Cloud Console for the OAuth client ID.
-            const callbackURL = window.location.origin + '/authorizationCallback.html'; // Adjust if not in root directory
+            const callbackURL = window.location.origin + '/host01/authorizationCallback.html'; // Adjust if not in root directory
 
             // Save clientId and clientSecret to localStorage
             localStorage.setItem('google_oauth_clientId', clientId);
