@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OAuth Authorization Callback</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 32rem; /* Equivalent to md:max-w-lg */
+        }
+        .message-box {
+            padding: 1rem;
+            margin-top: 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+        }
+        .message-box.success {
+            background-color: #d1fae5; /* green-100 */
+            color: #065f46; /* green-800 */
+        }
+        .message-box.error {
+            background-color: #fee2e2; /* red-100 */
+            color: #991b1b; /* red-800 */
+        }
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: #4c8bf5;
+            animation: spin 1s ease infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-3xl font-bold text-gray-800 mb-4">Processing Authorization...</h1>
+        <div class="spinner"></div>
+        <p id="statusMessage" class="mt-4 text-gray-600">Waiting for authorization code...</p>
+        <div id="resultMessageBox" class="message-box hidden"></div>
+    </div>
+
+    <script>
+        // *** IMPORTANT: For security, clientSecret should NEVER be used directly in client-side code in a real application.
+        // It must be handled by a secure backend server to prevent exposure.
+        // This example is for demonstration purposes ONLY and will likely fail due to security constraints. ***
+
+        const statusMessageElement = document.getElementById('statusMessage');
+        const resultMessageBox = document.getElementById('resultMessageBox');
+
+        function displayMessage(message, type) {
+            resultMessageBox.textContent = message;
+            resultMessageBox.className = `message-box ${type}`;
+            resultMessageBox.classList.remove('hidden');
+            statusMessageElement.textContent = ''; // Clear status message once a final result is shown
+            document.querySelector('.spinner').style.display = 'none'; // Hide spinner
+        }
+
+        async function handleAuthorizationCallback() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const authCode = urlParams.get('code');
+            const error = urlParams.get('error');
+
+            if (error) {
+                console.error('OAuth Error:', error);
+                displayMessage(`Authorization failed: ${error}`, 'error');
+                return;
+            }
+
+            if (!authCode) {
+                console.warn('No authorization code found in URL.');
+                displayMessage('No authorization code received. Please try again.', 'error');
+                return;
+            }
+
+            console.log('Received Authorization Code:', authCode);
+            statusMessageElement.textContent = 'Authorization code received. Exchanging for access token...';
+
+            // Retrieve client ID and client Secret from localStorage
+            const clientId = localStorage.getItem('google_oauth_clientId');
+            const clientSecret = localStorage.getItem('google_oauth_clientSecret');
+            const callbackURL = window.location.origin + '/authorizationCallback.html'; // Must match registered redirect URI
+
+            if (!clientId || !clientSecret) {
+                displayMessage('Error: Client ID or Client Secret not found in localStorage. Please go back to authorizationRequest.html and enter them.', 'error');
+                console.error('Missing Google Client ID or Secret in localStorage.');
+                return;
+            }
+
+            // --- Attempt to exchange authorization code for access token ---
+            // WARNING: This fetch request will likely fail due to CORS or security policies
+            // because clientSecret is being sent from the browser.
+            // A secure implementation requires this step to be on a backend server.
+            try {
+                const tokenResponse = await fetch('https://oauth2.googleapis.com/token', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams({
+                        code: authCode,
+                        client_id: clientId,
+                        client_secret: clientSecret,
+                        redirect_uri: callbackURL,
+                        grant_type: 'authorization_code',
+                    }).toString(),
+                });
+
+                if (!tokenResponse.ok) {
+                    const errorData = await tokenResponse.json();
+                    console.error('Error exchanging code for token:', errorData);
+                    displayMessage(`Failed to get access token: ${errorData.error_description || errorData.error}`, 'error');
+                    return;
+                }
+
+                const tokenData = await tokenResponse.json();
+                console.log('Access Token Data:', tokenData);
+                statusMessageElement.textContent = 'Access token obtained! Preparing to send demo email...';
+
+                const accessToken = tokenData.access_token;
+                const expiresIn = tokenData.expires_in;
+                // Optionally, save refreshToken if 'access_type': 'offline' was used in auth request
+                // const refreshToken = tokenData.refresh_token;
+
+                displayMessage('Access token successfully obtained! Attempting to send demo email in 3 seconds...', 'success');
+
+                // Wait for 3 seconds before attempting to send email
+                setTimeout(async () => {
+                    await sendDemoEmail(accessToken);
+                }, 3000);
+
+            } catch (error) {
+                console.error('Network or other error during token exchange:', error);
+                displayMessage('A network error occurred during token exchange. Check console for details.', 'error');
+            }
+        }
+
+        async function sendDemoEmail(accessToken) {
+            statusMessageElement.textContent = 'Sending demo email...';
+            const recipientEmail = 'marcelo.giazzon@gmail.com';
+            const subject = 'Demo Email from OAuth Flow';
+            const body = 'This is a demo email sent using the GMail API after a successful OAuth authorization.';
+
+            // Construct raw email content in base64url encoding
+            const emailContent = [
+                `From: me`, // 'me' refers to the authenticated user
+                `To: ${recipientEmail}`,
+                `Subject: ${subject}`,
+                `Content-Type: text/plain; charset="UTF-8"`,
+                `Content-Transfer-Encoding: base64`,
+                '',
+                body,
+            ].join('\n');
+
+            // Convert to Base64URL
+            // The standard btoa function creates regular base64. Gmail API expects base64url.
+            // Base64url replaces '+' with '-', '/' with '_', and removes padding '='.
+            const base64EncodedEmail = btoa(emailContent)
+                                        .replace(/\+/g, '-')
+                                        .replace(/\//g, '_')
+                                        .replace(/=+$/, '');
+
+            try {
+                const emailResponse = await fetch('https://gmail.googleapis.com/gmail/v1/users/me/messages/send', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        'raw': base64EncodedEmail
+                    })
+                });
+
+                if (!emailResponse.ok) {
+                    const errorData = await emailResponse.json();
+                    console.error('Error sending email:', errorData);
+                    displayMessage(`Failed to send demo email: ${errorData.error.message || 'Unknown error'}`, 'error');
+                    return;
+                }
+
+                const emailResult = await emailResponse.json();
+                console.log('Demo Email Sent Successfully:', emailResult);
+                displayMessage('Demo email sent successfully!', 'success');
+
+            } catch (error) {
+                console.error('Network or other error during email sending:', error);
+                displayMessage('A network error occurred while sending email. Check console for details.', 'error');
+            }
+        }
+
+        // Call the main function when the script loads
+        handleAuthorizationCallback();
+    </script>
+</body>
+</html>

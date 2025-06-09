@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google GMail OAuth Authorization Request</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 28rem; /* Equivalent to md:max-w-md */
+        }
+        input[type="text"] {
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db;
+            width: 100%;
+            box-sizing: border-box; /* Ensures padding doesn't increase total width */
+        }
+        button {
+            border-radius: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #4c8bf5; /* A pleasant blue */
+            color: #ffffff;
+            font-weight: 600;
+            transition: background-color 0.2s ease-in-out;
+            width: 100%; /* Make button full width */
+        }
+        button:hover {
+            background-color: #3b74d4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Authorize GMail Access</h1>
+        <p class="text-sm text-gray-600 mb-6 text-center">
+            Enter your Google Cloud Project credentials to initiate the OAuth flow.
+            <strong class="text-red-600">WARNING: Do not use a clientSecret in client-side code in production environments.</strong>
+        </p>
+        <form id="authorizationForm" class="space-y-4">
+            <div>
+                <label for="clientId" class="block text-gray-700 text-sm font-medium mb-1">Client ID:</label>
+                <input type="text" id="clientId" name="clientId" placeholder="Your Google Client ID" class="focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
+            <div>
+                <label for="clientSecret" class="block text-gray-700 text-sm font-medium mb-1">Client Secret:</label>
+                <input type="text" id="clientSecret" name="clientSecret" placeholder="Your Google Client Secret" class="focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
+            <button type="submit">Initiate Authorization</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('authorizationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const clientId = document.getElementById('clientId').value;
+            const clientSecret = document.getElementById('clientSecret').value;
+            // The callbackURL should be the full URL to authorizationCallback.html
+            // Make sure this URL is registered in your Google Cloud Console for the OAuth client ID.
+            const callbackURL = window.location.origin + '/authorizationCallback.html'; // Adjust if not in root directory
+
+            // Save clientId and clientSecret to localStorage
+            localStorage.setItem('google_oauth_clientId', clientId);
+            localStorage.setItem('google_oauth_clientSecret', clientSecret);
+            console.log('Client ID and Client Secret saved to localStorage.');
+
+            // Scopes for GMail API: send and read emails
+            const scopes = [
+                'https://www.googleapis.com/auth/gmail.send',
+                'https://www.googleapis.com/auth/gmail.readonly'
+            ].join(' ');
+
+            // Google OAuth 2.0 Authorization Endpoint
+            const authUrl = 'https://accounts.google.com/o/oauth2/v2/auth';
+
+            // Construct the authorization request URL
+            const params = new URLSearchParams({
+                client_id: clientId,
+                redirect_uri: callbackURL,
+                response_type: 'code',
+                scope: scopes,
+                access_type: 'offline', // Request a refresh token (if needed for long-term access)
+                prompt: 'consent' // Forces user consent even if already granted
+            });
+
+            const fullAuthUrl = `${authUrl}?${params.toString()}`;
+
+            console.log('Redirecting to Google OAuth:', fullAuthUrl);
+            window.location.href = fullAuthUrl; // Redirect the user to Google's authorization page
+        });
+    </script>
+</body>
+</html>
