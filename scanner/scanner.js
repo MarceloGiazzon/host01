@@ -28,6 +28,8 @@ let barcodeDetector = null;
  * Main function to start the barcode scanner.
  */
 async function startScanner() {
+    console.log("startScanner function called.");
+    
     // Get references to the UI elements
     const video = document.getElementById('videoElement');
     const resultInput = document.getElementById('resultInput');
@@ -35,7 +37,10 @@ async function startScanner() {
     const stopButton = document.getElementById('stopButton');
 
     // Check if scanning is already active
-    if (isScanning) return;
+    if (isScanning) {
+        console.log("Scanner is already running. Exiting.");
+        return;
+    }
 
     // Enable/disable buttons and update UI
     isScanning = true;
@@ -43,6 +48,7 @@ async function startScanner() {
     stopButton.disabled = false;
     resultInput.value = '';
     resultInput.placeholder = 'Scanning...';
+    console.log("UI updated for scanning.");
 
     try {
         // Request permission for the rear camera.
@@ -50,6 +56,7 @@ async function startScanner() {
             video: { facingMode: 'environment' }
         });
         video.srcObject = stream;
+        console.log("Camera stream acquired successfully.");
     } catch (err) {
         console.error("Failed to get camera access:", err);
         resultInput.value = "Error: Camera access denied or not available.";
@@ -65,12 +72,14 @@ async function startScanner() {
             resolve();
         };
     });
+    console.log("Video element is ready to play.");
 
     // Create a BarcodeDetector instance if it doesn't exist
     if (!barcodeDetector) {
         barcodeDetector = new BarcodeDetector({
             formats: ["ean_13", "ean_8", "upc_a", "upc_e"]
         });
+        console.log("BarcodeDetector initialized.");
     }
 
     // Main scanning loop that runs as long as isScanning is true
@@ -80,6 +89,7 @@ async function startScanner() {
             if (barcodes.length > 0) {
                 const firstBarcode = barcodes[0];
                 resultInput.value = firstBarcode.rawValue;
+                console.log(`Barcode detected: ${firstBarcode.rawValue}`);
 
                 // Vibrate the device to notify the user of a successful scan (optional).
                 if (navigator.vibrate) {
@@ -96,36 +106,50 @@ async function startScanner() {
         // Small delay to prevent the loop from consuming too much CPU.
         await new Promise(r => setTimeout(r, 50));
     }
+    console.log("Scanning loop has ended.");
 }
 
 /**
  * Main function to stop the video stream and reset the UI.
  */
 function stopScanner() {
+    console.log("stopScanner function called.");
+    
     const video = document.getElementById('videoElement');
     const resultInput = document.getElementById('resultInput');
     const startButton = document.getElementById('startButton');
     const stopButton = document.getElementById('stopButton');
 
-    if (!isScanning) return;
+    if (!isScanning) {
+        console.log("Scanner is not running. Exiting.");
+        return;
+    }
     
     isScanning = false;
     startButton.disabled = false;
     stopButton.disabled = true;
     resultInput.placeholder = "Result will appear here...";
+    console.log("UI updated to stopped state.");
 
     // Stop the video stream tracks
     if (stream) {
         stream.getTracks().forEach(track => track.stop());
         video.srcObject = null;
+        console.log("Video stream stopped.");
     }
 }
 
-// Add event listeners to the buttons after the DOM has loaded
-window.onload = function() {
+// Add event listeners to the buttons after the DOM has loaded.
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOMContentLoaded event fired. Attaching event listeners.");
     const startButton = document.getElementById('startButton');
     const stopButton = document.getElementById('stopButton');
-    
-    startButton.addEventListener('click', startScanner);
-    stopButton.addEventListener('click', stopScanner);
-};
+
+    if (startButton && stopButton) {
+        console.log("Buttons found. Attaching click listeners.");
+        startButton.addEventListener('click', startScanner);
+        stopButton.addEventListener('click', stopScanner);
+    } else {
+        console.error("Buttons not found! Check your HTML IDs.");
+    }
+});

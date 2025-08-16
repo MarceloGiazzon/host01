@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcode Scanner Demo</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="scanner.js"></script>
+    <style>
+        /* Apply the Inter font from Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 flex flex-col items-center justify-center min-h-screen p-4">
+
+    <!-- Main container for the app -->
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl max-w-lg w-full text-center">
+
+        <!-- Title and instructions -->
+        <h1 class="text-3xl md:text-4xl font-bold mb-4">Barcode Scanner</h1>
+        <p class="text-gray-600 dark:text-gray-400 mb-6">
+            Click 'Start Scan' to activate your camera and begin scanning.
+        </p>
+
+        <!-- Container for the video and barcode info -->
+        <div class="space-y-6">
+            
+            <!-- Video element to display the camera feed -->
+            <video id="videoElement" autoplay playsinline class="w-full h-auto rounded-lg shadow-lg aspect-video object-cover"></video>
+            
+            <!-- Input field to display the detected barcode data -->
+            <input type="text" id="resultInput" readonly placeholder="Result will appear here..." class="w-full text-center text-xl font-semibold bg-gray-200 dark:bg-gray-700 p-4 rounded-lg shadow-inner mt-4 focus:outline-none cursor-default">
+            
+            <!-- Container for the control buttons -->
+            <div class="flex justify-center space-x-4 mt-6">
+                <button id="startButton" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+                    Start Scan
+                </button>
+                <button id="stopButton" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" disabled>
+                    Stop Scan
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Reference the external JavaScript file at the end of the body -->
+    
+</body>
+</html>
