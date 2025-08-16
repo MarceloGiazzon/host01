@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcode Scanner Demo</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Apply the Inter font from Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 flex flex-col items-center justify-center min-h-screen p-4">
+
+    <!-- Main container for the app -->
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl max-w-lg w-full text-center">
+
+        <!-- Title and instructions -->
+        <h1 class="text-3xl md:text-4xl font-bold mb-4">Barcode Scanner</h1>
+        <p class="text-gray-600 dark:text-gray-400 mb-6">
+            Click 'Start Scan' to activate your camera and begin scanning.
+        </p>
+
+        <!-- Container for the video and barcode info -->
+        <div class="space-y-6">
+            
+            <!-- Video element to display the camera feed -->
+            <video id="videoElement" autoplay playsinline class="w-full h-auto rounded-lg shadow-lg aspect-video object-cover"></video>
+            
+            <!-- Input field to display the detected barcode data -->
+            <input type="text" id="resultInput" readonly placeholder="Result will appear here..." class="w-full text-center text-xl font-semibold bg-gray-200 dark:bg-gray-700 p-4 rounded-lg shadow-inner mt-4 focus:outline-none cursor-default">
+            
+            <!-- Container for the control buttons -->
+            <div class="flex justify-center space-x-4 mt-6">
+                <button id="startButton" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+                    Start Scan
+                </button>
+                <button id="stopButton" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" disabled>
+                    Stop Scan
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // WebAssembly polyfill for browsers that don't natively support the Barcode Detection API
+        try {
+            window['BarcodeDetector'].getSupportedFormats();
+        } catch {
+            const zbarScript = document.createElement('script');
+            zbarScript.src = "https://cdn.jsdelivr.net/npm/@undecaf/zbar-wasm@0.9.15/dist/index.js";
+            document.head.appendChild(zbarScript);
+
+            const polyfillScript = document.createElement('script');
+            polyfillScript.src = "https://cdn.jsdelivr.net/npm/@undecaf/barcode-detector-polyfill@0.9.21/dist/index.js";
+            polyfillScript.onload = () => {
+                if (typeof barcodeDetectorPolyfill !== 'undefined') {
+                    window['BarcodeDetector'] = barcodeDetectorPolyfill.BarcodeDetectorPolyfill;
+                }
+            };
+            document.head.appendChild(polyfillScript);
+        }
+
+        // Global variables to manage the scanning state and video stream
+        let isScanning = false;
+        let stream = null;
+        let barcodeDetector = null;
+
+        /**
+         * Main function to start the barcode scanner.
+         */
+        async function startScanner() {
+            // Get references to the UI elements
+            const video = document.getElementById('videoElement');
+            const resultInput = document.getElementById('resultInput');
+            const startButton = document.getElementById('startButton');
+            const stopButton = document.getElementById('stopButton');
+
+            // Check if scanning is already active
+            if (isScanning) return;
+
+            // Enable/disable buttons and update UI
+            isScanning = true;
+            startButton.disabled = true;
+            stopButton.disabled = false;
+            resultInput.value = '';
+            resultInput.placeholder = 'Scanning...';
+
+            try {
+                // Request permission for the rear camera.
+                stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: 'environment' }
+                });
+                video.srcObject = stream;
+            } catch (err) {
+                console.error("Failed to get camera access:", err);
+                resultInput.value = "Error: Camera access denied or not available.";
+                // Revert button states on failure
+                stopScanner();
+                return;
+            }
+
+            // Wait for the video to be ready to play
+            await new Promise(resolve => {
+                video.onloadedmetadata = () => {
+                    video.play();
+                    resolve();
+                };
+            });
+
+            // Create a BarcodeDetector instance if it doesn't exist
+            if (!barcodeDetector) {
+                barcodeDetector = new BarcodeDetector({
+                    formats: ["ean_13", "ean_8", "upc_a", "upc_e"]
+                });
+            }
+
+            // Main scanning loop that runs as long as isScanning is true
+            while (isScanning) {
+                try {
+                    const barcodes = await barcodeDetector.detect(video);
+                    if (barcodes.length > 0) {
+                        const firstBarcode = barcodes[0];
+                        resultInput.value = firstBarcode.rawValue;
+
+                        // Vibrate the device to notify the user of a successful scan (optional).
+                        if (navigator.vibrate) {
+                            navigator.vibrate(200);
+                        }
+
+                        // Stop scanning after a successful read
+                        stopScanner();
+                    }
+                } catch (err) {
+                    console.error("Barcode detection error:", err);
+                }
+
+                // Small delay to prevent the loop from consuming too much CPU.
+                await new Promise(r => setTimeout(r, 50));
+            }
+        }
+
+        /**
+         * Main function to stop the video stream and reset the UI.
+         */
+        function stopScanner() {
+            const video = document.getElementById('videoElement');
+            const resultInput = document.getElementById('resultInput');
+            const startButton = document.getElementById('startButton');
+            const stopButton = document.getElementById('stopButton');
+
+            if (!isScanning) return;
+            
+            isScanning = false;
+            startButton.disabled = false;
+            stopButton.disabled = true;
+            resultInput.placeholder = "Result will appear here...";
+
+            // Stop the video stream tracks
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                video.srcObject = null;
+            }
+        }
+
+        // Add event listeners to the buttons after the DOM has loaded
+        window.onload = function() {
+            const startButton = document.getElementById('startButton');
+            const stopButton = document.getElementById('stopButton');
+            
+            startButton.addEventListener('click', startScanner);
+            stopButton.addEventListener('click', stopScanner);
+        };
+    </script>
+</body>
+</html>
