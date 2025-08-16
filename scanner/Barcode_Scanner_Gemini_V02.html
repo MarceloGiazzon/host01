@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcode Scanner Demo</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Apply the Inter font from Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 flex flex-col items-center justify-center min-h-screen p-4">
+
+    <!-- Main container for the app -->
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl max-w-lg w-full text-center">
+
+        <!-- Title and instructions -->
+        <h1 class="text-3xl md:text-4xl font-bold mb-4">Barcode Scanner</h1>
+        <p class="text-gray-600 dark:text-gray-400 mb-6">
+            Point your camera at a barcode to scan it. The detected value will appear below.
+        </p>
+
+        <!-- Container for the video and barcode info -->
+        <div class="space-y-6">
+
+            <!-- Video element to display the camera feed -->
+            <video id="videoElement" autoplay playsinline class="w-full h-auto rounded-lg shadow-lg aspect-video object-cover"></video>
+            
+            <!-- Paragraph to display the detected barcode data -->
+            <p id="barcode" class="text-xl font-semibold bg-gray-200 dark:bg-gray-700 p-4 rounded-lg shadow-inner mt-4">Waiting...</p>
+        </div>
+    </div>
+
+    <script>
+        // WebAssembly polyfill for browsers that don't natively support the Barcode Detection API
+        // Polyfill sources:
+        // https://cdn.jsdelivr.net/npm/@undecaf/zbar-wasm@0.9.15/dist/index.js
+        // https://cdn.jsdelivr.net/npm/@undecaf/barcode-detector-polyfill@0.9.21/dist/index.js
+        // The check below ensures the polyfill is only loaded if needed
+        try {
+            window['BarcodeDetector'].getSupportedFormats();
+        } catch {
+            const zbarScript = document.createElement('script');
+            zbarScript.src = "https://cdn.jsdelivr.net/npm/@undecaf/zbar-wasm@0.9.15/dist/index.js";
+            document.head.appendChild(zbarScript);
+
+            const polyfillScript = document.createElement('script');
+            polyfillScript.src = "https://cdn.jsdelivr.net/npm/@undecaf/barcode-detector-polyfill@0.9.21/dist/index.js";
+            polyfillScript.onload = () => {
+                if (typeof barcodeDetectorPolyfill !== 'undefined') {
+                    window['BarcodeDetector'] = barcodeDetectorPolyfill.BarcodeDetectorPolyfill;
+                }
+            };
+            document.head.appendChild(polyfillScript);
+        }
+
+        /**
+         * The main asynchronous function to handle camera access and barcode scanning.
+         */
+        async function startScanning() {
+            // Get references to the video and barcode display elements
+            const video = document.getElementById('videoElement');
+            const barcodeDisplay = document.getElementById('barcode');
+
+            // Request permission to use the rear camera.
+            // 'facingMode: environment' is the key for the rear camera on mobile devices.
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: 'environment' }
+                });
+                video.srcObject = stream;
+            } catch (err) {
+                console.error("Failed to get camera access:", err);
+                barcodeDisplay.innerText = "Error: Camera access denied or not available.";
+                return; // Stop the function if camera access fails
+            }
+
+            // Wait for the video to be ready to play
+            await new Promise(resolve => {
+                video.onloadedmetadata = () => {
+                    video.play();
+                    resolve();
+                };
+            });
+
+            // Create a BarcodeDetector instance for common retail formats.
+            // Using a limited set of formats can improve performance.
+            const barcodeDetector = new BarcodeDetector({
+                formats: ["ean_13", "ean_8", "upc_a", "upc_e"]
+            });
+
+            // Main scanning loop
+            while (true) {
+                try {
+                    // Detect barcodes in the current video frame.
+                    const barcodes = await barcodeDetector.detect(video);
+
+                    // If a barcode is detected, process the first one found.
+                    if (barcodes.length > 0) {
+                        const firstBarcode = barcodes[0];
+                        barcodeDisplay.innerText = `Detected: ${firstBarcode.rawValue}`;
+
+                        // Vibrate the device to notify the user of a successful scan (optional).
+                        if (navigator.vibrate) {
+                            navigator.vibrate(200);
+                        }
+
+                        // Pause scanning for a moment to give the user time to react.
+                        await new Promise(r => setTimeout(r, 1000));
+                    }
+                } catch (err) {
+                    // Log any errors but keep the loop running
+                    console.error("Barcode detection error:", err);
+                    // Wait to prevent a rapid fire of errors in case of a problem.
+                    await new Promise(r => setTimeout(r, 200));
+                }
+
+                // Small delay to prevent the loop from consuming too much CPU.
+                await new Promise(r => setTimeout(r, 50));
+            }
+        }
+
+        // Start the scanning process when the window has loaded
+        window.onload = startScanning;
+    </script>
+</body>
+</html>
