@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcelo Giazzon - GeneXus Developer</title>
+    <style>
+        /*
+        -- Global Reset and Base Styles --
+        */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            color: #ccc;
+            background: #111; 
+            min-height: 100vh;
+            padding-left: 60px; 
+            position: relative;
+            overflow-x: hidden;
+            transition: background 0.3s ease; 
+        }
+
+        /*
+        -- Mobile Simulation Toggle/Checkbox --
+        */
+        .mobile-toggle-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: #333;
+            padding: 10px 15px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            color: #fff;
+            border: 1px solid #555;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .mobile-toggle-container label {
+            margin-left: 10px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        /*
+        -- Mobile Simulation Popup/Modal (The 'Popup' Mode) --
+        */
+        .mobile-simulation-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999; 
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .mobile-simulation-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .mobile-simulation-window {
+            /* Desktop/Modal size - larger and more like a window */
+            width: 800px;
+            max-width: 95vw;
+            height: 600px;
+            max-height: 95vh;
+            
+            background: #000;
+            border: 2px solid #555; /* Main border */
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), 0 0 50px rgba(138, 43, 226, 0.1); /* Neon-style shadow */
+            overflow: hidden;
+            position: relative;
+            
+            display: flex;
+            flex-direction: column;
+            
+            /* Window corners styling based on image */
+            border-radius: 4px;
+        }
+        
+        .mobile-frame-header {
+            background: #222; /* Dark header background */
+            color: #00FFFF; /* Neon cyan text for title */
+            padding: 10px 15px;
+            border-bottom: 2px solid #00FFFF; /* Bright cyan border */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            flex-shrink: 0; /* Prevents shrinking */
+        }
+        
+        /* Navigation and Title Alignment for Mobile Popup */
+        .mobile-frame-header-content {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+        }
+
+        .mobile-frame-header-content .nav-button {
+            margin-right: 10px;
+        }
+
+        #mobileSimulationTitle {
+            letter-spacing: 2px;
+            flex-grow: 1;
+        }
+        
+        .mobile-simulation-close {
+            background: #FF0077; /* Neon pink/magenta for close button */
+            color: #FFF;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            transition: background 0.2s, box-shadow 0.2s;
+            box-shadow: 0 0 5px rgba(255, 0, 119, 0.5);
+            letter-spacing: 1px;
+            flex-shrink: 0;
+        }
+
+        .mobile-simulation-close:hover {
+            background: #FF3399;
+            box-shadow: 0 0 10px #FF3399;
+        }
+
+        .mobile-simulation-window iframe {
+            flex-grow: 1;
+            width: 100%;
+            border: none;
+            background: #111; /* Iframe content background */
+            /* Removed internal radius to let the header and iframe fill the window */
+        }
+
+
+        /*
+        -- Main Layout and Content Styles --
+        */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #222; 
+            border-radius: 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            border: 1px solid #444;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .content {
+            padding: 60px 40px;
+            min-height: 3000px; 
+        }
+        
+        /*
+        -- Section and Heading Styles --
+        */
+        section {
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .lang-content.active {
+            display: block;
+        }
+        
+        h2 {
+            color: #fff;
+            font-size: 2em;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #555;
+            text-shadow: none;
+            letter-spacing: 2px;
+            position: relative;
+        }
+        
+        h2::before {
+            content: '> ';
+            color: #999;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100px;
+            height: 2px;
+            background: #fff;
+            box-shadow: none;
+        }
+        
+        /*
+        -- Portfolio/Tree View Layout --
+        */
+        .portfolio-container {
+            display: flex;
+            gap: 30px;
+            margin-top: 25px;
+        }
+        
+        .tree-view {
+            flex: 0 0 400px;
+            min-width: 300px;
+            height: fit-content;
+        }
+        
+        .content-frame-container {
+            flex: 1;
+            min-height: 500px;
+            background: #1e1e1e;
+            border: 1px solid #555;
+            border-radius: 0;
+            overflow: hidden;
+            display: none;
+            height: fit-content;
+        }
+        
+        .content-frame-container.active {
+            display: block;
+        }
+        
+        .frame-header {
+            background: #333;
+            padding: 15px 20px;
+            border-bottom: 1px solid #555;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Navigation Buttons Styling */
+        .frame-header-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Space between the button group and title */
+        }
+
+        .nav-button {
+            background: #555;
+            color: #fff;
+            border: 1px solid #888;
+            padding: 4px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            background: #777;
+        }
+
+        .nav-button:disabled {
+            background: #333;
+            color: #666;
+            border-color: #444;
+            cursor: not-allowed;
+        }
+        
+        .frame-title {
+            color: #ccc;
+            font-weight: 600;
+            text-shadow: none;
+            flex-grow: 1; /* Allow title to take up remaining space */
+            margin-left: 20px;
+        }
+        
+        .content-frame {
+            width: 100%;
+            height: 600px;
+            border: none;
+            background: white;
+        }
+        
+        /*
+        -- Tree View Styles --
+        */
+        .tree-item {
+            margin-left: 0;
+            list-style: none;
+        }
+        
+        .tree-item ul {
+            margin-left: 25px;
+            list-style: none;
+        }
+        
+        .tree-label {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            color: #b0b0b0;
+            cursor: pointer;
+            font-family: 'Consolas', 'Courier New', monospace;
+            border-left: 2px solid transparent;
+            position: relative;
+        }
+        
+        .tree-toggle {
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 5px;
+            color: #999;
+            font-weight: bold;
+            font-size: 1.2em;
+            flex-shrink: 0;
+        }
+        
+        .tree-label:hover {
+            background: #333;
+            border-left-color: #999;
+        }
+        
+        .tree-folder .tree-label {
+            color: #ccc;
+            font-weight: 600;
+        }
+        
+        .tree-file .tree-label {
+            color: #999;
+            cursor: pointer;
+        }
+        
+        .tree-file .tree-label:hover {
+            background: #333;
+            border-left-color: #999;
+        }
+        
+        .tree-file.selected .tree-label {
+            background: #444;
+            border-left-color: #fff;
+        }
+        
+        .tree-icon {
+            margin-right: 8px;
+            font-size: 1.1em;
+        }
+        
+        .tree-children {
+            display: none;
+        }
+        
+        .tree-children.expanded {
+            display: block;
+        }
+        
+        /*
+        -- Media Queries (Responsive) --
+        */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .mobile-toggle-container {
+                position: static;
+                margin: 10px auto;
+                width: fit-content;
+            }
+            
+            .content {
+                padding: 40px 20px;
+            }
+            
+            .portfolio-container {
+                flex-direction: column;
+            }
+            
+            .tree-view {
+                flex: 1;
+                min-width: auto;
+            }
+            
+            /* Make the modal full screen on tiny devices */
+            .mobile-simulation-window {
+                width: 98vw;
+                height: 98vh;
+            }
+        }
+        
+        /*
+        -- Selection Style --
+        */
+        ::selection {
+            background: #555;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Simulation Toggle -->
+    <div class="mobile-toggle-container">
+        <input type="checkbox" id="mobileSimulationToggle">
+        <label for="mobileSimulationToggle">Mobile Simulation</label>
+    </div>
+    
+    <div class="container">
+        <div class="content">
+            <div class="lang-content active" data-lang="en">
+                
+                <section id="portfolio">
+                    <h2>PORTFOLIO</h2>
+                    <div class="portfolio-container">
+                        <div class="tree-view" id="portfolioTree"></div>
+                        
+                        <!-- Inline Frame Container (Used when Mobile Simulation is unchecked) -->
+                        <div class="content-frame-container" id="contentFrame">
+                            <div class="frame-header">
+                                <!-- Navigation Buttons added here (Desktop/Inline) -->
+                                <div class="frame-header-nav">
+                                    <button class="nav-button" id="prevFileButton" disabled>&lt;</button>
+                                    <button class="nav-button" id="nextFileButton" disabled>&gt;</button>
+                                </div>
+                                <span class="frame-title" id="frameTitle">Select a file to view</span>
+                            </div>
+                            <iframe class="content-frame" id="contentIframe" src=""></iframe>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Simulation Overlay (The 'Popup' Mode) -->
+    <div class="mobile-simulation-overlay" id="mobileSimulationOverlay">
+        <div class="mobile-simulation-window">
+            
+            <!-- Header Bar (like a window title bar) - NOW WITH NAVIGATION BUTTONS -->
+            <div class="mobile-frame-header">
+                <div class="mobile-frame-header-content">
+                    <!-- Navigation Buttons added here (Mobile/Popup) -->
+                    <button class="nav-button" id="mobilePrevFileButton" disabled>&lt;</button>
+                    <button class="nav-button" id="mobileNextFileButton" disabled>&gt;</button>
+                    <span id="mobileSimulationTitle">Loading...</span>
+                </div>
+                <button class="mobile-simulation-close" id="mobileSimulationClose">
+                    <span aria-hidden="true">✕</span> CLOSE
+                </button>
+            </div>
+            
+            <!-- Iframe content -->
+            <iframe id="mobileSimulationIframe" src=""></iframe>
+        </div>
+    </div>
+    
+    <script>
+        const portfolioData = [
+            {
+                "id": "root",
+                "name": "Root",
+                "type": "folder",
+                "expanded": true,
+                "children": [
+                    {
+                        "id": "4fec7df3-3f0d-482b-94c6-9316a607e225",
+                        "name": "Portfolio",
+                        "type": "folder",
+                        "children": [
+                            {
+                                "id": "5221651e-73e0-4a2a-9f41-273e3740729b",
+                                "name": "Genexus User Controls",
+                                "type": "folder",
+                                "children": [
+                                    { "id": "28ec9cca-169f-4f1e-b1d3-6a47aa769197", "name": "Smart Menus", "type": "file" },
+                                    { "id": "e3a72909-45d3-44dc-805f-54293a9ec747", "name": "Responsive Layout", "type": "file" },
+                                    { "id": "e3a72909-45d3-44dc-805f-54293a9ec748", "name": "Contextual Box", "type": "file" },
+                                    { "id": "e3a72909-45d3-44dc-805f-54293a9ec749", "name": "Grid Paging", "type": "file" },
+                                    { "id": "e3a72909-45d3-44dc-805f-54293a9ec750", "name": "Grid Handler", "type": "file" },
+                                    { "id": "e3a72909-45d3-44dc-805f-54293a9ec751", "name": "Horizontal Scroll Buttons", "type": "file" },
+                                    { "id": "e3a72909-45d3-44dc-805f-54293a9ec752", "name": "Screenshotter", "type": "file" },
+                                    { "id": "e3a72909-45d3-44dc-805f-54293a9ec753", "name": "Camera Scan", "type": "file" },
+                                    { "id": "e3a72909-45d3-44dc-805f-54293a9ec754", "name": "Input Auto Complete", "type": "file" },
+                                    { "id": "e3a72909-45d3-44dc-805f-54293a9ec755", "name": "Point of Sale", "type": "file" },
+                                    { "id": "e3a72909-45d3-44dc-805f-54293a9ec756", "name": "User Tree", "type": "file" },
+                                    { "id": "e3a72909-45d3-44dc-805f-54293a9ec757", "name": "Image Gallery", "type": "file" },
+                                    { "id": "e3a72909-45d3-44dc-805f-54293a9ec758", "name": "Manipulação gxgral.js", "type": "file" }
+                                ],
+                                "expanded": true
+                            },
+                            {
+                                "id": "ba7ec99f-a36c-4d4d-b2e0-973ca7751909",
+                                "name": "Genexus External Objects",
+                                "type": "folder",
+                                "children": [
+                                    { "id": "65950f99-85b8-451b-9628-e7f8a36eb3a5", "name": "SOAPmTLS", "type": "file" },
+                                    { "id": "ff617fe5-5bde-498d-a7a2-5f5530d729aa", "name": "XML Signature Utils", "type": "file" },
+                                    { "id": "ff617fe5-5bde-498d-a7a2-5f5530d729ab", "name": "Certificate Utils", "type": "file" },
+                                    { "id": "ff617fe5-5bde-498d-a7a2-5f5530d729ac", "name": "Image Utils", "type": "file" },
+                                    { "id": "ff617fe5-5bde-498d-a7a2-5f5530d729ad", "name": "PDF Print", "type": "file" },
+                                    { "id": "ff617fe5-5bde-498d-a7a2-5f5530d729ae", "name": "Machine Fingerprint", "type": "file" },
+                                    { "id": "ff617fe5-5bde-498d-a7a2-5f5530d729af", "name": "SOAP Static WSDL", "type": "file" },
+                                    { "id": "ff617fe5-5bde-498d-a7a2-5f5530d729ag", "name": "WS Security SOAP Handler", "type": "file" },
+                                    { "id": "ff617fe5-5bde-498d-a7a2-5f5530d729ah", "name": "IP Address Match", "type": "file" },
+                                    { "id": "ff617fe5-5bde-498d-a7a2-5f5530d729ai", "name": "Shell Command", "type": "file" },
+                                    { "id": "ff617fe5-5bde-498d-a7a2-5f5530d729aj", "name": "Thread Local Storage", "type": "file" },
+                                    {
+                                        "id": "45c44ce2-0ea4-48bc-8e10-682d35231a48",
+                                        "name": "Android",
+                                        "type": "folder",
+                                        "children": [
+                                            { "id": "5652185a-7dc2-49fc-abb1-e86cc1662c63", "name": "Mobile XML Signature", "type": "file" },
+                                            { "id": "5652185a-7dc2-49fc-abb1-e86cc1662c64", "name": "Bluetooth Print", "type": "file" },
+                                            { "id": "5652185a-7dc2-49fc-abb1-e86cc1662c65", "name": "Bluetooth Serial Receiver", "type": "file" },
+                                            { "id": "5652185a-7dc2-49fc-abb1-e86cc1662c66", "name": "Bluetooth Low Energy (BLE) Receiver", "type": "file" }
+                                        ],
+                                        "expanded": true
+                                    }
+                                ],
+                                "expanded": false
+                            },
+                            {
+                                "id": "11d4281c-02dd-4d2e-8694-188ea30bb1cb",
+                                "name": "Genexus Modules",
+                                "type": "folder",
+                                "children": [
+                                    { "id": "09625d96-5195-456e-9d9c-8880c6c39d9c", "name": "Cloud Tasks", "type": "file" },
+                                    { "id": "2ed2ddd6-34b8-4bd3-94e6-14d9b99b734c", "name": "Printer Markup Language", "type": "file" },
+                                    { "id": "2ed2ddd6-34b8-4bd3-94e6-14d9b99b734d", "name": "OAuth Consumer", "type": "file" },
+                                    { "id": "2ed2ddd6-34b8-4bd3-94e6-14d9b99b734e", "name": "OAuth Service", "type": "file" },
+                                    { "id": "2ed2ddd6-34b8-4bd3-94e6-14d9b99b734f", "name": "Conector DGI", "type": "file" },
+                                    { "id": "2ed2ddd6-34b8-4bd3-94e6-14d9b99b7350", "name": "Intercambio Emisores DGI", "type": "file" },
+                                    { "id": "2ed2ddd6-34b8-4bd3-94e6-14d9b99b7351", "name": "WhatsApp Business API", "type": "file" }
+                                ],
+                                "expanded": false
+                            },
+                            {
+                                "id": "6e8d5417-b01c-434e-89f0-d7b9873ee077",
+                                "name": "Projects",
+                                "type": "folder",
+                                "children": [
+                                    { "id": "e65734fe-14b7-4987-9267-9f5c4c1e1bc4", "name": "IRR Calculator", "type": "file" },
+                                    { "id": "2f099dfb-3143-4d7c-9d2b-f62cb20dd748", "name": "OAV Dynamic Tables", "type": "file" },
+                                    { "id": "2f099dfb-3143-4d7c-9d2b-f62cb20dd749", "name": "Evaluation Date Formulas", "type": "file" },
+                                    { "id": "2f099dfb-3143-4d7c-9d2b-f62cb20dd750", "name": "Synchronize Kb by hash", "type": "file" },
+                                    { "id": "2f099dfb-3143-4d7c-9d2b-f62cb20dd751", "name": "Printer IT", "type": "file" },
+                                    { "id": "2f099dfb-3143-4d7c-9d2b-f62cb20dd752", "name": "WMS Office", "type": "file" }
+                                ],
+                                "expanded": false
+                            },
+                            {
+                                "id": "497bcb31-c779-4ae6-b8c7-357f5adf180a",
+                                "name": "Experiments",
+                                "type": "folder",
+                                "children": []
+                            }
+                        ],
+                        "expanded": true
+                    }
+                ]
+            }
+        ];
+        
+        // Element references defined globally for use in handlers
+        let contentFrame;
+        let body;
+        let portfolioContainer; 
+        let mobileToggle;
+        let mobileOverlay;
+        let mobileIframe;
+        let mobileTitle;
+
+        // NEW GLOBAL STATE FOR NAVIGATION
+        let allFiles = []; // Flat list of all file objects
+        let currentFileIndex = -1; // Index of the currently open file
+
+        // Desktop/Inline navigation buttons
+        let prevFileButton;
+        let nextFileButton;
+        // Mobile/Popup navigation buttons
+        let mobilePrevFileButton;
+        let mobileNextFileButton;
+
+        // Function to recursively flatten the tree and collect all file nodes
+        function collectFiles(node, list) {
+            if (node.type === 'file') {
+                list.push(node);
+            }
+            if (node.children) {
+                node.children.forEach(child => collectFiles(child, list));
+            }
+        }
+
+        // Function to get the flat list of files
+        function getFileList() {
+            const list = [];
+            portfolioData.forEach(rootNode => collectFiles(rootNode, list));
+            return list;
+        }
+
+        function createTreeNode(item, level = 0) {
+            if (item.name === 'Root') {
+                const rootDiv = document.createElement('div');
+                if (item.children) {
+                    item.children.forEach(child => {
+                        rootDiv.appendChild(createTreeNode(child, level));
+                    });
+                }
+                return rootDiv;
+            }
+            
+            const li = document.createElement('li');
+            li.className = item.type === 'folder' ? 'tree-item tree-folder' : 'tree-item tree-file';
+            
+            // Store the file ID on the LI element for quick navigation lookups
+            if (item.type === 'file') {
+                li.dataset.fileId = item.id;
+            }
+            
+            const label = document.createElement('div');
+            label.className = 'tree-label';
+            
+            if (item.type === 'folder') {
+                const toggle = document.createElement('span');
+                toggle.className = 'tree-toggle';
+                toggle.textContent = item.expanded ? '−' : '+';
+                label.appendChild(toggle);
+            } else {
+                const spacer = document.createElement('span');
+                spacer.className = 'tree-toggle';
+                spacer.style.visibility = 'hidden';
+                label.appendChild(spacer);
+                
+                label.addEventListener('click', function() {
+                    // Clear previous selection and set current one
+                    document.querySelectorAll('.tree-file').forEach(f => f.classList.remove('selected'));
+                    li.classList.add('selected');
+                    openFile(item);
+                });
+            }
+            
+            const icon = document.createElement('span');
+            icon.className = 'tree-icon';
+            if (item.type === 'folder') {
+                icon.textContent = item.expanded ? '📂' : '📁';
+            } else {
+                icon.textContent = '📄';
+            }
+            
+            const name = document.createElement('span');
+            name.textContent = item.name;
+            
+            label.appendChild(icon);
+            label.appendChild(name);
+            li.appendChild(label);
+            
+            if (item.children && item.children.length > 0) {
+                const ul = document.createElement('ul');
+                ul.className = item.expanded ? 'tree-children expanded' : 'tree-children';
+                
+                item.children.forEach(child => {
+                    ul.appendChild(createTreeNode(child, level + 1));
+                });
+                
+                li.appendChild(ul);
+                
+                label.addEventListener('click', function() {
+                    ul.classList.toggle('expanded');
+                    const toggle = label.querySelector('.tree-toggle');
+                    const icon = label.querySelector('.tree-icon');
+                    if (ul.classList.contains('expanded')) {
+                        toggle.textContent = '−';
+                        icon.textContent = '📂';
+                    } else {
+                        toggle.textContent = '+';
+                        icon.textContent = '📁';
+                    }
+                });
+            }
+            
+            return li;
+        }
+        
+        // Helper function to calculate the absolute position of any element
+        function calculateAbsoluteTop(element) {
+            const rect = element.getBoundingClientRect();
+            const currentScroll = window.scrollY || document.documentElement.scrollTop;
+            return rect.top + currentScroll; 
+        }
+
+        function handleScroll() {
+            // Check if mobile simulation is active. If so, disable the sticky frame behavior.
+            if (mobileToggle && mobileToggle.checked) {
+                if (contentFrame) contentFrame.style.paddingTop = '0px';
+                return;
+            }
+            
+            // Ensure elements are available
+            if (!contentFrame || !body || !portfolioContainer) return;
+
+            // 1. DYNAMIC CALCULATION: Calculate the trigger position on every scroll
+            const triggerPosition = calculateAbsoluteTop(portfolioContainer);
+
+            // 2. Get current scroll position
+            const currentScrollPosition = window.scrollY || document.documentElement.scrollTop;
+            
+            // Calculate the distance scrolled past the trigger point
+            let difference = currentScrollPosition - triggerPosition;
+
+            if (difference > 0) {
+
+                const portfolioTreeElem = document.getElementById('portfolioTree');
+                const contentFrameElem = document.getElementById('contentFrame');
+
+                const auxPortfolioTreeHeight = portfolioTreeElem.clientHeight;
+                const auxFrameHeight = contentFrameElem.scrollHeight;
+
+                const auxStyle = window.getComputedStyle(contentFrameElem);
+                const auxPaddingTop = parseFloat(auxStyle.paddingTop);
+
+                let difTreeAndFrame = auxPortfolioTreeHeight - (auxFrameHeight - auxPaddingTop + difference);
+
+                if (difTreeAndFrame < 0) {
+                    difference = difference - (difTreeAndFrame *-1);
+                }
+
+                // Apply padding-top equal to the difference
+                contentFrame.style.paddingTop = `${difference.toFixed(0)}px`;
+                
+            } else {
+                // Remove padding when scrolled back up
+                contentFrame.style.paddingTop = '0px'; 
+            }
+        }
+        
+        function closeMobileModal() {
+            if (mobileOverlay) {
+                mobileOverlay.classList.remove('active');
+                mobileIframe.src = ''; // Clear content
+                document.body.style.overflow = ''; // Re-enable body scroll
+            }
+        }
+        
+        // Function to update the navigation button state (disabled or enabled)
+        function updateNavigationButtons() {
+            const isFirst = (currentFileIndex <= 0);
+            const isLast = (currentFileIndex >= allFiles.length - 1);
+            
+            // Update Desktop/Inline buttons
+            if (prevFileButton && nextFileButton) {
+                prevFileButton.disabled = isFirst;
+                nextFileButton.disabled = isLast;
+            }
+
+            // Update Mobile/Popup buttons
+            if (mobilePrevFileButton && mobileNextFileButton) {
+                mobilePrevFileButton.disabled = isFirst;
+                mobileNextFileButton.disabled = isLast;
+            }
+        }
+
+        // Function to handle moving to the next or previous file
+        function navigate(direction) {
+            let newIndex = currentFileIndex + direction;
+            
+            if (newIndex >= 0 && newIndex < allFiles.length) {
+                const nextItem = allFiles[newIndex];
+                
+                // Find the corresponding tree element based on the data-file-id
+                const nextLi = document.querySelector(`.tree-file[data-file-id="${nextItem.id}"]`);
+                
+                if (nextLi) {
+                    // Visually update selection in the tree
+                    document.querySelectorAll('.tree-file').forEach(f => f.classList.remove('selected'));
+                    nextLi.classList.add('selected');
+                    
+                    // Open the file (this will automatically update currentFileIndex and buttons)
+                    openFile(nextItem);
+                }
+            }
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize element references
+            contentFrame = document.getElementById('contentFrame');
+            body = document.body;
+            portfolioContainer = document.querySelector('.portfolio-container'); 
+            mobileToggle = document.getElementById('mobileSimulationToggle');
+            mobileOverlay = document.getElementById('mobileSimulationOverlay');
+            mobileIframe = document.getElementById('mobileSimulationIframe');
+            mobileTitle = document.getElementById('mobileSimulationTitle');
+            const mobileCloseButton = document.getElementById('mobileSimulationClose');
+
+            // Initialize NEW navigation element references
+            prevFileButton = document.getElementById('prevFileButton');
+            nextFileButton = document.getElementById('nextFileButton');
+            mobilePrevFileButton = document.getElementById('mobilePrevFileButton');
+            mobileNextFileButton = document.getElementById('mobileNextFileButton');
+
+
+            // 1. Generate flat file list for navigation
+            allFiles = getFileList();
+
+            // 2. Attach navigation handlers
+            if (prevFileButton) prevFileButton.addEventListener('click', () => navigate(-1));
+            if (nextFileButton) nextFileButton.addEventListener('click', () => navigate(1));
+            if (mobilePrevFileButton) mobilePrevFileButton.addEventListener('click', () => navigate(-1));
+            if (mobileNextFileButton) mobileNextFileButton.addEventListener('click', () => navigate(1));
+            
+            const treeContainer = document.getElementById('portfolioTree');
+            portfolioData.forEach(item => {
+                treeContainer.appendChild(createTreeNode(item));
+            });
+
+            // Attach the scroll handler to the window scroll event
+            window.addEventListener('scroll', handleScroll);
+            
+            // Attach close handler
+            if (mobileCloseButton) {
+                mobileCloseButton.addEventListener('click', closeMobileModal);
+            }
+            // Optional: Close modal on outside click (overlay click)
+            if (mobileOverlay) {
+                mobileOverlay.addEventListener('click', (e) => {
+                    // Check if the click target is the overlay itself (not the window inside)
+                    if (e.target === mobileOverlay) {
+                        closeMobileModal();
+                    }
+                });
+            }
+
+            // Run once on load to set the initial state
+            handleScroll();
+            updateNavigationButtons(); // Initialize buttons to disabled state (since currentFileIndex is -1)
+        });
+        
+        function openFile(item) {
+            // Update global state for navigation
+            currentFileIndex = allFiles.findIndex(file => file.id === item.id);
+            updateNavigationButtons(); // Update buttons immediately after index change
+            
+            // First, ensure the body scroll is re-enabled if needed (in case mobile toggle was just unchecked)
+            document.body.style.overflow = ''; 
+
+            if (mobileToggle.checked) {
+                // Mobile Simulation Mode (Popup)
+                mobileTitle.textContent = item.name;
+                // Using example.com for demonstration as no actual URLs are provided
+                mobileIframe.src = 'https://example.com';
+                mobileOverlay.classList.add('active');
+                
+                // Disable body scrolling when modal is open
+                document.body.style.overflow = 'hidden';
+                
+                // Also ensure the inline frame is hidden
+                document.getElementById('contentFrame').classList.remove('active');
+                
+            } else {
+                // Default Inline Frame Mode
+                const frameContainer = document.getElementById('contentFrame');
+                const iframe = document.getElementById('contentIframe');
+                const frameTitle = document.getElementById('frameTitle');
+                
+                // 1. Make the frame visible first
+                frameContainer.classList.add('active'); 
+                
+                // 2. Update the title
+                frameTitle.textContent = `${item.name}`;
+                
+                // 3. Set the source
+                // Using example.com for demonstration as no actual URLs are provided
+                iframe.src = 'https://example.com'; 
+                
+                // 4. Ensure the mobile modal is closed if it was accidentally open
+                mobileOverlay.classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>
