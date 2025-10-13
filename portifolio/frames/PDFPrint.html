@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Print</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for Inter font and general card feel */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7fa; /* Light background */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        .portfolio-card {
+            max-width: 900px;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#1d4ed8', // Blue-700
+                        'secondary': '#60a5fa', // Blue-400
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="portfolio-card p-6 md:p-10 rounded-xl">
+        <!-- Header/Title -->
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4 border-b-4 border-primary pb-2">
+            PDF Print
+        </h1>
+        
+        <!-- Context Label (Inferred from parent folder) -->
+        <p class="text-sm font-medium text-secondary mb-6 uppercase tracking-wider">
+            Category: Genexus External Objects
+        </p>
+
+        <!-- Description/Text -->
+        <div class="text-lg text-gray-700 leading-relaxed mb-8 bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <p>Ideal for print on running a batch process, specify a target printer, and manage print job settings, including the number of copies, without requiring the user to interact with a print dialog. Ideal for print on running a batch process.</p>
+        </div>
+
+        <!-- Links Section -->
+        <div class="mt-8 pt-6 border-t border-gray-200">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-primary mr-2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.253 4.253a4.5 4.5 0 0 1-6.364-6.364l1.242-1.242m12.433-1.242l-1.242 1.242a4.5 4.5 0 0 1-6.364 6.364l-4.253-4.253a4.5 4.5 0 0 1 1.242-7.244m9.332-1.242l.66.66a.75.75 0 0 1 0 1.06l-.66.66-2.5-2.5.66-.66a.75.75 0 0 1 1.06 0z" />
+                </svg>
+                Related Resources
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <a href="https://marketplace.genexus.com/viewproduct.aspx?904" target="_blank" class="flex items-center justify-center p-4 bg-primary text-white rounded-lg transition duration-300 hover:bg-secondary hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                    </svg>
+                    <span class="font-medium">Genexus Marketplace</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bluetooth Serial Receiver</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for Inter font and general card feel */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7fa; /* Light background */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        .portfolio-card {
+            max-width: 900px;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#1d4ed8', /* Blue-700 */
+                        'secondary': '#60a5fa', /* Blue-400 */
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="portfolio-card p-6 md:p-10 rounded-xl">
+        <!-- Header/Title -->
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4 border-b-4 border-primary pb-2">
+            Bluetooth Serial Receiver
+        </h1>
+
+        <!-- Context Label -->
+        <p class="text-sm font-medium text-secondary mb-6 uppercase tracking-wider">
+            Category: Genexus External Objects (Android)
+        </p>
+
+        <!-- Description/Text -->
+        <div class="text-lg text-gray-700 leading-relaxed mb-8 bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <p>Connects and receives data from a Bluetooth device, using the traditional serial communication.</p>
+        </div>
+
+        <!-- Links Section -->
+        <div class="space-y-4">
+            <h2 class="text-xl font-bold text-gray-800 border-b pb-1">Resources</h2>
+            <div class="flex flex-wrap gap-4">
+                <a href="https://sites.google.com/puntoexe.com.uy/pxtools-manual/external-objects/android-bluetooth-serial-receiver" target="_blank" class="flex items-center space-x-2 px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg shadow-md hover:bg-blue-800 transition duration-300">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    <span>Documentation</span>
+                </a>
+                <a href="https://marketplace.genexus.com/viewproduct.aspx?832" target="_blank" class="flex items-center space-x-2 px-4 py-2 bg-gray-600 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-gray-700 transition duration-300">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    <span>Genexus Marketplace</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

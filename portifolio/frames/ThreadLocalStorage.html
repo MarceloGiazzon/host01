@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thread Local Storage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for Inter font and general card feel */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7fa; /* Light background */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        .portfolio-card {
+            max-width: 900px;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#1d4ed8', // Blue-700
+                        'secondary': '#60a5fa', // Blue-400
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="portfolio-card p-6 md:p-10 rounded-xl">
+        <!-- Header/Title -->
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4 border-b-4 border-primary pb-2">
+            Thread Local Storage
+        </h1>
+        
+        <!-- Context Label (Inferred from parent folder) -->
+        <p class="text-sm font-medium text-secondary mb-6 uppercase tracking-wider">
+            Category: Genexus External Objects
+        </p>
+
+        <!-- Description/Text -->
+        <div class="text-lg text-gray-700 leading-relaxed mb-8 bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <p>Provide a solution for storing and retrieving process-specific data across a GeneXus server-side execution thread. It allows you to reliably store a String value that is strictly local to the current request or batch process, preventing concurrency issues and data collision in multi-threaded environments (like Java application servers).</p>
+        </div>
+
+        <!-- Links Section -->
+    </div>
+</body>
+</html>
