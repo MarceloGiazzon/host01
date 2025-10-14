@@ -6,31 +6,331 @@
     <title>Horizontal Scroll Buttons</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f4f7fa; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 1rem; }
-        .portfolio-card { max-width: 900px; width: 100%; background-color: white; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        /* Custom styles for Inter font and general card feel */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7fa; /* Light background */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        .portfolio-card {
+            max-width: 900px;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+        }
+        /* Mobile adjustments */
+        @media (max-width: 640px) {
+            .portfolio-card {
+                padding: 1.5rem;
+            }
+        }
     </style>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'], },
-                    colors: { 'primary': '#1d4ed8', 'secondary': '#60a5fa', }
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#1d4ed8', // Blue-700
+                        'secondary': '#60a5fa', // Blue-400
+                    }
                 }
             }
         }
     </script>
-</head>
+
+    <link rel="stylesheet" href="general_frames.css"></head>
 <body>
     <div class="portfolio-card p-6 md:p-10 rounded-xl">
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4 border-b-4 border-primary pb-2">
-            Horizontal Scroll Buttons
-        </h1>
-        <p class="text-sm font-medium text-secondary mb-6 uppercase tracking-wider">
-            Category: Genexus User Controls
+        
+        <!-- Language Selector Area -->
+        <div class="flex justify-end items-center mb-6 border-b pb-3">
+            <div id="notification-area" class="sr-only"></div> 
+            <div class="flex items-center space-x-2">
+                <label id="language-label" for="language-selector" class="text-sm font-medium text-gray-700">Language:</label>
+                <select id="language-selector" onchange="changeLanguage()" class="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary">
+                    <option value="en" selected>English (US)</option>
+                    <option value="es">Spanish (ES)</option>
+                    <option value="pt">Portuguese (BR)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Content Area (IDs added for dynamic updates) -->
+        
+        <!-- Context Label (Category) -->
+        <p id="context-label" class="text-sm font-medium text-secondary mb-3 uppercase tracking-wider">
+            Loading Category...
         </p>
-        <div class="text-lg text-gray-700 leading-relaxed mb-8 bg-gray-50 p-4 rounded-lg border border-gray-200">
-            <p>User control for desktop only. Add floating buttons near the bottom of the browser visible area, when a grid has scroll in both directions. The objective is to avoid forcing the user to go to the bottom of the grid just to make the horizontal scroll. Auto hides when it detects it is not required, by the grid dimension or by the current vertical scroll position.</p>
+
+        <!-- Header/Title -->
+        <h1 id="main-title" class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4 border-b-4 border-primary pb-2">
+            Loading Title...
+        </h1>
+        
+        <!-- Description/Text -->
+        <div id="description-text" class="text-base text-gray-700 leading-relaxed space-y-4 mb-8">
+            <p>Loading description...</p>
+        </div>
+
+        <!-- Related Resources (Updated structure for links) -->
+        <h2 id="related-resources-heading" class="flex items-center text-xl font-bold text-gray-800 mb-4 pt-4 border-t border-gray-200">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-primary mr-2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.253 4.253a4.5 4.5 0 0 1-6.364-6.364l1.242-1.242m12.433-1.242l-1.242 1.242a4.5 4.5 0 0 1-6.364 6.364l-4.253-4.253a4.5 4.5 0 0 1 1.242-7.244m9.332-1.242l.66.66a.75.75 0 0 1 0 1.06l-.66.66-2.5-2.5.66-.66a.75.75 0 0 1 1.06 0z" />
+            </svg>
+            <span>Related Resources</span>
+        </h2>
+        <div id="related-resources-links" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Link 1: Documentation -->
+            <a id="link-documentation" href="#" target="_blank" class="flex items-center justify-center p-4 bg-primary text-white rounded-lg transition duration-300 hover:bg-secondary hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-50">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                </svg>
+                <span class="font-medium">Documentation</span>
+            </a>
+
+            <!-- Link 2: Marketplace (fixed name) -->
+            <a id="link-marketplace" href="#" target="_blank" class="flex items-center justify-center p-4 bg-gray-600 text-white rounded-lg transition duration-300 hover:bg-gray-700 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 0a2.25 2.25 0 0 0-2.25 2.25v1.5a2.25 2.25 0 0 0 2.25 2.25h16.5m-16.5-4.5h16.5m-16.5 0a2.25 2.25 0 0 1-2.25-2.25V7.5A2.25 2.25 0 0 1 3.75 5.25h16.5a2.25 2.25 0 0 1 2.25 2.25v1.5a2.25 2.25 0 0 1-2.25 2.25z" />
+                </svg>
+                <span class="font-medium">Genexus Marketplace</span>
+            </a>
         </div>
     </div>
+    
+    <script>
+        // Configuration specific to this content item
+        const JSON_URL = 'https://marcelogiazzon.github.io/host01/portifolio/frames/languages.json';
+        // TARGET NAME adjusted to match the item we are trying to load
+        const targetItemName = 'Horizontal Scroll Buttons'; 
+        let contentData = null; 
+
+        // Translations for UI elements not in the JSON (Language label, Heading, Button Texts)
+        const translations = {
+            'en': {
+                'languageLabel': 'Language:',
+                'heading': 'Related Resources',
+                'docLink': 'Documentation',
+                'marketplaceLink': 'Genexus Marketplace',
+                'categoryPrefix': 'Category: '
+            },
+            'es': {
+                'languageLabel': 'Idioma:',
+                'heading': 'Recursos Relacionados',
+                'docLink': 'Documentación',
+                'marketplaceLink': 'Genexus Marketplace', 
+                'categoryPrefix': 'Categoría: '
+            },
+            'pt': {
+                'languageLabel': 'Idioma:',
+                'heading': 'Recursos Relacionados',
+                'docLink': 'Documentação',
+                'marketplaceLink': 'Genexus Marketplace', 
+                'categoryPrefix': 'Categoria: '
+            }
+        };
+        
+        // Map to ensure the key suffix matches the JSON structure (e.g., 'pt' -> 'Por', 'es' -> 'Esp')
+        const languageSuffixMap = {
+            'en': '',
+            'es': 'Esp',
+            'pt': 'Por'
+        };
+
+        // --- Helper Functions ---
+
+        /**
+         * Normalizes a string by removing all spaces and converting to lowercase.
+         * Used for robust searching in the nested JSON structure.
+         * @param {string} name 
+         * @returns {string}
+         */
+        function normalizeName(name) {
+            if (typeof name !== 'string') return '';
+            return name.replace(/\s/g, '').toLowerCase();
+        }
+
+        /**
+         * Recursively searches the JSON structure for an item that matches the target name.
+         * Also returns the context (parent folder name) of the found item.
+         * @param {Array<Object>} nodes 
+         * @param {string} targetName 
+         * @param {string} contextName 
+         * @returns {Object|null} {item: Object, context: string} or null
+         */
+        function findItemAndContext(nodes, targetName, contextName = '') {
+            const normalizedTarget = normalizeName(targetName);
+
+            for (const node of nodes) {
+                // 1. Check if the current node is the target item
+                if (normalizeName(node.name) === normalizedTarget) {
+                    return { item: node, context: contextName };
+                }
+
+                // 2. Check children recursively
+                if (node.children && node.children.length > 0) {
+                    const result = findItemAndContext(node.children, targetName, node.name);
+                    if (result) {
+                        return result;
+                    }
+                }
+            }
+            return null;
+        }
+        
+        /**
+         * Reads the 'lang' parameter from the URL.
+         * @returns {string} The validated language code ('en', 'es', or 'pt'), defaults to 'en'.
+         */
+        function getInitialLanguage() {
+            const params = new URLSearchParams(window.location.search);
+            const urlLang = params.get('lang')?.toLowerCase();
+            const supportedLangs = Object.keys(translations); // ['en', 'es', 'pt']
+            
+            if (urlLang && supportedLangs.includes(urlLang)) {
+                return urlLang;
+            }
+            return 'en'; // Default language
+        }
+
+
+        // --- Main Logic ---
+
+        /**
+         * Fetches the remote JSON and finds the target item.
+         */
+        async function fetchAndSetupContent() {
+            try {
+                const response = await fetch(JSON_URL);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                
+                // Search for the specific item
+                const found = findItemAndContext(data.children || [], targetItemName, data.name);
+
+                if (found) {
+                    contentData = found;
+                    
+                    // 1. Get initial language from URL or default to 'en'
+                    const initialLang = getInitialLanguage();
+                    
+                    // 2. Set the selector value to reflect the initial language
+                    const selector = document.getElementById('language-selector');
+                    if ([...selector.options].some(option => option.value === initialLang)) {
+                        selector.value = initialLang; 
+                    }
+
+                    // 3. Initial render based on the determined language
+                    changeLanguage(); 
+                } else {
+                    console.error(`Could not find "${targetItemName}" item in the fetched data.`);
+                    document.getElementById('description-text').innerHTML = `<p class="text-red-500">Error: Content for "${targetItemName}" not found in JSON.</p>`;
+                }
+
+            } catch (error) {
+                console.error('Error fetching or processing JSON:', error);
+                document.getElementById('description-text').innerHTML = `<p class="text-red-500">Error: Failed to load content from JSON source. Check console for details.</p>`;
+            }
+        }
+
+
+        /**
+         * Translates and updates the content of the page based on the selected language.
+         */
+        function changeLanguage() {
+            const selector = document.getElementById('language-selector');
+            const lang = selector.value;
+            const uiText = translations[lang];
+            const langSuffix = languageSuffixMap[lang] || ''; 
+
+            // 1. Update UI Labels (from local translations object)
+            document.getElementById('language-label').textContent = uiText.languageLabel;
+            
+            // Update Related Resources Heading text (inside the span)
+            const resourcesHeading = document.getElementById('related-resources-heading');
+            if (resourcesHeading) {
+                const span = resourcesHeading.querySelector('span');
+                 if (span) {
+                    span.textContent = uiText.heading;
+                 } else {
+                     resourcesHeading.textContent = uiText.heading; // Fallback if no span
+                 }
+            }
+
+
+            // 2. Update Content (from remote JSON data)
+            if (contentData && contentData.item) {
+                const item = contentData.item;
+                
+                const titleKey = `name${langSuffix}`;
+                const textKey = `text${langSuffix}`;
+
+                // Get translated text, falling back to 'name'/'text' (English) if specific translation is missing
+                const translatedTitle = item[titleKey] || item.name;
+                const translatedText = item[textKey] || item.text; 
+                
+                // Get translated context (Category)
+                const translatedContext = contentData.context; 
+                
+                // Maps the parent folder name to its translations 
+                const contextMap = {
+                    'Genexus User Controls': { 'en': 'Genexus User Controls', 'es': 'Controles de Usuario de Genexus', 'pt': 'Controles de Usuário Genexus' },
+                    'Genexus External Objects': { 'en': 'Genexus External Objects', 'es': 'Objetos Externos de Genexus', 'pt': 'Objetos Externos Genexus' },
+                    'Android': { 'en': 'Android', 'es': 'Android', 'pt': 'Android' },
+                    'Portfolio': { 'en': 'Portfolio', 'es': 'Portafolio', 'pt': 'Portfólio' },
+                };
+                
+                let contextTranslation = translatedContext; 
+                if (contextMap[translatedContext]) {
+                     contextTranslation = contextMap[translatedContext][lang] || translatedContext;
+                }
+                
+                // Set HTML content
+                document.getElementById('main-title').textContent = translatedTitle;
+                document.getElementById('context-label').textContent = uiText.categoryPrefix + contextTranslation;
+                
+                // Convert text to paragraphs. Simple newline conversion for display consistency.
+                const formattedText = translatedText ? translatedText.split('\n').map(p => `<p>${p}</p>`).join('') : '<p>Description not available in JSON.</p>';
+                document.getElementById('description-text').innerHTML = formattedText; 
+
+                // Update Link Texts and URLs
+                const docLinkElement = document.getElementById('link-documentation');
+                const marketplaceLinkElement = document.getElementById('link-marketplace');
+                
+                // Normalize link names for robust search
+                const docLinkData = item.links ? item.links.find(l => normalizeName(l.name) === 'documentation') : null;
+                let marketplaceLinkData = item.links ? item.links.find(l => normalizeName(l.name) === 'genexusmarketplace') : null;
+                // Fallback check for generic 'marketplace' link 
+                if (!marketplaceLinkData) {
+                    const genericMarketplaceLinkData = item.links ? item.links.find(l => normalizeName(l.name) === 'marketplace') : null;
+                    if (genericMarketplaceLinkData) {
+                        marketplaceLinkData = genericMarketplaceLinkData;
+                    }
+                }
+
+
+                // Update Documentation Link
+                docLinkElement.querySelector('span').textContent = uiText.docLink;
+                if (docLinkData) docLinkElement.href = docLinkData.url; else docLinkElement.href = '#';
+                
+                // Update Marketplace Link
+                marketplaceLinkElement.querySelector('span').textContent = uiText.marketplaceLink;
+                if (marketplaceLinkData) marketplaceLinkElement.href = marketplaceLinkData.url; else marketplaceLinkElement.href = '#';
+            }
+        }
+
+        // Initialize by fetching content when the page loads
+        document.addEventListener('DOMContentLoaded', fetchAndSetupContent);
+    </script>
 </body>
 </html>
