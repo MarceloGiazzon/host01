@@ -438,9 +438,9 @@
                 "nameEsp": "Tareas en la Nube",
                 "namePor": "Tarefas na Nuvem",
                 "type": "file",
-                "text": "",
-                "textEsp": "",
-                "textPor": "",
+                "text": "Module to handle cloud-based task management and scheduling. Certificates and key stores management complete and autonomos, including install, data extract, depuration by expiration data, supporting pkcs12 and jks formats.",
+                "textEsp": "Módulo para manejar la gestión y programación de tareas en la nube. Gestión completa y autónoma de certificados y almacenes de claves, incluyendo instalación, extracción de datos, depuración por fecha de expiración, soportando formatos pkcs12 y jks.",
+                "textPor": "Módulo para gerenciar o gerenciamento e agendamento de tarefas baseadas na nuvem. Gestão completa e autônoma de certificados e armazenamentos de chaves, incluindo instalação, extração de dados, depuração por data de expiração, suportando os formatos pkcs12 e jks.",
                 "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/CloudTasks.html"
               },
               {
