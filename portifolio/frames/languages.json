@@ -1,5 +1,4 @@
-const portfolioData = [
-  {
+{
     "id": "root",
     "name": "Root",
     "nameEsp": "Raíz",
@@ -628,4 +627,3 @@ const portfolioData = [
       }
     ]
   }
-];
