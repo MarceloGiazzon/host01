@@ -1,0 +1,443 @@
+  {
+    "id": "root",
+    "name": "Root",
+    "type": "folder",
+    "expanded": true,
+    "children": [
+      {
+        "id": "4fec7df3-3f0d-482b-94c6-9316a607e225",
+        "name": "Portfolio",
+        "type": "folder",
+        "children": [
+          {
+            "id": "5221651e-73e0-4a2a-9f41-273e3740729b",
+            "name": "Genexus User Controls",
+            "type": "folder",
+            "children": [
+              {
+                "id": "28ec9cca-169f-4f1e-b1d3-6a47aa769197",
+                "name": "Smart Menus",
+                "text": "A versatile and highly configurable multi-level menu User Control for GeneXus Web applications, built on the SmartMenus jQuery plugin. It offers an advanced responsive design that adapts seamlessly to desktop and mobile environments. Key features include: support for deep multi-level hierarchies, extensive configuration options for theming and behavior, dynamic status updates with badges, and a integrated search functionality.",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/SmartMenus.html",
+                "links": [
+                  {
+                    "name": "Documentation",
+                    "url": "https://sites.google.com/puntoexe.com.uy/pxtools-manual/user-controls/smart-menu"
+                  },
+                  {
+                    "name": "Genexus Marketplace",
+                    "url": "https://marketplace.genexus.com/product.aspx?pxtoolssmartmenu"
+                  }
+                ]
+              },
+              {
+                "id": "e3a72909-45d3-44dc-805f-54293a9ec747",
+                "name": "Responsive Layout",
+                "text": "A powerful and dynamic Responsive Layout Manager designed for GeneXus Master Pages, enabling the creation of complex, adaptable interfaces. It provides up to four distinct and configurable zones (Top, Left, Right, Bottom) around a central content area. The configuration for each zone is granularly controlled by Bootstrap dimensions (xs, sm, md, lg), allowing for specific behaviors across different device screen sizes. This control manages the behavior of these zones, allowing for features like scroll-impact logic (to dynamically show/hide components based on user scrolling), Minimize/Maximize states, and full mobile support including swipe gestures to control the side panels.",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/ResponsiveLayout.html",
+                "links": [
+                  {
+                    "name": "Documentation",
+                    "url": "https://sites.google.com/puntoexe.com.uy/pxtools-manual/user-controls/responsive-layout"
+                  },
+                  {
+                    "name": "Genexus Marketplace",
+                    "url": "https://marketplace.genexus.com/product.aspx?pxtoolsresponsivelayout"
+                  }
+                ]
+              },
+              {
+                "id": "f1a8c4b1-6a0e-47f5-a1d2-9c3f0b2e1d75",
+                "name": "Contextual Box",
+                "text": "Based on a data provider, allows to create floating boxes on runtime. You can define labels, inputs, buttons, icons and slide controls. Allows multiple instances, for the use on grids. Options can be enabled or disabled, based on the context (grid row values, as an example). Currently, two levels are supported.",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/ContextualBox.html"
+              },
+              {
+                "id": "d2b9d5c2-7b1f-48e6-b2c3-0d4a1c3f2e86",
+                "name": "Grid Paging",
+                "text": "Responsive control that manages page navigation. Includes Rows per Page properties and a slide control to an easy page jump.",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/GridPaging.html"
+              },
+              {
+                "id": "c3c0e6d3-8c20-49d7-c3b4-1e5b2d4e3f97",
+                "name": "Grid Fixed Columns",
+                "text": "Keep one or more column fixed on the extremes of a grid. Can be set on both sides (right and/or left).",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/GridFixedColumns.html"
+              },
+              {
+                "id": "b4d1f7e4-9d31-4ac8-d4a5-2f6c3e5a40a8",
+                "name": "Grid Fixed Title",
+                "text": "Keep the header of a grid fixed and visible when doing vertical scroll.",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/GridFixedTitles.html"
+              },
+              {
+                "id": "a5e208f5-a042-4bd9-e596-307d4f6b51b9",
+                "name": "Grid Handler",
+                "text": "Allows moving, hiding, or showing grid columns. Save and load the grid state on the database (using web services) to 'remember' the user choices.",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/GridHandler.html"
+              },
+              {
+                "id": "96f31906-b153-4cea-f687-418e507c62ca",
+                "name": "Horizontal Scroll Buttons",
+                "text": "User control for desktop only. Add floating buttons near the bottom of the browser visible area, when a grid has scroll in both directions. The objective is to avoid forcing the user to go to the bottom of the grid just to make the horizontal scroll. Auto hides when it detects it is not required, by the grid dimension or by the current vertical scroll position.",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/HorizontalScrollButtons.html"
+              },
+              {
+                "id": "87042a17-c264-4dfb-0778-529f618d73db",
+                "name": "Screenshotter",
+                "text": "By default triggered by Ctrl + i, it allows to select and capture browser view. Allows selecting color, draw rectangles, circles, arrows and writing text as well. Supports the option to copy to clipboard, get the base 64 content (to be used on some Genexus event), save on disk or save on Google Drive.",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/Screenshotter.html"
+              },
+              {
+                "id": "78153b28-d375-4e0c-1869-63af729e84ec",
+                "name": "Camera Scan",
+                "text": "Allows the mobile camera to be used as a barcode scanner. Supported formats can be defined, including most barcode types and QR code.",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/CameraScan.html"
+              },
+              {
+                "id": "69264c39-e486-4f1d-295a-74be83af95fd",
+                "name": "Input Auto Complete",
+                "text": "Allows suggesting options to autocomplete when the user is entering specific fragments of text on some inputs. Triggered by Ctrl + space on desktop or long press on mobile.",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/InputAutoComplete.html"
+              },
+              {
+                "id": "5a375d4a-f597-402e-3a4b-85cf94b0a60e",
+                "name": "Point of Sale",
+                "text": "Complete and independent interface for POS. Communicates with the server side only by web services. Designed to be used mainly by a Code Bar Scanner, but supports manual entries. Responsive, it allows using the mobile camera as code bar scanner or audio as text entry. Items can be manually entered when WS don’t find a item. Also, manages an items queue when the connection is unstable.",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/PointOfSale.html"
+              },
+              {
+                "id": "4b486e5b-06a8-413f-4b3c-96d0a5c1b71f",
+                "name": "User Tree",
+                "text": "Tree view creation on runtime. Allows adding Folders or Files, removing items, and renaming. Support export and import on JSON format. This tree view uses the same script as the User Control.",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/TreeExplorer.html"
+              },
+              {
+                "id": "3c597f6c-17b9-4240-5c2d-a7e1b6d2c820",
+                "name": "Image Gallery",
+                "text": "This User Control works together with an image gallery on a Free Style Grid. It allows zoom in/out, and the navigation is integrated with the Grid Paging, allowing to change the current page without close the exhibition mode. Allow some predefined actions and custom actions too.",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/ImageGallery.html"
+              },
+              {
+                "id": "2d6a807d-28ca-4351-6d1e-b8f2c7e3d931",
+                "name": "Manipulação gxgral.js",
+                "text": "Sometimes due to small bugs or specific demands, some touch on the gxgral.js, provided by GeneXus is necessary. Some real examples are adjustment to trigger a Isvalid event when writing on a field with suggest before leaving the field ...",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/ManipulaçãoGxgral_js.html"
+              }
+            ],
+            "expanded": true
+          },
+          {
+            "id": "ba7ec99f-a36c-4d4d-b2e0-973ca7751909",
+            "name": "Genexus External Objects",
+            "type": "folder",
+            "children": [
+              {
+                "id": "65950f99-85b8-451b-9628-e7f8a36eb3a5",
+                "name": "SOAPmTLS",
+                "type": "file",
+                "text": "Supports communication with SOAP mutual TLS web services. KeyStore formats JKS and PKCS#12 are supported to secure the communication. Includes functionality to read and return WSDL information, consisting of method names and the parameters for each method.",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/SOAPmTLS.html",
+                "links": [
+                  {
+                    "name": "Genexus Marketplace",
+                    "url": "https://marketplace.genexus.com/viewproduct.aspx?905"
+                  }
+                ]
+              },
+              {
+                "id": "ff617fe5-5bde-498d-a7a2-5f5530d729aa",
+                "name": "XML Signature Utils",
+                "text": "This Java utility class provides a comprehensive set of functions for handling digital certificates and performing cryptographic operations, primarily focusing on managing and utilizing keys stored in Java KeyStore formats, such as JKS and PKCS#12. It wraps Java's security APIs to simplify tasks related to trust, identity, and data integrity. Core Functionalities: Key and KeyStore Management, Digital Signatures and Verification, Encryption and Decryption",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/XMLSignatureUtils.html"
+              },
+              {
+                "id": "91011d66-e763-4c9f-8d2a-c0e4f3a9e321",
+                "name": "Certificate Utils",
+                "text": "Set of functions for handling digital certificates (specifically X.509) and performing cryptographic operations, primarily focusing on managing keys stored in a KeyStore. Supports encrypt, decrypt, extract Public and Private Keys, load a certificate from X509 base 64 text and optimized listing certificates metadata for a specific alias or extraction for all certificates on KeyStore.",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/CertificateUtils.html"
+              },
+              {
+                "id": "a2122e77-f874-4d0g-9e3b-d1f50b4a7432",
+                "name": "Image Utils",
+                "text": "Image Utils is dedicated to processing images, specifically for generating command strings compatible with ESC/POS thermal printers. The main function is to convert a standard image file (specified by imagePath) or a Base64-encoded string (b64String) into a series of hexadecimal commands that represent the rasterized, bitonal version of the image, ready for direct thermal printing. Additionally, it provides core image manipulation capabilities, such as resizeImage, which scales a loaded image to a new specified width while maintaining its aspect ratio",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/ImageUtils.html"
+              },
+              {
+                "id": "b3233f88-0985-4e1h-a04c-e2g61c5b8543",
+                "name": "PDF Print",
+                "text": "Ideal for print on running a batch process, specify a target printer, and manage print job settings, including the number of copies, without requiring the user to interact with a print dialog. Ideal for print on running a batch process.",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/PDFPrint.html",
+                "links": [
+                  {
+                    "name": "Genexus Marketplace",
+                    "url": "https://marketplace.genexus.com/viewproduct.aspx?904"
+                  }
+                ]
+              },
+              {
+                "id": "c4344099-1a96-4f2i-b15d-f3h72d6c9654",
+                "name": "Machine Fingerprint",
+                "text": "Returns unique machine fingerprint by aggregating various low-level hardware and system identifiers. It collects data from multiple sources, including: Disk Identifiers, Network Interface MAC Addresses, Kernel Details, and CPU Information. This collected details can be used to determine a unique server identification when a process is running on instances of server farm.",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/MachineFingerprint.html"
+              },
+              {
+                "id": "d54551aa-2b07-403j-c26e-e2g61c5b8543",
+                "name": "SOAP Static WSDL",
+                "text": "This Java Servlet Filter intercepts incoming HTTP requests, specifically looking for the presence of the ?wsdl query string, which indicates a request for a Web Service Definition Language file. When a WSDL request is detected, the filter stops the normal servlet processing chain and instead serves a static WSDL file (e.g., ws_efactura_intercambio.wsdl) located in a predetermined path",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/SOAPStaticWSDL.html"
+              },
+              {
+                "id": "e65662bb-3c18-414k-d37f-15j94f8e1876",
+                "name": "WS Security SOAP Handler",
+                "text": "This Java External Object is a JAX-WS SOAP Handler that enforces WS-Security (Digital Signature) for SOAP Web Services in a GeneXus environment. For outbound calls, it digitally signs the SOAP Envelope using private key credentials retrieved from a Thread Local Storage mechanism. For inbound calls, it validates the XML Signature on the SOAP Envelope, ensuring message integrity and authenticity",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/WSSecuritySOAPHandler.html"
+              },
+              {
+                "id": "f76773cc-4d29-425l-e480-26ka5g9f2987",
+                "name": "IP Address Match",
+                "text": "This Java utility class provides comprehensive validation for matching a target IP Address against a specified IP Mask or CIDR range (e.g., 192.168.1.0/24). Perform bitwise comparison, checking if the testIP falls within the subnet defined by the maskIP.",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/IPAddressMatch.html"
+              },
+              {
+                "id": "087884dd-5e30-436m-f591-37lb6h0g3098",
+                "name": "Shell Command",
+                "text": "This Java utility class provides a static method to execute system commands on the host operating system. It performs automatic OS detection (Windows vs. others) and adapts command syntax, specifically for output redirection/tee functionality (>  vs. | tee).",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/ShellCommand.html"
+              },
+              {
+                "id": "198995ee-6f41-447n-06a2-48mc7i1h4109",
+                "name": "Thread Local Storage",
+                "text": "Provide a solution for storing and retrieving process-specific data across a GeneXus server-side execution thread. It allows you to reliably store a String value that is strictly local to the current request or batch process, preventing concurrency issues and data collision in multi-threaded environments (like Java application servers).",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/ThreadLocalStorage.html"
+              },
+              {
+                "id": "45c44ce2-0ea4-48bc-8e10-682d35231a48",
+                "name": "Android",
+                "type": "folder",
+                "children": [
+                  {
+                    "id": "5652185a-7dc2-49fc-abb1-e86cc1662c63",
+                    "name": "Mobile XML Signature",
+                    "type": "file",
+                    "text": "Allows signing an XML on an Android device, using a local certificate. Doesn't need internet connection.",
+                    "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/MobileXMLSignature.html"
+                  },
+                  {
+                    "id": "7a6b7c8d-8e9f-4012-9012-0a1b2c3d4e5f",
+                    "name": "Bluetooth Print",
+                    "type": "file",
+                    "text": "Select a bluetooth device from a list. Send text or commands to the Bluetooth printer. On ESC/POS printers, supports printing images on a version rasterized and bitonal (series of hexadecimal commands supported by ESC/POS).",
+                    "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/BluetoothPrint.html",
+                    "links": [
+                      {
+                        "name": "Documentation",
+                        "url": "https://sites.google.com/puntoexe.com.uy/pxtools-manual/external-objects/androidbluetoothprint"
+                      },
+                      {
+                        "name": "Genexus Marketplace",
+                        "url": "https://marketplace.genexus.com/viewproduct.aspx?696"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "8b7c8d9e-9f0a-4123-a123-1b2c3d4e5f0a",
+                    "name": "Bluetooth Serial Receiver",
+                    "type": "file",
+                    "text": "Connects and receives data from a Bluetooth device, using the traditional serial communication.",
+                    "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/BluetoothSerialReceiver.html",
+                    "links": [
+                      {
+                        "name": "Documentation",
+                        "url": "https://sites.google.com/puntoexe.com.uy/pxtools-manual/external-objects/android-bluetooth-serial-receiver"
+                      },
+                      {
+                        "name": "Genexus Marketplace",
+                        "url": "https://marketplace.genexus.com/viewproduct.aspx?832"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "9c8d9eaf-a0b1-4234-b234-2c3d4e5f0a1b",
+                    "name": "Bluetooth Low Energy (BLE) Receiver",
+                    "type": "file",
+                    "text": "Connects and receives data from a Bluetooth device, using the BLE (Bluetooth Low Energy) standard for communication.",
+                    "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/BLEReceiver.html"
+                  }
+                ],
+                "expanded": true
+              }
+            ],
+            "expanded": true
+          },
+          {
+            "id": "11d4281c-02dd-4d2e-8694-188ea30bb1cb",
+            "name": "Genexus Modules",
+            "type": "folder",
+            "children": [
+              {
+                "id": "09625d96-5195-456e-9d9c-8880c6c39d9c",
+                "name": "Cloud Tasks",
+                "type": "file",
+                "text": "",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/CloudTasks.html"
+              },
+              {
+                "id": "2ed2ddd6-34b8-4bd3-94e6-14d9b99b734c",
+                "name": "Printer Markup Language",
+                "text": "Printer Markup Language is a declared language to define a standard for ticket declaration for portable printers. Communication with various printer models is not standardized. Additionally, it is generally necessary to send escape commands and other special characters. Its objective is to make communication standardized and intuitive.",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/PrinterMarkupLanguage.html",
+                "links": [
+                  {
+                    "name": "Documentation",
+                    "url": "https://sites.google.com/puntoexe.com.uy/pxtools-manual/modulos-sd/printer-markup-language"
+                  }
+                ]
+              },
+              {
+                "id": "3f4e5d6c-7e8f-490a-8b9c-5d6e7f8a9b0c",
+                "name": "OAuth Consumer",
+                "text": "A high-level layer that facilitates connection with OAuth authentication providers. It includes callbacks, APIs for authorization, token requests, and revocation. It allows customization to cover a broad range of providers.",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/OAuthConsumer.html"
+              },
+              {
+                "id": "4e5d6c7b-8f90-4a1b-9c0d-6e7f8a9b0c1d",
+                "name": "OAuth Service",
+                "text": "Facilitates the ability for a system to act as an OAuth provider. It has configurable authentication and token policies. It allows silent authentication without the need for user interfaces.",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/OAuthService.html"
+              },
+              {
+                "id": "5d6c7b8a-90a1-4b2c-a0d1-7f8a9b0c1d2e",
+                "name": "Conector DGI",
+                "text": "Electronic invoice intermediation system for Uruguay. Supports integration with customer service systems. Allows issuing the document either by the system itself or externally. Supports printing on A4 or ticket printers. Application and certification in very little time thanks to the levels of automation implemented. Commercialized both as SAAS and as a sale of the GeneXus Knowledge Base (KB).",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/ConectorDGI.html",
+                "links": [
+                  {
+                    "name": "Documentation",
+                    "url": "https://sites.google.com/a/puntoexe.com.uy/conectordgi"
+                  }
+                ]
+              },
+              {
+                "id": "6c7b8a90-a1b2-4c3d-b1e2-8a9b0c1d2e3f",
+                "name": "Intercambio Emisores DGI",
+                "text": "SDK for Document Exchange between issuers (emisores) of D.G.I. with support for SOAP communication based on WS-Security and the use of digital certificates",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/IntercambioEmisoresDGI.html",
+                "links": [
+                  {
+                    "name": "Documentation",
+                    "url": "https://sites.google.com/puntoexe.com.uy/intercambioentreemisoresuy"
+                  }
+                ]
+              },
+              {
+                "id": "7b8a90c1-b2c3-4d4e-c2f3-9b0c1d2e3f4a",
+                "name": "WhatsApp Business API",
+                "type": "file",
+                "text": "",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/WhatsAppBusinessAPI.html"
+              }
+            ],
+            "expanded": true
+          },
+          {
+            "id": "6e8d5417-b01c-434e-89f0-d7b9873ee077",
+            "name": "Projects",
+            "type": "folder",
+            "children": [
+              {
+                "id": "e65734fe-14b7-4987-9267-9f5c4c1e1bc4",
+                "name": "IRR Calculator",
+                "text": "Set of algorithms related to the core of financial system. To calculate the Internal Rate of Return (IRR), find the discount rate that makes the Net Present Value (NPV) of a series of cash flows equal to zero. This is typically done using a financial calculator or spreadsheet software, which uses an iterative process to find the rate, since it's often not solvable through simple algebra (on my case, I use iterative process).Developed for a fintech company in Porto Alegre, Brazil.",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/IRRCalculator.html",
+                "links": [
+                  {
+                    "name": "Concept on Wikipedia",
+                    "url": "https://en.wikipedia.org/wiki/Internal_rate_of_return"
+                  },
+                  {
+                    "name": "Demo",
+                    "url": "http://dev.puntoexe.com.uy/WmsLabsJavaEnvironment/com.wmslabs.labswms.irrcalculator"
+                  }
+                ]
+              },
+              {
+                "id": "2f099dfb-3143-4d7c-9d2b-f62cb20dd748",
+                "name": "OAV Dynamic Tables",
+                "text": "Allows configuring fields in a two-dimensional way at runtime, by columns and rows, forming a table. It also has the interface for editing such configured data.",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/OAVDynamicTables.html"
+              },
+              {
+                "id": "3a4b5c6d-7e8f-490a-8b9c-5d6e7f8a9b0c",
+                "name": "Evaluation Date Formulas",
+                "text": "Allows evaluation of string formulas supporting date and datetime types. Creation of functions like 'addDay', 'EndOfMonth', 'DateDif'... The system used the 'Expression' data type, native to GeneXus, which evaluates mathematical operations but has limitations regarding date and datetime. Developed for an ERP specialized in the pharmaceutical industry located in the USA.",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/EvaluationDateFormulas.html"
+              },
+              {
+                "id": "4b5c6d7e-8f90-4a1b-9c0d-6e7f8a9b0c1d",
+                "name": "Synchronize Kb by hash",
+                "text": "Developed for a client in Chile, who has parts of operations in remote locations with connectivity problems. Created a very fast data synchronization mechanism based on hash comparisons (general and per table).",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/SynchronizeDataBbyHash.html"
+              },
+              {
+                "id": "5c6d7e8f-90a1-4b2c-a0d1-7f8a9b0c1d2e",
+                "name": "Printer IT",
+                "text": "Remote printing system for Bluetooth printers via web services and silent notifications. It allows any type of Win, Web, or Mobile application (connected to the internet) to request printing on a thermal ticket printer from any mobile device that has a Bluetooth printer attached.",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/PrinterIT.html",
+                "links": [
+                  {
+                    "name": "Documentation",
+                    "url": "https://printerit.puntoexe.com.uy/"
+                  }
+                ]
+              },
+              {
+                "id": "6d7e8f90-a1b2-4c3d-b1e2-8a9b0c1d2e3f",
+                "name": "WMS Office",
+                "text": "Complete solution for management and optimization of storage in a logistics center with a capacity of 6300 pallets, located in state of São Paulo, Brazil.",
+                "type": "file",
+                "url": "https://marcelogiazzon.github.io/host01/portifolio/frames/WMSOffice.html"
+              }
+            ],
+            "expanded": true
+          }
+        ],
+        "expanded": true
+      }
+    ]
+  }
