@@ -1,6 +1,6 @@
 .portfolio-card > .flex.justify-end {
     display: none;
 }
-.related-resources-links > a[href="#"] {
+#related-resources-links > a[href="#"] {
   display: none;
 }
