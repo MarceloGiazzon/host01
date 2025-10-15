@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcelo Giazzon - GeneXus Developer</title>
+    <link rel="stylesheet" href="portfolio.css">
+    <script src="portfolio.js"></script>
+</head>
+<body>
+    <!-- Mobile Simulation Toggle -->
+    <div class="mobile-toggle-container">
+        <input type="checkbox" id="mobileSimulationToggle">
+        <label for="mobileSimulationToggle">Mobile Simulation</label>
+    </div>
+
+    <div class="container">
+        <div class="language-selector">
+            <button class="lang-btn active" onclick="changeLanguage('en')" title="English">🇬🇧</button>
+            <button class="lang-btn" onclick="changeLanguage('es')" title="Español">🇪🇸</button>
+            <button class="lang-btn" onclick="changeLanguage('pt')" title="Português">🇧🇷</button>
+        </div>
+        
+        <header>
+            <h1>MARCELO GIAZZON</h1>
+            <p class="subtitle glitch-text">// FREELANCE GENEXUS DEVELOPER</p>
+        </header>
+        
+        <div class="content">
+            <section id="portfolio">
+                <h2>portfolio</h2>
+                <div class="portfolio-container">
+                    <div class="tree-view" id="portfolioTree"></div>
+                    <div class="content-frame-container" id="contentFrame">
+                        <div class="frame-header">
+                            <span class="frame-title" id="frameTitle">Select a file to view</span>
+                            <button class="frame-close" onclick="closeFrame()">✕ CLOSE</button>
+                        </div>
+                        <iframe class="content-frame" id="contentIframe" src=""></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ENGLISH -->
+            <div class="lang-content active" data-lang="en">
+                <section id="about">
+                    <h2>ABOUT ME</h2>
+                    <p class="about-text">
+                        Born in Brazil in 1982, I have been programming since 1999 and working with GeneXus since 2001. 
+                        With extensive experience in ERP systems across industrial, cargo and passenger transportation, 
+                        foreign trade, warehousing, and banking sectors, I specialize in GeneXus extensibility through 
+                        the creation of User Controls and External Objects. I also develop and maintain GeneXus modules 
+                        for specific purposes. Currently, I focus on highly complex specific tasks to be integrated into 
+                        larger systems. Always seeking new challenges.
+                    </p>
+                </section>
+                
+                <section id="experience">
+                    <h2>PROFESSIONAL EXPERIENCE</h2>
+                    
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <span class="company">PuntoExe Consultores</span>
+                            <span class="period">[2015 - 2025]</span>
+                        </div>
+                        <div class="location">Montevideo / Remote</div>
+                        <p class="description">
+                            Development of User Controls, External Objects, and GeneXus modules for various projects.
+                        </p>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <span class="company">GX2</span>
+                            <span class="period">[2013 - 2014]</span>
+                        </div>
+                        <div class="location">Porto Alegre - Brazil</div>
+                        <p class="description">
+                            Development and maintenance of foreign trade ERP systems using GeneXus.
+                        </p>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <span class="company">WmsOffice.com</span>
+                            <span class="period">[2012 - 2013]</span>
+                        </div>
+                        <div class="location">São Paulo - Brazil</div>
+                        <p class="description">
+                            Creation of WMS (Warehouse Management System) using GeneXus.
+                        </p>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <span class="company">Agiplan Serviços Financeiros</span>
+                            <span class="period">[2011]</span>
+                        </div>
+                        <div class="location">Porto Alegre - Brazil</div>
+                        <p class="description">
+                            Analysis and development of systems in the financial services sector using GeneXus.
+                        </p>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <span class="company">Sil Sistemas e Informática</span>
+                            <span class="period">[2001 - 2009]</span>
+                        </div>
+                        <div class="location">Caxias do Sul - Brazil</div>
+                        <p class="description">
+                            ERP development for industry, cooperatives, and passenger and cargo transportation using GeneXus.
+                        </p>
+                    </div>
+                </section>
+                
+                <section id="education">
+                    <h2>EDUCATION</h2>
+                    
+                    <div class="education-item">
+                        <div class="degree">MBA in Strategic Management</div>
+                        <div class="institution">ESPM - School of Advertising and Marketing - Brazil</div>
+                        <div class="status">(To be completed)</div>
+                    </div>
+                    
+                    <div class="education-item">
+                        <div class="degree">English Language Course</div>
+                        <div class="institution">Dublin Cultural Institute - Ireland</div>
+                    </div>
+                    
+                    <div class="education-item">
+                        <div class="degree">Bachelor's Degree in Social Communication - Advertising</div>
+                        <div class="institution">University of Caxias do Sul - Brazil</div>
+                    </div>
+                    
+                    <div class="education-item">
+                        <div class="degree">Technical Course in Systems Development</div>
+                        <div class="institution">Technology Center of the University of Caxias do Sul - Brazil</div>
+                    </div>
+                </section>
+                
+                <section id="skills">
+                    <h2>CORE COMPETENCIES</h2>
+                    <div class="skills-list">
+                        <span class="skill-tag">GENEXUS</span>
+                        <span class="skill-tag">JAVA</span>
+                        <span class="skill-tag">JAVASCRIPT</span>
+                        <span class="skill-tag">ANDROID</span>
+                        <span class="skill-tag">USER CONTROLS</span>
+                        <span class="skill-tag">EXTERNAL OBJECTS</span>
+                        <span class="skill-tag">ERP SYSTEMS</span>
+                        <span class="skill-tag">WMS</span>
+                        <span class="skill-tag">PROBLEM SOLVING</span>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- SPANISH -->
+            <div class="lang-content" data-lang="es">
+                <section id="about">
+                    <h2>SOBRE MÍ</h2>
+                    <p class="about-text">
+                        Nacido en Brasil en 1982, programo desde 1999 y trabajo con GeneXus desde 2001. 
+                        Con amplia experiencia en sistemas ERP en sectores industrial, transporte de carga y pasajeros, 
+                        comercio exterior, almacenamiento y bancario, me especializo en extensibilidad GeneXus a través 
+                        de la creación de User Controls y External Objects. También desarrollo y mantengo módulos GeneXus 
+                        con propósitos específicos. Actualmente, me enfoco en tareas específicas de alta complejidad para 
+                        ser integradas en sistemas más grandes. Siempre en busca de nuevos desafíos.
+                    </p>
+                </section>
+                
+                <section id="experience">
+                    <h2>EXPERIENCIA PROFESIONAL</h2>
+                    
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <span class="company">PuntoExe Consultores</span>
+                            <span class="period">[2015 - 2025]</span>
+                        </div>
+                        <div class="location">Montevideo / Remoto</div>
+                        <p class="description">
+                            Desarrollo de User Controls, External Objects y módulos GeneXus para diversos proyectos.
+                        </p>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <span class="company">GX2</span>
+                            <span class="period">[2013 - 2014]</span>
+                        </div>
+                        <div class="location">Porto Alegre - Brasil</div>
+                        <p class="description">
+                            Desarrollo y mantenimiento de sistemas ERP de comercio exterior utilizando GeneXus.
+                        </p>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <span class="company">WmsOffice.com</span>
+                            <span class="period">[2012 - 2013]</span>
+                        </div>
+                        <div class="location">São Paulo - Brasil</div>
+                        <p class="description">
+                            Creación de sistema WMS (Sistema de Gestión de Almacenes) utilizando GeneXus.
+                        </p>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <span class="company">Agiplan Serviços Financeiros</span>
+                            <span class="period">[2011]</span>
+                        </div>
+                        <div class="location">Porto Alegre - Brasil</div>
+                        <p class="description">
+                            Análisis y desarrollo de sistemas en el sector de servicios financieros utilizando GeneXus.
+                        </p>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <span class="company">Sil Sistemas e Informática</span>
+                            <span class="period">[2001 - 2009]</span>
+                        </div>
+                        <div class="location">Caxias do Sul - Brasil</div>
+                        <p class="description">
+                            Desarrollo de ERP para industria, cooperativas y transporte de pasajeros y carga utilizando GeneXus.
+                        </p>
+                    </div>
+                </section>
+                
+                <section id="education">
+                    <h2>FORMACIÓN</h2>
+                    
+                    <div class="education-item">
+                        <div class="degree">MBA en Gestión Estratégica</div>
+                        <div class="institution">ESPM - Escuela Superior de Propaganda y Marketing - Brasil</div>
+                        <div class="status">(A completar)</div>
+                    </div>
+                    
+                    <div class="education-item">
+                        <div class="degree">Curso de Idioma - Inglés</div>
+                        <div class="institution">Dublin Cultural Institute - Irlanda</div>
+                    </div>
+                    
+                    <div class="education-item">
+                        <div class="degree">Grado en Comunicación Social - Publicidad y Propaganda</div>
+                        <div class="institution">Universidad de Caxias do Sul - Brasil</div>
+                    </div>
+                    
+                    <div class="education-item">
+                        <div class="degree">Curso Técnico en Desarrollo de Sistemas</div>
+                        <div class="institution">Centro de Tecnología de la Universidad de Caxias do Sul - Brasil</div>
+                    </div>
+                </section>
+                
+                <section id="skills">
+                    <h2>COMPETENCIAS CLAVE</h2>
+                    <div class="skills-list">
+                        <span class="skill-tag">GENEXUS</span>
+                        <span class="skill-tag">USER CONTROLS</span>
+                        <span class="skill-tag">EXTERNAL OBJECTS</span>
+                        <span class="skill-tag">SISTEMAS ERP</span>
+                        <span class="skill-tag">WMS</span>
+                        <span class="skill-tag">INTEGRACIÓN</span>
+                        <span class="skill-tag">RESOLUCIÓN PROBLEMAS</span>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- PORTUGUESE -->
+            <div class="lang-content" data-lang="pt">
+                <section id="about">
+                    <h2>SOBRE MIM</h2>
+                    <p class="about-text">
+                        Nascido no Brasil em 1982, programando desde 1999 e com GeneXus desde 2001. 
+                        Experiência com ERPs em área industrial, transporte de carga e pessoas, comércio exterior, 
+                        armazenagem e bancária. Especialista em criação de extensibilidade GeneXus, com criação de 
+                        User Controls e External Objects. Além da criação e manutenção de módulos GeneXus com propósitos 
+                        específicos. Atualmente atuando em tarefas específicas de alta complexidade, a serem integradas 
+                        a sistemas maiores. Em busca de novos desafios.
+                    </p>
+                </section>
+                
+                <section id="experience">
+                    <h2>EXPERIÊNCIA PROFISSIONAL</h2>
+                    
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <span class="company">PuntoExe Consultores</span>
+                            <span class="period">[2015 - 2025]</span>
+                        </div>
+                        <div class="location">Montevidéu / Remoto</div>
+                        <p class="description">
+                            Desenvolvimento de User Controls, External Objects e módulos GeneXus para diversos projetos.
+                        </p>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <span class="company">GX2</span>
+                            <span class="period">[2013 - 2014]</span>
+                        </div>
+                        <div class="location">Porto Alegre - Brasil</div>
+                        <p class="description">
+                            Desenvolvimento e manutenção em ERP de comércio exterior, utilizando GeneXus.
+                        </p>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <span class="company">WmsOffice.com</span>
+                            <span class="period">[2012 - 2013]</span>
+                        </div>
+                        <div class="location">São Paulo - Brasil</div>
+                        <p class="description">
+                            Criação de sistema WMS (Sistema de Gerenciamento de Armazém), utilizando GeneXus.
+                        </p>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <span class="company">Agiplan Serviços Financeiros</span>
+                            <span class="period">[2011]</span>
+                        </div>
+                        <div class="location">Porto Alegre - Brasil</div>
+                        <p class="description">
+                            Análise e desenvolvimento de sistemas na área de serviços financeiros, utilizando GeneXus.
+                        </p>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <span class="company">Sil Sistemas e Informática</span>
+                            <span class="period">[2001 - 2009]</span>
+                        </div>
+                        <div class="location">Caxias do Sul - Brasil</div>
+                        <p class="description">
+                            ERPs para indústria, cooperativas e transporte de passageiros e de cargas, utilizando GeneXus.
+                        </p>
+                    </div>
+                </section>
+                
+                <section id="education">
+                    <h2>FORMAÇÃO EDUCACIONAL</h2>
+                    
+                    <div class="education-item">
+                        <div class="degree">MBA em Gestão Estratégica</div>
+                        <div class="institution">ESPM - Escola Superior de Propaganda e Marketing - Brasil</div>
+                        <div class="status">(A concluir)</div>
+                    </div>
+                    
+                    <div class="education-item">
+                        <div class="degree">Curso de Idioma - Inglês</div>
+                        <div class="institution">Dublin Cultural Institute - Irlanda</div>
+                    </div>
+                    
+                    <div class="education-item">
+                        <div class="degree">Graduação em Comunicação Social - Publicidade e Propaganda</div>
+                        <div class="institution">Universidade de Caxias do Sul - Brasil</div>
+                    </div>
+                    
+                    <div class="education-item">
+                        <div class="degree">Curso Técnico em Desenvolvimento de Sistemas</div>
+                        <div class="institution">Centro de Tecnologia da Universidade de Caxias do Sul - Brasil</div>
+                    </div>
+                </section>
+                
+                <section id="skills">
+                    <h2>COMPETÊNCIAS PRINCIPAIS</h2>
+                    <div class="skills-list">
+                        <span class="skill-tag">GENEXUS</span>
+                        <span class="skill-tag">USER CONTROLS</span>
+                        <span class="skill-tag">EXTERNAL OBJECTS</span>
+                        <span class="skill-tag">SISTEMAS ERP</span>
+                        <span class="skill-tag">WMS</span>
+                        <span class="skill-tag">INTEGRAÇÃO</span>
+                        <span class="skill-tag">RESOLUÇÃO PROBLEMAS</span>
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+        <footer>
+            <p>&copy; 2025 MARCELO GIAZZON // ALL RIGHTS RESERVED</p>
+        </footer>
+
+        <!-- Mobile Simulation Overlay (The 'Popup' Mode) -->
+        <div class="mobile-simulation-overlay" id="mobileSimulationOverlay">
+            <div class="mobile-simulation-window">
+                
+                <!-- Header Bar (like a window title bar) - NOW WITH NAVIGATION BUTTONS -->
+                <div class="mobile-frame-header">
+                    <div class="mobile-frame-header-content">
+                        <!-- Navigation Buttons added here (Mobile/Popup) -->
+                        <button class="nav-button" id="mobilePrevFileButton" disabled>&lt;</button>
+                        <button class="nav-button" id="mobileNextFileButton" disabled>&gt;</button>
+                        <span id="mobileSimulationTitle">Loading...</span>
+                    </div>
+                    <button class="mobile-simulation-close" id="mobileSimulationClose">
+                        <span aria-hidden="true">✕</span> CLOSE
+                    </button>
+                </div>
+                
+                <!-- Iframe content -->
+                <iframe id="mobileSimulationIframe" src=""></iframe>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
