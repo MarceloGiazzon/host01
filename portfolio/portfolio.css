@@ -684,15 +684,17 @@ footer::before {
     left: 2px;
     text-shadow: -1px 0 #ff0080;
     background: #2b2744;
-    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+    /*animation: glitch-anim-1 2s infinite linear alternate-reverse;
+    */
 }
 
 .glitch-text::after {
     left: -2px;
     text-shadow: 1px 0 #00ffff;
     background: #2b2744;
-    animation: glitch-anim-2 3s infinite linear alternate;
-}
+    /*animation: glitch-anim-2 3s infinite linear alternate;
+*/
+    }
 
 @keyframes text-flicker {
     0% { opacity: 0.95; }
@@ -706,16 +708,16 @@ footer::before {
 
 @keyframes glitch-anim-1 {
     0% { clip: rect(44px, 9999px, 12px, 0); }
-    10% { clip: rect(100px, 9999px, 80px, 0); }
+    10% { clip: rect(10px, 9999px, 80px, 0); }
     20% { clip: rect(60px, 9999px, 7px, 0); }
-    30% { clip: rect(110px, 9999px, 45px, 0); }
-    40% { clip: rect(70px, 9999px, 92px, 0); }
+    30% { clip: rect(10px, 9999px, 45px, 0); }
+    40% { clip: rect(70px, 9999px, 22px, 0); }
     50% { clip: rect(22px, 9999px, 55px, 0); }
     60% { clip: rect(35px, 9999px, 10px, 0); }
-    70% { clip: rect(98px, 9999px, 32px, 0); }
+    70% { clip: rect(38px, 9999px, 32px, 0); }
     80% { clip: rect(15px, 9999px, 64px, 0); }
-    90% { clip: rect(87px, 9999px, 11px, 0); }
-    100% { clip: rect(12px, 9999px, 100px, 0); }
+    90% { clip: rect(57px, 9999px, 11px, 0); }
+    100% { clip: rect(12px, 9999px, 10px, 0); }
 }
 
 @keyframes glitch-anim-2 {
@@ -723,8 +725,8 @@ footer::before {
     15% { clip: rect(70px, 9999px, 10px, 0); }
     30% { clip: rect(10px, 9999px, 90px, 0); }
     45% { clip: rect(55px, 9999px, 22px, 0); }
-    60% { clip: rect(100px, 9999px, 44px, 0); }
-    75% { clip: rect(32px, 9999px, 98px, 0); }
+    60% { clip: rect(10px, 9999px, 44px, 0); }
+    75% { clip: rect(32px, 9999px, 8px, 0); }
     90% { clip: rect(64px, 9999px, 15px, 0); }
     100% { clip: rect(11px, 9999px, 87px, 0); }
 }
