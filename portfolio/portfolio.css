@@ -683,14 +683,14 @@ footer::before {
 .glitch-text::before {
     left: 2px;
     text-shadow: -1px 0 #ff0080;
-    background: #0a0a0a;
+    background: #2b2744;
     animation: glitch-anim-1 2s infinite linear alternate-reverse;
 }
 
 .glitch-text::after {
     left: -2px;
     text-shadow: 1px 0 #00ffff;
-    background: #0a0a0a;
+    background: #2b2744;
     animation: glitch-anim-2 3s infinite linear alternate;
 }
 
