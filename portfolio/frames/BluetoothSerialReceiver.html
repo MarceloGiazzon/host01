@@ -310,13 +310,18 @@
                 }
 
 
+                                var hasLink = false;
                 // Update Documentation Link
                 docLinkElement.querySelector('span').textContent = uiText.docLink;
-                if (docLinkData) docLinkElement.href = docLinkData.url; else docLinkElement.href = '#';
+                if (docLinkData) {docLinkElement.href = docLinkData.url; hasLink = true; } else docLinkElement.href = '#';
                 
                 // Update Marketplace Link
                 marketplaceLinkElement.querySelector('span').textContent = uiText.marketplaceLink;
-                if (marketplaceLinkData) marketplaceLinkElement.href = marketplaceLinkData.url; else marketplaceLinkElement.href = '#';
+                if (marketplaceLinkData) {marketplaceLinkElement.href = marketplaceLinkData.url; hasLink = true; } else marketplaceLinkElement.href = '#';
+                
+                if (!hasLink) {
+                    document.getElementById('related-resources-heading').style.display = 'none';
+                }
             }
         }
 

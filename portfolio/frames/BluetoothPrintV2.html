@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grid Handler</title>
+    <title>Bluetooth Print</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Custom styles for Inter font and general card feel */
@@ -45,12 +45,11 @@
             }
         }
     </script>
-
-    <link rel="stylesheet" href="general_frames.css"></head>
+</head>
 <body>
     <div class="portfolio-card p-6 md:p-10 rounded-xl">
         
-        <!-- Language Selector Area (Copied from V2) -->
+        <!-- Language Selector Area (Added for dynamic translation) -->
         <div class="flex justify-end items-center mb-6 border-b pb-3">
             <div id="notification-area" class="sr-only"></div> 
             <div class="flex items-center space-x-2">
@@ -63,7 +62,7 @@
             </div>
         </div>
 
-        <!-- Content Area (IDs added for dynamic updates) -->
+        <!-- Content Area -->
         
         <!-- Context Label (Category) -->
         <p id="context-label" class="text-sm font-medium text-secondary mb-3 uppercase tracking-wider">
@@ -80,12 +79,12 @@
             <p>Loading description...</p>
         </div>
 
-        <!-- Related Resources (Updated structure from V1 to V2) -->
+        <!-- Related Resources -->
         <h2 id="related-resources-heading" class="flex items-center text-xl font-bold text-gray-800 mb-4 pt-4 border-t border-gray-200">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-primary mr-2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.253 4.253a4.5 4.5 0 0 1-6.364-6.364l1.242-1.242m12.433-1.242l-1.242 1.242a4.5 4.5 0 0 1-6.364 6.364l-4.253-4.253a4.5 4.5 0 0 1 1.242-7.244m9.332-1.242l.66.66a.75.75 0 0 1 0 1.06l-.66.66-2.5-2.5.66-.66a.75.75 0 0 1 1.06 0z" />
             </svg>
-            <span>Related Resources</span>
+            Related Resources
         </h2>
         <div id="related-resources-links" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <!-- Link 1: Documentation -->
@@ -109,8 +108,7 @@
     <script>
         // Configuration specific to this content item
         const JSON_URL = 'https://marcelogiazzon.github.io/host01/portifolio/frames/languages.json';
-        // TARGET NAME adjusted to match the item we are trying to load
-        const targetItemName = 'Grid Handler'; 
+        const targetItemName = 'Bluetooth Print'; // MUST match the name in languages.json
         let contentData = null; 
 
         // Translations for UI elements not in the JSON (Language label, Heading, Button Texts)
@@ -226,6 +224,7 @@
                     
                     // 2. Set the selector value to reflect the initial language
                     const selector = document.getElementById('language-selector');
+                    // Ensure the selector has the option before trying to set the value
                     if ([...selector.options].some(option => option.value === initialLang)) {
                         selector.value = initialLang; 
                     }
@@ -255,19 +254,9 @@
 
             // 1. Update UI Labels (from local translations object)
             document.getElementById('language-label').textContent = uiText.languageLabel;
+            document.getElementById('related-resources-heading').lastChild.textContent = uiText.heading;
+            document.getElementById('link-documentation').querySelector('span').textContent = uiText.docLink;
             
-            // Update Related Resources Heading text (inside the span)
-            const resourcesHeading = document.getElementById('related-resources-heading');
-            if (resourcesHeading) {
-                const span = resourcesHeading.querySelector('span');
-                 if (span) {
-                    span.textContent = uiText.heading;
-                 } else {
-                     resourcesHeading.textContent = uiText.heading; // Fallback if no span
-                 }
-            }
-
-
             // 2. Update Content (from remote JSON data)
             if (contentData && contentData.item) {
                 const item = contentData.item;
@@ -277,12 +266,12 @@
 
                 // Get translated text, falling back to 'name'/'text' (English) if specific translation is missing
                 const translatedTitle = item[titleKey] || item.name;
-                const translatedText = item[textKey] || item.text; 
+                const translatedText = item[textKey] || item.text;
                 
                 // Get translated context (Category)
                 const translatedContext = contentData.context; 
                 
-                // Maps the parent folder name to its translations 
+                // Maps the parent folder name to its translations
                 const contextMap = {
                     'Genexus User Controls': { 'en': 'Genexus User Controls', 'es': 'Controles de Usuario de Genexus', 'pt': 'Controles de Usuário Genexus' },
                     'Genexus External Objects': { 'en': 'Genexus External Objects', 'es': 'Objetos Externos de Genexus', 'pt': 'Objetos Externos Genexus' },
@@ -298,38 +287,28 @@
                 // Set HTML content
                 document.getElementById('main-title').textContent = translatedTitle;
                 document.getElementById('context-label').textContent = uiText.categoryPrefix + contextTranslation;
-                
-                // Convert text to paragraphs. Simple newline conversion for display consistency.
-                const formattedText = translatedText ? translatedText.split('\n').map(p => `<p>${p}</p>`).join('') : '<p>Description not available in JSON.</p>';
-                document.getElementById('description-text').innerHTML = formattedText; 
+                document.getElementById('description-text').innerHTML = `<p>${translatedText}</p>`;
 
-                // Update Link Texts and URLs
+                // Update Link URLs (URLs are constant, but we update the href if they exist in the JSON item)
                 const docLinkElement = document.getElementById('link-documentation');
                 const marketplaceLinkElement = document.getElementById('link-marketplace');
                 
-                // Normalize link names for robust search
+                // Normalize link names for robust search (Documentation and Genexus Marketplace)
                 const docLinkData = item.links ? item.links.find(l => normalizeName(l.name) === 'documentation') : null;
-                let marketplaceLinkData = item.links ? item.links.find(l => normalizeName(l.name) === 'genexusmarketplace') : null;
-                // Fallback check for generic 'marketplace' link 
-                if (!marketplaceLinkData) {
-                    const genericMarketplaceLinkData = item.links ? item.links.find(l => normalizeName(l.name) === 'marketplace') : null;
-                    if (genericMarketplaceLinkData) {
-                        marketplaceLinkData = genericMarketplaceLinkData;
-                    }
-                }
+                const marketplaceLinkData = item.links ? item.links.find(l => normalizeName(l.name) === 'genexusmarketplace') : null;
 
-
-                                var hasLink = false;
-                // Update Documentation Link
-                docLinkElement.querySelector('span').textContent = uiText.docLink;
-                if (docLinkData) {docLinkElement.href = docLinkData.url; hasLink = true; } else docLinkElement.href = '#';
+                // Update hrefs based on JSON data
+                if (docLinkData) docLinkElement.href = docLinkData.url; else docLinkElement.href = '#';
                 
-                // Update Marketplace Link
-                marketplaceLinkElement.querySelector('span').textContent = uiText.marketplaceLink;
-                if (marketplaceLinkData) {marketplaceLinkElement.href = marketplaceLinkData.url; hasLink = true; } else marketplaceLinkElement.href = '#';
-                
-                if (!hasLink) {
-                    document.getElementById('related-resources-heading').style.display = 'none';
+                // Bluetooth Print only has one link (Documentation) in the JSON snippet, 
+                // but we check for Marketplace just in case the full JSON has it, and update the link text
+                if (marketplaceLinkData) {
+                    marketplaceLinkElement.href = marketplaceLinkData.url;
+                    marketplaceLinkElement.querySelector('span').textContent = uiText.marketplaceLink;
+                } else {
+                    // Fallback in case there is no specific Marketplace link data in the item
+                    marketplaceLinkElement.href = '#';
+                    marketplaceLinkElement.querySelector('span').textContent = uiText.marketplaceLink; 
                 }
             }
         }
