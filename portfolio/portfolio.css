@@ -96,10 +96,12 @@ body::before {
 header {
     background: linear-gradient(135deg, rgba(255, 0, 128, 0.2) 0%, rgba(0, 255, 255, 0.2) 100%);
     color: #00ffff;
-    padding: 80px 40px;
+    /* padding: 80px 40px; */
     text-align: center;
     position: relative;
     border-bottom: 2px solid rgba(0, 255, 255, 0.5);
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 header::after {
@@ -131,6 +133,34 @@ h1 {
     font-weight: 400;
     text-shadow: 0 0 10px rgba(255, 0, 128, 0.8);
     letter-spacing: 2px;
+}
+
+.contact-info {
+    margin-top: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px 30px;
+    font-family: 'Consolas', monospace;
+    font-size: 1em;
+    letter-spacing: 1px;
+}
+
+.contact-info span, .contact-info a {
+    color: #b0b0b0;
+    text-decoration: none;
+    transition: color 0.3s, text-shadow 0.3s;
+    word-break: break-all;
+}
+
+.contact-info a {
+    color: #00ffff;
+}
+
+.contact-info a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #00ffff, 0 0 15px #ff0080;
 }
 
 .content {
