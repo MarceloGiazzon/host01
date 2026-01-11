@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba CV - API Client (CORS Fix)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .tab-active { border-bottom: 2px solid #3b82f6; color: #3b82f6; }
+        .spinner { border: 3px solid rgba(0,0,0,.1); border-radius: 50%; border-top-color: #3b82f6; width: 24px; height: 24px; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .input-group label { display: block; font-size: 0.75rem; font-weight: 600; color: #4b5563; margin-bottom: 0.25rem; }
+        .input-group input, .input-group textarea, .input-group select { width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-size: 0.875rem; }
+        .log-entry { font-family: monospace; font-size: 10px; border-bottom: 1px solid #374151; padding: 4px 0; word-break: break-all; }
+        .log-request { color: #60a5fa; }
+        .log-response { color: #34d399; }
+        .log-error { color: #f87171; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen text-gray-800 font-sans">
+
+    <div class="max-w-4xl mx-auto py-10 px-4">
+        <header class="mb-8 text-center">
+            <h1 class="text-3xl font-bold text-gray-900 tracking-tight">API Debug Controller</h1>
+            <p class="text-gray-600 mt-2">Postman-Verified Configuration</p>
+            
+            <div class="mt-4 p-4 bg-slate-800 border border-slate-700 rounded-lg inline-block text-left max-w-2xl shadow-lg">
+                <div class="flex flex-wrap items-center gap-4">
+                    <div class="flex items-center gap-2">
+                        <select id="proxySelector" class="text-xs p-1 border rounded bg-slate-700 text-white border-slate-600 outline-none">
+                            <option value="corsproxy_io" selected>corsproxy.io (Default)</option>
+                            <option value="none">Direct (No Proxy)</option>
+                            <option value="allorigins">allorigins (JSON)</option>
+                        </select>
+                    </div>
+
+                    <div class="flex items-center gap-3 border-l border-slate-600 pl-4">
+                        <label class="text-white text-[10px] flex items-center gap-1" title="For POST, use /Entity/0 as seen in Postman success">
+                            <input type="checkbox" id="postWithId" checked> POST with ID (/0)
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="bg-white rounded-xl shadow-sm mb-6 overflow-hidden border border-gray-200">
+            <nav class="flex border-b bg-gray-50">
+                <button onclick="switchTab('activity')" id="tab-activity" class="tab-btn flex-1 py-4 text-center font-bold text-xs uppercase tracking-widest transition tab-active">Activities</button>
+                <button onclick="switchTab('product')" id="tab-product" class="tab-btn flex-1 py-4 text-center font-bold text-xs uppercase tracking-widest transition text-gray-400 hover:text-gray-700">Products</button>
+                <button onclick="switchTab('user')" id="tab-user" class="tab-btn flex-1 py-4 text-center font-bold text-xs uppercase tracking-widest transition text-gray-400 hover:text-gray-700">Users</button>
+            </nav>
+
+            <div class="p-6">
+                <!-- Activity Form -->
+                <div id="section-activity" class="tab-section">
+                    <form id="activityForm" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="input-group">
+                                <label>Activity ID</label>
+                                <input type="number" name="ActivityId" value="0">
+                            </div>
+                            <div class="input-group">
+                                <label>User ID</label>
+                                <input type="number" name="ActivityUser" value="1">
+                            </div>
+                            <div class="input-group">
+                                <label>Type</label>
+                                <input type="text" name="ActivityType" value="Task">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label>Description</label>
+                            <textarea name="ActivityDescription" rows="2">New test activity</textarea>
+                        </div>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <button type="button" onclick="apiCall('Activity', 'GET')" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg font-bold text-xs">FIND</button>
+                            <button type="button" onclick="apiCall('Activity', 'POST')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-bold text-xs">CREATE</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Product Form -->
+                <div id="section-product" class="tab-section hidden">
+                    <form id="productForm" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="input-group">
+                                <label>Product ID (Body)</label>
+                                <input type="number" name="ProductId" value="0">
+                            </div>
+                            <div class="input-group">
+                                <label>Product Name</label>
+                                <input type="text" name="ProductName" value="Test Product">
+                            </div>
+                            <div class="input-group">
+                                <label>Manufacturer</label>
+                                <input type="text" name="ProductManufacturer" value="ACME Corp">
+                            </div>
+                            <div class="input-group">
+                                <label>Description</label>
+                                <input type="text" name="ProductDescription" value="A test product description">
+                            </div>
+                        </div>
+                        <div class="flex gap-2 pt-2">
+                            <button type="button" onclick="apiCall('Product', 'GET')" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg font-bold text-xs">FIND</button>
+                            <button type="button" onclick="apiCall('Product', 'POST')" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-bold text-xs">CREATE</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- User Form -->
+                <div id="section-user" class="tab-section hidden">
+                    <form id="userForm" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="input-group">
+                                <label>User ID</label>
+                                <input type="number" name="UserId" value="0">
+                            </div>
+                            <div class="input-group">
+                                <label>Full Name</label>
+                                <input type="text" name="UserName" value="John Doe">
+                            </div>
+                        </div>
+                        <div class="flex gap-2 pt-2">
+                            <button type="button" onclick="apiCall('User', 'GET')" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg font-bold text-xs">FIND</button>
+                            <button type="button" onclick="apiCall('User', 'POST')" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-bold text-xs">CREATE</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div class="bg-gray-900 rounded-xl p-4 border border-gray-700">
+                <h3 class="text-gray-400 font-mono text-[10px] uppercase mb-2">Network Traffic</h3>
+                <div id="networkLogs" class="h-64 overflow-y-auto bg-black p-2 rounded border border-gray-800 text-white"></div>
+            </div>
+            <div class="bg-gray-900 rounded-xl p-4 border border-gray-700">
+                <h3 class="text-gray-400 font-mono text-[10px] uppercase mb-2">Last Response</h3>
+                <pre id="jsonOutput" class="text-green-400 font-mono text-[11px] h-64 overflow-auto bg-black p-2 rounded border border-gray-800">{}</pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const BASE_URL = 'https://next101.genexus.ai/Id86d7fbe19651073e3bf1ab7697cbcc3f/rest';
+
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('tab-active', 'text-blue-600'));
+            document.getElementById(`tab-${tab}`).classList.add('tab-active');
+            document.querySelectorAll('.tab-section').forEach(sec => sec.classList.add('hidden'));
+            document.getElementById(`section-${tab}`).classList.remove('hidden');
+        }
+
+        function addLog(msg, type = '') {
+            const logs = document.getElementById('networkLogs');
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+            logs.appendChild(entry);
+            logs.scrollTop = logs.scrollHeight;
+        }
+
+        async function apiCall(entity, method) {
+            const form = document.getElementById(`${entity.toLowerCase()}Form`);
+            const formData = new FormData(form);
+            const rawData = Object.fromEntries(formData.entries());
+            const postWithId = document.getElementById('postWithId').checked;
+            const proxyType = document.getElementById('proxySelector').value;
+
+            // Construct URL
+            let targetUrl = `${BASE_URL}/${entity}`;
+            if (method === 'POST' && postWithId) {
+                targetUrl += '/0'; 
+            } else if (method !== 'POST') {
+                targetUrl += `/${rawData[`${entity}Id`] || 0}`;
+            }
+
+            let fetchUrl = targetUrl;
+            if (proxyType === 'corsproxy_io') {
+                fetchUrl = `https://corsproxy.io/?url=${encodeURIComponent(targetUrl)}`;
+            } else if (proxyType === 'allorigins') {
+                fetchUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
+            }
+
+            addLog(`${method} via ${proxyType}: ${targetUrl}`, 'log-request');
+
+            try {
+                const options = {
+                    method: method,
+                    headers: { 
+                        'Accept': 'application/json'
+                    }
+                };
+
+                if (method === 'POST' || method === 'PUT') {
+                    options.headers['Content-Type'] = 'application/json';
+                    
+                    let body = {};
+                    if (entity === 'Product') {
+                        body = {
+                            ProductId: 0,
+                            ProductName: String(rawData.ProductName),
+                            ProductManufacturer: String(rawData.ProductManufacturer),
+                            ProductDescription: String(rawData.ProductDescription),
+                            ProductImage: ""
+                        };
+                    } else {
+                        Object.keys(rawData).forEach(k => {
+                            body[k] = k.includes('Id') ? 0 : rawData[k];
+                        });
+                    }
+                    options.body = JSON.stringify(body);
+                    addLog(`BODY: ${options.body}`, 'log-request');
+                }
+
+                const response = await fetch(fetchUrl, options);
+                addLog(`RES: ${response.status} ${response.statusText}`, response.ok ? 'log-response' : 'log-error');
+
+                let text;
+                if (proxyType === 'allorigins') {
+                    const data = await response.json();
+                    text = data.contents;
+                } else {
+                    text = await response.text();
+                }
+
+                const output = document.getElementById('jsonOutput');
+                try {
+                    const result = JSON.parse(text);
+                    output.textContent = JSON.stringify(result, null, 2);
+                } catch (e) {
+                    output.textContent = text || "(Empty/Binary Response)";
+                }
+
+                if (response.status === 405) {
+                    addLog("🚨 405: Still denied. Switch proxy or toggle 'POST with ID'.", "log-error");
+                }
+            } catch (err) {
+                addLog(`ERROR: ${err.message}`, 'log-error');
+            }
+        }
+    </script>
+</body>
+</html>
