@@ -3,26 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prueba CV - API Client (CORS Fix)</title>
+    <title>Prueba CV - API Client (Optimistic Concurrency)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .tab-active { border-bottom: 2px solid #3b82f6; color: #3b82f6; }
-        .spinner { border: 3px solid rgba(0,0,0,.1); border-radius: 50%; border-top-color: #3b82f6; width: 24px; height: 24px; animation: spin 1s linear infinite; }
-        @keyframes spin { to { transform: rotate(360deg); } }
         .input-group label { display: block; font-size: 0.75rem; font-weight: 600; color: #4b5563; margin-bottom: 0.25rem; }
         .input-group input, .input-group textarea, .input-group select { width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-size: 0.875rem; }
         .log-entry { font-family: monospace; font-size: 10px; border-bottom: 1px solid #374151; padding: 4px 0; word-break: break-all; }
         .log-request { color: #60a5fa; }
         .log-response { color: #34d399; }
         .log-error { color: #f87171; }
+        .hash-badge { font-size: 10px; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-top: 4px; }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen text-gray-800 font-sans">
 
     <div class="max-w-4xl mx-auto py-10 px-4">
         <header class="mb-8 text-center">
-            <h1 class="text-3xl font-bold text-gray-900 tracking-tight">API Debug Controller</h1>
-            <p class="text-gray-600 mt-2">Postman-Verified Configuration</p>
+            <h1 class="text-3xl font-bold text-gray-900 tracking-tight">API CRUD Controller</h1>
+            <p class="text-gray-600 mt-2">Handling "Product was changed" (409 Conflict)</p>
             
             <div class="mt-4 p-4 bg-slate-800 border border-slate-700 rounded-lg inline-block text-left max-w-2xl shadow-lg">
                 <div class="flex flex-wrap items-center gap-4">
@@ -72,9 +71,12 @@
                             <label>Description</label>
                             <textarea name="ActivityDescription" rows="2">New test activity</textarea>
                         </div>
+                        <div id="activityHashDisplay" class="hash-badge bg-gray-200 text-gray-600">No Hash (Find first)</div>
                         <div class="flex flex-wrap gap-2 pt-2">
                             <button type="button" onclick="apiCall('Activity', 'GET')" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg font-bold text-xs">FIND</button>
                             <button type="button" onclick="apiCall('Activity', 'POST')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-bold text-xs">CREATE</button>
+                            <button type="button" onclick="apiCall('Activity', 'PUT')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-bold text-xs">MODIFY</button>
+                            <button type="button" onclick="apiCall('Activity', 'DELETE')" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-bold text-xs">DELETE</button>
                         </div>
                     </form>
                 </div>
@@ -84,7 +86,7 @@
                     <form id="productForm" class="space-y-4">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="input-group">
-                                <label>Product ID (Body)</label>
+                                <label>Product ID (Body & Path)</label>
                                 <input type="number" name="ProductId" value="0">
                             </div>
                             <div class="input-group">
@@ -100,9 +102,12 @@
                                 <input type="text" name="ProductDescription" value="A test product description">
                             </div>
                         </div>
+                        <div id="productHashDisplay" class="hash-badge bg-gray-200 text-gray-600">No Hash (Find first)</div>
                         <div class="flex gap-2 pt-2">
                             <button type="button" onclick="apiCall('Product', 'GET')" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg font-bold text-xs">FIND</button>
                             <button type="button" onclick="apiCall('Product', 'POST')" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-bold text-xs">CREATE</button>
+                            <button type="button" onclick="apiCall('Product', 'PUT')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-bold text-xs">MODIFY</button>
+                            <button type="button" onclick="apiCall('Product', 'DELETE')" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-bold text-xs">DELETE</button>
                         </div>
                     </form>
                 </div>
@@ -120,9 +125,12 @@
                                 <input type="text" name="UserName" value="John Doe">
                             </div>
                         </div>
+                        <div id="userHashDisplay" class="hash-badge bg-gray-200 text-gray-600">No Hash (Find first)</div>
                         <div class="flex gap-2 pt-2">
                             <button type="button" onclick="apiCall('User', 'GET')" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg font-bold text-xs">FIND</button>
                             <button type="button" onclick="apiCall('User', 'POST')" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-bold text-xs">CREATE</button>
+                            <button type="button" onclick="apiCall('User', 'PUT')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-bold text-xs">MODIFY</button>
+                            <button type="button" onclick="apiCall('User', 'DELETE')" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-bold text-xs">DELETE</button>
                         </div>
                     </form>
                 </div>
@@ -143,6 +151,12 @@
 
     <script>
         const BASE_URL = 'https://next101.genexus.ai/Id86d7fbe19651073e3bf1ab7697cbcc3f/rest';
+        // In-memory store for MD5 hashes required by GeneXus for updates
+        const entityHashes = {
+            Activity: null,
+            Product: null,
+            User: null
+        };
 
         function switchTab(tab) {
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('tab-active', 'text-blue-600'));
@@ -160,19 +174,31 @@
             logs.scrollTop = logs.scrollHeight;
         }
 
+        function updateHashUI(entity) {
+            const display = document.getElementById(`${entity.toLowerCase()}HashDisplay`);
+            if (entityHashes[entity]) {
+                display.textContent = `Hash Loaded: ${entityHashes[entity].substring(0,8)}...`;
+                display.className = "hash-badge bg-green-100 text-green-700 border border-green-200";
+            } else {
+                display.textContent = "No Hash (Find first)";
+                display.className = "hash-badge bg-gray-200 text-gray-600";
+            }
+        }
+
         async function apiCall(entity, method) {
             const form = document.getElementById(`${entity.toLowerCase()}Form`);
             const formData = new FormData(form);
             const rawData = Object.fromEntries(formData.entries());
             const postWithId = document.getElementById('postWithId').checked;
             const proxyType = document.getElementById('proxySelector').value;
+            const entityId = rawData[`${entity}Id`] || 0;
 
-            // Construct URL
+            // URL Logic
             let targetUrl = `${BASE_URL}/${entity}`;
-            if (method === 'POST' && postWithId) {
-                targetUrl += '/0'; 
-            } else if (method !== 'POST') {
-                targetUrl += `/${rawData[`${entity}Id`] || 0}`;
+            if (method === 'POST') {
+                targetUrl += postWithId ? '/0' : '';
+            } else {
+                targetUrl += `/${entityId}`;
             }
 
             let fetchUrl = targetUrl;
@@ -182,14 +208,12 @@
                 fetchUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
             }
 
-            addLog(`${method} via ${proxyType}: ${targetUrl}`, 'log-request');
+            addLog(`${method} ${targetUrl}`, 'log-request');
 
             try {
                 const options = {
                     method: method,
-                    headers: { 
-                        'Accept': 'application/json'
-                    }
+                    headers: { 'Accept': 'application/json' }
                 };
 
                 if (method === 'POST' || method === 'PUT') {
@@ -198,7 +222,7 @@
                     let body = {};
                     if (entity === 'Product') {
                         body = {
-                            ProductId: 0,
+                            ProductId: Number(entityId),
                             ProductName: String(rawData.ProductName),
                             ProductManufacturer: String(rawData.ProductManufacturer),
                             ProductDescription: String(rawData.ProductDescription),
@@ -206,9 +230,16 @@
                         };
                     } else {
                         Object.keys(rawData).forEach(k => {
-                            body[k] = k.includes('Id') ? 0 : rawData[k];
+                            body[k] = k.includes('Id') ? Number(rawData[k]) : rawData[k];
                         });
                     }
+
+                    // CRITICAL: Include the hash for PUT (Modify) to avoid 409
+                    if (method === 'PUT' && entityHashes[entity]) {
+                        body.gx_md5_hash = entityHashes[entity];
+                        addLog("Including MD5 hash in body for concurrency check.", "log-request");
+                    }
+                    
                     options.body = JSON.stringify(body);
                     addLog(`BODY: ${options.body}`, 'log-request');
                 }
@@ -228,13 +259,35 @@
                 try {
                     const result = JSON.parse(text);
                     output.textContent = JSON.stringify(result, null, 2);
+                    
+                    if (method === 'GET' && response.ok) {
+                        // Store the hash for future PUT/DELETE
+                        if (result.gx_md5_hash) {
+                            entityHashes[entity] = result.gx_md5_hash;
+                            updateHashUI(entity);
+                        }
+                        
+                        // Populate fields
+                        Object.keys(result).forEach(key => {
+                            const field = form.querySelector(`[name="${key}"]`);
+                            if (field) field.value = result[key];
+                        });
+                    }
+
+                    // Clear hash after DELETE or successful POST
+                    if ((method === 'DELETE' || method === 'POST') && response.ok) {
+                        entityHashes[entity] = null;
+                        updateHashUI(entity);
+                    }
+
                 } catch (e) {
-                    output.textContent = text || "(Empty/Binary Response)";
+                    output.textContent = text || "(Empty Response)";
                 }
 
-                if (response.status === 405) {
-                    addLog("🚨 405: Still denied. Switch proxy or toggle 'POST with ID'.", "log-error");
+                if (response.status === 409) {
+                    addLog("🚨 409 Conflict: You must FIND the record first to get a fresh MD5 hash before modifying.", "log-error");
                 }
+
             } catch (err) {
                 addLog(`ERROR: ${err.message}`, 'log-error');
             }
