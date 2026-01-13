@@ -41,6 +41,14 @@
             0% { left: 0%; }
             100% { left: 100%; }
         }
+        .data-bubble {
+            background: #f1f5f9;
+            border: 1px dashed #cbd5e1;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
@@ -66,15 +74,15 @@
                     <div class="space-y-4">
                         <div class="flex items-start gap-4">
                             <div class="bg-blue-100 text-blue-600 p-2 rounded-lg font-bold">YOU</div>
-                            <p class="text-slate-600">The <strong>Client</strong> (User interface)</p>
+                            <p class="text-slate-600">The <strong>Client</strong> (The Smartphone App or Website)</p>
                         </div>
                         <div class="flex items-start gap-4">
                             <div class="bg-green-100 text-green-600 p-2 rounded-lg font-bold">KITCHEN</div>
-                            <p class="text-slate-600">The <strong>Server</strong> (Where the data lives)</p>
+                            <p class="text-slate-600">The <strong>Server</strong> (The massive computer where data is stored)</p>
                         </div>
                         <div class="flex items-start gap-4">
                             <div class="bg-purple-100 text-purple-600 p-2 rounded-lg font-bold">MENU</div>
-                            <p class="text-slate-600">The <strong>API</strong> (The rules of what you can ask for)</p>
+                            <p class="text-slate-600">The <strong>API</strong> (The agreed-upon list of what you can order)</p>
                         </div>
                     </div>
                 </div>
@@ -82,45 +90,102 @@
                     <div class="bg-slate-100 h-40 rounded-2xl flex items-center justify-center text-4xl">👤</div>
                     <div class="bg-slate-100 h-40 rounded-2xl flex items-center justify-center text-4xl">📋</div>
                     <div class="bg-blue-500 h-1 col-span-2 relative self-center">
-                        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-white px-3 py-1 rounded-full text-xs font-bold shadow-sm">THE WAITER (REQUEST)</div>
+                        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-white px-3 py-1 rounded-full text-xs font-bold shadow-sm text-blue-600">THE WAITER (REQUEST)</div>
                     </div>
                     <div class="bg-slate-800 h-40 col-span-2 rounded-2xl flex items-center justify-center text-white text-4xl">👨‍🍳</div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 2: Visualizing REST -->
+        <!-- Section 2: How REST Works (EXTENDED) -->
         <section class="mb-20">
-            <h2 class="text-3xl font-bold mb-8 text-center text-slate-800">2. How REST Works</h2>
-            <p class="text-center text-slate-600 mb-12 max-w-2xl mx-auto">REST is a "Stateless" post office. Every message stands alone, containing everything the server needs to know.</p>
+            <h2 class="text-3xl font-bold mb-8 text-slate-800 border-b-2 border-blue-500 inline-block">2. How REST Works: Under the Hood</h2>
             
-            <div class="relative bg-white p-10 rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
-                <div class="flex justify-between items-center relative z-10">
-                    <div class="text-center">
-                        <div class="bg-blue-600 text-white w-20 h-20 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-2">💻</div>
-                        <p class="font-bold">Your Device</p>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+                <div class="lg:col-span-2 bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <h3 class="text-xl font-bold mb-4 text-blue-600">The Principle of "Statelessness"</h3>
+                    <p class="text-slate-600 mb-4 leading-relaxed">
+                        In many systems, the computer remembers who you are and what you said 5 minutes ago. <strong>REST is different.</strong> Every request is like a brand new letter to a pen pal who has amnesia.
+                    </p>
+                    <p class="text-slate-600 mb-4 bg-slate-50 p-4 rounded-lg italic">
+                        "If you want to update your profile, you don't just send the new name. You send your ID, your security token, and the new name all at once. The server processes it, finishes, and immediately forgets you until the next letter arrives."
+                    </p>
+                    <div class="flow-line">
+                        <div class="flow-dot"></div>
                     </div>
-                    
-                    <div class="flex-1 px-10">
-                        <div class="flow-line">
-                            <div class="flow-dot"></div>
+                    <div class="flex justify-between text-xs font-bold text-slate-400">
+                        <span>REQUEST (The Order)</span>
+                        <span>RESPONSE (The Delivery)</span>
+                    </div>
+                </div>
+                <div class="bg-blue-600 text-white p-8 rounded-3xl shadow-lg flex flex-col justify-center">
+                    <h4 class="text-lg font-bold mb-2">Why is this good?</h4>
+                    <p class="text-blue-100 text-sm">Because it's fast and reliable. If one server crashes, another one can take the "letter" and process it perfectly because all the info is right there in the envelope.</p>
+                </div>
+            </div>
+
+            <!-- Samples In and Out -->
+            <div class="bg-slate-900 rounded-3xl p-8 mb-12">
+                <h3 class="text-xl font-bold mb-6 text-white flex items-center gap-2">
+                    <span class="text-blue-400">Sample:</span> Real-World Data Exchange
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Data IN -->
+                    <div>
+                        <div class="text-xs text-blue-400 font-mono mb-2 uppercase tracking-widest">Inbound Request (What you send)</div>
+                        <div class="bg-slate-800 p-5 rounded-xl border border-slate-700 font-mono text-sm text-blue-100">
+                            <span class="text-orange-400 font-bold">POST</span> /users<br>
+                            {<br>
+                            &nbsp;&nbsp;"name": "John Doe",<br>
+                            &nbsp;&nbsp;"email": "john@example.com",<br>
+                            &nbsp;&nbsp;"city": "New York"<br>
+                            }
                         </div>
-                        <p class="text-center text-xs font-mono text-slate-400 uppercase tracking-widest">Envelopes of Data (JSON)</p>
+                        <p class="mt-3 text-slate-400 text-xs italic">You are asking the digital post office to register a new user named John.</p>
                     </div>
 
-                    <div class="text-center">
-                        <div class="bg-slate-800 text-white w-20 h-20 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-2">☁️</div>
-                        <p class="font-bold">Cloud Server</p>
+                    <!-- Data OUT -->
+                    <div>
+                        <div class="text-xs text-green-400 font-mono mb-2 uppercase tracking-widest">Outbound Response (What server says)</div>
+                        <div class="bg-slate-800 p-5 rounded-xl border border-slate-700 font-mono text-sm text-green-100">
+                            <span class="text-green-400 font-bold">201 Created</span><br>
+                            {<br>
+                            &nbsp;&nbsp;"id": 452,<br>
+                            &nbsp;&nbsp;"status": "Success",<br>
+                            &nbsp;&nbsp;"timestamp": "2024-05-12T10:00Z"<br>
+                            }
+                        </div>
+                        <p class="mt-3 text-slate-400 text-xs italic">The server confirms it was created and gives you back the new "Library Card" ID: 452.</p>
                     </div>
+                </div>
+            </div>
+
+            <!-- Scenarios & Use Cases -->
+            <h3 class="text-2xl font-bold mb-6 text-slate-800">3. Everyday Scenarios</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                    <div class="text-3xl mb-4">📱</div>
+                    <h4 class="font-bold mb-2">Social Media Feed</h4>
+                    <p class="text-sm text-slate-600">When you scroll, your phone sends a <strong>GET</strong> request. The server replies with a list of photos. Your phone then formats them to look pretty.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                    <div class="text-3xl mb-4">🛒</div>
+                    <h4 class="font-bold mb-2">Online Shopping</h4>
+                    <p class="text-sm text-slate-600">Clicking "Add to Cart" is a <strong>POST</strong> request. You are sending the Product ID to the server to "create" a new item in your digital basket.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                    <div class="text-3xl mb-4">🗺️</div>
+                    <h4 class="font-bold mb-2">Map Navigation</h4>
+                    <p class="text-sm text-slate-600">Every time you move, the map sends your coordinates. The server <strong>GETs</strong> the traffic data for that specific spot and sends it back to you.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Section 3: The Four Verbs -->
+        <!-- Section 3: The Four Verbs (Original with icons) -->
         <section class="mb-20">
-            <h2 class="text-3xl font-bold mb-10 text-slate-800">3. The Four Possibilities</h2>
+            <h2 class="text-3xl font-bold mb-10 text-slate-800">4. The Four Possibilities</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
                 <!-- GET -->
                 <div class="bg-white p-6 rounded-2xl border-l-8 border-green-500 shadow-sm card-hover">
                     <div class="icon-circle bg-green-100 text-green-600 text-2xl">🔍</div>
@@ -148,11 +213,10 @@
                     <h3 class="text-xl font-bold mb-2">DELETE <span class="text-slate-400 font-normal ml-2">(The Removal)</span></h3>
                     <p class="text-slate-600 text-sm">Telling the server to permanently get rid of a record. It's gone forever!</p>
                 </div>
-
             </div>
         </section>
 
-        <!-- Section 4: Batching Logic -->
+        <!-- Section 5: Batching Logic -->
         <section class="mb-20 bg-indigo-900 rounded-3xl p-10 text-white relative overflow-hidden">
             <div class="relative z-10">
                 <h2 class="text-3xl font-bold mb-6">The Power of "Batching"</h2>
@@ -194,7 +258,7 @@
     </main>
 
     <footer class="bg-slate-900 text-slate-500 py-12 px-6 text-center">
-        <p class="mb-2">API Fundamentals Site v1.0</p>
+        <p class="mb-2">API Fundamentals Site v1.2</p>
         <p class="text-xs">Helping non-developers master the digital post office.</p>
     </footer>
 
