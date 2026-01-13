@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetDonation - Solidário</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Quicksand', sans-serif; background-color: #fffafb; padding-bottom: 250px; }
+        .cute-card { border-radius: 24px; background: white; box-shadow: 0 10px 25px -5px rgba(244, 114, 182, 0.15); border: 1px solid #fce7f3; transition: transform 0.2s; }
+        .cute-card:hover { transform: translateY(-2px); }
+        .btn-primary { background: linear-gradient(135deg, #f472b6 0%, #ec4899 100%); color: white; border-radius: 16px; padding: 0.75rem 1.5rem; font-weight: 700; transition: all 0.2s; box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3); }
+        .btn-primary:active { transform: scale(0.95); }
+        .btn-secondary { background: white; color: #db2777; border: 2px solid #fbcfe8; border-radius: 16px; padding: 0.75rem 1.5rem; font-weight: 700; }
+        
+        input, select { border-radius: 14px !important; border: 2px solid #f3f4f6 !important; padding: 0.85rem !important; outline: none; transition: border-color 0.2s; }
+        input:focus { border-color: #fbcfe8 !important; }
+
+        /* Terminal Debug Visual */
+        #debug-panel {
+            position: fixed; bottom: 0; left: 0; right: 0; height: 260px;
+            background: #111; color: #d4d4d4; font-family: 'Courier New', monospace; font-size: 11px;
+            display: flex; z-index: 1000; border-top: 4px solid #f472b6;
+        }
+        .terminal-section { flex: 1; display: flex; flex-direction: column; border-right: 1px solid #333; overflow: hidden; }
+        .terminal-header { background: #222; padding: 8px 12px; font-weight: bold; color: #fbcfe8; display: flex; justify-content: space-between; align-items: center; }
+        .terminal-content { flex: 1; overflow-y: auto; padding: 12px; white-space: pre-wrap; word-break: break-all; }
+        .log-req { color: #60a5fa; margin-bottom: 10px; padding-left: 8px; border-left: 3px solid #60a5fa; }
+        .log-res { color: #4ade80; margin-bottom: 10px; padding-left: 8px; border-left: 3px solid #4ade80; }
+        .log-err { color: #f87171; margin-bottom: 10px; padding-left: 8px; border-left: 3px solid #f87171; }
+        .payload-box { background: #1a1a1a; padding: 6px; border-radius: 6px; color: #9cdcfe; display: block; margin-top: 4px; border: 1px solid #333; }
+        
+        .hero-bg { background: radial-gradient(circle at top right, #fdf2f8 0%, #fff 100%); }
+    </style>
+</head>
+<body class="hero-bg">
+
+    <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="showView('home')">
+                <div class="bg-pink-100 p-2 rounded-xl text-2xl">🐾</div>
+                <h1 class="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-rose-600">PetDonation</h1>
+            </div>
+            <div class="flex items-center gap-3">
+                <button id="login-btn" class="btn-primary py-2 px-6" onclick="showView('login')">Entrar</button>
+                <div id="user-display" class="hidden flex items-center gap-2 bg-pink-50 px-4 py-2 rounded-full border border-pink-100">
+                    <span class="text-xs uppercase font-bold text-pink-400">Online</span>
+                    <span id="user-name" class="text-sm font-bold text-pink-700"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <!-- Home / Ajude um Pet hoje! -->
+        <section id="view-home" class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-black text-gray-800 mb-4">Ajude um Pet hoje!</h2>
+                <p class="text-gray-500 text-lg">Transforme a vida de um amiguinho através da doação.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <!-- Card Doar -->
+                <div class="cute-card p-8 flex flex-col items-center text-center">
+                    <div class="w-20 h-20 bg-pink-100 rounded-3xl flex items-center justify-center text-4xl mb-6">🎁</div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Quero Doar</h3>
+                    <p class="text-gray-500 mb-8">Tem ração, brinquedos ou acessórios sobrando? Alguém precisa!</p>
+                    <button class="btn-primary w-full text-lg shadow-lg shadow-pink-200" onclick="checkAuthAndNewOffer()">Começar Doação</button>
+                </div>
+
+                <!-- Card Ver -->
+                <div class="cute-card p-8 flex flex-col items-center text-center">
+                    <div class="w-20 h-20 bg-blue-100 rounded-3xl flex items-center justify-center text-4xl mb-6">🔍</div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Quero Ajudar</h3>
+                    <p class="text-gray-500 mb-8">Veja os itens disponíveis e conecte-se com doadores locais.</p>
+                    <button class="btn-secondary w-full text-lg border-blue-200 text-blue-500 hover:bg-blue-50" onclick="showView('offers')">Explorar Lista</button>
+                </div>
+            </div>
+
+            <!-- Stats Rápidas -->
+            <div class="flex justify-center gap-12 text-center opacity-60">
+                <div><div class="text-2xl font-bold">+150</div><div class="text-xs uppercase tracking-widest">Pets Felizes</div></div>
+                <div><div class="text-2xl font-bold">+2.4k</div><div class="text-xs uppercase tracking-widest">Doações</div></div>
+            </div>
+        </section>
+
+        <!-- Login -->
+        <section id="view-login" class="hidden max-w-sm mx-auto">
+            <div class="cute-card p-8">
+                <h2 class="text-2xl font-bold mb-2">Bem-vindo(a)</h2>
+                <p class="text-gray-400 text-sm mb-6">Identifique-se para continuar.</p>
+                <div class="space-y-4">
+                    <div>
+                        <label class="text-xs font-bold text-gray-400 uppercase ml-1">ID do Usuário</label>
+                        <input type="number" id="login-id" placeholder="Ex: 16" class="mt-1">
+                    </div>
+                    <button class="btn-primary w-full py-4" onclick="handleLogin()">Acessar Conta</button>
+                    <button class="w-full text-gray-400 text-xs" onclick="showView('home')">Voltar ao Início</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Offer -->
+        <section id="view-new-offer" class="hidden max-w-md mx-auto">
+            <div class="cute-card p-8">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="bg-pink-100 p-2 rounded-lg">📦</div>
+                    <h2 class="text-2xl font-bold text-gray-800">Nova Doação</h2>
+                </div>
+                <div class="space-y-6">
+                    <div>
+                        <label class="text-xs font-bold text-gray-400 uppercase ml-1">O que você vai doar?</label>
+                        <select id="offer-product-select" class="mt-1"><option>Carregando...</option></select>
+                    </div>
+                    <div>
+                        <label class="text-xs font-bold text-gray-400 uppercase ml-1">Detalhes (Estado de conservação)</label>
+                        <textarea id="offer-description" placeholder="Ex: Ração lacrada, vencimento em 10/24..." class="w-full border-2 border-gray-100 rounded-xl p-3 h-32 outline-none focus:border-pink-200"></textarea>
+                    </div>
+                    <button class="btn-primary w-full py-4 text-lg" onclick="createOffer()">Publicar Doação</button>
+                    <button class="w-full text-gray-400 text-sm font-medium" onclick="showView('home')">Cancelar</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Offers List -->
+        <section id="view-offers" class="hidden">
+             <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-black text-gray-800">Doações Ativas</h2>
+                <button class="text-pink-500 font-bold text-sm" onclick="showView('home')">← Voltar</button>
+             </div>
+             <div id="offers-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </section>
+    </main>
+
+    <!-- Terminal Debug Mode -->
+    <div id="debug-panel">
+        <div class="terminal-section">
+            <div class="terminal-header">
+                <span>OUTGOING (PAYLOAD)</span>
+                <button onclick="clearLogs('log-content')" class="hover:text-white text-[10px]">LIMPAR</button>
+            </div>
+            <div id="log-content" class="terminal-content"></div>
+        </div>
+        <div class="terminal-section">
+            <div class="terminal-header">
+                <span>INCOMING (RESPONSE)</span>
+                <button onclick="clearLogs('json-content')" class="hover:text-white text-[10px]">LIMPAR</button>
+            </div>
+            <div id="json-content" class="terminal-content"></div>
+        </div>
+    </div>
+
+    <div id="toast" class="hidden fixed bottom-[270px] left-1/2 -translate-x-1/2 bg-gray-900/90 backdrop-blur shadow-2xl text-white px-8 py-3 rounded-2xl z-[1001] font-bold"></div>
+
+    <script>
+        const BASE_URL = 'https://next101.genexus.ai/Id86d7fbe19651073e3bf1ab7697cbcc3f/rest';
+        let currentUser = JSON.parse(localStorage.getItem('pet_user')) || null;
+
+        // Forçamos o uso do Proxy para evitar problemas de CORS/Empty Response
+        function getUrl(target) {
+            const fullUrl = `${BASE_URL}${target}`;
+            return `https://corsproxy.io/?url=${encodeURIComponent(fullUrl)}`;
+        }
+
+        function addLog(method, url, payload) {
+            const div = document.createElement('div');
+            div.className = "log-req";
+            div.innerHTML = `<b>[${method}]</b> ${url.replace(BASE_URL, '')}<br><span class="payload-box">${JSON.stringify(payload, null, 2)}</span>`;
+            const content = document.getElementById('log-content');
+            content.appendChild(div);
+            content.scrollTop = content.scrollHeight;
+        }
+
+        function addRes(data, status, ok) {
+            const div = document.createElement('div');
+            div.className = ok ? "log-res" : "log-err";
+            div.innerHTML = `<b>STATUS: ${status} ${ok ? '✅' : '❌'}</b><br><pre class="mt-2">${JSON.stringify(data, null, 2)}</pre>`;
+            const content = document.getElementById('json-content');
+            content.appendChild(div);
+            content.scrollTop = content.scrollHeight;
+        }
+
+        function clearLogs(id) { document.getElementById(id).innerHTML = ''; }
+
+        async function apiCall(endpoint, method = 'GET', body = null) {
+            const url = getUrl(endpoint);
+            addLog(method, endpoint, body);
+
+            const options = {
+                method,
+                headers: { 
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            };
+            if (body) options.body = JSON.stringify(body);
+
+            try {
+                const response = await fetch(url, options);
+                const text = await response.text();
+                let result = {};
+                
+                try { 
+                    result = text ? JSON.parse(text) : { info: "No content returned" }; 
+                } catch(e) { 
+                    result = { raw_response: text }; 
+                }
+
+                addRes(result, response.status, response.ok);
+                if (!response.ok) throw result;
+                return result;
+            } catch (err) {
+                console.error("API Error", err);
+                throw err;
+            }
+        }
+
+        function showView(id) {
+            document.querySelectorAll('main > section').forEach(s => s.classList.add('hidden'));
+            document.getElementById('view-' + id).classList.remove('hidden');
+            window.scrollTo(0,0);
+            if (id === 'new-offer') loadProducts();
+            if (id === 'offers') loadOffers();
+        }
+
+        async function loadProducts() {
+            const select = document.getElementById('offer-product-select');
+            select.innerHTML = '<option>Carregando itens...</option>';
+            try {
+                const res = await apiCall('/data', 'POST', { Operation: "list", Table: "Product", Key: "", DataJSON: "" });
+                const list = JSON.parse(res.Result);
+                select.innerHTML = '<option value="">Selecione o Item</option>';
+                list.forEach(p => {
+                    if(p.ProductName && p.ProductName !== "[EMPTY]") {
+                        select.innerHTML += `<option value="${p.ProductId}">${p.ProductName}</option>`;
+                    }
+                });
+            } catch(e) { select.innerHTML = '<option>Erro ao carregar lista</option>'; }
+        }
+
+        async function createOffer() {
+            const prodId = document.getElementById('offer-product-select').value;
+            const desc = document.getElementById('offer-description').value;
+            
+            if(!prodId) return notify("⚠️ Selecione um produto");
+
+            const payload = {
+                ActivityId: 0,
+                ActivityUserId: parseInt(currentUser.UserId),
+                ActivityProductId: parseInt(prodId),
+                ActivityDescription: String(desc || "Sem descrição"),
+                ActivityType: "Offer",
+                ActivityStatus: "Active",
+                ActivityDateTime: new Date().toISOString().split('.')[0]
+            };
+
+            try {
+                await apiCall('/Activity/0', 'POST', payload);
+                notify("✨ Doação publicada com sucesso!");
+                setTimeout(() => showView('home'), 1500);
+            } catch(e) {
+                notify("❌ Erro ao publicar. Veja o terminal.");
+            }
+        }
+
+        async function loadOffers() {
+            const container = document.getElementById('offers-list');
+            container.innerHTML = '<div class="col-span-full text-center py-10 text-gray-400">Buscando doações...</div>';
+            try {
+                const res = await apiCall('/data', 'POST', { Operation: "list", Table: "Activity", Key: "", DataJSON: "" });
+                const list = JSON.parse(res.Result).filter(a => a.ActivityType === "Offer");
+                container.innerHTML = "";
+                
+                if (list.length === 0) {
+                    container.innerHTML = '<div class="col-span-full text-center py-10">Nenhuma doação encontrada.</div>';
+                    return;
+                }
+
+                list.forEach(off => {
+                    container.innerHTML += `
+                        <div class="cute-card p-6 border-l-4 border-l-pink-400">
+                            <div class="flex justify-between items-start mb-4">
+                                <span class="bg-pink-50 text-pink-500 text-[10px] font-black px-2 py-1 rounded-md uppercase">Oferta #${off.ActivityId}</span>
+                                <span class="text-xs text-gray-300">${new Date(off.ActivityDateTime).toLocaleDateString()}</span>
+                            </div>
+                            <h4 class="font-bold text-gray-800 text-lg mb-1">Produto ID: ${off.ActivityProductId}</h4>
+                            <p class="text-sm text-gray-500 mb-6 leading-relaxed">"${off.ActivityDescription}"</p>
+                            <div class="flex items-center gap-2 pt-4 border-t border-gray-50">
+                                <div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-xs">👤</div>
+                                <div class="text-[11px] text-gray-400 font-medium">Doador ID: ${off.ActivityUserId}</div>
+                            </div>
+                        </div>
+                    `;
+                });
+            } catch(e) { container.innerHTML = '<div class="col-span-full text-center text-red-400 py-10 font-bold">Erro ao carregar doações do servidor.</div>'; }
+        }
+
+        async function handleLogin() {
+            const id = document.getElementById('login-id').value;
+            if(!id) return notify("Digite um ID");
+            try {
+                const user = await apiCall(`/User/${id}`);
+                currentUser = user;
+                localStorage.setItem('pet_user', JSON.stringify(user));
+                updateAuthUI();
+                notify("👋 Bem-vindo de volta!");
+                showView('home');
+            } catch(e) { notify("❌ ID não encontrado"); }
+        }
+
+        function updateAuthUI() {
+            const display = document.getElementById('user-display');
+            const nameSpan = document.getElementById('user-name');
+            const loginBtn = document.getElementById('login-btn');
+            
+            if(currentUser) {
+                nameSpan.innerText = currentUser.UserName.split(' ')[0];
+                display.classList.remove('hidden');
+                loginBtn.classList.add('hidden');
+            }
+        }
+
+        function checkAuthAndNewOffer() {
+            if(!currentUser) { notify("🔒 Você precisa entrar primeiro"); showView('login'); }
+            else { showView('new-offer'); }
+        }
+
+        function notify(m) {
+            const t = document.getElementById('toast');
+            t.innerText = m; t.classList.remove('hidden');
+            setTimeout(() => t.classList.add('hidden'), 3500);
+        }
+
+        window.onload = updateAuthUI;
+    </script>
+</body>
+</html>
