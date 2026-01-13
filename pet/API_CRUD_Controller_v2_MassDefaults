@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba CV - API Client v2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .tab-active { border-bottom: 2px solid #3b82f6; color: #3b82f6; }
+        .input-group label { display: block; font-size: 0.75rem; font-weight: 600; color: #4b5563; margin-bottom: 0.25rem; }
+        .input-group input, .input-group textarea, .input-group select { width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-size: 0.875rem; }
+        .log-entry { font-family: monospace; font-size: 10px; border-bottom: 1px solid #374151; padding: 4px 0; word-break: break-all; }
+        .log-request { color: #60a5fa; }
+        .log-response { color: #34d399; }
+        .log-error { color: #f87171; }
+        .hash-badge { font-size: 10px; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-top: 4px; }
+        .item-card { border: 1px solid #e5e7eb; border-radius: 0.75rem; padding: 1rem; background: white; transition: box-shadow 0.2s; }
+        .item-card:hover { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+        .modal-overlay { background: rgba(0,0,0,0.7); backdrop-filter: blur(2px); display: none; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen text-gray-800 font-sans">
+
+    <!-- Debug Modal -->
+    <div id="debugModal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full overflow-hidden border border-gray-200">
+            <div class="bg-slate-800 p-4 flex justify-between items-center">
+                <h3 class="text-white font-bold text-sm uppercase tracking-wider">Outgoing Payload Preview</h3>
+                <span id="debugTarget" class="text-xs text-slate-400 font-mono"></span>
+            </div>
+            <div class="p-6">
+                <p class="text-xs text-gray-500 mb-4">Review the data structure below. <b>ActivityProductId</b> and <b>ActivityDateTime</b> are included.</p>
+                <pre id="debugPayload" class="bg-gray-900 text-blue-300 p-4 rounded-lg text-xs overflow-auto max-h-80 font-mono"></pre>
+                <div class="mt-6 flex justify-end gap-3">
+                    <button onclick="cancelRequest()" class="px-4 py-2 text-xs font-bold text-gray-600 hover:bg-gray-100 rounded-lg">ABORT REQUEST</button>
+                    <button id="confirmRequestBtn" class="px-6 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-lg">PROCEED TO SERVER</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto py-10 px-4">
+        <header class="mb-8 text-center">
+            <h1 class="text-3xl font-bold text-gray-900 tracking-tight">API CRUD Controller v2</h1>
+            <p class="text-gray-600 mt-2">Activity DateTime & Schema Support</p>
+            
+            <div class="mt-4 p-4 bg-slate-800 border border-slate-700 rounded-lg inline-block text-left max-w-2xl shadow-lg">
+                <div class="flex flex-wrap items-center gap-4">
+                    <div class="flex items-center gap-2">
+                        <select id="proxySelector" class="text-xs p-1 border rounded bg-slate-700 text-white border-slate-600 outline-none">
+                            <option value="corsproxy_io" selected>corsproxy.io (Default)</option>
+                            <option value="none">Direct (No Proxy)</option>
+                            <option value="allorigins">allorigins (JSON)</option>
+                        </select>
+                    </div>
+
+                    <div class="flex items-center gap-3 border-l border-slate-600 pl-4 flex-wrap">
+                        <label class="text-white text-[10px] flex items-center gap-1">
+                            <input type="checkbox" id="postWithId" checked> POST with ID (/0)
+                        </label>
+                        <label class="text-yellow-400 text-[10px] flex items-center gap-1 font-bold ml-2">
+                            <input type="checkbox" id="inspectData" checked> INSPECT DATA
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="bg-white rounded-xl shadow-sm mb-6 overflow-hidden border border-gray-200">
+            <nav class="flex border-b bg-gray-50 overflow-x-auto">
+                <button onclick="switchTab('activity')" id="tab-activity" class="tab-btn min-w-[100px] py-4 text-center font-bold text-[10px] uppercase tracking-widest transition tab-active">Activities</button>
+                <button onclick="switchTab('product')" id="tab-product" class="tab-btn min-w-[100px] py-4 text-center font-bold text-[10px] uppercase tracking-widest transition text-gray-400 hover:text-gray-700">Products</button>
+                <button onclick="switchTab('user')" id="tab-user" class="tab-btn min-w-[100px] py-4 text-center font-bold text-[10px] uppercase tracking-widest transition text-gray-400 hover:text-gray-700">Users</button>
+                <button onclick="switchTab('batch')" id="tab-batch" class="tab-btn min-w-[100px] py-4 text-center font-bold text-[10px] uppercase tracking-widest transition text-gray-400 hover:text-gray-700">Batch User</button>
+                <button onclick="switchTab('batchProduct')" id="tab-batchProduct" class="tab-btn min-w-[100px] py-4 text-center font-bold text-[10px] uppercase tracking-widest transition text-gray-400 hover:text-gray-700">Batch Product</button>
+                <button onclick="switchTab('batchActivity')" id="tab-batchActivity" class="tab-btn min-w-[100px] py-4 text-center font-bold text-[10px] uppercase tracking-widest transition text-gray-400 hover:text-gray-700">Batch Activity</button>
+            </nav>
+
+            <div class="p-6">
+                <!-- Activity Form -->
+                <div id="section-activity" class="tab-section">
+                    <form id="activityForm" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="input-group">
+                                <label>ActivityId (Key)</label>
+                                <input type="number" name="ActivityId" value="0">
+                            </div>
+                            <div class="input-group">
+                                <label>ActivityUserId (User FK)</label>
+                                <input type="number" name="ActivityUserId" value="1">
+                            </div>
+                            <div class="input-group">
+                                <label>ActivityProductId (Product FK)</label>
+                                <input type="number" name="ActivityProductId" value="0">
+                                <p class="text-[9px] text-gray-400 mt-1">*If ActivityType=Post, this is replaced by the [EMPTY] product id automatically.</p>
+                            </div>
+                            <div class="input-group">
+                                <label>ActivityType</label>
+                                <select name="ActivityType" id="activityTypeField">
+                                    <option value="Search">Search</option>
+                                    <option value="Offer">Offer</option>
+                                    <option value="Post">Post</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label>ActivityStatus</label>
+                                <select name="ActivityStatus">
+                                    <option value="Active" selected>Active</option>
+                                    <option value="Finished">Finished</option>
+                                    <option value="Paused">Paused</option>
+                                    <option value="Canceled">Canceled</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label>ActivityDateTime (ISO)</label>
+                                <input type="text" name="ActivityDateTime" placeholder="Auto-generated on Create">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label>ActivityDescription</label>
+                            <textarea name="ActivityDescription" rows="2">Standard activity description</textarea>
+                        </div>
+                        <div id="activityHashDisplay" class="hash-badge bg-gray-200 text-gray-600">No Hash (Find first)</div>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <button type="button" onclick="apiCall('Activity', 'GET')" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg font-bold text-xs">FIND</button>
+                            <button type="button" onclick="apiCall('Activity', 'POST')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-bold text-xs">CREATE</button>
+                            <button type="button" onclick="apiCall('Activity', 'PUT')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-bold text-xs">MODIFY</button>
+                            <button type="button" onclick="apiCall('Activity', 'DELETE')" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-bold text-xs">DELETE</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Product Form -->
+                <div id="section-product" class="tab-section hidden">
+                    <form id="productForm" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="input-group">
+                                <label>ProductId (Key)</label>
+                                <input type="number" name="ProductId" value="0">
+                            </div>
+                            <div class="input-group">
+                                <label>ProductName</label>
+                                <input type="text" name="ProductName" value="Sample Product">
+                            </div>
+                            <div class="input-group">
+                                <label>ProductManufacturer</label>
+                                <input type="text" name="ProductManufacturer" value="Genexus Corp">
+                            </div>
+                            <div class="input-group">
+                                <label>ProductCategory</label>
+                                <select name="ProductCategory">
+                                    <option value="Cloth">Cloth</option>
+                                    <option value="Toy">Toy</option>
+                                    <option value="Book">Book</option>
+                                    <option value="Accessory">Accessory</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label>ProductEANCode</label>
+                                <input type="text" name="ProductEANCode" value="7890000000001">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label>ProductDescription</label>
+                            <textarea name="ProductDescription" rows="2">Sample description</textarea>
+                        </div>
+                        <div id="productHashDisplay" class="hash-badge bg-gray-200 text-gray-600">No Hash (Find first)</div>
+                        <div class="flex gap-2 pt-2">
+                            <button type="button" onclick="apiCall('Product', 'GET')" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg font-bold text-xs">FIND</button>
+                            <button type="button" onclick="apiCall('Product', 'POST')" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-bold text-xs">CREATE</button>
+                            <button type="button" onclick="apiCall('Product', 'PUT')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-bold text-xs">MODIFY</button>
+                            <button type="button" onclick="apiCall('Product', 'DELETE')" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-bold text-xs">DELETE</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- User Form -->
+                <div id="section-user" class="tab-section hidden">
+                    <form id="userForm" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="input-group">
+                                <label>UserId (Key)</label>
+                                <input type="number" name="UserId" value="0">
+                            </div>
+                            <div class="input-group">
+                                <label>UserName</label>
+                                <input type="text" name="UserName" value="Jane Smith">
+                            </div>
+                        </div>
+                        <div id="userHashDisplay" class="hash-badge bg-gray-200 text-gray-600">No Hash (Find first)</div>
+                        <div class="flex gap-2 pt-2">
+                            <button type="button" onclick="apiCall('User', 'GET')" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg font-bold text-xs">FIND</button>
+                            <button type="button" onclick="apiCall('User', 'POST')" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-bold text-xs">CREATE</button>
+                            <button type="button" onclick="apiCall('User', 'PUT')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-bold text-xs">MODIFY</button>
+                            <button type="button" onclick="apiCall('User', 'DELETE')" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-bold text-xs">DELETE</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Batch User Section -->
+                <div id="section-batch" class="tab-section hidden">
+                    <div class="space-y-4">
+                        <div class="flex gap-4 items-end">
+                            <div class="input-group flex-1">
+                                <label>Quantity</label>
+                                <input type="number" id="batchQty" value="5">
+                            </div>
+                            <button onclick="generateBatchUsers()" class="bg-blue-600 text-white px-6 py-2 rounded-lg font-bold text-xs h-[38px]">GENERATE USERS</button>
+                        </div>
+                        <div id="batchContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6"></div>
+                        <div id="batchActions" class="hidden flex justify-end gap-2 pt-4 border-t">
+                            <button onclick="processBatchCreation('User', 'user')" class="bg-green-600 text-white px-6 py-2 rounded-lg font-bold text-xs">CREATE ALL</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Batch Product Section -->
+                <div id="section-batchProduct" class="tab-section hidden">
+                    <div class="space-y-4">
+                        <div class="flex gap-4 items-end">
+                            <div class="input-group flex-1">
+                                <label>Quantity</label>
+                                <input type="number" id="batchProductQty" value="5">
+                            </div>
+                            <button onclick="generateBatchProducts()" class="bg-green-600 text-white px-6 py-2 rounded-lg font-bold text-xs h-[38px]">GENERATE PRODUCTS</button>
+                        </div>
+                        <div id="batchProductContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6"></div>
+                        <div id="batchProductActions" class="hidden flex justify-end gap-2 pt-4 border-t">
+                            <button onclick="processBatchCreation('Product', 'product')" class="bg-blue-600 text-white px-6 py-2 rounded-lg font-bold text-xs">CREATE ALL</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Batch Activity Section -->
+                <div id="section-batchActivity" class="tab-section hidden">
+                    <div class="space-y-4">
+                        <div class="flex flex-wrap gap-4 items-end">
+                            <div class="input-group flex-1 min-w-[120px]">
+                                <label>Quantity</label>
+                                <input type="number" id="batchActivityQty" value="5">
+                            </div>
+                            <button onclick="fetchExistingAndGenerateActivities()" class="bg-purple-600 text-white px-6 py-2 rounded-lg font-bold text-xs h-[38px]">SYNC & GENERATE</button>
+                        </div>
+                        <div id="batchActivityContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6"></div>
+                        <div id="batchActivityActions" class="hidden flex justify-end gap-2 pt-4 border-t">
+                            <button onclick="processBatchCreation('Activity', 'activity')" class="bg-indigo-600 text-white px-6 py-2 rounded-lg font-bold text-xs">CREATE ALL</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div class="bg-gray-900 rounded-xl p-4 border border-gray-700">
+                <h3 class="text-gray-400 font-mono text-[10px] uppercase mb-2">Network Traffic</h3>
+                <div id="networkLogs" class="h-64 overflow-y-auto bg-black p-2 rounded border border-gray-800 text-white"></div>
+            </div>
+            <div class="bg-gray-900 rounded-xl p-4 border border-gray-700">
+                <h3 class="text-gray-400 font-mono text-[10px] uppercase mb-2">Last Response</h3>
+                <pre id="jsonOutput" class="text-green-400 font-mono text-[11px] h-64 overflow-auto bg-black p-2 rounded border border-gray-800">{}</pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const BASE_URL = 'https://next101.genexus.ai/Id86d7fbe19651073e3bf1ab7697cbcc3f/rest';
+        
+        const entityHashes = { Activity: null, Product: null, User: null };
+        const batchStore = { user: [], product: [], activity: [] };
+        const liveRegistry = { users: [], products: [] };
+        let pendingRequest = null;
+
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('tab-active', 'text-blue-600'));
+            document.getElementById(`tab-${tab}`).classList.add('tab-active');
+            document.querySelectorAll('.tab-section').forEach(sec => sec.classList.add('hidden'));
+            document.getElementById(`section-${tab}`).classList.remove('hidden');
+        }
+
+        function addLog(msg, type = '') {
+            const logs = document.getElementById('networkLogs');
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+            logs.appendChild(entry);
+            logs.scrollTop = logs.scrollHeight;
+        }
+
+        function updateHashUI(entity) {
+            const display = document.getElementById(`${entity.toLowerCase()}HashDisplay`);
+            if (display) {
+                if (entityHashes[entity]) {
+                    display.textContent = `Hash Loaded: ${entityHashes[entity].substring(0,8)}...`;
+                    display.className = "hash-badge bg-green-100 text-green-700 border border-green-200";
+                } else {
+                    display.textContent = "No Hash (Find first)";
+                    display.className = "hash-badge bg-gray-200 text-gray-600";
+                }
+            }
+        }
+
+        function cancelRequest() {
+            document.getElementById('debugModal').style.display = 'none';
+            pendingRequest = null;
+        }
+
+        function confirmRequest() {
+            if (pendingRequest) {
+                const { execute } = pendingRequest;
+                document.getElementById('debugModal').style.display = 'none';
+                pendingRequest = null;
+                execute();
+            }
+        }
+
+        function sanitizeResultString(str) {
+            if (!str) return str;
+            let sanitized = str.trim();
+            try {
+                return JSON.parse(sanitized);
+            } catch (e) {
+                sanitized = sanitized.replace(/"ProductDescription":\s*([^"][^,]*)(?=[,}])/g, (match, p1) => {
+                    const trimmed = p1.trim();
+                    return `"ProductDescription": "${trimmed}"`;
+                });
+                try { return JSON.parse(sanitized); } catch(err) { return []; }
+            }
+        }
+
+        async function fetchTableData(tableName) {
+            const payload = { "Operation": "list", "Table": tableName, "Key": "", "DataJSON": "" };
+            try {
+                const res = await fetch(getProxiedUrl(`${BASE_URL}/Data`), {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const responseBody = await res.text();
+                if (res.ok) {
+                    const outerData = JSON.parse(responseBody);
+                    if (outerData.Result) {
+                        return sanitizeResultString(outerData.Result);
+                    }
+                }
+                return [];
+            } catch(e) { return []; }
+        }
+
+        async function fetchExistingAndGenerateActivities() {
+            addLog("Syncing valid Foreign Keys...", "log-request");
+            liveRegistry.users = await fetchTableData('User');
+            liveRegistry.products = await fetchTableData('Product');
+            addLog(`Found ${liveRegistry.users.length} Users and ${liveRegistry.products.length} Products.`, "log-response");
+            generateBatchActivities();
+        }
+
+        function getProxiedUrl(targetUrl) {
+            const proxyType = document.getElementById('proxySelector').value;
+            if (proxyType === 'corsproxy_io') return `https://corsproxy.io/?url=${encodeURIComponent(targetUrl)}`;
+            if (proxyType === 'allorigins') return `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
+            return targetUrl;
+        }
+
+        function generateBatchUsers() {
+            const qty = parseInt(document.getElementById('batchQty').value) || 1;
+            const container = document.getElementById('batchContainer');
+            batchStore.user = [];
+            container.innerHTML = '';
+            for (let i = 0; i < qty; i++) {
+                const id = Math.floor(Math.random() * 9000) + 1000;
+                const user = { UserId: id, UserName: "User " + id };
+                batchStore.user.push(user);
+                const card = document.createElement('div');
+                card.className = 'item-card';
+                card.innerHTML = `<div class="font-bold text-sm">${user.UserName}</div><div class="text-[10px] text-gray-400">ID: ${user.UserId}</div>`;
+                container.appendChild(card);
+            }
+            document.getElementById('batchActions').classList.remove('hidden');
+        }
+
+        function generateBatchProducts() {
+            const qty = parseInt(document.getElementById('batchProductQty').value) || 1;
+            const container = document.getElementById('batchProductContainer');
+            batchStore.product = [];
+            container.innerHTML = '';
+            
+            const emptyProd = {
+                ProductId: 9999,
+                ProductName: "[EMPTY]",
+                ProductManufacturer: "System",
+                ProductCategory: "Cloth",
+                ProductDescription: "",
+                ProductEANCode: ""
+            };
+            batchStore.product.push(emptyProd);
+            
+            for (let i = 0; i < qty; i++) {
+                const id = Math.floor(Math.random() * 9000) + 100;
+                const product = {
+                    ProductId: id,
+                    ProductName: `Batch Product ${id}`,
+                    ProductManufacturer: "Genexus Labs",
+                    ProductCategory: "Book",
+                    ProductDescription: "Standard quality item",
+                    ProductEANCode: "EAN-" + id
+                };
+                batchStore.product.push(product);
+            }
+
+            batchStore.product.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'item-card';
+                card.innerHTML = `<div class="font-bold text-sm text-blue-600">${p.ProductName}</div><div class="text-[10px] text-gray-400">ID: ${p.ProductId}</div>`;
+                container.appendChild(card);
+            });
+            document.getElementById('batchProductActions').classList.remove('hidden');
+        }
+
+        function getEmptyProductId() {
+            const found = liveRegistry.products.find(p => p.ProductName === "[EMPTY]");
+            return found ? Number(found.ProductId) : 0;
+        }
+
+        function generateBatchActivities() {
+            const qty = parseInt(document.getElementById('batchActivityQty').value) || 1;
+            const container = document.getElementById('batchActivityContainer');
+            const types = ['Search', 'Offer', 'Post'];
+            batchStore.activity = [];
+            container.innerHTML = '';
+            
+            if (liveRegistry.users.length === 0) {
+                container.innerHTML = '<div class="col-span-2 p-4 text-red-500 text-xs">Sync Users first!</div>';
+                return;
+            }
+
+            const emptyId = getEmptyProductId();
+            const now = new Date().toISOString();
+
+            for (let i = 0; i < qty; i++) {
+                const type = types[Math.floor(Math.random() * types.length)];
+                const user = liveRegistry.users[Math.floor(Math.random() * liveRegistry.users.length)];
+                
+                let prodId = 0;
+                if (type === 'Post') {
+                    prodId = emptyId;
+                } else if (liveRegistry.products.length > 0) {
+                    const randomProd = liveRegistry.products[Math.floor(Math.random() * liveRegistry.products.length)];
+                    prodId = Number(randomProd.ProductId);
+                }
+
+                const activity = {
+                    ActivityId: 0,
+                    ActivityUserId: Number(user.UserId),
+                    ActivityProductId: (prodId === 0 && emptyId !== 0) ? emptyId : prodId,
+                    ActivityType: type,
+                    ActivityDescription: `Batch ${type} activity`,
+                    ActivityStatus: "Active",
+                    ActivityDateTime: now
+                };
+                
+                batchStore.activity.push(activity);
+                
+                const card = document.createElement('div');
+                card.className = 'item-card';
+                card.innerHTML = `
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-[9px] px-1.5 py-0.5 rounded-full bg-blue-50 text-blue-600 border border-blue-100 font-bold uppercase tracking-wider">${type}</span>
+                        <span class="text-[10px] text-gray-500 font-mono">PID: ${activity.ActivityProductId}</span>
+                    </div>
+                    <div class="text-[11px] text-gray-700">${activity.ActivityDescription}</div>
+                    <div class="text-[8px] text-gray-400 mt-2 font-mono">${activity.ActivityDateTime}</div>
+                `;
+                container.appendChild(card);
+            }
+            document.getElementById('batchActivityActions').classList.remove('hidden');
+        }
+
+        async function processBatchCreation(entityName, storeKey) {
+            const data = batchStore[storeKey];
+            addLog(`Processing batch for ${entityName}...`, 'log-request');
+            for (let item of data) await apiCall(entityName, 'POST', item);
+            addLog(`Finished batch creation.`, 'log-response');
+        }
+
+        async function apiCall(entity, method, overrideData = null) {
+            const form = document.getElementById(`${entity.toLowerCase()}Form`);
+            const formData = form ? new FormData(form) : null;
+            const rawData = formData ? Object.fromEntries(formData.entries()) : {};
+            const inspectMode = document.getElementById('inspectData').checked;
+            const entityId = overrideData ? 0 : (rawData[`${entity}Id`] || 0);
+
+            let targetUrl = `${BASE_URL}/${entity}`;
+            if (method === 'POST') targetUrl += document.getElementById('postWithId').checked ? '/0' : '';
+            else targetUrl += `/${entityId}`;
+
+            let body = null;
+            if (method === 'POST' || method === 'PUT') {
+                body = overrideData || {};
+                if (!overrideData) {
+                    if (entity === 'Activity') {
+                        let pid = Number(rawData.ActivityProductId);
+                        const emptyId = getEmptyProductId();
+                        
+                        if (rawData.ActivityType === 'Post') {
+                            pid = emptyId;
+                        } else if (pid === 0) {
+                            pid = emptyId;
+                        }
+
+                        // Use current time if creating, or existing field value if present
+                        const dateTime = (method === 'POST') ? new Date().toISOString() : (rawData.ActivityDateTime || new Date().toISOString());
+
+                        body = {
+                            ActivityId: Number(rawData.ActivityId),
+                            ActivityUserId: Number(rawData.ActivityUserId),
+                            ActivityProductId: pid,
+                            ActivityDescription: String(rawData.ActivityDescription),
+                            ActivityType: String(rawData.ActivityType),
+                            ActivityStatus: String(rawData.ActivityStatus),
+                            ActivityDateTime: dateTime
+                        };
+                    } else if (entity === 'Product') {
+                        body = {
+                            ProductId: Number(rawData.ProductId),
+                            ProductName: String(rawData.ProductName),
+                            ProductManufacturer: String(rawData.ProductManufacturer),
+                            ProductCategory: String(rawData.ProductCategory),
+                            ProductDescription: String(rawData.ProductDescription),
+                            ProductEANCode: String(rawData.ProductEANCode)
+                        };
+                    } else if (entity === 'User') {
+                        body = { UserId: Number(rawData.UserId), UserName: String(rawData.UserName) };
+                    }
+                }
+                
+                if (method === 'PUT' && entityHashes[entity]) body.gx_md5_hash = entityHashes[entity];
+            }
+
+            const executeFetch = async () => {
+                const fetchUrl = getProxiedUrl(targetUrl);
+                addLog(`${method} ${targetUrl}`, 'log-request');
+                try {
+                    const options = { method, headers: { 'Accept': 'application/json' } };
+                    if (body) { options.headers['Content-Type'] = 'application/json'; options.body = JSON.stringify(body); }
+
+                    const response = await fetch(fetchUrl, options);
+                    const text = await response.text();
+                    addLog(`RES: ${response.status}`, response.ok ? 'log-response' : 'log-error');
+                    
+                    const output = document.getElementById('jsonOutput');
+                    try {
+                        const result = JSON.parse(text);
+                        output.textContent = JSON.stringify(result, null, 2);
+                        
+                        if (method === 'GET' && response.ok) {
+                            if (result.gx_md5_hash) { entityHashes[entity] = result.gx_md5_hash; updateHashUI(entity); }
+                            if (form) {
+                                Object.keys(result).forEach(key => {
+                                    const field = form.querySelector(`[name="${key}"]`);
+                                    if (field) field.value = result[key];
+                                });
+                            }
+                        }
+                    } catch (e) { output.textContent = text || "(Empty)"; }
+                } catch (err) { addLog(`ERROR: ${err.message}`, 'log-error'); }
+            };
+
+            if (inspectMode && (method === 'POST' || method === 'PUT')) {
+                document.getElementById('debugTarget').textContent = `${method} ${targetUrl}`;
+                document.getElementById('debugPayload').textContent = JSON.stringify(body, null, 2);
+                document.getElementById('debugModal').style.display = 'flex';
+                pendingRequest = { execute: executeFetch };
+                document.getElementById('confirmRequestBtn').onclick = confirmRequest;
+            } else {
+                await executeFetch();
+            }
+        }
+    </script>
+</body>
+</html>
