@@ -3,49 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetDonation - Solidário</title>
+    <title>PetDonation - Explorar Doações</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Quicksand', sans-serif; background-color: #fffafb; padding-bottom: 250px; }
-        .cute-card { border-radius: 24px; background: white; box-shadow: 0 10px 25px -5px rgba(244, 114, 182, 0.15); border: 1px solid #fce7f3; transition: transform 0.2s; }
-        .cute-card:hover { transform: translateY(-2px); }
-        .btn-primary { background: linear-gradient(135deg, #f472b6 0%, #ec4899 100%); color: white; border-radius: 16px; padding: 0.75rem 1.5rem; font-weight: 700; transition: all 0.2s; box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3); }
+        .cute-card { border-radius: 24px; background: white; box-shadow: 0 10px 25px -5px rgba(244, 114, 182, 0.15); border: 1px solid #fce7f3; transition: all 0.2s; cursor: pointer; }
+        .cute-card:hover { transform: translateY(-4px); border-color: #f472b6; }
+        .btn-primary { background: linear-gradient(135deg, #f472b6 0%, #ec4899 100%); color: white; border-radius: 16px; padding: 0.75rem 1.5rem; font-weight: 700; transition: all 0.2s; box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3); border: none; }
         .btn-primary:active { transform: scale(0.95); }
-        .btn-secondary { background: white; color: #db2777; border: 2px solid #fbcfe8; border-radius: 16px; padding: 0.75rem 1.5rem; font-weight: 700; }
         
-        input, select { border-radius: 14px !important; border: 2px solid #f3f4f6 !important; padding: 0.85rem !important; outline: none; transition: border-color 0.2s; }
-        input:focus { border-color: #fbcfe8 !important; }
+        input, select, textarea { border-radius: 14px !important; border: 2px solid #f3f4f6 !important; padding: 0.85rem !important; outline: none; transition: border-color 0.2s; background: white; }
+        input:focus, select:focus { border-color: #fbcfe8 !important; }
 
-        /* Terminal Debug Visual */
+        .modal-overlay { background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); }
+        
         #debug-panel {
-            position: fixed; bottom: 0; left: 0; right: 0; height: 260px;
-            background: #111; color: #d4d4d4; font-family: 'Courier New', monospace; font-size: 11px;
+            position: fixed; bottom: 0; left: 0; right: 0; height: 180px;
+            background: #111; color: #d4d4d4; font-family: monospace; font-size: 10px;
             display: flex; z-index: 1000; border-top: 4px solid #f472b6;
         }
         .terminal-section { flex: 1; display: flex; flex-direction: column; border-right: 1px solid #333; overflow: hidden; }
-        .terminal-header { background: #222; padding: 8px 12px; font-weight: bold; color: #fbcfe8; display: flex; justify-content: space-between; align-items: center; }
-        .terminal-content { flex: 1; overflow-y: auto; padding: 12px; white-space: pre-wrap; word-break: break-all; }
-        .log-req { color: #60a5fa; margin-bottom: 10px; padding-left: 8px; border-left: 3px solid #60a5fa; }
-        .log-res { color: #4ade80; margin-bottom: 10px; padding-left: 8px; border-left: 3px solid #4ade80; }
-        .log-err { color: #f87171; margin-bottom: 10px; padding-left: 8px; border-left: 3px solid #f87171; }
-        .payload-box { background: #1a1a1a; padding: 6px; border-radius: 6px; color: #9cdcfe; display: block; margin-top: 4px; border: 1px solid #333; }
-        
-        .hero-bg { background: radial-gradient(circle at top right, #fdf2f8 0%, #fff 100%); }
+        .terminal-content { flex: 1; overflow-y: auto; padding: 10px; white-space: pre-wrap; }
+        .log-req { color: #60a5fa; } .log-res { color: #4ade80; }
+        .log-err { color: #f87171; }
+
+        .filter-badge { background: #fdf2f8; border: 1px solid #fbcfe8; color: #db2777; padding: 4px 12px; border-radius: 99px; font-size: 12px; font-weight: 600; }
     </style>
 </head>
-<body class="hero-bg">
+<body>
 
     <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 p-4">
         <div class="container mx-auto flex justify-between items-center">
             <div class="flex items-center gap-2 cursor-pointer" onclick="showView('home')">
                 <div class="bg-pink-100 p-2 rounded-xl text-2xl">🐾</div>
-                <h1 class="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-rose-600">PetDonation</h1>
+                <h1 class="text-2xl font-black text-pink-500">PetDonation</h1>
             </div>
-            <div class="flex items-center gap-3">
+            <div id="auth-area">
                 <button id="login-btn" class="btn-primary py-2 px-6" onclick="showView('login')">Entrar</button>
                 <div id="user-display" class="hidden flex items-center gap-2 bg-pink-50 px-4 py-2 rounded-full border border-pink-100">
-                    <span class="text-xs uppercase font-bold text-pink-400">Online</span>
                     <span id="user-name" class="text-sm font-bold text-pink-700"></span>
                 </div>
             </div>
@@ -53,286 +49,402 @@
     </header>
 
     <main class="container mx-auto px-4 py-8">
-        <!-- Home / Ajude um Pet hoje! -->
-        <section id="view-home" class="max-w-4xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl md:text-5xl font-black text-gray-800 mb-4">Ajude um Pet hoje!</h2>
-                <p class="text-gray-500 text-lg">Transforme a vida de um amiguinho através da doação.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                <!-- Card Doar -->
-                <div class="cute-card p-8 flex flex-col items-center text-center">
-                    <div class="w-20 h-20 bg-pink-100 rounded-3xl flex items-center justify-center text-4xl mb-6">🎁</div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Quero Doar</h3>
-                    <p class="text-gray-500 mb-8">Tem ração, brinquedos ou acessórios sobrando? Alguém precisa!</p>
-                    <button class="btn-primary w-full text-lg shadow-lg shadow-pink-200" onclick="checkAuthAndNewOffer()">Começar Doação</button>
+        
+        <!-- View: Home -->
+        <section id="view-home" class="max-w-4xl mx-auto text-center py-10">
+            <h2 class="text-5xl font-black text-gray-800 mb-6">Ajude um Pet hoje!</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+                <div class="cute-card p-10 flex flex-col items-center" onclick="checkAuthAndNewOffer()">
+                    <span class="text-5xl mb-4">🎁</span>
+                    <h3 class="text-xl font-bold">Quero Doar</h3>
+                    <p class="text-sm text-gray-400 mt-2">Doe itens para quem precisa</p>
                 </div>
-
-                <!-- Card Ver -->
-                <div class="cute-card p-8 flex flex-col items-center text-center">
-                    <div class="w-20 h-20 bg-blue-100 rounded-3xl flex items-center justify-center text-4xl mb-6">🔍</div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Quero Ajudar</h3>
-                    <p class="text-gray-500 mb-8">Veja os itens disponíveis e conecte-se com doadores locais.</p>
-                    <button class="btn-secondary w-full text-lg border-blue-200 text-blue-500 hover:bg-blue-50" onclick="showView('offers')">Explorar Lista</button>
+                <div class="cute-card p-10 flex flex-col items-center" onclick="showView('offers')">
+                    <span class="text-5xl mb-4">🔍</span>
+                    <h3 class="text-xl font-bold">Quero Ajudar</h3>
+                    <p class="text-sm text-gray-400 mt-2">Encontre doações disponíveis</p>
                 </div>
-            </div>
-
-            <!-- Stats Rápidas -->
-            <div class="flex justify-center gap-12 text-center opacity-60">
-                <div><div class="text-2xl font-bold">+150</div><div class="text-xs uppercase tracking-widest">Pets Felizes</div></div>
-                <div><div class="text-2xl font-bold">+2.4k</div><div class="text-xs uppercase tracking-widest">Doações</div></div>
             </div>
         </section>
 
-        <!-- Login -->
+        <!-- View: Login -->
         <section id="view-login" class="hidden max-w-sm mx-auto">
             <div class="cute-card p-8">
-                <h2 class="text-2xl font-bold mb-2">Bem-vindo(a)</h2>
-                <p class="text-gray-400 text-sm mb-6">Identifique-se para continuar.</p>
-                <div class="space-y-4">
-                    <div>
-                        <label class="text-xs font-bold text-gray-400 uppercase ml-1">ID do Usuário</label>
-                        <input type="number" id="login-id" placeholder="Ex: 16" class="mt-1">
-                    </div>
-                    <button class="btn-primary w-full py-4" onclick="handleLogin()">Acessar Conta</button>
-                    <button class="w-full text-gray-400 text-xs" onclick="showView('home')">Voltar ao Início</button>
-                </div>
+                <h2 class="text-2xl font-bold mb-6">Acessar</h2>
+                <input type="number" id="login-id" placeholder="ID do Usuário" class="w-full mb-4">
+                <button class="btn-primary w-full py-4" onclick="handleLogin()">Entrar</button>
             </div>
         </section>
 
-        <!-- New Offer -->
+        <!-- View: Doações Ativas -->
+        <section id="view-offers" class="hidden">
+            <div class="flex flex-col gap-6 mb-8">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-3xl font-black text-gray-800">Atividades Ativas</h2>
+                    <button class="text-pink-500 font-bold" onclick="showView('home')">← Início</button>
+                </div>
+                
+                <!-- Barra de Filtros -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-3 bg-white p-4 rounded-3xl shadow-sm border border-pink-50">
+                    <div class="flex flex-col gap-1">
+                        <label class="text-[10px] font-bold text-gray-400 ml-2 uppercase">Tipo</label>
+                        <select id="filter-type" onchange="applyFilters()" class="text-sm !p-2 !h-12">
+                            <option value="">Todos</option>
+                            <option value="Offer">Ofertas</option>
+                            <option value="Request">Pedidos</option>
+                        </select>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label class="text-[10px] font-bold text-gray-400 ml-2 uppercase">Categoria</label>
+                        <select id="filter-category" onchange="applyFilters()" class="text-sm !p-2 !h-12">
+                            <option value="">Todas</option>
+                        </select>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label class="text-[10px] font-bold text-gray-400 ml-2 uppercase">Localização (Cidade)</label>
+                        <input type="text" id="filter-city" placeholder="Ex: Caxias..." oninput="applyFilters()" class="text-sm !p-2 !h-12">
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label class="text-[10px] font-bold text-gray-400 ml-2 uppercase">Produto</label>
+                        <input type="text" id="filter-product" placeholder="Nome do item..." oninput="applyFilters()" class="text-sm !p-2 !h-12">
+                    </div>
+                </div>
+            </div>
+
+            <div id="offers-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </section>
+
+        <!-- View: Nova Doação -->
         <section id="view-new-offer" class="hidden max-w-md mx-auto">
             <div class="cute-card p-8">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="bg-pink-100 p-2 rounded-lg">📦</div>
-                    <h2 class="text-2xl font-bold text-gray-800">Nova Doação</h2>
-                </div>
-                <div class="space-y-6">
-                    <div>
-                        <label class="text-xs font-bold text-gray-400 uppercase ml-1">O que você vai doar?</label>
-                        <select id="offer-product-select" class="mt-1"><option>Carregando...</option></select>
-                    </div>
-                    <div>
-                        <label class="text-xs font-bold text-gray-400 uppercase ml-1">Detalhes (Estado de conservação)</label>
-                        <textarea id="offer-description" placeholder="Ex: Ração lacrada, vencimento em 10/24..." class="w-full border-2 border-gray-100 rounded-xl p-3 h-32 outline-none focus:border-pink-200"></textarea>
-                    </div>
-                    <button class="btn-primary w-full py-4 text-lg" onclick="createOffer()">Publicar Doação</button>
-                    <button class="w-full text-gray-400 text-sm font-medium" onclick="showView('home')">Cancelar</button>
+                <h2 class="text-2xl font-bold mb-6">Nova Doação</h2>
+                <div class="space-y-4">
+                    <select id="offer-product-select" class="w-full"></select>
+                    <textarea id="offer-description" placeholder="Descreva o item e estado de conservação..." class="w-full h-32"></textarea>
+                    <button class="btn-primary w-full py-4" onclick="createOffer()">Publicar agora</button>
                 </div>
             </div>
-        </section>
-
-        <!-- Offers List -->
-        <section id="view-offers" class="hidden">
-             <div class="flex justify-between items-center mb-8">
-                <h2 class="text-3xl font-black text-gray-800">Doações Ativas</h2>
-                <button class="text-pink-500 font-bold text-sm" onclick="showView('home')">← Voltar</button>
-             </div>
-             <div id="offers-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         </section>
     </main>
 
-    <!-- Terminal Debug Mode -->
+    <!-- Modal Detail -->
+    <div id="modal-detail" class="hidden fixed inset-0 z-[60] flex items-center justify-center p-4">
+        <div class="modal-overlay absolute inset-0" onclick="closeModal()"></div>
+        <div class="cute-card relative w-full max-w-lg max-h-[90vh] overflow-y-auto p-0 overflow-hidden shadow-2xl">
+            <div class="h-40 bg-pink-100 flex items-center justify-center text-6xl" id="modal-icon">📦</div>
+            <div class="p-8">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <span id="modal-badge" class="filter-badge uppercase">OFERTA</span>
+                        <h2 id="modal-title" class="text-3xl font-bold text-gray-800 mt-2">Título</h2>
+                    </div>
+                    <button onclick="closeModal()" class="text-gray-400 hover:text-pink-500">✕</button>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-3 bg-gray-50 rounded-xl">
+                            <label class="text-[10px] font-bold text-gray-400 uppercase">Categoria</label>
+                            <div id="modal-cat" class="font-bold text-gray-700">...</div>
+                        </div>
+                        <div class="p-3 bg-gray-50 rounded-xl">
+                            <label class="text-[10px] font-bold text-gray-400 uppercase">Data</label>
+                            <div id="modal-date" class="font-bold text-gray-700">...</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-pink-50/30 p-4 rounded-2xl italic text-gray-600" id="modal-desc"></div>
+
+                    <div class="border-t pt-6 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-pink-500 rounded-full flex items-center justify-center text-white font-bold" id="modal-user-avatar">?</div>
+                            <div>
+                                <div id="modal-user-name" class="font-bold text-gray-800 text-sm">Carregando...</div>
+                                <div id="modal-user-loc" class="text-[10px] text-gray-400">Localização</div>
+                            </div>
+                        </div>
+                        <button class="btn-primary py-2 px-4 text-sm" onclick="contactDonor()">Tenho Interesse</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terminal -->
     <div id="debug-panel">
         <div class="terminal-section">
-            <div class="terminal-header">
-                <span>OUTGOING (PAYLOAD)</span>
-                <button onclick="clearLogs('log-content')" class="hover:text-white text-[10px]">LIMPAR</button>
+            <div class="terminal-header p-2 bg-zinc-800 text-[9px] flex justify-between">
+                <span>PAYLOAD</span>
+                <button onclick="document.getElementById('log-content').innerHTML=''">CLEAR</button>
             </div>
             <div id="log-content" class="terminal-content"></div>
         </div>
         <div class="terminal-section">
-            <div class="terminal-header">
-                <span>INCOMING (RESPONSE)</span>
-                <button onclick="clearLogs('json-content')" class="hover:text-white text-[10px]">LIMPAR</button>
+            <div class="terminal-header p-2 bg-zinc-800 text-[9px] flex justify-between">
+                <span>RESPONSE</span>
+                <button onclick="document.getElementById('json-content').innerHTML=''">CLEAR</button>
             </div>
             <div id="json-content" class="terminal-content"></div>
         </div>
     </div>
 
-    <div id="toast" class="hidden fixed bottom-[270px] left-1/2 -translate-x-1/2 bg-gray-900/90 backdrop-blur shadow-2xl text-white px-8 py-3 rounded-2xl z-[1001] font-bold"></div>
+    <div id="toast" class="hidden fixed bottom-[200px] left-1/2 -translate-x-1/2 bg-gray-900 text-white px-8 py-3 rounded-full z-[1001] font-bold shadow-xl"></div>
 
     <script>
         const BASE_URL = 'https://next101.genexus.ai/Id86d7fbe19651073e3bf1ab7697cbcc3f/rest';
         let currentUser = JSON.parse(localStorage.getItem('pet_user')) || null;
+        
+        let allActivities = [];
+        let cache = { products: [], categories: [], users: {} };
 
-        // Forçamos o uso do Proxy para evitar problemas de CORS/Empty Response
         function getUrl(target) {
-            const fullUrl = `${BASE_URL}${target}`;
-            return `https://corsproxy.io/?url=${encodeURIComponent(fullUrl)}`;
+            return `https://corsproxy.io/?url=${encodeURIComponent(BASE_URL + target)}`;
         }
-
-        function addLog(method, url, payload) {
-            const div = document.createElement('div');
-            div.className = "log-req";
-            div.innerHTML = `<b>[${method}]</b> ${url.replace(BASE_URL, '')}<br><span class="payload-box">${JSON.stringify(payload, null, 2)}</span>`;
-            const content = document.getElementById('log-content');
-            content.appendChild(div);
-            content.scrollTop = content.scrollHeight;
-        }
-
-        function addRes(data, status, ok) {
-            const div = document.createElement('div');
-            div.className = ok ? "log-res" : "log-err";
-            div.innerHTML = `<b>STATUS: ${status} ${ok ? '✅' : '❌'}</b><br><pre class="mt-2">${JSON.stringify(data, null, 2)}</pre>`;
-            const content = document.getElementById('json-content');
-            content.appendChild(div);
-            content.scrollTop = content.scrollHeight;
-        }
-
-        function clearLogs(id) { document.getElementById(id).innerHTML = ''; }
 
         async function apiCall(endpoint, method = 'GET', body = null) {
             const url = getUrl(endpoint);
-            addLog(method, endpoint, body);
-
-            const options = {
-                method,
-                headers: { 
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            };
-            if (body) options.body = JSON.stringify(body);
+            const lDiv = document.createElement('div');
+            lDiv.className = "log-req";
+            lDiv.innerText = `[${method}] ${endpoint}`;
+            document.getElementById('log-content').appendChild(lDiv);
 
             try {
-                const response = await fetch(url, options);
+                const response = await fetch(url, {
+                    method,
+                    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                    body: body ? JSON.stringify(body) : null
+                });
+                
                 const text = await response.text();
                 let result = {};
                 
-                try { 
-                    result = text ? JSON.parse(text) : { info: "No content returned" }; 
-                } catch(e) { 
-                    result = { raw_response: text }; 
+                try {
+                    // Se o texto começa com "list - Empty" ou algo similar que não é JSON, tratamos como lista vazia
+                    if (text.includes("Empty") || !text.startsWith('{') && !text.startsWith('[')) {
+                        result = { Result: "[]", info: "Handled non-json empty response" };
+                    } else {
+                        result = JSON.parse(text);
+                    }
+                } catch(e) {
+                    result = { raw: text, error: "Parse error" };
                 }
 
-                addRes(result, response.status, response.ok);
-                if (!response.ok) throw result;
+                const rDiv = document.createElement('div');
+                rDiv.className = response.ok ? "log-res" : "log-err";
+                rDiv.innerText = `[${response.status}] ${JSON.stringify(result).substring(0, 100)}...`;
+                document.getElementById('json-content').appendChild(rDiv);
+
                 return result;
             } catch (err) {
                 console.error("API Error", err);
-                throw err;
+                return { error: true, message: err.message };
             }
+        }
+
+        async function initApp() {
+            // Carregar Produtos
+            const pData = await apiCall('/data', 'POST', { Operation: "list", Table: "Product" });
+            if (pData && pData.Result) {
+                try { cache.products = JSON.parse(pData.Result); } catch(e) { cache.products = []; }
+            }
+
+            // Carregar Categorias
+            const cData = await apiCall('/data', 'POST', { Operation: "list", Table: "Category" });
+            if (cData && cData.Result) {
+                try { 
+                    cache.categories = JSON.parse(cData.Result); 
+                    const sel = document.getElementById('filter-category');
+                    cache.categories.forEach(c => {
+                        sel.innerHTML += `<option value="${c.CategoryId}">${c.CategoryName}</option>`;
+                    });
+                } catch(e) { cache.categories = []; }
+            }
+            updateAuthUI();
         }
 
         function showView(id) {
             document.querySelectorAll('main > section').forEach(s => s.classList.add('hidden'));
             document.getElementById('view-' + id).classList.remove('hidden');
-            window.scrollTo(0,0);
-            if (id === 'new-offer') loadProducts();
-            if (id === 'offers') loadOffers();
+            if (id === 'offers') loadActivities();
+            if (id === 'new-offer') fillProductSelect();
         }
 
-        async function loadProducts() {
-            const select = document.getElementById('offer-product-select');
-            select.innerHTML = '<option>Carregando itens...</option>';
+        function fillProductSelect() {
+            const s = document.getElementById('offer-product-select');
+            s.innerHTML = '<option value="">Selecione o produto</option>';
+            cache.products.filter(p => p.ProductName !== "[EMPTY]").forEach(p => {
+                s.innerHTML += `<option value="${p.ProductId}">${p.ProductName}</option>`;
+            });
+        }
+
+        async function loadActivities() {
+            const container = document.getElementById('offers-list');
+            container.innerHTML = '<div class="col-span-full text-center p-10">Buscando atividades...</div>';
+            
+            const res = await apiCall('/data', 'POST', { Operation: "list", Table: "Activity" });
             try {
-                const res = await apiCall('/data', 'POST', { Operation: "list", Table: "Product", Key: "", DataJSON: "" });
-                const list = JSON.parse(res.Result);
-                select.innerHTML = '<option value="">Selecione o Item</option>';
-                list.forEach(p => {
-                    if(p.ProductName && p.ProductName !== "[EMPTY]") {
-                        select.innerHTML += `<option value="${p.ProductId}">${p.ProductName}</option>`;
+                allActivities = JSON.parse(res.Result || "[]");
+                
+                // Pré-carregar nomes de usuários únicos para os filtros de cidade
+                const userIds = [...new Set(allActivities.map(a => a.ActivityUserId))];
+                for (let uid of userIds) {
+                    if (!cache.users[uid]) {
+                        apiCall(`/User/${uid}`).then(u => { 
+                            if(u && u.UserId) cache.users[uid] = u;
+                            applyFilters(); // Re-aplica filtros conforme usuários carregam
+                        });
                     }
-                });
-            } catch(e) { select.innerHTML = '<option>Erro ao carregar lista</option>'; }
+                }
+                
+                renderActivities(allActivities);
+            } catch(e) { 
+                container.innerHTML = '<div class="col-span-full text-center p-10 text-red-400">Nenhuma atividade encontrada ou erro no servidor.</div>';
+            }
+        }
+
+        function renderActivities(data) {
+            const container = document.getElementById('offers-list');
+            container.innerHTML = "";
+            
+            if (data.length === 0) {
+                container.innerHTML = '<div class="col-span-full text-center p-10 text-gray-400">Nenhum item corresponde aos filtros.</div>';
+                return;
+            }
+
+            data.forEach(item => {
+                const product = cache.products.find(p => p.ProductId == item.ActivityProductId) || { ProductName: 'Item #' + item.ActivityProductId };
+                const user = cache.users[item.ActivityUserId];
+                
+                const card = document.createElement('div');
+                card.className = "cute-card p-6 flex flex-col";
+                card.onclick = () => openModal(item, product);
+                card.innerHTML = `
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="filter-badge">${item.ActivityType === 'Offer' ? 'OFERTA' : 'PEDIDO'}</span>
+                        <span class="text-[10px] font-bold text-gray-300">${new Date(item.ActivityDateTime).toLocaleDateString()}</span>
+                    </div>
+                    <h4 class="font-bold text-gray-800 mb-1">${product.ProductName}</h4>
+                    <p class="text-xs text-gray-400 line-clamp-2 mb-4">${item.ActivityDescription || 'Sem descrição'}</p>
+                    <div class="mt-auto pt-4 border-t flex justify-between items-center">
+                        <div class="flex items-center gap-2">
+                            <div class="w-6 h-6 bg-pink-50 rounded-full flex items-center justify-center text-[10px] text-pink-400 font-bold">
+                                ${user ? user.UserName.charAt(0) : '?'}
+                            </div>
+                            <div class="text-[10px] font-bold text-gray-500">${user ? user.UserName : 'Usuário ' + item.ActivityUserId}</div>
+                        </div>
+                        <div class="text-[9px] text-gray-300 font-bold">${user ? (user.UserCity || '---') : ''}</div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function applyFilters() {
+            const type = document.getElementById('filter-type').value;
+            const catId = document.getElementById('filter-category').value;
+            const city = document.getElementById('filter-city').value.toLowerCase();
+            const prodName = document.getElementById('filter-product').value.toLowerCase();
+
+            const filtered = allActivities.filter(a => {
+                const product = cache.products.find(p => p.ProductId == a.ActivityProductId) || {};
+                const user = cache.users[a.ActivityUserId] || {};
+                
+                const matchType = !type || a.ActivityType === type;
+                const matchCat = !catId || product.ProductCategoryId == catId;
+                const matchCity = !city || (user.UserCity && user.UserCity.toLowerCase().includes(city));
+                const matchProd = !prodName || (product.ProductName && product.ProductName.toLowerCase().includes(prodName));
+                
+                return matchType && matchCat && matchCity && matchProd;
+            });
+
+            renderActivities(filtered);
+        }
+
+        async function openModal(item, product) {
+            const modal = document.getElementById('modal-detail');
+            document.getElementById('modal-title').innerText = product.ProductName;
+            document.getElementById('modal-desc').innerText = item.ActivityDescription || "Sem detalhes adicionais.";
+            document.getElementById('modal-badge').innerText = item.ActivityType;
+            document.getElementById('modal-date').innerText = new Date(item.ActivityDateTime).toLocaleDateString();
+            
+            const cat = cache.categories.find(c => c.CategoryId == product.ProductCategoryId);
+            document.getElementById('modal-cat').innerText = cat ? cat.CategoryName : 'Outros';
+
+            // Reset user info
+            document.getElementById('modal-user-name').innerText = "Carregando...";
+            document.getElementById('modal-user-loc').innerText = "...";
+            document.getElementById('modal-user-avatar').innerText = "?";
+
+            modal.classList.remove('hidden');
+
+            const userData = cache.users[item.ActivityUserId] || await apiCall(`/User/${item.ActivityUserId}`);
+            if (userData && userData.UserName) {
+                cache.users[item.ActivityUserId] = userData;
+                document.getElementById('modal-user-name').innerText = userData.UserName;
+                document.getElementById('modal-user-loc').innerText = `${userData.UserCity || 'Cidade'} - ${userData.UserCountry || 'BR'}`;
+                document.getElementById('modal-user-avatar').innerText = userData.UserName.charAt(0);
+            }
+        }
+
+        function closeModal() { document.getElementById('modal-detail').classList.add('hidden'); }
+
+        async function handleLogin() {
+            const id = document.getElementById('login-id').value;
+            if(!id) return notify("Digite um ID");
+            const user = await apiCall(`/User/${id}`);
+            if(user && user.UserId) {
+                currentUser = user;
+                localStorage.setItem('pet_user', JSON.stringify(user));
+                updateAuthUI();
+                showView('home');
+                notify("Bem-vindo, " + user.UserName);
+            } else { notify("Usuário não encontrado"); }
+        }
+
+        function updateAuthUI() {
+            if(currentUser) {
+                document.getElementById('user-name').innerText = currentUser.UserName.split(' ')[0];
+                document.getElementById('user-display').classList.remove('hidden');
+                document.getElementById('login-btn').classList.add('hidden');
+            }
+        }
+
+        function checkAuthAndNewOffer() {
+            if(!currentUser) showView('login');
+            else showView('new-offer');
         }
 
         async function createOffer() {
             const prodId = document.getElementById('offer-product-select').value;
             const desc = document.getElementById('offer-description').value;
-            
-            if(!prodId) return notify("⚠️ Selecione um produto");
+            if(!prodId) return notify("Selecione um produto");
 
             const payload = {
                 ActivityId: 0,
                 ActivityUserId: parseInt(currentUser.UserId),
                 ActivityProductId: parseInt(prodId),
-                ActivityDescription: String(desc || "Sem descrição"),
+                ActivityDescription: desc,
                 ActivityType: "Offer",
                 ActivityStatus: "Active",
                 ActivityDateTime: new Date().toISOString().split('.')[0]
             };
 
-            try {
-                await apiCall('/Activity/0', 'POST', payload);
-                notify("✨ Doação publicada com sucesso!");
-                setTimeout(() => showView('home'), 1500);
-            } catch(e) {
-                notify("❌ Erro ao publicar. Veja o terminal.");
-            }
-        }
-
-        async function loadOffers() {
-            const container = document.getElementById('offers-list');
-            container.innerHTML = '<div class="col-span-full text-center py-10 text-gray-400">Buscando doações...</div>';
-            try {
-                const res = await apiCall('/data', 'POST', { Operation: "list", Table: "Activity", Key: "", DataJSON: "" });
-                const list = JSON.parse(res.Result).filter(a => a.ActivityType === "Offer");
-                container.innerHTML = "";
-                
-                if (list.length === 0) {
-                    container.innerHTML = '<div class="col-span-full text-center py-10">Nenhuma doação encontrada.</div>';
-                    return;
-                }
-
-                list.forEach(off => {
-                    container.innerHTML += `
-                        <div class="cute-card p-6 border-l-4 border-l-pink-400">
-                            <div class="flex justify-between items-start mb-4">
-                                <span class="bg-pink-50 text-pink-500 text-[10px] font-black px-2 py-1 rounded-md uppercase">Oferta #${off.ActivityId}</span>
-                                <span class="text-xs text-gray-300">${new Date(off.ActivityDateTime).toLocaleDateString()}</span>
-                            </div>
-                            <h4 class="font-bold text-gray-800 text-lg mb-1">Produto ID: ${off.ActivityProductId}</h4>
-                            <p class="text-sm text-gray-500 mb-6 leading-relaxed">"${off.ActivityDescription}"</p>
-                            <div class="flex items-center gap-2 pt-4 border-t border-gray-50">
-                                <div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-xs">👤</div>
-                                <div class="text-[11px] text-gray-400 font-medium">Doador ID: ${off.ActivityUserId}</div>
-                            </div>
-                        </div>
-                    `;
-                });
-            } catch(e) { container.innerHTML = '<div class="col-span-full text-center text-red-400 py-10 font-bold">Erro ao carregar doações do servidor.</div>'; }
-        }
-
-        async function handleLogin() {
-            const id = document.getElementById('login-id').value;
-            if(!id) return notify("Digite um ID");
-            try {
-                const user = await apiCall(`/User/${id}`);
-                currentUser = user;
-                localStorage.setItem('pet_user', JSON.stringify(user));
-                updateAuthUI();
-                notify("👋 Bem-vindo de volta!");
+            const res = await apiCall('/Activity/0', 'POST', payload);
+            if(res && !res.error) {
+                notify("Doação publicada!");
                 showView('home');
-            } catch(e) { notify("❌ ID não encontrado"); }
-        }
-
-        function updateAuthUI() {
-            const display = document.getElementById('user-display');
-            const nameSpan = document.getElementById('user-name');
-            const loginBtn = document.getElementById('login-btn');
-            
-            if(currentUser) {
-                nameSpan.innerText = currentUser.UserName.split(' ')[0];
-                display.classList.remove('hidden');
-                loginBtn.classList.add('hidden');
-            }
-        }
-
-        function checkAuthAndNewOffer() {
-            if(!currentUser) { notify("🔒 Você precisa entrar primeiro"); showView('login'); }
-            else { showView('new-offer'); }
+            } else { notify("Erro ao publicar"); }
         }
 
         function notify(m) {
             const t = document.getElementById('toast');
             t.innerText = m; t.classList.remove('hidden');
-            setTimeout(() => t.classList.add('hidden'), 3500);
+            setTimeout(() => t.classList.add('hidden'), 3000);
         }
 
-        window.onload = updateAuthUI;
+        function contactDonor() { notify("Solicitação enviada ao doador!"); closeModal(); }
+
+        window.onload = initApp;
     </script>
 </body>
 </html>
