@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Completo & Planejador do Pomar - Linha 40 (Caxias do Sul)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        serra: {
+                            50: '#f2f7f4',
+                            100: '#e1ede6',
+                            600: '#2d6a4f',
+                            700: '#1b4332',
+                            800: '#081c15',
+                            accent: '#d4a373'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8faf9; color: #1e293b; }
+        .glass-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(226, 232, 240, 0.8); }
+        .custom-scrollbar::-webkit-scrollbar { height: 8px; width: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .img-fallback { background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col custom-scrollbar">
+
+    <header class="bg-serra-800 text-white shadow-lg sticky top-0 z-30 border-b border-serra-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="p-2.5 bg-serra-600 rounded-xl shadow-inner text-amber-300">
+                    <i class="fa-solid font-bold fa-tree text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-bold font-serif tracking-tight text-white">Pomar Inteligente - Serra Gaúcha</h1>
+                    <p class="text-xs sm:text-sm text-emerald-200/90 flex items-center gap-1.5">
+                        <i class="fa-solid fa-location-dot text-amber-400"></i>
+                        Estr. Mun. Ver. Marcial Pisoni, 2448 - Linha 40, Caxias do Sul
+                    </p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-3 text-xs sm:text-sm">
+                <div class="bg-serra-700/80 px-3 py-1.5 rounded-lg border border-emerald-600/40 flex items-center gap-2 text-emerald-100">
+                    <i class="fa-solid fa-cloud-sun text-amber-300"></i>
+                    <span>Clima Cfb (Temperado)</span>
+                </div>
+                <div class="bg-amber-500/20 px-3 py-1.5 rounded-lg border border-amber-500/40 text-amber-200 flex items-center gap-2">
+                    <i class="fa-solid fa-seedling text-amber-400"></i>
+                    <span>Outubro: Somente Mudas em Vaso</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Warning Box -->
+            <div class="lg:col-span-2 glass-card rounded-2xl p-6 border-l-8 border-l-amber-500 shadow-sm relative overflow-hidden flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2.5 py-1 rounded-full">
+                            <i class="fa-solid fa-triangle-exclamation mr-1"></i> Atenção para Outubro (Primavera)
+                        </span>
+                        <span class="text-xs text-slate-500">Mudar para Raiz Nua só em Junho-Agosto</span>
+                    </div>
+                    <h2 class="text-lg font-bold text-slate-800 mb-2">Regra de Ouro para Plantio em Outubro na Linha 40</h2>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Nesta época do ano (primavera), <strong>NUNCA compre mudas de "Raiz Nua"</strong>. Adquira estritamente mudas <strong>embaladas em saco plástico, vaso ou terrão protegido</strong>. Como as plantas já saíram da dormência, a raiz nua sofrerá desidratação fatal. Mudas em vaso/saco mantêm o sistema radicular intacto.
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-3 border-t border-slate-100 text-xs">
+                    <div class="flex items-center gap-2 text-slate-700">
+                        <i class="fa-solid fa-droplet text-blue-500"></i>
+                        <span>Rega: 2-3x / semana</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-700">
+                        <i class="fa-solid fa-sun text-amber-500"></i>
+                        <span>Sol pleno diário</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-700">
+                        <i class="fa-solid fa-shield-halved text-emerald-600"></i>
+                        <span>Preservar o Torrão</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-700">
+                        <i class="fa-solid fa-rug text-amber-700"></i>
+                        <span>Usar Cobertura Morta</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Space Estimator Widget -->
+            <div class="glass-card rounded-2xl p-6 shadow-sm border border-emerald-100 flex flex-col justify-between bg-gradient-to-br from-emerald-50/50 to-white">
+                <div>
+                    <div class="flex items-center gap-2 mb-2 text-serra-700 font-bold">
+                        <i class="fa-solid fa-calculator text-emerald-600"></i>
+                        <h3>Calculadora de Área do Pomar</h3>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-4">Insira o tamanho do seu terreno em $m^2$ para estimar quantas árvores cabem com espaçamento ideal.</p>
+                    
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Área Disponível ($m^2$)</label>
+                            <input type="number" id="areaInput" value="500" placeholder="Ex: 500" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Perfil de Plantio</label>
+                            <select id="profileSelect" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                                <option value="balanced">Equilibrado (Espaçamento Médio 4x4m)</option>
+                                <option value="dense">Pequenas Frutas / Denso (3x3m)</option>
+                                <option value="spacious">Grandes Árvores / Pecã (6x6m+)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 p-3 bg-serra-50 rounded-xl border border-serra-100 text-center">
+                    <span class="text-xs text-slate-500 block">Capacidade Estimada</span>
+                    <span id="capacityOutput" class="text-2xl font-bold text-serra-700">~ 31 Mudas</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="glass-card rounded-2xl p-5 shadow-sm space-y-4">
+            <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+                
+                <!-- Search Input -->
+                <div class="relative w-full md:w-80">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input type="text" id="searchInput" placeholder="Buscar por fruta, variedade..." class="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:outline-none transition-all">
+                </div>
+
+                <!-- Category Filters -->
+                <div class="flex flex-wrap items-center gap-2 w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
+                    <button class="filter-cat-btn active bg-serra-700 text-white px-3.5 py-2 rounded-xl text-xs font-semibold shadow-sm transition-all whitespace-nowrap" data-category="all">
+                        Todas (<span id="count-all">0</span>)
+                    </button>
+                    <button class="filter-cat-btn bg-slate-100 hover:bg-slate-200 text-slate-700 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all whitespace-nowrap" data-category="Nativas da Serra">
+                        <i class="fa-solid fa-leaf text-emerald-600 mr-1"></i> Nativas (<span id="count-nativas">0</span>)
+                    </button>
+                    <button class="filter-cat-btn bg-slate-100 hover:bg-slate-200 text-slate-700 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all whitespace-nowrap" data-category="Cítricos Raros & Exóticos">
+                        <i class="fa-solid fa-lemon text-amber-500 mr-1"></i> Cítricos (<span id="count-citricos">0</span>)
+                    </button>
+                    <button class="filter-cat-btn bg-slate-100 hover:bg-slate-200 text-slate-700 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all whitespace-nowrap" data-category="Temperadas, Kiwi & Frutas Vermelhas">
+                        <i class="fa-solid fa-apple-whole text-rose-500 mr-1"></i> Temperadas/Kiwi (<span id="count-temperadas">0</span>)
+                    </button>
+                    <button class="filter-cat-btn bg-slate-100 hover:bg-slate-200 text-slate-700 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all whitespace-nowrap" data-category="Tropicais & Subtropicais">
+                        <i class="fa-solid fa-sun text-orange-500 mr-1"></i> Tropicais (<span id="count-tropicais">0</span>)
+                    </button>
+                </div>
+
+                <!-- Secondary Filter (Success rate) -->
+                <div class="flex items-center gap-2 w-full md:w-auto justify-end">
+                    <label class="text-xs text-slate-500 font-medium whitespace-nowrap">Chance Sucesso:</label>
+                    <select id="successFilter" class="px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        <option value="all">Todas</option>
+                        <option value="Alta">Alta (80-100%)</option>
+                        <option value="Média">Média (50-79%)</option>
+                        <option value="Baixa">Baixa (&lt;50%)</option>
+                    </select>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="glass-card rounded-2xl shadow-sm border border-slate-200/80 overflow-hidden">
+            <div class="overflow-x-auto custom-scrollbar">
+                <table class="w-full text-left border-collapse min-w-[1200px]">
+                    <thead>
+                        <tr class="bg-slate-100/90 border-b border-slate-200 text-slate-700 text-xs font-bold uppercase tracking-wider sticky top-0 backdrop-blur-md z-10">
+                            <th class="py-4 px-4">Fruta & Variedade</th>
+                            <th class="py-4 px-3 text-center">Img Fruta</th>
+                            <th class="py-4 px-3 text-center">Img Árvore</th>
+                            <th class="py-4 px-3">Categoria</th>
+                            <th class="py-4 px-3 text-center">Chance Sucesso</th>
+                            <th class="py-4 px-3">Apresentação & Época</th>
+                            <th class="py-4 px-3">Faixa de Preço (RS/ML)</th>
+                            <th class="py-4 px-3">Tempo Colheita</th>
+                            <th class="py-4 px-3">Época Fruto</th>
+                            <th class="py-4 px-3">Produtividade Estimada</th>
+                            <th class="py-4 px-3">Espaçamento</th>
+                            <th class="py-4 px-3 text-center">Detalhes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody" class="divide-y divide-slate-200/60 text-xs font-medium text-slate-700">
+                        <!-- Rows dynamically populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden p-12 text-center">
+                <i class="fa-solid fa-seedling text-4xl text-slate-300 mb-3"></i>
+                <p class="text-slate-600 font-semibold text-base">Nenhuma frutífera encontrada.</p>
+                <p class="text-slate-400 text-xs mt-1">Tente ajustar os filtros ou a palavra digitada na busca.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="detailModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-100 p-6 space-y-6 relative transform scale-95 transition-transform duration-300 custom-scrollbar" id="modalContainer">
+            <button id="closeModalBtn" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 transition-all">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="flex items-start gap-4 pr-8">
+                <img id="modalFruitImg" src="" alt="" class="w-20 h-20 rounded-xl object-cover shadow border border-slate-200 flex-shrink-0">
+                <div>
+                    <span id="modalCategoryBadge" class="inline-block text-[10px] uppercase font-bold px-2 py-0.5 rounded-full mb-1"></span>
+                    <h3 id="modalTitle" class="text-xl font-bold font-serif text-slate-800"></h3>
+                    <p id="modalVariety" class="text-xs text-slate-500 italic"></p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-50 p-3 rounded-xl border border-slate-100 text-center text-xs">
+                <div>
+                    <span class="text-slate-400 block text-[10px] uppercase font-bold">Chance</span>
+                    <span id="modalSuccess" class="font-bold text-slate-700"></span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block text-[10px] uppercase font-bold">Preço Estimado</span>
+                    <span id="modalPrice" class="font-bold text-slate-700"></span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block text-[10px] uppercase font-bold">1ª Colheita</span>
+                    <span id="modalTime" class="font-bold text-slate-700"></span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block text-[10px] uppercase font-bold">Espaçamento</span>
+                    <span id="modalSpacing" class="font-bold text-slate-700"></span>
+                </div>
+            </div>
+
+            <div class="space-y-3 text-xs leading-relaxed text-slate-600">
+                <div class="bg-amber-50/60 p-3.5 rounded-xl border border-amber-200/60">
+                    <h4 class="font-bold text-amber-900 mb-1 flex items-center gap-1.5">
+                        <i class="fa-solid fa-hand-holding-droplet text-amber-600"></i> Cuidados Adicionais & Estratégia de Clima
+                    </h4>
+                    <p id="modalCareText" class="text-amber-950/80"></p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                        <span class="font-bold text-slate-700 block mb-1"><i class="fa-solid fa-box-open text-emerald-600 mr-1"></i> Apresentação Ideal</span>
+                        <p id="modalPresentationText"></p>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                        <span class="font-bold text-slate-700 block mb-1"><i class="fa-solid fa-wheat-awn text-amber-600 mr-1"></i> Estimativa de Safra</span>
+                        <p id="modalYieldText"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-4 border-t border-slate-100 flex justify-end">
+                <button id="closeModalFooterBtn" class="px-5 py-2 bg-serra-700 hover:bg-serra-800 text-white font-semibold rounded-xl text-xs transition-all">
+                    Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-slate-900 text-slate-400 text-xs py-8 border-t border-slate-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
+            <p class="font-medium text-slate-300">Guia Técnico de Plantio para a Serra Gaúcha &bull; Linha 40 (Caxias do Sul)</p>
+            <p class="text-slate-500">Dados agronômicos: referências técnicas do projeto. Imagens botânicas: Wikimedia Commons, selecionadas por espécie/nome científico. Verifique a licença de cada arquivo antes de redistribuir.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dataset of all fruit trees adapted to user prompt specifications
+        const fruitData = [
+            // --- NATIVAS DA SERRA ---
+            {
+                id: 'jabuticaba-hibrida',
+                name: 'Jabuticaba Híbrida',
+                variety: 'Plinia cauliflora × phitrantha',
+                category: 'Nativas da Serra',
+                successRate: 'Alta',
+                successPercent: '95%',
+                presentation: 'Vaso / Saco Plástico (Ano todo)',
+                price: 'R$ 50,00 - R$ 180,00',
+                timeToHarvest: '2 a 3 anos',
+                harvestSeason: 'Out a Mar (múltiplas floradas)',
+                yield: '15 a 40 kg / árvore',
+                spacing: '4,0m x 4,0m',
+                care: 'Rega constante e solo rico em matéria orgânica. Suporta perfeitamente o inverno frio de Caxias sem perda foliar.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Plinia%20cauliflora%202.jpg',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Myrciaria%20cauliflora%2015zz.jpg'
+            },
+            {
+                id: 'jabuticaba-sabara',
+                name: 'Jabuticaba Sabará / Olho-de-Boi',
+                variety: 'Plinia jaboticaba',
+                category: 'Nativas da Serra',
+                successRate: 'Alta',
+                successPercent: '90%',
+                presentation: 'Vaso / Saco com terrão',
+                price: 'R$ 60,00 - R$ 200,00',
+                timeToHarvest: '8 a 10 anos',
+                harvestSeason: 'Dezembro a Janeiro',
+                yield: '30 a 70 kg / árvore',
+                spacing: '5,0m x 5,0m',
+                care: 'Crescimento mais lento que a Híbrida, porém forma uma árvore frondosa e muito duradoura. Tolerante ao frio.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Myrciaria%20cauliflora%2015zz.jpg',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Myrciaria%20cauliflora%2015zz.jpg'
+            },
+            {
+                id: 'pitanga',
+                name: 'Pitanga',
+                variety: 'Eugenia uniflora (Vermelha/Preta)',
+                category: 'Nativas da Serra',
+                successRate: 'Alta',
+                successPercent: '90%',
+                presentation: 'Vaso / Saco (Outubro a Abril)',
+                price: 'R$ 30,00 - R$ 65,00',
+                timeToHarvest: '2 a 3 anos',
+                harvestSeason: 'Outubro a Janeiro',
+                yield: '8 a 18 kg / árvore',
+                spacing: '3,0m x 3,0m',
+                care: 'Proteger do vento sul excessivo enquanto muda jovem. Aguenta geadas moderadas depois de estabelecida.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Pitanga%201.jpg',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Eugenia%20uniflora%20%28Brazilian%20cherry%29%20tree%20in%20RDA%2C%20Bogra%2001.jpg'
+            },
+            {
+                id: 'guabiroba',
+                name: 'Guabiroba / Guavira',
+                variety: 'Campomanesia xanthocarpa',
+                category: 'Nativas da Serra',
+                successRate: 'Alta',
+                successPercent: '95%',
+                presentation: 'Vaso / Saco Plástico',
+                price: 'R$ 35,00 - R$ 70,00',
+                timeToHarvest: '3 a 5 anos',
+                harvestSeason: 'Novembro a Dezembro',
+                yield: '20 a 50 kg / árvore',
+                spacing: '5,0m x 5,0m',
+                care: 'Extremamente rústica na Serra Gaúcha. Não exige poda complexa e tolera solos ácidos e geadas fortes.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Campomanesia%20xantocarpa.jpg',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Campomanesia%20xanthocarpa%20kz01.jpg'
+            },
+            {
+                id: 'cereja-rio-grande',
+                name: 'Cereja-do-Rio-Grande',
+                variety: 'Eugenia involucrata',
+                category: 'Nativas da Serra',
+                successRate: 'Alta',
+                successPercent: '95%',
+                presentation: 'Vaso / Saco Plástico',
+                price: 'R$ 35,00 - R$ 75,00',
+                timeToHarvest: '3 a 4 anos',
+                harvestSeason: 'Outubro a Novembro',
+                yield: '10 a 25 kg / árvore',
+                spacing: '4,0m x 4,0m',
+                care: 'Belíssima árvore ornamental de fruto muito saboroso. Suporta temperaturas bem abaixo de zero sem estresse.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Cerella.jpg',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Cerella.jpg'
+            },
+            {
+                id: 'uvaia',
+                name: 'Uvaia',
+                variety: 'Eugenia pyriformis',
+                category: 'Nativas da Serra',
+                successRate: 'Alta',
+                successPercent: '90%',
+                presentation: 'Vaso / Saco Plástico',
+                price: 'R$ 30,00 - R$ 60,00',
+                timeToHarvest: '3 a 5 anos',
+                harvestSeason: 'Outubro a Dezembro',
+                yield: '15 a 30 kg / árvore',
+                spacing: '4,0m x 4,0m',
+                care: 'Prefere terrenos com bom declive e sem acúmulo de água no solo. Fruto aromático excelente para sucos e geleias.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Uvaia%20Fruto1.jpg',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Uvaia.JPG'
+            },
+            {
+                id: 'guabiju',
+                name: 'Guabiju',
+                variety: 'Myrcianthes pungens',
+                category: 'Nativas da Serra',
+                successRate: 'Alta',
+                successPercent: '95%',
+                presentation: 'Vaso / Saco Plástico',
+                price: 'R$ 40,00 - R$ 80,00',
+                timeToHarvest: '4 a 6 anos',
+                harvestSeason: 'Janeiro a Março',
+                yield: '15 a 35 kg / árvore',
+                spacing: '5,0m x 5,0m',
+                care: 'Fruto aveludado e doce semelhante ao mirtilo na casca. Resiste muito bem a ventos fortes e frio intenso.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Guabiju%20Fruto.jpg',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Myrcianthes%20pungens.jpg'
+            },
+            {
+                id: 'araca',
+                name: 'Araçá (Vermelho / Amarelo)',
+                variety: 'Psidium cattleyanum',
+                category: 'Nativas da Serra',
+                successRate: 'Alta',
+                successPercent: '98%',
+                presentation: 'Vaso / Saco Plástico',
+                price: 'R$ 25,00 - R$ 50,00',
+                timeToHarvest: '1 a 2 anos',
+                harvestSeason: 'Janeiro a Abril',
+                yield: '10 a 20 kg / arbusto',
+                spacing: '3,0m x 3,0m',
+                care: 'Arbustiva rústica de facílimo cultivo. Resiste total às geadas da Serra e começa a produzir super jovem.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Ara%C3%A7%C3%A1-rosa%20%28do%20tupi%20aras%C3%A1%29%2C%20Psidium%20cattleyanum%2001.jpg',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Guava%20tree%20Bhoodha%20Ka%20Bas.JPG'
+            },
+            {
+                id: 'araucaria-pinhao',
+                name: 'Araucária / Pinhão (Enxertada)',
+                variety: 'Araucaria angustifolia (Fêmea)',
+                category: 'Nativas da Serra',
+                successRate: 'Alta',
+                successPercent: '100%',
+                presentation: 'Vaso (Outubro a Maio)',
+                price: 'R$ 90,00 - R$ 180,00',
+                timeToHarvest: '6 a 8 anos',
+                harvestSeason: 'Março a Junho',
+                yield: '30 a 90 kg (pinhão)',
+                spacing: '8,0m x 8,0m',
+                care: 'Exige muda enxertada para garantir a fêmea produtora e antecipar safra. Ter 1 macho próximo na região.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Araucaria%20angustifolia%20pinhao.jpg',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Arauc%C3%A1ria%20ou%20Pinheiro%20do%20Paran%C3%A1%20%28Araucaria%20angustifolia%29.jpg'
+            },
+            {
+                id: 'cambuca',
+                name: 'Cambucá',
+                variety: 'Plinia edulis',
+                category: 'Nativas da Serra',
+                successRate: 'Média',
+                successPercent: '75%',
+                presentation: 'Vaso Plástico',
+                price: 'R$ 60,00 - R$ 130,00',
+                timeToHarvest: '6 a 9 anos',
+                harvestSeason: 'Janeiro a Março',
+                yield: '15 a 30 kg / árvore',
+                spacing: '5,0m x 5,0m',
+                care: 'Crescimento lento. Requer solo sempre úmido e abrigo contra o vento minuano seco no primeiro ano.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/P%20edulis%2001.JPG',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Cambuca.jpg'
+            },
+
+            // --- CÍTRICOS RAROS & EXÓTICOS ---
+            {
+                id: 'pomelo-grapefruit',
+                name: 'Pomelo / Grapefruit',
+                variety: 'Citrus × paradisi (Star Ruby)',
+                category: 'Cítricos Raros & Exóticos',
+                successRate: 'Alta',
+                successPercent: '85%',
+                presentation: 'Vaso / Saco com terrão',
+                price: 'R$ 55,00 - R$ 95,00',
+                timeToHarvest: '2 a 3 anos',
+                harvestSeason: 'Maio a Agosto',
+                yield: '60 a 120 kg (150-300 fr)',
+                spacing: '4,0m x 4,0m',
+                care: 'Polpa rosada e sabor agridoce refinado. Exige sol pleno no morro e adubação rica em potássio na primavera.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Citrus%20paradisi%20%28Grapefruit%2C%20pink%29%20white%20bg.jpg',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Citrus%20x%20paradisi%20%28Macfad.%29%20Pompelino%20Grapefruit%20002.jpg'
+            },
+            {
+                id: 'limao-caviar',
+                name: 'Limão Caviar / Finger Lime',
+                variety: 'Citrus australasica',
+                category: 'Cítricos Raros & Exóticos',
+                successRate: 'Média',
+                successPercent: '75%',
+                presentation: 'Vaso (Ano todo)',
+                price: 'R$ 80,00 - R$ 160,00',
+                timeToHarvest: '2 a 3 anos',
+                harvestSeason: 'Fevereiro a Maio',
+                yield: '2 a 5 kg (centenas de pérolas)',
+                spacing: '2,5m x 2,5m',
+                care: 'Arbusto com espinhos. Proteger com manto de TNT nas geadas mais severas dos dois primeiros anos.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Finger%20limes.jpg',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Citrus%20australasica%20-%20Australian%20finger%20lime.jpg'
+            },
+            {
+                id: 'kinkan-kumquat',
+                name: 'Kinkan / Kumquat',
+                variety: 'Fortunella japonica (Nagami)',
+                category: 'Cítricos Raros & Exóticos',
+                successRate: 'Alta',
+                successPercent: '95%',
+                presentation: 'Vaso / Saco Plástico',
+                price: 'R$ 50,00 - R$ 90,00',
+                timeToHarvest: '1 a 2 anos',
+                harvestSeason: 'Abril a Agosto',
+                yield: '10 a 25 kg / árvore',
+                spacing: '3,0m x 3,0m',
+                care: 'Mini-laranja consumida inteira com a casca doce. Altíssima tolerância ao frio e geadas da Serra Gaúcha.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kumquat%20fruit.jpg',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Citrus%20japonica3.jpg'
+            },
+            {
+                id: 'laranja-sanguinea',
+                name: 'Laranja Sanguínea',
+                variety: 'Citrus sinensis (Moro / Tarocco)',
+                category: 'Cítricos Raros & Exóticos',
+                successRate: 'Alta',
+                successPercent: '90%',
+                presentation: 'Vaso / Saco Plástico',
+                price: 'R$ 50,00 - R$ 85,00',
+                timeToHarvest: '2 a 3 anos',
+                harvestSeason: 'Junho a Setembro',
+                yield: '50 a 100 kg / árvore',
+                spacing: '4,0m x 4,0m',
+                care: 'O frio de inverno da Serra Gaúcha é o ingrediente secreto que ativa a pigmentação vermelha da polpa.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Blood%20orange.jpg',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Blood%20orange.jpg'
+            },
+            {
+                id: 'bergamota-dekopon',
+                name: 'Bergamota Dekopon',
+                variety: 'Citrus reticulata (Hallabong)',
+                category: 'Cítricos Raros & Exóticos',
+                successRate: 'Alta',
+                successPercent: '85%',
+                presentation: 'Vaso / Saco Plástico',
+                price: 'R$ 60,00 - R$ 110,00',
+                timeToHarvest: '2 a 3 anos',
+                harvestSeason: 'Julho a Outubro',
+                yield: '40 a 80 kg / árvore',
+                spacing: '4,0m x 4,0m',
+                care: 'Frutos gigantes extremamente doces. Fazer raleio de frutos para evitar o quebramento de galhos pelo peso.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Dekopon.jpg',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Dekopon-at-greenhouse.jpg'
+            },
+            {
+                id: 'mao-de-buda',
+                name: 'Mão de Buda',
+                variety: 'Citrus medica var. sarcodactylis',
+                category: 'Cítricos Raros & Exóticos',
+                successRate: 'Média',
+                successPercent: '65%',
+                presentation: 'Vaso Plástico',
+                price: 'R$ 75,00 - R$ 140,00',
+                timeToHarvest: '2 a 3 anos',
+                harvestSeason: 'Maio a Agosto',
+                yield: '15 a 35 frutos / árvore',
+                spacing: '3,0m x 3,0m',
+                care: 'Ornamental e aromático. Sensível a geadas fortes e ventos secos do sul; plantar em local protegido no terreno.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Buddhafinger.jpg',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Citrus%20medica%20var.%20sarcodactylis%2C%20Phipps%20Conservatory%2C%202015-10-13%2C%2001.jpg'
+            },
+            {
+                id: 'calamondin-limequat',
+                name: 'Calamondin / Limequat',
+                variety: 'Citrus microcarpa',
+                category: 'Cítricos Raros & Exóticos',
+                successRate: 'Alta',
+                successPercent: '90%',
+                presentation: 'Vaso / Saco Plástico',
+                price: 'R$ 45,00 - R$ 80,00',
+                timeToHarvest: '1 a 2 anos',
+                harvestSeason: 'Ano todo (Pico no Inverno)',
+                yield: '15 a 30 kg / árvore',
+                spacing: '3,0m x 3,0m',
+                care: 'Híbrido de limão e kinkan. Excelente para cultivo em vasos grandes ou jardins abrigados.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Calamondin%20Orange.JPG',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Calamondin%20in%20our%20front%20yard.jpg'
+            },
+
+            // --- TEMPERADAS, KIWI & FRUTAS VERMELHAS ---
+            {
+                id: 'kiwi-hayward',
+                name: 'Kiwi (Par Fêmea + Macho)',
+                variety: 'Actinidia deliciosa (Hayward + Tomuri)',
+                category: 'Temperadas, Kiwi & Frutas Vermelhas',
+                successRate: 'Alta',
+                successPercent: '90%',
+                presentation: 'Vaso / Saco (Comprar o Par)',
+                price: 'R$ 90,00 - R$ 160,00 (Par)',
+                timeToHarvest: '3 a 4 anos',
+                harvestSeason: 'Abril a Maio',
+                yield: '30 a 60 kg / planta',
+                spacing: '4,0m x 5,0m (no caramanchão)',
+                care: 'Trepadeira vigorosa. Exige estrutura forte de pérgola ou latada. É obrigatório ter o par (Macho + Fêmea).',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Actinidia%20deliciosa.%20Kiwi.jpg',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Actinidia%20deliciosa.jpg'
+            },
+            {
+                id: 'noz-peca',
+                name: 'Noz-Pecã',
+                variety: 'Carya illinoinensis (Barton / Jackson)',
+                category: 'Temperadas, Kiwi & Frutas Vermelhas',
+                successRate: 'Alta',
+                successPercent: '95%',
+                presentation: 'Saco Plástico / Vaso',
+                price: 'R$ 60,00 - R$ 110,00',
+                timeToHarvest: '4 a 6 anos',
+                harvestSeason: 'Março a Maio',
+                yield: '20 a 50 kg de nozes',
+                spacing: '8,0m x 8,0m',
+                care: 'Árvore de porte imponente. Resiste 100% ao clima de Caxias do Sul. Plantar no fundo do terreno por causa do tamanho.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Carya%20illinoinensis%20Pecan%20%E1%83%9E%E1%83%94%E1%83%99%E1%83%90%E1%83%9C%E1%83%98%20%281%29.JPG',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Carya%20illinoinensis%20%28pecan%20tree%29%201%20%2824790682337%29.jpg'
+            },
+            {
+                id: 'oliveira',
+                name: 'Oliveira / Azeitona',
+                variety: 'Olea europaea (Arbequina / Koroneiki)',
+                category: 'Temperadas, Kiwi & Frutas Vermelhas',
+                successRate: 'Alta',
+                successPercent: '85%',
+                presentation: 'Vaso / Saco Plástico',
+                price: 'R$ 45,00 - R$ 85,00',
+                timeToHarvest: '3 a 4 anos',
+                harvestSeason: 'Fevereiro a Março',
+                yield: '15 a 35 kg / árvore',
+                spacing: '5,0m x 5,0m',
+                care: 'Exige solo ultra bem drenado (não tolera água empoçada no declive). Ama sol pleno e vento.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Olea%20europaea%202830%20olives.jpg',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Olea%20europaea.jpg'
+            },
+            {
+                id: 'framboesa',
+                name: 'Framboesa',
+                variety: 'Rubus idaeus (Heritage / Fallgold)',
+                category: 'Temperadas, Kiwi & Frutas Vermelhas',
+                successRate: 'Alta',
+                successPercent: '95%',
+                presentation: 'Mudas enraizadas em vaso',
+                price: 'R$ 25,00 - R$ 45,00',
+                timeToHarvest: '6 a 12 meses',
+                harvestSeason: 'Novembro a Março',
+                yield: '2 a 4 kg / metro linear',
+                spacing: '0,5m x 2,0m (em fileira)',
+                care: 'Trepadeira/Arbustiva. Ama o frio severo do inverno gaúcho. Conduzir em fios de arame simples.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Rubus%20idaeus%20-%20red%20raspberry.jpg',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Rubus%20idaeus%20-%20red%20raspberry.jpg'
+            },
+            {
+                id: 'physalis',
+                name: 'Physalis / Camapu',
+                variety: 'Physalis peruviana',
+                category: 'Temperadas, Kiwi & Frutas Vermelhas',
+                successRate: 'Alta',
+                successPercent: '95%',
+                presentation: 'Vaso ou semente',
+                price: 'R$ 15,00 - R$ 30,00',
+                timeToHarvest: '4 a 6 meses',
+                harvestSeason: 'Verão e Outono',
+                yield: '2 a 4 kg / planta',
+                spacing: '1,0m x 1,5m',
+                care: 'Planta arbustiva de ciclo curtíssimo. Fruto exótico e doce embalado em capulho natural.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Physalis%20peruviana%20fruits%20close-up.jpg',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Physalis%20peruviana%20L.%20%2816655004974%29.jpg'
+            },
+            {
+                id: 'roma',
+                name: 'Romã',
+                variety: 'Punica granatum (Wonderful)',
+                category: 'Temperadas, Kiwi & Frutas Vermelhas',
+                successRate: 'Alta',
+                successPercent: '85%',
+                presentation: 'Vaso / Saco Plástico',
+                price: 'R$ 40,00 - R$ 75,00',
+                timeToHarvest: '2 a 3 anos',
+                harvestSeason: 'Fevereiro a Abril',
+                yield: '15 a 35 kg / árvore',
+                spacing: '4,0m x 4,0m',
+                care: 'Arbusto ornamental e rústico. Exige posição bem ensolarada para concentrar o teor de açúcar no fruto.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Pomegranate%20fruit%20-%20Punica%20granatum.jpg',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Punica%20granatum%20-%20Pomegranate%2001-1.jpg'
+            },
+
+            // --- TROPICAIS & SUBTROPICAIS ---
+            {
+                id: 'maracuja-azedo',
+                name: 'Maracujá-Azedo',
+                variety: 'Passiflora edulis (Amarelo)',
+                category: 'Tropicais & Subtropicais',
+                successRate: 'Média',
+                successPercent: '65%',
+                presentation: 'Vaso Plástico (Outubro)',
+                price: 'R$ 20,00 - R$ 38,00',
+                timeToHarvest: '1 ano',
+                harvestSeason: 'Janeiro a Maio',
+                yield: '15 a 30 kg (80-180 fr)',
+                spacing: '3,0m x 3,0m',
+                care: 'Sensível às geadas severas do inverno. Tratar como planta bianual ou cobrir completamente a base no inverno.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Passiflora%20Edulis.jpg',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Passiflora%20edulis%2C%20passion%20fruit%2C%20AJT%20Johnsingh.%20IMG%209035.jpg'
+            },
+            {
+                id: 'maracuja-doce',
+                name: 'Maracujá-Doce',
+                variety: 'Passiflora alata',
+                category: 'Tropicais & Subtropicais',
+                successRate: 'Média',
+                successPercent: '80%',
+                presentation: 'Vaso Plástico (Outubro)',
+                price: 'R$ 25,00 - R$ 45,00',
+                timeToHarvest: '1 ano',
+                harvestSeason: 'Fevereiro a Junho',
+                yield: '10 a 25 kg / planta',
+                spacing: '3,0m x 3,0m',
+                care: 'Mais tolerante ao frio gaúcho que o amarelo. Exige espaldeira ou pergolado para guiar a trepadeira.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Maracuja1.jpg',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/FLOR%20DE%20MARACUJA.jpg'
+            },
+            {
+                id: 'pitaia',
+                name: 'Pitaia (Branca / Vermelha)',
+                variety: 'Hylocereus undatus / costaricensis',
+                category: 'Tropicais & Subtropicais',
+                successRate: 'Média',
+                successPercent: '65%',
+                presentation: 'Estaca enraizada em vaso',
+                price: 'R$ 25,00 - R$ 50,00',
+                timeToHarvest: '1 a 2 anos',
+                harvestSeason: 'Dezembro a Maio',
+                yield: '10 a 25 kg / palanque',
+                spacing: '3,0m x 3,0m',
+                care: 'Cacto epífito. Necessita de palanque de concreto/madeira com cruzeta no topo. Proteger topo do frio em julho.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Dragon%20fruit%20%28Hylocereus%20undatus%29.jpg',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Dragon%20fruit%20%28Hylocereus%20undatus%29.jpg'
+            },
+            {
+                id: 'abacaxi',
+                name: 'Abacaxi',
+                variety: 'Ananas comosus (Pérola)',
+                category: 'Tropicais & Subtropicais',
+                successRate: 'Baixa',
+                successPercent: '50%',
+                presentation: 'Muda de coroa / filhote',
+                price: 'R$ 10,00 - R$ 25,00',
+                timeToHarvest: '18 a 24 meses',
+                harvestSeason: 'Dezembro a Fevereiro',
+                yield: '1 fruto (1,5-2,5kg) / pé',
+                spacing: '0,4m x 0,8m',
+                care: 'Sensível a geadas severas. Exige cobertura morta de palha na base e manto de TNT durante as noites congelantes de inverno.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Pineapple%20%28Ananas%20comosus%29.jpg',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Pineapple%20plant%20%28Ananas%20comosus%29.jpg'
+            },
+            {
+                id: 'mamao',
+                name: 'Mamão',
+                variety: 'Carica papaya (Formosa / Papaya Anão)',
+                category: 'Tropicais & Subtropicais',
+                successRate: 'Baixa',
+                successPercent: '30%',
+                presentation: 'Vaso Plástico',
+                price: 'R$ 20,00 - R$ 40,00',
+                timeToHarvest: '10 a 14 meses',
+                harvestSeason: 'Verão e Outono',
+                yield: '20 a 40 kg (se abrigado)',
+                spacing: '2,0m x 2,0m',
+                care: 'Desafio alto na Serra. O caule apodrece com geada/frio prolongado. Só é viável se plantado em estufa ou junto a parede sul abrigada.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Carica%20Papaya%20%28Papaya%29.jpg',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Carica%20Papaya%20or%20papaya%20tree.jpg'
+            },
+            {
+                id: 'manga',
+                name: 'Manga',
+                variety: 'Mangifera indica (Palmer / Tommy)',
+                category: 'Tropicais & Subtropicais',
+                successRate: 'Baixa',
+                successPercent: '25%',
+                presentation: 'Vaso Plástico',
+                price: 'R$ 50,00 - R$ 90,00',
+                timeToHarvest: '3 a 4 anos',
+                harvestSeason: 'Fevereiro a Abril',
+                yield: '20 a 50 kg (sob estufa)',
+                spacing: '6,0m x 6,0m',
+                care: 'Extremamente sensível ao frio de altitude. Requer abrigo total de ventos do sul ou cultivo em estufa com proteção térmica.',
+                fruitImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Mangifera%20indica%20%28367639315%29.jpg',
+                treeImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Mango%20tree%20Mangifera%20indica.jpg'
+            }
+        ];
+
+        const tableBody = document.getElementById('tableBody');
+        const emptyState = document.getElementById('emptyState');
+        const searchInput = document.getElementById('searchInput');
+        const successFilter = document.getElementById('successFilter');
+        const catButtons = document.querySelectorAll('.filter-cat-btn');
+
+        // Calculator elements
+        const areaInput = document.getElementById('areaInput');
+        const profileSelect = document.getElementById('profileSelect');
+        const capacityOutput = document.getElementById('capacityOutput');
+
+        // Modal elements
+        const detailModal = document.getElementById('detailModal');
+        const modalContainer = document.getElementById('modalContainer');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const closeModalFooterBtn = document.getElementById('closeModalFooterBtn');
+        const modalFruitImg = document.getElementById('modalFruitImg');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalVariety = document.getElementById('modalVariety');
+        const modalCategoryBadge = document.getElementById('modalCategoryBadge');
+        const modalSuccess = document.getElementById('modalSuccess');
+        const modalPrice = document.getElementById('modalPrice');
+        const modalTime = document.getElementById('modalTime');
+        const modalSpacing = document.getElementById('modalSpacing');
+        const modalCareText = document.getElementById('modalCareText');
+        const modalPresentationText = document.getElementById('modalPresentationText');
+        const modalYieldText = document.getElementById('modalYieldText');
+
+        let currentCategory = 'all';
+
+        function updateCategoryCounts() {
+            document.getElementById('count-all').textContent = fruitData.length;
+            document.getElementById('count-nativas').textContent = fruitData.filter(i => i.category === 'Nativas da Serra').length;
+            document.getElementById('count-citricos').textContent = fruitData.filter(i => i.category === 'Cítricos Raros & Exóticos').length;
+            document.getElementById('count-temperadas').textContent = fruitData.filter(i => i.category === 'Temperadas, Kiwi & Frutas Vermelhas').length;
+            document.getElementById('count-tropicais').textContent = fruitData.filter(i => i.category === 'Tropicais & Subtropicais').length;
+        }
+
+        function getSuccessBadgeHTML(rate, percent) {
+            let colorClasses = '';
+            if (rate === 'Alta') {
+                colorClasses = 'bg-emerald-100 text-emerald-800 border-emerald-300';
+            } else if (rate === 'Média') {
+                colorClasses = 'bg-amber-100 text-amber-800 border-amber-300';
+            } else {
+                colorClasses = 'bg-rose-100 text-rose-800 border-rose-300';
+            }
+            return `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border text-[11px] font-bold ${colorClasses}">
+                <i class="fa-solid fa-circle text-[6px]"></i> ${rate} (${percent})
+            </span>`;
+        }
+
+        function getCategoryBadgeHTML(cat) {
+            let style = 'bg-slate-100 text-slate-700';
+            if (cat === 'Nativas da Serra') style = 'bg-emerald-50 text-emerald-700 border-emerald-200';
+            if (cat === 'Cítricos Raros & Exóticos') style = 'bg-amber-50 text-amber-700 border-amber-200';
+            if (cat === 'Temperadas, Kiwi & Frutas Vermelhas') style = 'bg-rose-50 text-rose-700 border-rose-200';
+            if (cat === 'Tropicais & Subtropicais') style = 'bg-orange-50 text-orange-700 border-orange-200';
+
+            return `<span class="px-2 py-0.5 rounded border text-[10px] font-semibold ${style}">${cat}</span>`;
+        }
+
+        function renderTable() {
+            const query = searchInput.value.toLowerCase().trim();
+            const successVal = successFilter.value;
+
+            const filtered = fruitData.filter(item => {
+                const matchesCat = currentCategory === 'all' || item.category === currentCategory;
+                const matchesQuery = item.name.toLowerCase().includes(query) || 
+                                     item.variety.toLowerCase().includes(query) || 
+                                     item.care.toLowerCase().includes(query);
+                const matchesSuccess = successVal === 'all' || item.successRate === successVal;
+
+                return matchesCat && matchesQuery && matchesSuccess;
+            });
+
+            if (filtered.length === 0) {
+                tableBody.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            tableBody.innerHTML = filtered.map(item => `
+                <tr class="hover:bg-slate-50/80 transition-colors group">
+                    <td class="py-3 px-4">
+                        <div class="font-bold text-slate-800 text-sm group-hover:text-serra-700 transition-colors">${item.name}</div>
+                        <div class="text-[11px] text-slate-400 italic">${item.variety}</div>
+                    </td>
+                    <td class="py-3 px-3 text-center">
+                        <img src="${item.fruitImg}" alt="${item.name} — fruto" title="Imagem botânica: Wikimedia Commons" onerror="this.onerror=null; this.src='https://placehold.co/100x100/e2e8f0/475569?text=Fruta';" class="w-12 h-12 rounded-lg object-cover mx-auto shadow-sm border border-slate-200">
+                    </td>
+                    <td class="py-3 px-3 text-center">
+                        <img src="${item.treeImg}" alt="Árvore ${item.name}" title="Imagem botânica: Wikimedia Commons" onerror="this.onerror=null; this.src='https://placehold.co/100x100/e2e8f0/475569?text=Planta';" class="w-12 h-12 rounded-lg object-cover mx-auto shadow-sm border border-slate-200">
+                    </td>
+                    <td class="py-3 px-3">
+                        ${getCategoryBadgeHTML(item.category)}
+                    </td>
+                    <td class="py-3 px-3 text-center">
+                        ${getSuccessBadgeHTML(item.successRate, item.successPercent)}
+                    </td>
+                    <td class="py-3 px-3">
+                        <span class="text-slate-600 block">${item.presentation}</span>
+                    </td>
+                    <td class="py-3 px-3">
+                        <span class="font-semibold text-emerald-700">${item.price}</span>
+                    </td>
+                    <td class="py-3 px-3 text-slate-600">${item.timeToHarvest}</td>
+                    <td class="py-3 px-3 text-slate-600">${item.harvestSeason}</td>
+                    <td class="py-3 px-3 text-slate-600">${item.yield}</td>
+                    <td class="py-3 px-3 font-semibold text-slate-700">${item.spacing}</td>
+                    <td class="py-3 px-3 text-center">
+                        <button onclick="openModal('${item.id}')" class="px-2.5 py-1.5 bg-slate-100 hover:bg-serra-700 hover:text-white text-slate-700 rounded-lg text-xs font-medium transition-all shadow-sm">
+                            <i class="fa-solid fa-circle-info mr-1"></i> Dicas
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function calculateCapacity() {
+            const area = parseFloat(areaInput.value) || 0;
+            const profile = profileSelect.value;
+            let spacingArea = 16; // default 4x4m = 16m2 per tree
+
+            if (profile === 'dense') spacingArea = 9; // 3x3m = 9m2
+            if (profile === 'spacious') spacingArea = 36; // 6x6m = 36m2
+
+            const count = Math.floor(area / spacingArea);
+            capacityOutput.textContent = `~ ${count} Mudas`;
+        }
+
+        window.openModal = function(id) {
+            const item = fruitData.find(f => f.id === id);
+            if (!item) return;
+
+            modalFruitImg.src = item.fruitImg;
+            modalTitle.textContent = item.name;
+            modalVariety.textContent = item.variety;
+            modalCategoryBadge.textContent = item.category;
+            modalCategoryBadge.className = `inline-block text-[10px] uppercase font-bold px-2 py-0.5 rounded-full mb-1 ${
+                item.category === 'Nativas da Serra' ? 'bg-emerald-100 text-emerald-800' :
+                item.category === 'Cítricos Raros & Exóticos' ? 'bg-amber-100 text-amber-800' :
+                item.category === 'Temperadas, Kiwi & Frutas Vermelhas' ? 'bg-rose-100 text-rose-800' :
+                'bg-orange-100 text-orange-800'
+            }`;
+
+            modalSuccess.textContent = `${item.successRate} (${item.successPercent})`;
+            modalPrice.textContent = item.price;
+            modalTime.textContent = item.timeToHarvest;
+            modalSpacing.textContent = item.spacing;
+            modalCareText.textContent = item.care;
+            modalPresentationText.textContent = item.presentation;
+            modalYieldText.textContent = item.yield;
+
+            detailModal.classList.remove('opacity-0', 'pointer-events-none');
+            modalContainer.classList.remove('scale-95');
+            modalContainer.classList.add('scale-100');
+        };
+
+        function closeModal() {
+            detailModal.classList.add('opacity-0', 'pointer-events-none');
+            modalContainer.classList.remove('scale-100');
+            modalContainer.classList.add('scale-95');
+        }
+
+        searchInput.addEventListener('input', renderTable);
+        successFilter.addEventListener('change', renderTable);
+
+        catButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                catButtons.forEach(b => {
+                    b.classList.remove('active', 'bg-serra-700', 'text-white');
+                    b.classList.add('bg-slate-100', 'text-slate-700');
+                });
+                btn.classList.add('active', 'bg-serra-700', 'text-white');
+                btn.classList.remove('bg-slate-100', 'text-slate-700');
+
+                currentCategory = btn.getAttribute('data-category');
+                renderTable();
+            });
+        });
+
+        areaInput.addEventListener('input', calculateCapacity);
+        profileSelect.addEventListener('change', calculateCapacity);
+
+        closeModalBtn.addEventListener('click', closeModal);
+        closeModalFooterBtn.addEventListener('click', closeModal);
+        detailModal.addEventListener('click', (e) => {
+            if (e.target === detailModal) closeModal();
+        });
+
+        window.onload = function() {
+            updateCategoryCounts();
+            renderTable();
+            calculateCapacity();
+        };
+    </script>
+</body>
+</html>
