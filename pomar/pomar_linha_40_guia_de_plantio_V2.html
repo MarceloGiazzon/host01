@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full bg-slate-50">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia de Plantio do Pomar - Linha 40 (Caxias do Sul)</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts - Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            emerald: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              600: '#16a34a',
+              700: '#15803d',
+              800: '#166534',
+              900: '#14532d',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom scrollbar for horizontal table on mobile */
+    .custom-scrollbar::-webkit-scrollbar {
+      height: 8px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    @media print {
+      .no-print { display: none !important; }
+      .print-shadow-none { box-shadow: none !important; border: 1px solid #e2e8f0 !important; }
+    }
+  </style>
+</head>
+<body class="h-full font-sans text-slate-800 antialiased flex flex-col min-h-screen bg-slate-50">
+
+  <!-- Top Navigation / Header -->
+  <header class="bg-emerald-800 text-white shadow-md sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div class="flex items-center space-x-3">
+          <div class="p-2.5 bg-emerald-700/80 rounded-xl border border-emerald-600/50 flex items-center justify-center shadow-inner">
+            <i class="fa-solid fa-tree text-emerald-200 text-2xl"></i>
+          </div>
+          <div>
+            <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-white">Guia de Plantio do Pomar</h1>
+            <p class="text-xs sm:text-sm text-emerald-200 flex items-center gap-1.5 mt-0.5">
+              <i class="fa-solid fa-location-dot text-emerald-300"></i>
+              Estrada Mun. Ver. Marcial Pisoni, 2448 - Linha 40, Caxias do Sul - RS
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 self-start md:self-auto no-print">
+          <button onclick="window.print()" class="px-3.5 py-2 bg-emerald-700 hover:bg-emerald-600 text-emerald-50 rounded-lg text-xs font-semibold transition-colors shadow-sm flex items-center gap-2">
+            <i class="fa-solid fa-print"></i>
+            <span>Imprimir / PDF</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+    <!-- Summary Cards -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+      <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center gap-3">
+        <div class="p-3 bg-emerald-50 text-emerald-700 rounded-lg shrink-0">
+          <i class="fa-solid fa-seedling text-lg"></i>
+        </div>
+        <div>
+          <span class="block text-2xl font-bold text-slate-800" id="total-count">29</span>
+          <span class="text-xs text-slate-500 font-medium">Mudas Selecionadas</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center gap-3">
+        <div class="p-3 bg-amber-50 text-amber-600 rounded-lg shrink-0">
+          <i class="fa-solid fa-sun text-lg"></i>
+        </div>
+        <div>
+          <span class="block text-2xl font-bold text-slate-800">100%</span>
+          <span class="text-xs text-slate-500 font-medium">Exigem Sol Direto</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center gap-3">
+        <div class="p-3 bg-blue-50 text-blue-600 rounded-lg shrink-0">
+          <i class="fa-solid fa-snowflake text-lg"></i>
+        </div>
+        <div>
+          <span class="block text-2xl font-bold text-slate-800">20</span>
+          <span class="text-xs text-slate-500 font-medium">Resistentes ao Frio</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center gap-3">
+        <div class="p-3 bg-purple-50 text-purple-600 rounded-lg shrink-0">
+          <i class="fa-solid fa-faucet-drip text-lg"></i>
+        </div>
+        <div>
+          <span class="block text-2xl font-bold text-slate-800">Outubro</span>
+          <span class="text-xs text-slate-500 font-medium">Plantio Envasado</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filters & Search Bar -->
+    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-4 no-print">
+      <div class="flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
+        
+        <!-- Search Input -->
+        <div class="relative flex-1">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+          <input type="text" id="search-input" placeholder="Buscar por espécie, cultivar ou palavra-chave..." 
+            class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all">
+        </div>
+
+        <!-- Filter Selects -->
+        <div class="flex flex-wrap sm:flex-nowrap gap-2">
+          <select id="filter-location" class="bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+            <option value="all">Todas as Localizações</option>
+            <option value="solo">Direto no Solo</option>
+            <option value="vaso">Pode ir em Vaso</option>
+          </select>
+
+          <select id="filter-sensitivity" class="bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+            <option value="all">Sensibilidade ao Frio</option>
+            <option value="resistente">Resistente ao Frio Local</option>
+            <option value="sensivel">Sensível à Geada (Proteger)</option>
+          </select>
+
+          <!-- Reset Filter -->
+          <button id="reset-filters" class="px-3 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg text-xs font-medium transition-colors">
+            Limpar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Section -->
+    <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden print-shadow-none">
+      
+      <!-- Desktop & Tablet Table View -->
+      <div class="overflow-x-auto custom-scrollbar">
+        <table class="w-full text-left border-collapse min-w-[900px]">
+          <thead>
+            <tr class="bg-slate-100 border-b border-slate-200 text-xs font-bold text-slate-600 uppercase tracking-wider">
+              <th scope="col" class="py-3.5 px-4 w-1/5">Espécie & Cultivar</th>
+              <th scope="col" class="py-3.5 px-3 text-center w-24">Espaçamento</th>
+              <th scope="col" class="py-3.5 px-3 text-center w-28">Sol Direto</th>
+              <th scope="col" class="py-3.5 px-3 text-center w-32">Local Recomendado</th>
+              <th scope="col" class="py-3.5 px-4 w-1/4">Cuidados Adicionais de Manejo</th>
+              <th scope="col" class="py-3.5 px-4">Observações Extras (Linha 40)</th>
+            </tr>
+          </thead>
+          <tbody id="plant-table-body" class="divide-y divide-slate-200 text-sm">
+            <!-- Table rows will be rendered dynamically by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Empty State -->
+      <div id="no-results" class="hidden p-8 text-center">
+        <i class="fa-solid fa-seedling text-slate-300 text-4xl mb-3"></i>
+        <p class="text-slate-600 font-medium text-base">Nenhuma espécie encontrada com esses filtros.</p>
+        <p class="text-xs text-slate-400 mt-1">Tente ajustar a busca ou limpar os filtros digitados.</p>
+      </div>
+    </div>
+
+    <!-- Regional Planting Recommendations -->
+    <div class="bg-emerald-900 text-emerald-50 rounded-xl p-5 sm:p-6 shadow-md border border-emerald-800 space-y-4">
+      <div class="flex items-center gap-2 text-emerald-300 font-bold text-lg border-b border-emerald-800/80 pb-3">
+        <i class="fa-solid fa-compass-drafting text-xl"></i>
+        <h2>Guia Prático de Plantio para Outubro na Linha 40</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm text-emerald-100">
+        <div class="bg-emerald-800/50 p-4 rounded-lg border border-emerald-700/50 space-y-2">
+          <h3 class="font-semibold text-emerald-200 flex items-center gap-2">
+            <i class="fa-solid fa-shovel text-emerald-400"></i>
+            1. Abertura da Cova
+          </h3>
+          <p class="leading-relaxed text-emerald-200/90">
+            Escave covas de no mínimo <strong>50 x 50 x 50 cm</strong>. Separe a terra da superfície e adicione 10 a 15kg de composto orgânico/humus ou esterco bem curtido + 200g de superflosfato simples ou farinha de ossos.
+          </p>
+        </div>
+
+        <div class="bg-emerald-800/50 p-4 rounded-lg border border-emerald-700/50 space-y-2">
+          <h3 class="font-semibold text-emerald-200 flex items-center gap-2">
+            <i class="fa-solid fa-plant-wilt text-emerald-400"></i>
+            2. Ponto de Enxerto & Terrão
+          </h3>
+          <p class="leading-relaxed text-emerald-200/90">
+            Preserve o terrão das mudas envasadas intacto ao rasgar a embalagem. <strong>Nunca enterre o ponto de enxerto</strong> (cicatriz na base da muda); deixe-o 5cm acima do nível do solo para evitar fungos.
+          </p>
+        </div>
+
+        <div class="bg-emerald-800/50 p-4 rounded-lg border border-emerald-700/50 space-y-2">
+          <h3 class="font-semibold text-emerald-200 flex items-center gap-2">
+            <i class="fa-solid fa-droplet text-emerald-400"></i>
+            3. Irrigação e Cobertura
+          </h3>
+          <p class="leading-relaxed text-emerald-200/90">
+            Regue abundantemente logo após o plantio (15 a 20 litros por cova). Coloque cobertura morta (palha, cavaco ou roçagem) ao redor do tronco para reter a umidade durante a primavera.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-100 border-t border-slate-200 py-4 mt-auto no-print">
+    <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500">
+      Guia Informativo Personalizado • Pomar Doméstico de Encosta na Serra Gaúcha
+    </div>
+  </footer>
+
+  <script>
+    // Full dataset with remaining species from Vaso e Flor, Mondini, Kit Adicional & Reference
+    const plantsData = [
+      {
+        name: "Ameixa Letícia (Enxertada)",
+        qty: "2x",
+        spacing: "4m x 5m",
+        sun: "Alto (6h+)",
+        location: "solo",
+        locationLabel: "Direto no Solo",
+        care: "Poda de condução em taça no inverno. Adubação orgânica de pré-florada.",
+        notes: "Exige acúmulo de frio hibernal. Excelente produção na Serra Gaúcha.",
+        frostSensitive: false
+      },
+      {
+        name: "Ameixa Pluma 7 (Enxertada)",
+        qty: "1x",
+        spacing: "4m x 5m",
+        sun: "Alto (6h+)",
+        location: "solo",
+        locationLabel: "Direto no Solo",
+        care: "Poda de limpeza pós-colheita. Controle preventivo de fungos na floração.",
+        notes: "Maturidade precoce/média. Ótima polinizadora para pomares de prunóideas.",
+        frostSensitive: false
+      },
+      {
+        name: "Cereja do Rio Grande (Nativa)",
+        qty: "5x",
+        spacing: "4m x 5m",
+        sun: "Alto / Médio",
+        location: "solo",
+        locationLabel: "Direto no Solo",
+        care: "Regas regulares nos primeiros meses. Suporta poda leve de formatação.",
+        notes: "Nativa brasileira (Eugenia involucrata). Fruta saborosa que atrai avifauna.",
+        frostSensitive: false
+      },
+      {
+        name: "Guabiroba (90cm)",
+        qty: "1x",
+        spacing: "5m x 6m",
+        sun: "Alto (6h+)",
+        location: "solo",
+        locationLabel: "Direto no Solo",
+        care: "Solo bem drenado enriquecido com matéria orgânica e fósforo.",
+        notes: "Árvore nativa rústica e vigorosa. Suporta bem o inverno frio de Caxias.",
+        frostSensitive: false
+      },
+      {
+        name: "Pêssego Chiripá (Enxertado)",
+        qty: "1x",
+        spacing: "4m x 5m",
+        sun: "Alto (6h+)",
+        location: "solo",
+        locationLabel: "Direto no Solo",
+        care: "Ralamento manual de frutos jovens e ensacamento ou armadilha para mosca-da-fruta.",
+        notes: "Variedade tradicional do RS com polpa branca e doce, muito produtiva.",
+        frostSensitive: false
+      },
+      {
+        name: "Pêssego Dourado (Enxertado)",
+        qty: "1x",
+        spacing: "4m x 5m",
+        sun: "Alto (6h+)",
+        location: "solo",
+        locationLabel: "Direto no Solo",
+        care: "Poda anual de frutificação nos ramos de ano anterior.",
+        notes: "Polpa amarela firme e excelente para consumo in natura ou doces.",
+        frostSensitive: false
+      },
+      {
+        name: "Pêssego Kampai (Enxertado)",
+        qty: "1x",
+        spacing: "4m x 5m",
+        sun: "Alto (6h+)",
+        location: "solo",
+        locationLabel: "Direto no Solo",
+        care: "Adubação potássica durante o enchimento dos frutos na primavera.",
+        notes: "Maturidade precoce, muito apreciado pela suculência e acidez equilibrada.",
+        frostSensitive: false
+      },
+      {
+        name: "Framboesa Heritage (40 to 50cm)",
+        qty: "1x",
+        spacing: "0.8m x 1m",
+        sun: "Alto / Médio",
+        location: "vaso",
+        locationLabel: "Solo ou Vaso (25L+)",
+        care: "Tutoramento com tutores de madeira. Manter solo leve e rico em matéria orgânica.",
+        notes: "Excelente adaptação às baixas temperaturas da Serra Gaúcha.",
+        frostSensitive: false
+      },
+      {
+        name: "Pomelo Star Ruby",
+        qty: "1x",
+        spacing: "4m x 5m",
+        sun: "Alto (6h+)",
+        location: "solo",
+        locationLabel: "Direto no Solo",
+        care: "Drenagem eficiente na cova. Adubação de citros no início da primavera.",
+        notes: "Citros de polpa avermelhada suculenta e sabor refrescante.",
+        frostSensitive: false
+      },
+      {
+        name: "Laranja Sanguínea Enxertada",
+        qty: "1x",
+        spacing: "4m x 5m",
+        sun: "Alto (6h+)",
+        location: "solo",
+        locationLabel: "Direto no Solo",
+        care: "Controle de pragas sugadoras (pulgões/cochonilhas) na brotação nova.",
+        notes: "A oscilação térmica (dias ensolarados e noites frias na Serra) intensifica o vermelho da polpa.",
+        frostSensitive: false
+      },
+      {
+        name: "Limão Caviar / Faustrime",
+        qty: "1x",
+        spacing: "2m x 3m",
+        sun: "Alto (6h+)",
+        location: "vaso",
+        locationLabel: "Solo ou Vaso (30L+)",
+        care: "Substrato bem drenado e aerado. Cuidado com espinhos finos no manejo.",
+        notes: "Fruta exótica gourmet com vesículas de suco que explodem na boca. Ótimo em vasos.",
+        frostSensitive: false
+      },
+      {
+        name: "Dovyalis Doce",
+        qty: "1x",
+        spacing: "3m x 4m",
+        sun: "Alto (6h+)",
+        location: "solo",
+        locationLabel: "Direto no Solo",
+        care: "Pode ser podada para contenção ou cerca viva produtiva.",
+        notes: "Planta muito rústica e produtiva. Frutos ácidos/doces ricos em Vitamina C.",
+        frostSensitive: false
+      },
+      {
+        name: "Pitaya Clone Gigante",
+        qty: "1x",
+        spacing: "2m x 2m",
+        sun: "Alto (6h+)",
+        location: "vaso",
+        locationLabel: "Solo ou Vaso com Tutor",
+        care: "Necessita obrigatoriamente de palanque/suporte firme em 'T'. Solo arenoso.",
+        notes: "Cacto trepadeira. Evitar solo encharcado no inverno de Caxias.",
+        frostSensitive: false
+      },
+      {
+        name: "Jabuticaba (20 a 30cm)",
+        qty: "1x",
+        spacing: "4m x 5m",
+        sun: "Alto / Médio",
+        location: "vaso",
+        locationLabel: "Solo ou Vaso (40L+)",
+        care: "Proteger o solo com cobertura morta densa para manter a umidade constante.",
+        notes: "Desenvolvimento inicial lento. Responde muito bem a regas frequentes.",
+        frostSensitive: false
+      },
+      {
+        name: "Pera D'Água (Enxertada)",
+        qty: "1x",
+        spacing: "4m x 5m",
+        sun: "Alto (6h+)",
+        location: "solo",
+        locationLabel: "Direto no Solo",
+        care: "Poda de condução em líder central ou taça. Cova bem adubada com matéria orgânica.",
+        notes: "Necessita do frio hibernal local para romper dormência e florescer com vigor.",
+        frostSensitive: false
+      },
+      {
+        name: "Goiaba Roxa",
+        qty: "1x",
+        spacing: "4m x 5m",
+        sun: "Alto (6h+)",
+        location: "solo",
+        locationLabel: "Direto no Solo",
+        care: "Ensacamento de frutos para prevenção contra mosca-da-fruta.",
+        notes: "Folhas e frutos roxos de apelo estético marcante no pomar.",
+        frostSensitive: false
+      },
+      {
+        name: "Limão Siciliano",
+        qty: "1x",
+        spacing: "3m x 4m",
+        sun: "Alto (6h+)",
+        location: "vaso",
+        locationLabel: "Solo ou Vaso (40L+)",
+        care: "Poda de arejamento do miolo da copa e adubação orgânica trimestral.",
+        notes: "Limão aromático de casca amarela espessa. Muito produtivo na região.",
+        frostSensitive: false
+      },
+      {
+        name: "Goiaba Tailandesa",
+        qty: "1x",
+        spacing: "4m x 5m",
+        sun: "Alto (6h+)",
+        location: "vaso",
+        locationLabel: "Solo ou Vaso Protegido",
+        care: "Proteger a muda nos invernos rigorosos e ensacar frutos ainda pequenos.",
+        notes: "Produz frutos gigantes de polpa crocante e firme.",
+        frostSensitive: true
+      },
+      {
+        name: "Jabuticaba Híbrida",
+        qty: "1x",
+        spacing: "3m x 4m",
+        sun: "Alto / Médio",
+        location: "vaso",
+        locationLabel: "Solo ou Vaso (50L+)",
+        care: "Rega abundante e constante (solo sempre úmido). Adubação orgânica freqüente.",
+        notes: "Produz múltiplas floradas por ano. Responde muito bem a vasos de grande porte.",
+        frostSensitive: false
+      },
+      {
+        name: "Amora Gigante",
+        qty: "1x",
+        spacing: "1.5m x 2m",
+        sun: "Alto (6h+)",
+        location: "vaso",
+        locationLabel: "Solo ou Vaso (40L)",
+        care: "Condução em espaldeira/arames. Eliminar ramos velhos após frutificação.",
+        notes: "Produção abundante de frutos grandes no final da primavera/verão.",
+        frostSensitive: false
+      },
+      {
+        name: "Cerejeira Japonesa Branca (Sakura)",
+        qty: "Ref.",
+        spacing: "4m x 6m",
+        sun: "Alto (6h+)",
+        location: "solo",
+        locationLabel: "Direto no Solo",
+        care: "Manter cicatriz do enxerto acima da terra. Eliminar brotos ladrões da base.",
+        notes: "Exclusivamente ornamental. Florada exuberante impulsionada pelo frio de Caxias.",
+        frostSensitive: false
+      }
+    ];
+
+    const tableBody = document.getElementById('plant-table-body');
+    const searchInput = document.getElementById('search-input');
+    const filterLocation = document.getElementById('filter-location');
+    const filterSensitivity = document.getElementById('filter-sensitivity');
+    const resetBtn = document.getElementById('reset-filters');
+    const noResults = document.getElementById('no-results');
+    const totalCountEl = document.getElementById('total-count');
+
+    function renderTable(data) {
+      tableBody.innerHTML = '';
+      
+      if (data.length === 0) {
+        noResults.classList.remove('hidden');
+        totalCountEl.textContent = '0';
+        return;
+      }
+
+      noResults.classList.add('hidden');
+      totalCountEl.textContent = data.length;
+
+      data.forEach((plant, index) => {
+        const row = document.createElement('tr');
+        row.className = index % 2 === 0 ? 'bg-white hover:bg-slate-50 transition-colors' : 'bg-slate-50/60 hover:bg-slate-100/80 transition-colors';
+
+        // Location Badge Color
+        const locationClass = plant.location === 'vaso' 
+          ? 'bg-purple-100 text-purple-800 border-purple-200' 
+          : 'bg-emerald-100 text-emerald-800 border-emerald-200';
+
+        // Frost Badge
+        const frostBadge = plant.frostSensitive
+          ? `<span class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-200 mt-1">
+               <i class="fa-solid fa-temperature-arrow-down text-amber-600"></i> Proteger Geada
+             </span>`
+          : `<span class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200/60 mt-1">
+               <i class="fa-solid fa-snowflake text-blue-500"></i> Resistente ao Frio
+             </span>`;
+
+        row.innerHTML = `
+          <td class="py-3.5 px-4 font-semibold text-slate-800 align-top">
+            <div class="flex items-center gap-2">
+              <span>${plant.name}</span>
+              <span class="text-xs bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded font-normal shrink-0">${plant.qty}</span>
+            </div>
+            <div>${frostBadge}</div>
+          </td>
+
+          <td class="py-3.5 px-3 text-center align-top font-medium text-slate-700 whitespace-nowrap">
+            <span class="inline-block bg-slate-100 border border-slate-200 px-2 py-1 rounded text-xs">
+              ${plant.spacing}
+            </span>
+          </td>
+
+          <td class="py-3.5 px-3 text-center align-top whitespace-nowrap">
+            <span class="inline-flex items-center gap-1 text-xs text-amber-700 font-medium bg-amber-50 px-2 py-1 rounded border border-amber-200/80">
+              <i class="fa-solid fa-sun text-amber-500"></i> ${plant.sun}
+            </span>
+          </td>
+
+          <td class="py-3.5 px-3 text-center align-top whitespace-nowrap">
+            <span class="inline-block text-xs font-semibold px-2.5 py-1 rounded-full border ${locationClass}">
+              ${plant.locationLabel}
+            </span>
+          </td>
+
+          <td class="py-3.5 px-4 text-xs text-slate-600 align-top leading-relaxed">
+            ${plant.care}
+          </td>
+
+          <td class="py-3.5 px-4 text-xs text-slate-600 align-top leading-relaxed bg-slate-50/40">
+            <div class="flex items-start gap-1.5">
+              <i class="fa-solid fa-circle-info text-emerald-600 text-xs mt-0.5 shrink-0"></i>
+              <span>${plant.notes}</span>
+            </div>
+          </td>
+        `;
+
+        tableBody.appendChild(row);
+      });
+    }
+
+    function filterData() {
+      const query = searchInput.value.toLowerCase().trim();
+      const locationVal = filterLocation.value;
+      const sensitivityVal = filterSensitivity.value;
+
+      const filtered = plantsData.filter(plant => {
+        // Search text match
+        const matchesQuery = plant.name.toLowerCase().includes(query) || 
+                             plant.care.toLowerCase().includes(query) || 
+                             plant.notes.toLowerCase().includes(query);
+
+        // Location match
+        const matchesLocation = locationVal === 'all' || 
+                                (locationVal === 'solo' && plant.location === 'solo') || 
+                                (locationVal === 'vaso' && plant.location === 'vaso');
+
+        // Sensitivity match
+        const matchesSensitivity = sensitivityVal === 'all' || 
+                                   (sensitivityVal === 'resistente' && !plant.frostSensitive) || 
+                                   (sensitivityVal === 'sensivel' && plant.frostSensitive);
+
+        return matchesQuery && matchesLocation && matchesSensitivity;
+      });
+
+      renderTable(filtered);
+    }
+
+    // Event Listeners
+    searchInput.addEventListener('input', filterData);
+    filterLocation.addEventListener('change', filterData);
+    filterSensitivity.addEventListener('change', filterData);
+
+    resetBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      filterLocation.value = 'all';
+      filterSensitivity.value = 'all';
+      renderTable(plantsData);
+    });
+
+    // Initial Render
+    renderTable(plantsData);
+  </script>
+</body>
+</html>
